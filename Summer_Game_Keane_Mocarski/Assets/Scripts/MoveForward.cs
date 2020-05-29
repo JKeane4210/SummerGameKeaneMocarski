@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ public class MoveForward : MonoBehaviour
     public Animator anim;
     public CharacterController controller;
     public Transform playerBody;
+    public float vel;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +24,14 @@ public class MoveForward : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             isWalking = true;
-            Vector3 move = transform.right * z + transform.forward * x;
-            controller.Move(move * 6f * Time.deltaTime);
+            Vector3 move = transform.right * x + transform.forward * z;
+            controller.Move(move * vel * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             isWalking = true;
-            Vector3 move = -1 * transform.right * z - transform.forward * x;
-            controller.Move(move * -6f * Time.deltaTime);
+            Vector3 move = -1 * transform.right * x - transform.forward * z;
+            controller.Move(move * -vel * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -44,11 +45,11 @@ public class MoveForward : MonoBehaviour
         }
         if(isWalking)
         {
-            anim.Play("Walking");
+            anim.Play("Run");
         }
         else
         {
-            anim.Play("ArmAnimation");
+            anim.Play("Stationary");
         }
         isWalking = false;
     }
