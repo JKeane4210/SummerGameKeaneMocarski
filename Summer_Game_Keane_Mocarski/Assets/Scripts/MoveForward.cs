@@ -44,7 +44,7 @@ public class MoveForward : MonoBehaviour
             playerBody.Rotate(Vector3.up * (float)(-0.1));
         }
         if(isWalking)
-        {
+        { 
             anim.Play("Run");
         }
         else
