@@ -6,7 +6,7 @@ public class MoveWheel : MonoBehaviour
 {
     public float velocity;
     public float angular_velocity;
-    public CharacterController car;
+    public CharacterController wheel;
     public Transform car_transform;
     public Transform front_wheels;
 
