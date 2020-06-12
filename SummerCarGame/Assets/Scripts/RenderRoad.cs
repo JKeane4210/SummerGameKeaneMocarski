@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class RenderRoad : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform car;
+    public GameObject road;
+    private ArrayList roads = new ArrayList();
+    public float renderRate;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (car.localPosition.z % 20 > renderRate)
+        {
+            GameObject road_add = road;
+            Instantiate(road_add, new Vector3(-2.2285569f, -1.072421f, car.localPosition.z + 20), Quaternion.identity);
+            roads.Add(road_add);
+            
+        }
+        //for (int i = 0; i < roads.Count; i++)
+        //{
+        //    if (Mathf.Abs(car.localPosition.z - road.transform.localPosition.z) > 15)
+        //    {
+        //        try
+
+        //        if ((GameObject)roads[i] != null)
+        //            Destroy((GameObject)roads[i]);
+        //        roads.RemoveAt(i);
+        //        i--;
+        //    }
+        //    print("Road " + i);
+        //}
     }
 }
