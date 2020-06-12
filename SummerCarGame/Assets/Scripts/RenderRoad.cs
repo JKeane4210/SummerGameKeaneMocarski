@@ -15,7 +15,7 @@ public class RenderRoad : MonoBehaviour
         if (car.localPosition.z % 20 > renderRate)
         {
             GameObject road_add = road;
-            Instantiate(road_add, new Vector3(-2.2285569f, -1.072421f, car.localPosition.z + 20), Quaternion.identity);
+            Instantiate(road_add, new Vector3(0, 0, car.localPosition.z + 20), Quaternion.identity);
             roads.Add(road_add);
             
         }
