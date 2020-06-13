@@ -43,11 +43,11 @@ public class Swipe : MonoBehaviour
         }
         #endregion
     
-        //calculate the distance
+        // calculate the distance
         swipeDelta = Vector2.zero;
         if(isDragging)
         {
-            if(Input.touches.Length > 0)
+            if(Input.touches.Length != 0)
             {
                 swipeDelta = Input.touches[0].position - startTouch;
             }
@@ -62,19 +62,19 @@ public class Swipe : MonoBehaviour
         {
             //which direction is swipe
             float x = swipeDelta.x;
-            if(x < 0)
-                swipeLeft = true;
-            else
+            
+            if (x > 0)
                 swipeRight = true;
-
+            if (x < 0) 
+                swipeLeft = true;
             Reset();
         }
     }
 
     private void Reset()
     {
-        startTouch = swipeDelta = Vector2.zero;
-        isDragging = false;
+        // startTouch = swipeDelta = Vector2.zero;
+        // isDragging = false;
     }
    public bool Tap { get { return tap; }}
    public Vector2 SwipeDelta { get { return swipeDelta;}}
