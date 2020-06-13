@@ -12,7 +12,7 @@ public class RandomDeer : MonoBehaviour
         deer.AddComponent<Rigidbody>();
         deer.GetComponent<Rigidbody>().useGravity = false;
         deer.AddComponent<DeerRunning>();
-        deer.GetComponent<DeerRunning>().
+        deer.GetComponent<DeerRunning>();
     }
 
 }
