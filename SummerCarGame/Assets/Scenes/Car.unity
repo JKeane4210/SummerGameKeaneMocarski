@@ -647,6 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1763635068}
   - component: {fileID: 1763635066}
+  - component: {fileID: 1763635067}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -669,6 +670,18 @@ MonoBehaviour:
   car: {fileID: 1967330819}
   road: {fileID: 434448752}
   renderRate: 19.85
+--- !u!114 &1763635067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763635065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0196551c020e46742b81b7851b4be147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1763635068
 Transform:
   m_ObjectHideFlags: 0
