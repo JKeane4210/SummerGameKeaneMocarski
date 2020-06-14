@@ -11,6 +11,7 @@ public class RandomDeerInstantiation : MonoBehaviour
     void Start()
     {
         GameObject deer = deer_obj;
+        deer.AddComponent<Rigidbody>();
         deer.GetComponent<Rigidbody>().useGravity = false;
         DeerRunning deer_running = deer.GetComponent<DeerRunning>();
         deer_running.motion_multiplier = Random.Range(2f, 4f);
@@ -18,7 +19,7 @@ public class RandomDeerInstantiation : MonoBehaviour
         deer_running.player_rigidbody = deer.GetComponent<Rigidbody>();
         float controller_z = controller.GetComponent<Transform>().localPosition.z;
         Quaternion rotation = Quaternion.Euler(0f, Random.Range(90f, 150f), 0f);
-        Instantiate(deer, new Vector3(Random.Range(-0.8f, -3.8f), 1.6f, Random.Range(controller_z - 20f - 5f, controller_z - 20f + 5f)), rotation);
+        Instantiate(deer, new Vector3(Random.Range(-0.8f, -3.8f), 1.6f, Random.Range(controller_z - 5f, controller_z + 5f)), rotation);
     }
 
 }
