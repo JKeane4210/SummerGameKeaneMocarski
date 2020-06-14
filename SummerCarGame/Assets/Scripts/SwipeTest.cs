@@ -8,22 +8,25 @@ public class SwipeTest : MonoBehaviour
     public Swipe swipeControls;
     public Transform player;
     private Vector3 desiredPosition;
-    public float motion_multiplier; 
     public Rigidbody car_rb;
+    public float swipeVelocity;
+    public float motion_multiplier;
     private Vector3 trajectory = Vector3.forward + Vector3.up * 1.5f;
-    void Start()
+    
+    private void Start()
     {
-        trajectory = motion_multiplier * new Vector3(Mathf.Cos(player.localRotation.y), 0f, -Mathf.Sin(player.localRotation.y));
+         desiredPosition = player.transform.position; 
+         
     }
     private void Update()
     {
         if(swipeControls.SwipeLeft)
-            desiredPosition += Vector3.left;
+            desiredPosition += Vector3.left * swipeVelocity;
         if(swipeControls.SwipeRight)
-            desiredPosition += Vector3.right;
+            desiredPosition += Vector3.right * swipeVelocity;
 
-        car_rb.velocity = trajectory; 
-           
+        player.transform.position = Vector3.MoveTowards(player.transform.position, desiredPosition, 3f * Time.deltaTime);
+        
         if(swipeControls.Tap)
             Debug.Log("Tap");
     }
