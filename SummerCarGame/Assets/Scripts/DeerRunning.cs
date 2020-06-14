@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class DeerRunning : MonoBehaviour
 {
-    public float vel_min;
-    public float vel_max;
     public Transform player;
     public Rigidbody player_rigidbody;
     public float motion_multiplier;
-    private Vector3 trajectory = Vector3.forward + Vector3.up * 1.5f;
+    private Vector3 trajectory = Vector3.forward;
 
     // Start is called before the first frame update
     void Start()

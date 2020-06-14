@@ -243,6 +243,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &259963051
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259963049}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &259963052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +274,8 @@ MonoBehaviour:
   vel_min: 2
   vel_max: 4
   player: {fileID: 259963053}
-  up_motion_multiplier: 1.5
+  player_rigidbody: {fileID: 259963051}
+  motion_multiplier: 2.5
 --- !u!4 &259963053 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: bb141538a6051450e840f28c16ceb35e,
@@ -391,6 +408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 434448753}
+  - component: {fileID: 434448754}
   m_Layer: 0
   m_Name: RoadBlock
   m_TagString: Untagged
@@ -415,6 +433,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &434448754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434448752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15d675b7060647e38a0b97f7fbf4594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deer_obj: {fileID: 259963049}
+  controller: {fileID: 434448752}
 --- !u!1001 &625998063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -874,6 +906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swipeControls: {fileID: 1763635067}
   player: {fileID: 1967330819}
+  motion_multiplier: 0
+  car_rb: {fileID: 0}
 --- !u!1001 &1860386174
 PrefabInstance:
   m_ObjectHideFlags: 0
