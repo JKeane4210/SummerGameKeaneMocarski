@@ -1884,9 +1884,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1761169416}
-  car_collider: {fileID: 1967426084}
-  wheel_collider1: {fileID: 1967426088}
-  wheel_collider2: {fileID: 1967426086}
 --- !u!23 &1969624289
 MeshRenderer:
   m_ObjectHideFlags: 0
