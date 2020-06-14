@@ -73,8 +73,8 @@ public class Swipe : MonoBehaviour
 
     private void Reset()
     {
-        // startTouch = swipeDelta = Vector2.zero;
-        // isDragging = false;
+        startTouch = swipeDelta = Vector2.zero;
+        isDragging = false;
     }
    public bool Tap { get { return tap; }}
    public Vector2 SwipeDelta { get { return swipeDelta;}}

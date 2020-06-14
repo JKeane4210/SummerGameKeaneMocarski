@@ -34,7 +34,10 @@ public class MoveCar : MonoBehaviour
         //         car_transform.localPosition = new Vector3(car_transform.localPosition.x, -1, car_transform.localPosition.z);
         //     }
         // }
+
+        //moves car forward by itself
         car_transform.position += transform.forward * Time.deltaTime * forward_vel;
+
         if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
         {
             Vector3 move = -1 * transform.forward * z - transform.right * x;
