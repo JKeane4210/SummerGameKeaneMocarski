@@ -8,15 +8,11 @@ public class SwipeTest : MonoBehaviour
     public Swipe swipeControls;
     public Transform player;
     private Vector3 desiredPosition;
-    public Rigidbody car_rb;
     public float swipeVelocity;
-    public float motion_multiplier;
-    private Vector3 trajectory = Vector3.forward + Vector3.up * 1.5f;
-    
+
     private void Start()
     {
-         desiredPosition = player.transform.position; 
-         
+        desiredPosition = player.transform.position;  
     }
     private void Update()
     {

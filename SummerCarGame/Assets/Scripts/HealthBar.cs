@@ -30,4 +30,9 @@ public class HealthBar : MonoBehaviour
             slider.value = 0;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
+
+    public float GetValue()
+    {
+        return slider.value;
+    }
 }

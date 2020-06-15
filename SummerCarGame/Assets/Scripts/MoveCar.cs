@@ -12,7 +12,7 @@ public class MoveCar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        car_transform.localPosition = new Vector3(car_transform.localPosition.x, -1, car_transform.localPosition.z);
+        car_transform.localPosition = new Vector3(car_transform.localPosition.x, car_transform.localPosition.y, car_transform.localPosition.z);
         //
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
