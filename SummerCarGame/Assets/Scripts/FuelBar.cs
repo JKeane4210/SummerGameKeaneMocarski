@@ -26,4 +26,9 @@ public class FuelBar : MonoBehaviour
         fuelSlider.value = gas;
 
     }
+
+    public float GetFuel()
+    {
+        return fuelSlider.value;
+    }
 }

@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class CarDeerCollide : MonoBehaviour
 {
-    public HealthBar health;
+    public GameObject health_bar;
     private float health_lost = 10f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.ToString() == "deer3(Clone) (UnityEngine.BoxCollider)")
+        //Debug.Log(other);
+        HealthBar health = health_bar.GetComponent<HealthBar>();
+        if (other.ToString().Contains("deer3"))
         {
-            Debug.Log(other);
+            //Debug.Log(other);
             health.DecreaseHealth(health_lost);
         }
     }
