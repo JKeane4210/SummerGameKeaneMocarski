@@ -9,7 +9,7 @@ public class MoveCar : MonoBehaviour
     public CharacterController car;
     public Transform car_transform;
 
-    // Update is called once per frame
+   
     void Update()
     {
         car_transform.localPosition = new Vector3(car_transform.localPosition.x, car_transform.localPosition.y, car_transform.localPosition.z);

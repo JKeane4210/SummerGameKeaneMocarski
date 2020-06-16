@@ -17,6 +17,8 @@ public class SceneDrawing : MonoBehaviour
     public FuelBar fuelBar;
     public HealthBar healthBar;
 
+
+
     private void Start()
     {
         DrawRoadBlock(roadBlock);
@@ -86,6 +88,8 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(game_over_txt_fied);
             ShowButton(replay_btn);
             ShowButton(home_btn);
+            
+            
         }
         else if(fuel_bar_obj.GetComponent<FuelBar>().GetFuel() == 0)
         {
@@ -93,6 +97,7 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(game_over_txt_fied);
             ShowButton(replay_btn);
             ShowButton(home_btn);
+            
         }
     }
 }
