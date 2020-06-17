@@ -7,6 +7,22 @@ public class PowerUp : MonoBehaviour
     
     public HealthBar healthBar;
     public FuelBar fuelBar;
+    
+    float speed = 2f;
+    float delta = 0.25f;
+    Vector3 pos;
+    private void Start()
+    {
+        pos = transform.position;
+    }
+    void Update()
+    {
+        transform.Rotate(new Vector3(0f, 0f, 50f) * Time.deltaTime);
+        
+        float nY = Mathf.Sin(speed * Time.time) * delta + pos.y;
+        transform.position = new Vector3(transform.position.x, nY, transform.position.z);
+        
+    }
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
