@@ -8,17 +8,19 @@ public class MoveCar : MonoBehaviour
     public float forward_vel;
     public CharacterController car;
     public Transform car_transform;
-    public Car car_moving;
-    
+
+    void Start()
+    {
+       
+    }
     void Update()
     {
-        if(car_moving.currentHealth > 0 || car_moving.currentFuel > 0)
-        {
         car_transform.localPosition = new Vector3(car_transform.localPosition.x, car_transform.localPosition.y, car_transform.localPosition.z);
-        //
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-
+        
+        
         //moves car forward by itself
         car_transform.position += transform.forward * Time.deltaTime * forward_vel;
 
@@ -40,11 +42,10 @@ public class MoveCar : MonoBehaviour
                 car_transform.localPosition = new Vector3(car_transform.localPosition.x, -1, car_transform.localPosition.z);
             }
         }
+        
 
-
-        }
-    
       
+        
     }
 }
 // if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
