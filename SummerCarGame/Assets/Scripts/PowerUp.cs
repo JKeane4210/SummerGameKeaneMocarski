@@ -17,7 +17,7 @@ public class PowerUp : MonoBehaviour
     }
     void Update()
     {
-        transform.Rotate(new Vector3(0f, 0f, 50f) * Time.deltaTime);
+        transform.Rotate(new Vector3(0f, 0f, 150f) * Time.deltaTime);
         
         float nY = Mathf.Sin(speed * Time.time) * delta + pos.y;
         transform.position = new Vector3(transform.position.x, nY, transform.position.z);
