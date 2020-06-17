@@ -17,7 +17,7 @@ public class SceneDrawing : MonoBehaviour
     public FuelBar fuelBar;
     public HealthBar healthBar;
 
-
+    public MoveCar carMove;
 
     private void Start()
     {
@@ -97,6 +97,7 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(game_over_txt_fied);
             ShowButton(replay_btn);
             ShowButton(home_btn);
+            
             
         }
     }
