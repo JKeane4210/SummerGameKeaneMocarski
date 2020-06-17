@@ -31,6 +31,7 @@ public class SceneDrawing : MonoBehaviour
         HideButton(game_over_txt_fied);
     }
 
+   
     public void DrawRoadBlock(GameObject road_block)
     {
         Instantiate(road_block, new Vector3(0f, 0f, 20f), Quaternion.Euler(0f, 0f, 0f));
@@ -97,7 +98,7 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(game_over_txt_fied);
             ShowButton(replay_btn);
             ShowButton(home_btn);
-            
+           
             
         }
     }

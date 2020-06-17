@@ -9,12 +9,14 @@ public class MoveCar : MonoBehaviour
     public CharacterController car;
     public Transform car_transform;
 
+    public Car carBlue;
     void Start()
     {
        
     }
     void Update()
     {
+
         car_transform.localPosition = new Vector3(car_transform.localPosition.x, car_transform.localPosition.y, car_transform.localPosition.z);
 
         float x = Input.GetAxis("Horizontal");
@@ -43,7 +45,7 @@ public class MoveCar : MonoBehaviour
             }
         }
         
-
+        
       
         
     }

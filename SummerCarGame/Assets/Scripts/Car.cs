@@ -10,7 +10,7 @@ public class Car : MonoBehaviour
    public float currentFuel;
    public HealthBar healthBar;
    public FuelBar fuelBar;
-    
+  
 
     void Start()
     {
@@ -24,7 +24,6 @@ public class Car : MonoBehaviour
     {    
         currentFuel -= 0.05f;
         fuelBar.SetFuel(currentFuel);
-
     }
 
     void TakeDamage(int damage)
