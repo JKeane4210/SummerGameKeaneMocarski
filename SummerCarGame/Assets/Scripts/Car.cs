@@ -21,8 +21,11 @@ public class Car : MonoBehaviour
     }
 
     void Update()
-    {    
-        currentFuel -= 0.05f;
+    {
+        if (currentFuel > 0.05)
+            currentFuel -= 0.05f;
+        else
+            currentFuel = 0;
         fuelBar.SetFuel(currentFuel);
     }
 

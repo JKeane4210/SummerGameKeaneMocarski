@@ -37,8 +37,8 @@ public class PowerUp : MonoBehaviour
         HealthBar slide = player.GetComponent<HealthBar>();
         stats.currentHealth = stats.maxHealth;
         healthBar.SetHealth(100);
-        slide.slider.value = 100;
-        slide.fill.color = slide.gradient.Evaluate(1f);
+        //slide.slider.value = 100;
+        //slide.fill.color = slide.gradient.Evaluate(1f);
         
         Destroy(gameObject);
     }

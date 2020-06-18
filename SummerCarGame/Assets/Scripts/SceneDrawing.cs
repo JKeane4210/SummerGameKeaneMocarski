@@ -21,14 +21,15 @@ public class SceneDrawing : MonoBehaviour
 
     private void Start()
     {
-        DrawRoadBlock(roadBlock);
-        DrawStaticRoadBlock(staticRoadBlock);
-        DrawCar(car);
+        //DrawRoadBlock(roadBlock);
+        //DrawStaticRoadBlock(staticRoadBlock);
+        //DrawCar(car);
         ResetHealthBar(healthBar);
         ResetFuelBar(fuelBar);
         HideButton(replay_btn);
         HideButton(home_btn);
         HideButton(game_over_txt_fied);
+        Time.timeScale = 1;
     }
 
    
@@ -51,7 +52,7 @@ public class SceneDrawing : MonoBehaviour
         car.GetComponent<Car>().healthBar = health_bar_obj.GetComponent<HealthBar>();
         car.GetComponent<CarDeerCollide>().health_bar = health_bar_obj;
         car.GetComponent<MoveCar>().car = car.GetComponent<CharacterController>();
-        car.GetComponent<MoveCar>().car_transform = car.GetComponent<Transform>();
+        //car.GetComponent<MoveCar>().car_transform = car.GetComponent<Transform>();
         car.GetComponent<RenderRoad>().car = car.GetComponent<Transform>();
         Instantiate(car, new Vector3(1.5f, 1.27f, 0f), Quaternion.Euler(0f, 0f, 0f));
     }

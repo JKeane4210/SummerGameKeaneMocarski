@@ -922,6 +922,11 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: fab61642a110c4354a65ce24d6df9ca8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5e763f1f1a8249aeb64031067275fc6, type: 2}
     - target: {fileID: -927199367670048503, guid: fab61642a110c4354a65ce24d6df9ca8,
         type: 3}
       propertyPath: m_Name
@@ -2081,7 +2086,8 @@ MonoBehaviour:
   lateral_vel: 0.1
   forward_vel: 10
   car: {fileID: 6176581357515026319}
-  car_transform: {fileID: 6176581357515060136}
+  car_rb: {fileID: 6176581357515026328}
+  carBlue: {fileID: 6176581357515026330}
 --- !u!1 &6176581357515026306
 GameObject:
   m_ObjectHideFlags: 0
