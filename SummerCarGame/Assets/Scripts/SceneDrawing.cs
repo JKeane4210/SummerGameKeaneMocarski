@@ -16,7 +16,8 @@ public class SceneDrawing : MonoBehaviour
     public GameObject car;
     public FuelBar fuelBar;
     public HealthBar healthBar;
-
+    public GameObject finalDistanceField;
+    public GameObject distanceField;
     public MoveCar carMove;
 
     private void Start()
@@ -29,6 +30,8 @@ public class SceneDrawing : MonoBehaviour
         HideButton(replay_btn);
         HideButton(home_btn);
         HideButton(game_over_txt_fied);
+        HideButton(finalDistanceField);
+        ShowButton(distanceField);
         Time.timeScale = 1;
     }
 
@@ -84,14 +87,15 @@ public class SceneDrawing : MonoBehaviour
 
     private void Update()
     {
+        
         if(health_bar_obj.GetComponent<HealthBar>().GetValue() == 0)
         {
             game_over_txt_fied.GetComponent<UnityEngine.UI.Text>().text = "Damaged Beyond Repair";
             ShowButton(game_over_txt_fied);
             ShowButton(replay_btn);
             ShowButton(home_btn);
-            
-            
+            ShowButton(finalDistanceField);
+            HideButton(distanceField);
         }
         else if(fuel_bar_obj.GetComponent<FuelBar>().GetFuel() == 0)
         {
@@ -99,8 +103,8 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(game_over_txt_fied);
             ShowButton(replay_btn);
             ShowButton(home_btn);
-           
-            
+            ShowButton(finalDistanceField);
+            HideButton(distanceField);
         }
     }
 }

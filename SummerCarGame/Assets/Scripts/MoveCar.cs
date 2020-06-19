@@ -17,7 +17,7 @@ public class MoveCar : MonoBehaviour
     {
        
     }
-    void Update()
+    void FixedUpdate()
     {
         if (carBlue.currentHealth <= 0 || carBlue.currentFuel <= 0)
         {

@@ -10,7 +10,8 @@ public class Car : MonoBehaviour
    public float currentFuel;
    public HealthBar healthBar;
    public FuelBar fuelBar;
-  
+   public Transform car_transform;
+   private float distance_traveled;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class Car : MonoBehaviour
         else
             currentFuel = 0;
         fuelBar.SetFuel(currentFuel);
+        distance_traveled = 4 * car_transform.localPosition.z; // would need to change if turning
     }
 
     void TakeDamage(int damage)
@@ -34,4 +36,12 @@ public class Car : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
+
+    public float getDistanceMiles()
+    {
+        float distance_miles = distance_traveled / 5280f;
+        int distance_int = (int)(distance_miles * 100); 
+        return (float)(distance_int / 100f);
+    }
+
 }
