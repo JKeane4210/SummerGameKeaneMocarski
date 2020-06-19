@@ -8,6 +8,7 @@ public class Swipe : MonoBehaviour
    private bool isDragging = false;
    private Vector2 startTouch, swipeDelta;
 
+
     private void Update()
     {
         tap = swipeLeft = swipeRight = false;
@@ -65,8 +66,8 @@ public class Swipe : MonoBehaviour
             
             if (x > 0)
                 swipeRight = true;
-            if (x < 0) 
-                swipeLeft = true;
+            if (x < 0)
+                swipeLeft = true;  
             Reset();
         }
     }
