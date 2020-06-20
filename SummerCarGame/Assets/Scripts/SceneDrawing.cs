@@ -33,10 +33,6 @@ public class SceneDrawing : MonoBehaviour
         HideButton(finalDistanceField);
         ShowButton(distanceField);
         Time.timeScale = 1;
-        //float width = staticRoadBlock.GetComponent<RectTransform>().rect.width;
-        //float height = staticRoadBlock.GetComponent<RectTransform>().rect.height;
-        //Debug.Log(height);
-        //Debug.Log(width);
     }
 
    
