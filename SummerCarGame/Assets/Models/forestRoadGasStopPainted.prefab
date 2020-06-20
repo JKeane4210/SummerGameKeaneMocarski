@@ -8159,7 +8159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9128864971836407307}
   m_Layer: 0
-  m_Name: forestRoadGasStop
+  m_Name: forestRoadGasStopPainted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8173,10 +8173,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5254407240567639064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.074463, y: 29.380596, z: -70.17918}
+  m_LocalPosition: {x: 39.074463, y: 29.380596, z: -69.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6142195590561609288}
+  - {fileID: 6492001999228451403}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14209,3 +14210,93 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1001 &2119000290472151121
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 9128864971836407307}
+    m_Modifications:
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8154703073659256841, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+        type: 3}
+      propertyPath: m_Name
+      value: gasTanksRoof
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 55bb93eb43d934d4c8d2b6f0cb235921, type: 3}
+--- !u!4 &6492001999228451403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5147626355393425946, guid: 55bb93eb43d934d4c8d2b6f0cb235921,
+    type: 3}
+  m_PrefabInstance: {fileID: 2119000290472151121}
+  m_PrefabAsset: {fileID: 0}
