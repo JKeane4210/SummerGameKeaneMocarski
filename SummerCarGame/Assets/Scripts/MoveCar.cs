@@ -8,14 +8,13 @@ public class MoveCar : MonoBehaviour
     public float lateral_vel;
     public float forward_vel;
     public CharacterController car;
-    public Rigidbody car_rb;
+    public Rigidbody rb;
+    public float speed;
     public Car carBlue;
-    //private Vector3 location_end;
-    //private bool isOpen;
 
-    void Start()
+       void Start()
     {
-       
+    
     }
     void FixedUpdate()
     {
@@ -25,7 +24,9 @@ public class MoveCar : MonoBehaviour
         }
         else
         {
-            car_rb.velocity = new Vector3(0f, 0f, forward_vel);
+            rb.velocity = new Vector3(0f, 0f, forward_vel);
         }
+      
     }
+
 }
