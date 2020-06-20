@@ -34,4 +34,9 @@ public class RenderRoad : MonoBehaviour
         //    print("Road " + i);
         //}
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print(collision);
+    }
 }
