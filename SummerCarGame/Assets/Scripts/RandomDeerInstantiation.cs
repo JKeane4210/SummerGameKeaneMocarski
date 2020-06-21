@@ -7,20 +7,22 @@ public class RandomDeerInstantiation : MonoBehaviour
     public GameObject deer_obj;
     public GameObject controller;
     private int deer_count;
+    //public GameObject deer_container;
 
     // Start is called before the first frame update
     void Start()
     {
-        int random_num = (int)Random.Range(1f, 6f);
+        int random_num = (int)Random.Range(0f, 6f);
         if (random_num <= 2)
             deer_count = 1;
         else if (random_num <= 4)
             deer_count = 2;
-        else if (random_num <= 5)
+        else if (random_num == 5)
             deer_count = 3;
-        else
+        else if (random_num == 6)
             deer_count = 4;
-        for (int i = 0; i <= deer_count; i++)
+        //print(random_num + " " +deer_count);
+        for (int i = 0; i < deer_count; i++)
         {
             GameObject deer = deer_obj;
             deer.GetComponent<Rigidbody>().useGravity = false;
