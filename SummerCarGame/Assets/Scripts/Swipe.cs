@@ -48,7 +48,7 @@ public class Swipe : MonoBehaviour
         swipeDelta = Vector2.zero;
         if(isDragging)
         {
-            if(Input.touchCount!= 0)
+            if(Input.touches.Length != 0)
             {
                 swipeDelta = Input.touches[0].position - startTouch;
             }

@@ -2447,6 +2447,33 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6176581357515026308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176581357515026312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7013dba6446546445a930935d65f3bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swipeControls: {fileID: 6176581357515026309}
+  player: {fileID: 6176581357515060136}
+  swipeVelocity: 60
+--- !u!114 &6176581357515026309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176581357515026312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c182e124e251b4c847b886186ae40d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6176581357515026310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2495,12 +2522,12 @@ GameObject:
   - component: {fileID: 6176581357515026310}
   - component: {fileID: 6176581357515026311}
   - component: {fileID: 6176581357515026305}
+  - component: {fileID: 6176581357515026308}
+  - component: {fileID: 6176581357515026309}
   - component: {fileID: 6176581357515026328}
   - component: {fileID: 6176581357515026329}
   - component: {fileID: 6176581357515026335}
   - component: {fileID: 5168351395378986054}
-  - component: {fileID: 6176581357515026315}
-  - component: {fileID: 6176581357515026313}
   m_Layer: 0
   m_Name: MovingCar2
   m_TagString: Player
@@ -2508,21 +2535,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6176581357515026313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6176581357515026312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7013dba6446546445a930935d65f3bb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swipeControls: {fileID: 6176581357515026315}
-  player: {fileID: 6176581357515060136}
-  swipeVelocity: 0
 --- !u!1 &6176581357515026314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,18 +2553,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6176581357515026315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6176581357515026312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c182e124e251b4c847b886186ae40d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6176581357515026316
 GameObject:
   m_ObjectHideFlags: 0
