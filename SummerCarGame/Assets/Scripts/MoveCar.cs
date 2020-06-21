@@ -35,8 +35,8 @@ public class MoveCar : MonoBehaviour
             }
             else
             {
-                car_rb.velocity = new Vector3(0, 0f, forward_vel);
-                lateral_vel /= 1.1f;
+                car_rb.velocity = new Vector3(lateral_vel, 0f, forward_vel);
+                lateral_vel /= 1.5f;
             }
         }
     }
