@@ -31,8 +31,19 @@ public class RandomDeerInstantiation : MonoBehaviour
             deer_running.player = deer.GetComponent<Transform>();
             deer_running.player_rigidbody = deer.GetComponent<Rigidbody>();
             float controller_z = controller.GetComponent<Transform>().localPosition.z;
-            Quaternion rotation = Quaternion.Euler(0f, Random.Range(90f, 150f), 0f);
-            Instantiate(deer, new Vector3(Random.Range(-10f, -20f), 2.25f, Random.Range(controller_z -5f - 10f, controller_z -5f + 10f)), rotation);
+            int random_side = Random.Range(0, 2);
+            int pn_side;
+            if (random_side == 0)
+                pn_side = -1;
+            else
+                pn_side = 1;
+            print(pn_side);
+            Quaternion rotation;
+            if (pn_side == -1)
+                rotation = Quaternion.Euler(0f, Random.Range(90f, 150f), 0f);
+            else
+                rotation = Quaternion.Euler(0f, Random.Range(210f, 270f),0f);
+            Instantiate(deer, new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.25f, Random.Range(controller_z -5f - 10f, controller_z -5f + 10f)), rotation);
         }
     }
 }

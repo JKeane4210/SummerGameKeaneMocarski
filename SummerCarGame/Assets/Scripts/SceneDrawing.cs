@@ -19,6 +19,8 @@ public class SceneDrawing : MonoBehaviour
     public GameObject finalDistanceField;
     public GameObject distanceField;
     public MoveCar carMove;
+    public GameObject leftButton;
+    public GameObject rightButton;
 
     private void Start()
     {
@@ -32,6 +34,8 @@ public class SceneDrawing : MonoBehaviour
         HideButton(game_over_txt_fied);
         HideButton(finalDistanceField);
         ShowButton(distanceField);
+        ShowButton(leftButton);
+        ShowButton(rightButton);
         Time.timeScale = 1;
     }
 
@@ -96,6 +100,9 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(home_btn);
             ShowButton(finalDistanceField);
             HideButton(distanceField);
+            HideButton(leftButton);
+            HideButton(rightButton);
+            Time.timeScale = 0;
         }
         else if(fuel_bar_obj.GetComponent<FuelBar>().GetFuel() == 0)
         {
@@ -105,6 +112,9 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(home_btn);
             ShowButton(finalDistanceField);
             HideButton(distanceField);
+            HideButton(leftButton);
+            HideButton(rightButton);
+            Time.timeScale = 0;
         }
     }
 }
