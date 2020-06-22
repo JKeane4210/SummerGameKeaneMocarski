@@ -37,7 +37,7 @@ public class RandomDeerInstantiation : MonoBehaviour
                 pn_side = -1;
             else
                 pn_side = 1;
-            print(pn_side);
+            //print(pn_side);
             Quaternion rotation;
             if (pn_side == -1)
                 rotation = Quaternion.Euler(0f, Random.Range(90f, 150f), 0f);

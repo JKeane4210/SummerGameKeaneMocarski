@@ -5,23 +5,12 @@ using UnityEngine;
 public class Accelerometer : MonoBehaviour
 {
 
-    private Rigidbody rigid;
-    public float speed;
-    private void Start()
-    {
-        rigid = GetComponent<Rigidbody>();
+    public Rigidbody rigid;
+    public float lat_multiplier;
+    public float forward_vel;
 
-    }
-
-    void FixedUpdate()
+    void Update()
     {
-        Vector3 movement = new Vector3(Input.acceleration.x, 0f, 0f);
-        rigid.velocity = movement * speed;
+        rigid.velocity = new Vector3(Input.acceleration.x * lat_multiplier, 0f, forward_vel);
     }
-
-    private void Update()
-    {
-       
-    }
- 
 }

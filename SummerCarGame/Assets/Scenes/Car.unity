@@ -2729,7 +2729,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6176581357515026312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ae001d2e4d614e6795670bd883960f6, type: 3}
   m_Name: 
@@ -2789,6 +2789,7 @@ MonoBehaviour:
   swipeControls: {fileID: 6176581357515026309}
   player: {fileID: 6176581357515060136}
   swipeVelocity: 60
+  speed: 10
 --- !u!114 &6176581357515026309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2808,7 +2809,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6176581357515026312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5779f60c812784182a33fe8cdc6b84a3, type: 3}
   m_Name: 
@@ -2825,7 +2826,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6176581357515026312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5779f60c812784182a33fe8cdc6b84a3, type: 3}
   m_Name: 
@@ -2855,6 +2856,7 @@ GameObject:
   - component: {fileID: 6176581357515026329}
   - component: {fileID: 6176581357515026335}
   - component: {fileID: 5168351395378986054}
+  - component: {fileID: 6176581357515026313}
   m_Layer: 0
   m_Name: MovingCar2
   m_TagString: Player
@@ -2862,6 +2864,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6176581357515026313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176581357515026312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404b514329495184ba2acb4ed8f20d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigid: {fileID: 6176581357515026328}
+  lat_multiplier: 20
+  forward_vel: 23
 --- !u!1 &6176581357515026314
 GameObject:
   m_ObjectHideFlags: 0

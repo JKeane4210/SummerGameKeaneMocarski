@@ -13,7 +13,7 @@ public class DeerRunning : MonoBehaviour
     void Start()
     {
         float degreeRotY = player.localRotation.eulerAngles.y;
-        print(degreeRotY);
+        //print(degreeRotY);
         //trajectory = motion_multiplier * new Vector3(Mathf.Cos(player.localRotation.eulerAngles.y), 0f, Mathf.Sin(player.localRotation.eulerAngles.y));
 
         if (degreeRotY <= 151f && degreeRotY >= 89f)
