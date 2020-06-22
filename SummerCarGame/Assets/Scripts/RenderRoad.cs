@@ -9,7 +9,7 @@ public class RenderRoad : MonoBehaviour
     public GameObject gasStationRoad;
     private ArrayList roads = new ArrayList();
     public float block_width;
-    private float previous_z = 0;
+    //private float previous_z = 0;
     private int i = 1;
     private int i2 = 1;
     private ArrayList invalid_names = new ArrayList();

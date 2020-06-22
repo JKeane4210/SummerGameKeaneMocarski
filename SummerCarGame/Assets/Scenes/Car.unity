@@ -2857,6 +2857,8 @@ GameObject:
   - component: {fileID: 6176581357515026335}
   - component: {fileID: 5168351395378986054}
   - component: {fileID: 6176581357515026313}
+  - component: {fileID: 6176581357515026320}
+  - component: {fileID: 6176581357515026315}
   m_Layer: 0
   m_Name: MovingCar2
   m_TagString: Player
@@ -2897,6 +2899,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6176581357515026315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176581357515026312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84a549fbff694e6e8655578eb8962f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingCar: {fileID: 6176581357515026312}
 --- !u!1 &6176581357515026316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2971,6 +2986,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &6176581357515026320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176581357515026312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a7505bfacd041e487382b20838ece0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlTextField: {fileID: 0}
 --- !u!54 &6176581357515026328
 Rigidbody:
   m_ObjectHideFlags: 0
