@@ -6,6 +6,10 @@ public class CarDeerCollide : MonoBehaviour
 {
     public GameObject health_bar;
     private float health_lost = 10f;
+    bool hasExploded = false;
+    public GameObject explosionEffect;
+    public DeerRunning deer;
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +19,15 @@ public class CarDeerCollide : MonoBehaviour
         {
             //Debug.Log(other);
             health.DecreaseHealth(health_lost);
+            Explode();
+            
         }
+    }
+
+    void Explode()
+    {
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+        DestroyImmediate(deer.player, true);
     }
 }
 

@@ -3060,6 +3060,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health_bar: {fileID: 1761169414}
+  explosionEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
+    type: 3}
+  deer: {fileID: 5254987775350719409, guid: 9d6ede957cf33485180aefea5b505464, type: 3}
 --- !u!4 &6176581357515060128
 Transform:
   m_ObjectHideFlags: 0
