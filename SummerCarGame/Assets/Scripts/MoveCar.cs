@@ -29,6 +29,8 @@ public class MoveCar : MonoBehaviour
         }
         else if(Input.touchCount == 0)
             car_rb.velocity = new Vector3(0f, 0f, forward_vel);
+        //else if(Input.GetMouseButtonDown(0))
+        //   car_rb.velocity = new Vector3(0f, 0f, forward_vel);
         else
         {
             if (isPressed)
