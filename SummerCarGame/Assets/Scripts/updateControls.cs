@@ -10,15 +10,25 @@ public class updateControls : MonoBehaviour
     void Start()
     {
         ChangeControls c = movingCar.GetComponent<ChangeControls>();
+        print(c.GetActiveIndex());
         if(c.GetActiveIndex() == 0)
         {
             c.GetComponent<Accelerometer>().enabled = false;
             c.GetComponent<MoveCar>().enabled = true;
+            c.GetComponent<SwipeControls>().enabled = false;
+
         }
-        else if (c.GetActiveIndex() == 0)
+        else if (c.GetActiveIndex() == 1)
         {
             c.GetComponent<Accelerometer>().enabled = true;
             c.GetComponent<MoveCar>().enabled = false;
+            c.GetComponent<SwipeControls>().enabled = false;
+        }
+        else if(c.GetActiveIndex() == 2)
+        {
+            c.GetComponent<Accelerometer>().enabled = false;
+            c.GetComponent<MoveCar>().enabled = false;
+            c.GetComponent<SwipeControls>().enabled = true;
         }
     }
 }
