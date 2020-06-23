@@ -2880,7 +2880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 6176581357515026328}
-  lat_multiplier: 20
+  lat_multiplier: 23
   forward_vel: 23
 --- !u!1 &6176581357515026314
 GameObject:
