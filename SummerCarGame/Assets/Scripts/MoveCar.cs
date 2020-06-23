@@ -60,6 +60,11 @@ public class MoveCar : MonoBehaviour
         //deltaLatVel = lat_vel;
     }
 
+    public void ResetLatVel()
+    {
+        lateral_vel = 0;
+    }
+
     //public void OnPointerDown(PointerEventData eventData)
     //{
     //    isPressed = true;
