@@ -11,16 +11,7 @@ public class ChangeControls : MonoBehaviour
     {
         if (controlTextField != null)
         {
-            if (activeIndex == 0)
-            {
-                controlTextField.GetComponent<UnityEngine.UI.Text>().text = "Current Controls: " + "Buttons";
-                activeIndex = 0;
-            }
-            else if (activeIndex == 1)
-            {
-                controlTextField.GetComponent<UnityEngine.UI.Text>().text = "Current Controls: " + "Tilt";
-                activeIndex = 1;
-            }
+            ChangeTextField(activeIndex);
         }
     }
 
@@ -35,6 +26,11 @@ public class ChangeControls : MonoBehaviour
         {
             controlTextField.GetComponent<UnityEngine.UI.Text>().text = "Current Controls: " + "Tilt";
             activeIndex = 1;
+        }
+        else if (i == 2)
+        {
+            controlTextField.GetComponent<UnityEngine.UI.Text>().text = "Current Controls: " + "Swipe";
+            activeIndex = 2;
         }
     }
 

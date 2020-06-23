@@ -1182,6 +1182,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 6176581357515026305}
+          m_MethodName: ResetLatVel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -1194,6 +1205,17 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: -1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6176581357515026305}
+          m_MethodName: ResetLatVel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -2429,6 +2451,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 6176581357515026305}
+          m_MethodName: ResetLatVel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -2441,6 +2474,17 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6176581357515026312}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -2774,34 +2818,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6176581357515026308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6176581357515026312}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7013dba6446546445a930935d65f3bb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swipeControls: {fileID: 6176581357515026309}
-  player: {fileID: 6176581357515060136}
-  swipeVelocity: 60
-  speed: 10
---- !u!114 &6176581357515026309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6176581357515026312}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c182e124e251b4c847b886186ae40d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6176581357515026310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2850,8 +2866,6 @@ GameObject:
   - component: {fileID: 6176581357515026310}
   - component: {fileID: 6176581357515026311}
   - component: {fileID: 6176581357515026305}
-  - component: {fileID: 6176581357515026308}
-  - component: {fileID: 6176581357515026309}
   - component: {fileID: 6176581357515026328}
   - component: {fileID: 6176581357515026329}
   - component: {fileID: 6176581357515026335}
@@ -2859,6 +2873,7 @@ GameObject:
   - component: {fileID: 6176581357515026313}
   - component: {fileID: 6176581357515026320}
   - component: {fileID: 6176581357515026315}
+  - component: {fileID: 6176581357515026321}
   m_Layer: 0
   m_Name: MovingCar2
   m_TagString: Player
@@ -2873,13 +2888,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6176581357515026312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 404b514329495184ba2acb4ed8f20d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 6176581357515026328}
-  lat_multiplier: 20
+  lat_multiplier: 23
   forward_vel: 23
 --- !u!1 &6176581357515026314
 GameObject:
@@ -2999,6 +3014,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlTextField: {fileID: 0}
+--- !u!114 &6176581357515026321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176581357515026312}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd14e43f478004aa786e09daed45b2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 6176581357515026328}
+  latVelMultiplier: 0.1
+  velocity: 23
 --- !u!54 &6176581357515026328
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class RenderRoad : MonoBehaviour
     {
         gasStationIndicator = gasStationInterval;
         distance_traveled = 4 * road.GetComponent<BoxCollider>().size.z;
-        invalid_names.Add("forestRoad");
+        //invalid_names.Add("forestRoad");
     }
 
     // Update is called once per frame
