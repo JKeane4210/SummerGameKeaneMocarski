@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.EventSystems;
+using UnityEngine.EventSystems;
 
 public class MoveCar : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class MoveCar : MonoBehaviour
     public Car carBlue;
     private bool isPressed;
     private float deltaLatVel;
+    public float velLimit;
     //private Vector3 location_end;
     //private bool isOpen;
 
@@ -26,19 +27,26 @@ public class MoveCar : MonoBehaviour
         {
             Time.timeScale = 0;
         }
+        else if(Input.touchCount == 0)
+            car_rb.velocity = new Vector3(0f, 0f, forward_vel);
         else
         {
             if (isPressed)
             {
                 lateral_vel += deltaLatVel;
                 car_rb.velocity = new Vector3(lateral_vel, 0f, forward_vel);
+                if (lateral_vel > velLimit)
+                    lateral_vel = velLimit;
+                else if (lateral_vel < -velLimit)
+                    lateral_vel = -velLimit;
             }
             else
             {
                 car_rb.velocity = new Vector3(lateral_vel, 0f, forward_vel);
-                //lateral_vel /= 3f; // gradient down to zero
+                //lateral_vel /= 3f; // gradient down to zero (probably don't do)
                 lateral_vel = 0;
             }
+            
         }
     }
 
@@ -48,13 +56,13 @@ public class MoveCar : MonoBehaviour
         lateral_vel += lat_vel;
     }
 
-    public void buttonPressed(float lat_vel)
+    public void ButtonPressed(float lat_vel)
     {
         isPressed = true;
         deltaLatVel = lat_vel;
     }
 
-    public void buttonReleased()
+    public void ButtonReleased()
     {
         isPressed = false;
         //deltaLatVel = lat_vel;
@@ -63,6 +71,7 @@ public class MoveCar : MonoBehaviour
     public void ResetLatVel()
     {
         lateral_vel = 0;
+        print("Reset lat vel to 0");
     }
 
     //public void OnPointerDown(PointerEventData eventData)
