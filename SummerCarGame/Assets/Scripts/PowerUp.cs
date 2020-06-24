@@ -11,10 +11,12 @@ public class PowerUp : MonoBehaviour
     float speed = 2f;
     float delta = 0.25f;
     Vector3 pos;
+
     private void Start()
     {
         pos = transform.position;
     }
+
     void Update()
     {
         transform.Rotate(new Vector3(0f, 0f, 150f) * Time.deltaTime);
@@ -23,10 +25,12 @@ public class PowerUp : MonoBehaviour
         transform.position = new Vector3(transform.position.x, nY, transform.position.z);
         
     }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
+            //print("Collision");
             PickUp(other);
         }
     }

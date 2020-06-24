@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class updateControls : MonoBehaviour
+public class UpdateControls : MonoBehaviour
 {
     public GameObject movingCar;
 

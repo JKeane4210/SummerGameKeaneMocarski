@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChangeControls : MonoBehaviour
 {
     public GameObject controlTextField;
-    static int activeIndex = 0;
+    static int activeIndex = 2;
 
     void Start()
     {
