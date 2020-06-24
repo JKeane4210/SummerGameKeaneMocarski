@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3019682414243266750}
   - component: {fileID: 3590713762885465212}
   - component: {fileID: 3590713762885465215}
+  - component: {fileID: 5838260202383593357}
   m_Layer: 0
   m_Name: coinMoving
   m_TagString: Untagged
@@ -104,5 +105,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ffe7110546d8418184fc418a3a6f29b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5838260202383593357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590713762885465186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79dfe82b6ef53491d969c4fa1c0f1433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

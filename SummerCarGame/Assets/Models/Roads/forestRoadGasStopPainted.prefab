@@ -8268,6 +8268,7 @@ GameObject:
   - component: {fileID: 9128864971836407307}
   - component: {fileID: 3259282068767754652}
   - component: {fileID: 8789432743451037390}
+  - component: {fileID: 3470067793234938313}
   m_Layer: 0
   m_Name: forestRoadGasStopPainted
   m_TagString: Untagged
@@ -8318,6 +8319,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlane: {fileID: 783426935197554298}
+--- !u!114 &3470067793234938313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254407240567639064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79dfe82b6ef53491d969c4fa1c0f1433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5265645351360021038
 GameObject:
   m_ObjectHideFlags: 0
