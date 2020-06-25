@@ -5,18 +5,20 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     
-    public HealthBar healthBar;
-    public FuelBar fuelBar;
-    
+    //public HealthBar healthBar;
+    //public FuelBar fuelBar;
+    private HealthBar healthBar;
+    private FuelBar fuelBar;
     float speed = 2f;
     float delta = 0.25f;
     Vector3 pos;
-
     private void Start()
     {
+        healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
+        fuelBar = GameObject.FindGameObjectWithTag("Fuel").GetComponent<FuelBar>();
         pos = transform.position;
+        //print(healthBar.GetValue());
     }
-
     void Update()
     {
         transform.Rotate(new Vector3(0f, 0f, 150f) * Time.deltaTime);
@@ -25,12 +27,10 @@ public class PowerUp : MonoBehaviour
         transform.position = new Vector3(transform.position.x, nY, transform.position.z);
         
     }
-
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            //print("Collision");
             PickUp(other);
         }
     }

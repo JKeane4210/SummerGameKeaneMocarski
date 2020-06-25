@@ -1247,7 +1247,7 @@ GameObject:
   - component: {fileID: 848051532}
   m_Layer: 5
   m_Name: Fuel Bar
-  m_TagString: Untagged
+  m_TagString: Fuel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1893,7 +1893,7 @@ GameObject:
   - component: {fileID: 1761169416}
   m_Layer: 5
   m_Name: HealthBar
-  m_TagString: Untagged
+  m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2517,21 +2517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af230544e732ef74cbce9113fe07f330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1761169416}
-  fuelBar: {fileID: 848051532}
---- !u!135 &2372794774064110437
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2372794774064110435}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.75
-  m_Center: {x: 0, y: 0, z: -1}
 --- !u!1 &3911686261831429526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3196903549162228009, guid: fd28c56a7dd744f82b22ed2b232f0d32,
@@ -2921,6 +2906,7 @@ GameObject:
   - component: {fileID: 6176581357515026321}
   - component: {fileID: 6176581357515026323}
   - component: {fileID: 6176581357515026322}
+  - component: {fileID: 6176581357515026324}
   m_Layer: 0
   m_Name: MovingCar2
   m_TagString: Player
@@ -3103,6 +3089,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b168df8b24d543bfb0500bd2ba20729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6176581357515026324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176581357515026312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a857a09d5ed44b8da9363a28b8a1fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 9032326206353923101, guid: d464eed15f2a64270be87040d1e490a0, type: 3}
+  interval: 10
+  width: 9
 --- !u!54 &6176581357515026328
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3436,17 +3437,17 @@ PrefabInstance:
     - target: {fileID: 5404914443374800398, guid: d464eed15f2a64270be87040d1e490a0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.38673115
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5404914443374800398, guid: d464eed15f2a64270be87040d1e490a0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.38673115
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5404914443374800398, guid: d464eed15f2a64270be87040d1e490a0,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.38673115
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 9032326206353923101, guid: d464eed15f2a64270be87040d1e490a0,
         type: 3}
