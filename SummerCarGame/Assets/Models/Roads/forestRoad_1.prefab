@@ -5312,7 +5312,6 @@ GameObject:
   - component: {fileID: 8306554689851190028}
   - component: {fileID: 6235395771305248728}
   - component: {fileID: 4715893322118229993}
-  - component: {fileID: 1637850903326630367}
   - component: {fileID: -6088528383340900643}
   m_Layer: 0
   m_Name: forestRoad_1
@@ -5361,21 +5360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dfe82b6ef53491d969c4fa1c0f1433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1637850903326630367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4980302385814018335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69283339f914d422695d5aa4c0f1a1d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  player_rigidbody: {fileID: 0}
-  motion_multiplier: 0
 --- !u!114 &-6088528383340900643
 MonoBehaviour:
   m_ObjectHideFlags: 0
