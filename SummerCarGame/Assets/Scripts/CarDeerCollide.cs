@@ -9,7 +9,22 @@ public class CarDeerCollide : MonoBehaviour
     private float health_lost = 10f;
     public GameObject explosionEffect;
     public DeerRunning deer;
-    
+
+    private void Start()
+    {
+        if(gameObject.GetComponent<UnityEngine.UI.Text>() != null)
+        {
+            if (explosionsEnabled)
+            {
+                gameObject.GetComponent<UnityEngine.UI.Text>().text = "Explosions Enabled: Yes";
+            }
+            else if (!explosionsEnabled)
+            {
+                gameObject.GetComponent<UnityEngine.UI.Text>().text = "Explosions Enabled: No";
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other);
