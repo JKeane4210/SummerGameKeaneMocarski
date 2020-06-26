@@ -5313,6 +5313,7 @@ GameObject:
   - component: {fileID: 6235395771305248728}
   - component: {fileID: 4715893322118229993}
   - component: {fileID: -6088528383340900643}
+  - component: {fileID: -3182617878625351431}
   m_Layer: 0
   m_Name: forestRoad_1
   m_TagString: Untagged
@@ -5375,6 +5376,20 @@ MonoBehaviour:
   deer_obj: {fileID: 4308988939985935099, guid: 9d6ede957cf33485180aefea5b505464,
     type: 3}
   controller: {fileID: 4980302385814018335}
+--- !u!114 &-3182617878625351431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4980302385814018335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d40162e276145748580198f8fbc478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftSide: -11.5
+  rightSide: 11.5
 --- !u!1 &5003772764151166707
 GameObject:
   m_ObjectHideFlags: 0
