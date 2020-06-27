@@ -8,7 +8,7 @@ public class CarDeerCollide : MonoBehaviour
     public GameObject health_bar;
     private float health_lost = 10f;
     public GameObject explosionEffect;
-    public DeerRunning deer;
+    //public DeerRunning deer;
 
     private void Start()
     {
@@ -33,15 +33,18 @@ public class CarDeerCollide : MonoBehaviour
         {
             //Debug.Log(other);
             health.DecreaseHealth(health_lost);
-            Explode();
+            Destroy(other);
+            Explode(other);
         }
     }
 
-    void Explode()
+    void Explode(Collider col)
     {
-        if(explosionsEnabled)
+        if (explosionsEnabled)
+        {
             Instantiate(explosionEffect, transform.position, transform.rotation);
-        DestroyImmediate(deer.player, true);
+            //Destroy(col.gameObject); //kills the deer :( --> I won't include this now
+        }
     }
 
     public void ChangeExplosionsStatus()
