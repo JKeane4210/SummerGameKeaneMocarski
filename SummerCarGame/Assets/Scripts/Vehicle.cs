@@ -117,9 +117,9 @@ public class Vehicle
     }
 
     //good for loading screen
-    public GameObject GetGameObjectNoComponents()
+    public GameObject GetGameObjectNoComponents(Vector3 location)
     {
-        GameObject carCopy = Object.Instantiate(car);
+        GameObject carCopy = Object.Instantiate(car, location, Quaternion.identity);
         foreach (var comp in carCopy.GetComponents<Component>())
         {
             if (!(comp is Transform) && !(comp is Rigidbody))
