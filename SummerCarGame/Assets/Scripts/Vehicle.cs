@@ -4,29 +4,47 @@ using UnityEngine;
 
 public class Vehicle
 {
-    private float maxHealth;
-    private float deltaFuel;
+    private string name;
+    private string dscr;
+    private int maxHealth;
+    private float maxFuel;
     private float velocity;
-    private float latVelocity; //basically agility
+    private Vector3 dimensions;
+    //private float latVelocity; //basically agility (IDK if we should do this?)
     private GameObject car;
 
-    public Vehicle(float health, float dFuel, float vel, float latVel, GameObject g)
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen)
     {
+        name = n;
+        dscr = d;
         maxHealth = health;
-        deltaFuel = dFuel;
+        maxFuel = fuel;
         velocity = vel;
-        latVelocity = latVel;
+        //latVelocity = latVel;
         car = g;
+        dimensions = dimen;
+        // >>> could set up components with this >>>
+        SetUpComponents(health, fuel, vel, g, dimen);
     }
 
-    public float GetMaxHealth()
+    public string GetName()
+    {
+        return name;
+    }
+
+    public string GetDescription()
+    {
+        return dscr;
+    }
+
+    public int GetMaxHealth()
     {
         return maxHealth;
     }
 
-    public float GetDeltaFue()
+    public float GetMaxFuel()
     {
-        return deltaFuel;
+        return maxFuel;
     }
 
     public float GetVelocity()
@@ -34,10 +52,15 @@ public class Vehicle
         return velocity;
     }
 
-    public float GetLatVelocity()
+    public Vector3 GetDimensions()
     {
-        return latVelocity;
+        return dimensions;
     }
+
+    //public float GetLatVelocity()
+    //{
+    //    return latVelocity;
+    //}
 
     public void MakeCarStatic()
     {
@@ -64,5 +87,37 @@ public class Vehicle
             car.GetComponent<Accelerometer>().enabled = false;
         if (i == 2)
             car.GetComponent<SwipeControls>().enabled = false;
+    }
+
+    //may be unecessary if we set components manually
+    public void SetUpComponents(int health, float fuel, float vel, GameObject g, Vector3 dimen)
+    {
+        //CAR
+        if(g.GetComponent<Car>() == null)
+            g.AddComponent<Car>();
+        Car carBehaviour = g.GetComponent<Car>();
+        carBehaviour.maxHealth = health;
+        carBehaviour.maxFuel = fuel;
+        carBehaviour.currentHealth = health;
+        carBehaviour.currentFuel = fuel;
+        //MOVE_CAR
+        if (g.GetComponent<MoveCar>() == null)
+            g.AddComponent<MoveCar>();
+        MoveCar move = g.GetComponent<MoveCar>();
+        move.forward_vel = vel;
+            //might need to add latVel to this to be consistant (if using latVel)
+        //ACCELEROMETER
+        if (g.GetComponent<Accelerometer>() == null)
+            g.AddComponent<Accelerometer>();
+        Accelerometer acc = g.GetComponent<Accelerometer>();
+        acc.lat_multiplier = 23f;
+        acc.forward_vel = vel;
+        acc.forward_vel = vel;
+        //SWIPE_CONTROLS
+        if (g.GetComponent<SwipeControls>() == null)
+            g.AddComponent<SwipeControls>();
+        SwipeControls swipe = g.GetComponent<SwipeControls>();
+        swipe.velocity = vel;
+        swipe.latVelMultiplier = 0.08f;
     }
 }
