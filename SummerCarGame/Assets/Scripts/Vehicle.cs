@@ -27,41 +27,6 @@ public class Vehicle
         SetUpComponents(health, fuel, vel, g, dimen);
     }
 
-    public string GetName()
-    {
-        return name;
-    }
-
-    public string GetDescription()
-    {
-        return dscr;
-    }
-
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
-    public float GetMaxFuel()
-    {
-        return maxFuel;
-    }
-
-    public float GetVelocity()
-    {
-        return velocity;
-    }
-
-    public Vector3 GetDimensions()
-    {
-        return dimensions;
-    }
-
-    //public float GetLatVelocity()
-    //{
-    //    return latVelocity;
-    //}
-
     public void MakeCarStatic()
     {
         DeactivateCarControl(0);
@@ -90,6 +55,7 @@ public class Vehicle
     }
 
     //may be unecessary if we set components manually
+    //could set up more, these are just more variable and key than the others
     public void SetUpComponents(int health, float fuel, float vel, GameObject g, Vector3 dimen)
     {
         //CAR
@@ -100,11 +66,40 @@ public class Vehicle
         carBehaviour.maxFuel = fuel;
         carBehaviour.currentHealth = health;
         carBehaviour.currentFuel = fuel;
+        //CHARACTER_CONTROLLER
+        if (g.GetComponent<CharacterController>() == null)
+            g.AddComponent<CharacterController>();
+        //RIGIDBODY
+        if (g.GetComponent<Rigidbody>() == null)
+            g.AddComponent<Rigidbody>();
+        Rigidbody rig = g.GetComponent<Rigidbody>();
+        rig.useGravity = false;
+        //BOX_COLLIDER
+        if (g.GetComponent<BoxCollider>() == null)
+            g.AddComponent<BoxCollider>();
+        BoxCollider box = g.GetComponent<BoxCollider>();
+        box.size = dimen;
+        box.isTrigger = true;
+        //RENDER_ROAD
+        if (g.GetComponent<RenderRoad>() == null)
+            g.AddComponent<RenderRoad>();
+        RenderRoad road = g.GetComponent<RenderRoad>();
+        road.car = g.transform;
+        //FOREST_DAMAGE
+        if (g.GetComponent<ForestDamage>() == null)
+            g.AddComponent<ForestDamage>();
+        ForestDamage for_damage = g.GetComponent<ForestDamage>();
+        for_damage.car = g;
+        for_damage.normalSpeed = vel;
         //MOVE_CAR
         if (g.GetComponent<MoveCar>() == null)
             g.AddComponent<MoveCar>();
         MoveCar move = g.GetComponent<MoveCar>();
         move.forward_vel = vel;
+        move.car = g.GetComponent<CharacterController>();
+        move.car_rb = rig;
+        move.carBlue = carBehaviour;
+        move.velLimit = 8f;
             //might need to add latVel to this to be consistant (if using latVel)
         //ACCELEROMETER
         if (g.GetComponent<Accelerometer>() == null)
@@ -120,4 +115,33 @@ public class Vehicle
         swipe.velocity = vel;
         swipe.latVelMultiplier = 0.08f;
     }
+
+    public string GetName()
+    {
+        return name;
+    }
+    public string GetDescription()
+    {
+        return dscr;
+    }
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    public float GetMaxFuel()
+    {
+        return maxFuel;
+    }
+    public float GetVelocity()
+    {
+        return velocity;
+    }
+    public Vector3 GetDimensions()
+    {
+        return dimensions;
+    }
+    //public float GetLatVelocity()
+    //{
+    //    return latVelocity;
+    //}
 }
