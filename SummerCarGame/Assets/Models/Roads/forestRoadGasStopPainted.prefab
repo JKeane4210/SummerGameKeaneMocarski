@@ -8270,6 +8270,7 @@ GameObject:
   - component: {fileID: 8789432743451037390}
   - component: {fileID: 3470067793234938313}
   - component: {fileID: 9083917183442730411}
+  - component: {fileID: 7450234242844322597}
   m_Layer: 0
   m_Name: forestRoadGasStopPainted
   m_TagString: Untagged
@@ -8346,6 +8347,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftSide: -11.5
   rightSide: 17.5
+--- !u!114 &7450234242844322597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254407240567639064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15d675b7060647e38a0b97f7fbf4594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deer_obj: {fileID: 4308988939985935099, guid: 9d6ede957cf33485180aefea5b505464,
+    type: 3}
+  controller: {fileID: 5254407240567639064}
 --- !u!1 &5265645351360021038
 GameObject:
   m_ObjectHideFlags: 0

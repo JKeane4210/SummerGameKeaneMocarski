@@ -12,6 +12,7 @@ public class PowerUp : MonoBehaviour
     float speed = 2f;
     float delta = 0.25f;
     Vector3 pos;
+
     private void Start()
     {
         healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
@@ -40,7 +41,8 @@ public class PowerUp : MonoBehaviour
         Car stats = player.GetComponent<Car>();
         HealthBar slide = player.GetComponent<HealthBar>();
         stats.currentHealth = stats.maxHealth;
-        healthBar.SetHealth(100);
+        healthBar.IncreaseHealth(20);
+        //healthBar.SetHealth(100);
         //slide.slider.value = 100;
         //slide.fill.color = slide.gradient.Evaluate(1f);
         

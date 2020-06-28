@@ -598,7 +598,7 @@ Transform:
   m_GameObject: {fileID: 4308988939985935099}
   m_LocalRotation: {x: -0, y: 0.92448205, z: -0, w: 0.38122568}
   m_LocalPosition: {x: -0.88203996, y: 3, z: 7.7355514}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_Children:
   - {fileID: 3547088157902381926}
   - {fileID: 7383570838145831901}
@@ -654,7 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 979466143140161768}
   player_rigidbody: {fileID: 5254987775350719414}
-  motion_multiplier: 9.358831
+  motion_multiplier: 11.182251
 --- !u!65 &414525448893369229
 BoxCollider:
   m_ObjectHideFlags: 0

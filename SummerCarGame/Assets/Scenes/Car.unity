@@ -2499,24 +2499,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd28c56a7dd744f82b22ed2b232f0d32, type: 3}
---- !u!1 &2372794774064110435 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9032326206353923101, guid: d464eed15f2a64270be87040d1e490a0,
-    type: 3}
-  m_PrefabInstance: {fileID: 6752189497688180606}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2372794774064110436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2372794774064110435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af230544e732ef74cbce9113fe07f330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3911686261831429526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3196903549162228009, guid: fd28c56a7dd744f82b22ed2b232f0d32,
@@ -3186,7 +3168,6 @@ MonoBehaviour:
   health_bar: {fileID: 1761169414}
   explosionEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
     type: 3}
-  deer: {fileID: 5254987775350719409, guid: 9d6ede957cf33485180aefea5b505464, type: 3}
 --- !u!4 &6176581357515060128
 Transform:
   m_ObjectHideFlags: 0

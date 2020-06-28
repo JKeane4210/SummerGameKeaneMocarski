@@ -43,7 +43,7 @@ public class RandomDeerInstantiation : MonoBehaviour
                 rotation = Quaternion.Euler(0f, Random.Range(90f, 150f), 0f);
             else
                 rotation = Quaternion.Euler(0f, Random.Range(210f, 270f),0f);
-            Instantiate(deer, new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.25f, Random.Range(controller_z -30f - 10f, controller_z -30f + 10f)), rotation);
+            Instantiate(deer, new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 10f, controller_z -30f + 10f)), rotation);
         }
     }
 }
