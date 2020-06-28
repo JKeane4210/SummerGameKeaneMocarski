@@ -24,7 +24,7 @@ public class Vehicle
         car = g;
         dimensions = dimen;
         // >>> could set up components with this >>>
-        SetUpComponents(health, fuel, vel, g, dimen);
+        //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
 
     public void MakeCarStatic()
@@ -114,6 +114,20 @@ public class Vehicle
         SwipeControls swipe = g.GetComponent<SwipeControls>();
         swipe.velocity = vel;
         swipe.latVelMultiplier = 0.08f;
+    }
+
+    //good for loading screen
+    public GameObject GetGameObjectNoComponents()
+    {
+        GameObject carCopy = Object.Instantiate(car);
+        foreach (var comp in carCopy.GetComponents<Component>())
+        {
+            if (!(comp is Transform) && !(comp is Rigidbody))
+            {
+                Object.Destroy(comp);
+            }
+        }
+        return carCopy;
     }
 
     public string GetName()
