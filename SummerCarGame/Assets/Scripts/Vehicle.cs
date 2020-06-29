@@ -13,6 +13,11 @@ public class Vehicle
     //private float latVelocity; //basically agility (IDK if we should do this?)
     private GameObject car;
 
+    private Vector3 gameLocation;
+    private Vector3 viewingLocation;
+    private Vector3 gameScale;
+    private Vector3 viewingScale;
+
     public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen)
     {
         name = n;
@@ -25,6 +30,18 @@ public class Vehicle
         dimensions = dimen;
         // >>> could set up components with this >>>
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
+    }
+
+    public void SetLocations(Vector3 game, Vector3 viewing)
+    {
+        gameLocation = game;
+        viewingLocation = viewing;
+    }
+
+    public void SetScales(Vector3 game, Vector3 viewing)
+    {
+        gameScale = game;
+        viewingScale = viewing;
     }
 
     public void MakeCarStatic()
@@ -153,6 +170,22 @@ public class Vehicle
     public Vector3 GetDimensions()
     {
         return dimensions;
+    }
+    public Vector3 GetGameScale()
+    {
+        return gameScale;
+    }
+    public Vector3 GetGameLocation()
+    {
+        return gameLocation;
+    }
+    public Vector3 GetViewingLocation()
+    {
+        return viewingLocation;
+    }
+    public Vector3 GetViewingScale()
+    {
+        return viewingScale;
     }
     //public float GetLatVelocity()
     //{
