@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class zzzz : MonoBehaviour
+public class VehicleMM : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
