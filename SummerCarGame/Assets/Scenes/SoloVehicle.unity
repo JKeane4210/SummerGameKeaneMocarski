@@ -1553,7 +1553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a7b62e649e9404c91256d74b436cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testCar: {fileID: 654418051993317808, guid: e8d639a6155ae4872ad48d085663e61b, type: 3}
+  testCar: {fileID: 360867226723362495, guid: 231739944cb3f4733a4b02e2780045ef, type: 3}
   nameText: {fileID: 594237167}
   descText: {fileID: 1902462504}
   healthText: {fileID: 1633518739}
