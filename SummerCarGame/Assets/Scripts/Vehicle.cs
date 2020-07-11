@@ -32,6 +32,22 @@ public class Vehicle
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
 
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl)
+    {
+        name = n;
+        dscr = d;
+        maxHealth = health;
+        maxFuel = fuel;
+        velocity = vel;
+        //latVelocity = latVel;
+        car = g;
+        dimensions = dimen;
+        SetLocations(gameLoc, viewingLoc);
+        SetScales(gameScl, viewingScl);
+        // >>> could set up components with this >>>
+        //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
+    }
+
     public void SetLocations(Vector3 game, Vector3 viewing)
     {
         gameLocation = game;
