@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ForestDamage : MonoBehaviour
 {
-    public GameObject car;
+    private GameObject car;
     public float leftLimit;
     public float rightLimit;
     public GameObject health;
@@ -12,26 +12,28 @@ public class ForestDamage : MonoBehaviour
     public float normalSpeed;
     public float deltaV;
 
-    private void Start()
+    public void SimulateStart()
     {
+        //normalSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<MoveCar>().forward_vel;
         healthBar = health.GetComponent<HealthBar>();
+        car = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(car.transform.position.x < leftLimit)
+        if (car.transform.position.x < leftLimit)
         {
             float damage = Mathf.Abs(car.transform.position.x - leftLimit) + 1;
-            healthBar.DecreaseHealth(damage*damage);
+            healthBar.DecreaseHealth(damage * damage);
             if (car.GetComponent<SwipeControls>().velocity > 10)
             {
                 car.GetComponent<SwipeControls>().velocity -= deltaV;
                 car.GetComponent<MoveCar>().forward_vel -= deltaV;
                 car.GetComponent<Accelerometer>().forward_vel -= deltaV;
-            }  
+            }
         }
-        else if(car.transform.position.x > rightLimit)
+        else if (car.transform.position.x > rightLimit)
         {
             float damage = Mathf.Abs(car.transform.position.x - rightLimit) + 1;
             healthBar.DecreaseHealth(damage * damage);
@@ -44,9 +46,9 @@ public class ForestDamage : MonoBehaviour
         }
         else
         {
-            car.GetComponent<SwipeControls>().velocity = normalSpeed;
-            car.GetComponent<MoveCar>().forward_vel = normalSpeed;
-            car.GetComponent<Accelerometer>().forward_vel = normalSpeed;
+             car.GetComponent<SwipeControls>().velocity = normalSpeed;
+             car.GetComponent<MoveCar>().forward_vel = normalSpeed;
+             car.GetComponent<Accelerometer>().forward_vel = normalSpeed;
         }
     }
 

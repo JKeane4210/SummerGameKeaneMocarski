@@ -6,15 +6,18 @@ public class DistanceText : MonoBehaviour
 {
     public GameObject text_field;
     public GameObject text_field2;
-    public Car moving_car;
-    public CoinCounter coins;
+    private Car moving_car;
+    private CoinCounter coins;
     private int initialCoins;
     private float nextActionTime = 0.0f;
     public float period = 0.1f;
 
-    private void Start()
+    public void SimulateStart()
     {
+        moving_car = GameObject.FindGameObjectWithTag("Player").GetComponent<Car>();
+        coins = GameObject.FindGameObjectWithTag("Player").GetComponent<CoinCounter>();
         initialCoins = coins.GetCoins();
+        //text_field.GetComponent<UnityEngine.UI.Text>().text = "?????";
     }
 
     void Update()

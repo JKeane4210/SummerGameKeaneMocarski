@@ -10,25 +10,27 @@ public class Car : MonoBehaviour
    public float currentFuel;
    public HealthBar healthBar;
    public FuelBar fuelBar;
-   public Transform car_transform;
+   private Transform car_transform;
    private float distance_traveled;
 
-    void Start()
+    public void SimulateStart()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         currentFuel = maxFuel;
         fuelBar.SetMaxFuel(maxFuel);
+        car_transform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-        if (currentFuel > 0.05)
-            currentFuel -= 0.05f;
+        if (currentFuel > 0.03)
+            currentFuel -= 0.03f;
         else
             currentFuel = 0;
         fuelBar.SetFuel(currentFuel);
-        distance_traveled = 4 * car_transform.localPosition.z; // would need to change if turning
+        distance_traveled = 4 * car_transform.position.z; // would need to change if turning
+        //print("Distance>>>" + distance_traveled.ToString());
     }
 
     void TakeDamage(int damage)
