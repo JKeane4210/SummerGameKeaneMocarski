@@ -9,6 +9,9 @@ public class CoinCounter : MonoBehaviour
     public void AddCoin()
     {
         totalCoins++;
+        GameDataManager.AddCoins(10);
+
+        GameSharedUI.Instance.UpdateCoinsUIText();
     }
 
     public int GetCoins()
