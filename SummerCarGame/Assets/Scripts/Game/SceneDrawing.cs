@@ -13,17 +13,24 @@ public class SceneDrawing : MonoBehaviour
     public GameObject game_over_txt_fied;
     public GameObject roadBlock;
     public GameObject staticRoadBlock;
-    public GameObject car;
     public FuelBar fuelBar;
     public HealthBar healthBar;
     public GameObject finalDistanceField;
     public GameObject distanceField;
-    public MoveCar carMove;
+    private MoveCar carMove;
     public GameObject leftButton;
     public GameObject rightButton;
 
+    private Vehicle selectedCar;
+
     private void Start()
     {
+        GetComponent<VehicleList>().SimulateStart();
+        selectedCar = GetComponent<VehicleList>().GetSelectedVehicle();
+        GameObject car = selectedCar.GetCarGameObject();
+        //print("*" + selectedCar.GetName());
+        car.GetComponent<RenderRoad>().road = roadBlock;
+        carMove = car.GetComponent<MoveCar>();
         //DrawRoadBlock(roadBlock);
         //DrawStaticRoadBlock(staticRoadBlock);
         //DrawCar(car);
@@ -36,6 +43,12 @@ public class SceneDrawing : MonoBehaviour
         ShowButton(distanceField);
         ShowButton(leftButton);
         ShowButton(rightButton);
+        car.GetComponent<Car>().SimulateStart();
+        car.GetComponent<UpdateControls>().SimulateStart();
+        car.GetComponent<ForestDamage>().SimulateStart();
+        distanceField.GetComponent<DistanceText>().SimulateStart();
+        rightButton.GetComponent<ButtonMoving>().SimulateStart();
+        leftButton.GetComponent<ButtonMoving>().SimulateStart();
         Time.timeScale = 1;
     }
 
@@ -61,7 +74,7 @@ public class SceneDrawing : MonoBehaviour
         car.GetComponent<MoveCar>().car = car.GetComponent<CharacterController>();
         //car.GetComponent<MoveCar>().car_transform = car.GetComponent<Transform>();
         car.GetComponent<RenderRoad>().car = car.GetComponent<Transform>();
-        Instantiate(car, new Vector3(1.5f, 1.27f, 0f), Quaternion.Euler(0f, 0f, 0f));
+        //Instantiate(car, new Vector3(1.5f, 1.27f, 0f), Quaternion.Euler(0f, 0f, 0f));
     }
 
     public void ResetHealthBar(HealthBar h)

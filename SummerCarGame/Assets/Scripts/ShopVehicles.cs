@@ -2,33 +2,82 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShopVehicles : MonoBehaviour
 {
-    private ArrayList vehicles = new ArrayList();
+    public GameObject sceneController;
+    private Vehicle[] vehicles;
     public GameObject shopItem;
 
     // Start is called before the first frame update
     void Start()
     {
+        vehicles = sceneController.GetComponent<VehicleList>().GetVehicles();
+        UpdateSelectedVehicleField();
         float shopItemHeight = shopItem.GetComponent<RectTransform>().rect.height;
-        for(int i = 0; i < 120; i++)
-        {
-            vehicles.Add(1);
-        }
-        GetComponent<RectTransform>().sizeDelta = new Vector2(0 , vehicles.Count * (shopItemHeight + 10));
+        GetComponent<RectTransform>().sizeDelta = new Vector2(0 , vehicles.Length * (shopItemHeight + 10));
         float startingYPos = GetComponent<RectTransform>().rect.height / 2 - (shopItemHeight + 10) / 2;
-        for(int i = 0; i < vehicles.Count; i++)
+        int i = 0;
+        foreach(Vehicle vehicle in vehicles)
         {
             GameObject newShopItem = Instantiate(shopItem);
             newShopItem.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, startingYPos - i * (shopItemHeight + 10));
             newShopItem.transform.SetParent(transform, false);
+            newShopItem.name = vehicle.GetName();
+            AutoShopItem_ autoShopItem = newShopItem.GetComponent<AutoShopItem_>();
+
+            //SLIDERS
+            autoShopItem.characterName.GetComponent<TextMeshProUGUI>().text = vehicle.GetName();
+            autoShopItem.speedBar.GetComponent<Image>().fillAmount = vehicle.GetVelocity() / 40f;
+            autoShopItem.fuelBar.GetComponent<Image>().fillAmount = vehicle.GetMaxFuel()/150f;
+            autoShopItem.healthBar.GetComponent<Image>().fillAmount = (float)(1.0f*vehicle.GetMaxHealth()/150f);
+
+            //BUTTONS
+            Button selectBuyButton = autoShopItem.selectButton.GetComponent<Button>();
+            Button infoButton = autoShopItem.infoButton.GetComponent<Button>();
+            infoButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeInfoVehicleByName(vehicle.GetName()); });
+            infoButton.onClick.AddListener(delegate { sceneController.GetComponent<ButtonManager>().ButtonChangeScene("SoloVehicle"); });
+            if (sceneController.GetComponent<VehicleList>().GetPurchasedCars().Contains(vehicle.GetName()))
+            {
+                infoButton.interactable = true;
+                ColorBlock cb = selectBuyButton.colors;
+                cb.normalColor = new Color32(255, 247, 1, 255);
+                autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "SELECT";
+                selectBuyButton.colors = cb;
+                selectBuyButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(vehicle.GetName()); });
+                selectBuyButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
+            }
+            else
+            {
+                infoButton.interactable = false;
+                ColorBlock cb = selectBuyButton.colors;
+                cb.normalColor = new Color32(14, 255, 0, 255);
+                autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "BUY";
+                selectBuyButton.colors = cb;
+                selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem); });
+            }
+            i++;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BuyCar(GameObject autoShopItem)
     {
-       
+        AutoShopItem_ shopItemProperties = autoShopItem.GetComponent<AutoShopItem_>();
+        Button selectBuyButton = shopItemProperties.selectButton.GetComponent<Button>();
+        Button infoButton = shopItemProperties.infoButton.GetComponent<Button>();
+        infoButton.interactable = true;
+        ColorBlock cb = selectBuyButton.colors;
+        cb.normalColor = new Color32(255, 247, 1, 255);
+        shopItemProperties.selectBuyText.GetComponent<TextMeshProUGUI>().text = "SELECT";
+        selectBuyButton.colors = cb;
+        selectBuyButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(autoShopItem.name); });
+        selectBuyButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
+        sceneController.GetComponent<VehicleList>().PurchaseCar(autoShopItem.name);
+    }
+
+    public void UpdateSelectedVehicleField()
+    {
+        GetComponent<CarSelect>().selectedCarText.GetComponent<TextMeshProUGUI>().text = "Selected Vehicle: " + sceneController.GetComponent<VehicleList>().GetSelectedVehicle().GetName();
     }
 }

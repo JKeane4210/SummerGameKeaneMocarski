@@ -7,6 +7,8 @@ TagManager:
   - Health
   - Fuel
   - PowerUp
+  - SceneController
+  - ActiveForestRoad
   layers:
   - Default
   - TransparentFX

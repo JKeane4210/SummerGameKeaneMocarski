@@ -32,6 +32,22 @@ public class Vehicle
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
 
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl)
+    {
+        name = n;
+        dscr = d;
+        maxHealth = health;
+        maxFuel = fuel;
+        velocity = vel;
+        //latVelocity = latVel;
+        car = g;
+        dimensions = dimen;
+        SetLocations(gameLoc, viewingLoc);
+        SetScales(gameScl, viewingScl);
+        // >>> could set up components with this >>>
+        //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
+    }
+
     public void SetLocations(Vector3 game, Vector3 viewing)
     {
         gameLocation = game;
@@ -73,64 +89,127 @@ public class Vehicle
 
     //may be unecessary if we set components manually
     //could set up more, these are just more variable and key than the others
-    public void SetUpComponents(int health, float fuel, float vel, GameObject g, Vector3 dimen)
+    public GameObject SetUpComponents(int health, float fuel, float vel, GameObject g, Vector3 dimen)
     {
+        GameObject g_ = Object.Instantiate(g, gameLocation, Quaternion.identity);
+        g_.transform.localScale = gameScale;
+
         //CAR
-        if(g.GetComponent<Car>() == null)
-            g.AddComponent<Car>();
-        Car carBehaviour = g.GetComponent<Car>();
+        if (g_.GetComponent<Car>() == null)
+            g_.AddComponent<Car>();
+        Car carBehaviour = g_.GetComponent<Car>();
         carBehaviour.maxHealth = health;
         carBehaviour.maxFuel = fuel;
         carBehaviour.currentHealth = health;
         carBehaviour.currentFuel = fuel;
+        carBehaviour.healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
+        carBehaviour.fuelBar = GameObject.FindGameObjectWithTag("Fuel").GetComponent<FuelBar>();
+        //carBehaviour.car_transform = g.transform;
+
         //CHARACTER_CONTROLLER
-        if (g.GetComponent<CharacterController>() == null)
-            g.AddComponent<CharacterController>();
+        if (g_.GetComponent<CharacterController>() == null)
+            g_.AddComponent<CharacterController>();
+
         //RIGIDBODY
-        if (g.GetComponent<Rigidbody>() == null)
-            g.AddComponent<Rigidbody>();
-        Rigidbody rig = g.GetComponent<Rigidbody>();
+        if (g_.GetComponent<Rigidbody>() == null)
+            g_.AddComponent<Rigidbody>();
+        Rigidbody rig = g_.GetComponent<Rigidbody>();
         rig.useGravity = false;
+
         //BOX_COLLIDER
-        if (g.GetComponent<BoxCollider>() == null)
-            g.AddComponent<BoxCollider>();
-        BoxCollider box = g.GetComponent<BoxCollider>();
+        if (g_.GetComponent<BoxCollider>() == null)
+            g_.AddComponent<BoxCollider>();
+        BoxCollider box = g_.GetComponent<BoxCollider>();
         box.size = dimen;
         box.isTrigger = true;
+
+        //CHANGE CONTROLS
+        if (g_.GetComponent<ChangeControls>() == null)
+            g_.AddComponent<ChangeControls>();
+
+        //UPDATE CONTROLS
+        if (g_.GetComponent<UpdateControls>() == null)
+            g_.AddComponent<UpdateControls>();
+        UpdateControls updateControls = g_.GetComponent<UpdateControls>();
+        //updateControls.movingCar = g;
+
         //RENDER_ROAD
-        if (g.GetComponent<RenderRoad>() == null)
-            g.AddComponent<RenderRoad>();
-        RenderRoad road = g.GetComponent<RenderRoad>();
-        road.car = g.transform;
+        if (g_.GetComponent<RenderRoad>() == null)
+            g_.AddComponent<RenderRoad>();
+        RenderRoad road = g_.GetComponent<RenderRoad>();
+        road.car = g_.transform;
+        //road.road = GameObject.FindGameObjectWithTag("ActiveForestRoad");
+        road.gasStationRoad = (GameObject)Resources.Load("Models/Roads/forestRoadGasStopPainted");
+        road.block_width = 24.5f;
+        road.gasStationInterval = 10;
+        road.fuelObject = GameObject.FindGameObjectWithTag("Fuel");
+
+        //COIN MAKERS >>> coins and health
+        if(g_.GetComponents<CoinMaker>().Length > 0)
+        {
+            foreach (Component c in g_.GetComponents<CoinMaker>())
+                Object.Destroy(c);
+        }
+        CoinMaker coins = g_.AddComponent<CoinMaker>();
+        coins.coin = (GameObject)Resources.Load("Models/Powerups/coinMoving");
+        coins.interval = 0.5f;
+        coins.width = 9;
+        CoinMaker healthPacks = g_.AddComponent<CoinMaker>();
+        healthPacks.coin = (GameObject)Resources.Load("Models/Powerups/health");
+        healthPacks.interval = 10f;
+        healthPacks.width = 9;
+
+        //COIN COUNTER
+        if (g_.GetComponent<CoinCounter>() == null)
+            g_.AddComponent<CoinCounter>();
+
+        //CAR DEER COLLIDE
+        if (g_.GetComponent<CarDeerCollide>() == null)
+            g_.AddComponent<CarDeerCollide>();
+        CarDeerCollide cdColl = g_.GetComponent<CarDeerCollide>();
+        cdColl.health_bar = GameObject.FindGameObjectWithTag("Health");
+        cdColl.explosionEffect = (GameObject)Resources.Load("EffectExamples/FireExplosionEffects/Prefabs/BigExplosionEffect");
+
         //FOREST_DAMAGE
-        if (g.GetComponent<ForestDamage>() == null)
-            g.AddComponent<ForestDamage>();
-        ForestDamage for_damage = g.GetComponent<ForestDamage>();
-        for_damage.car = g;
+        if (g_.GetComponent<ForestDamage>() == null)
+            g_.AddComponent<ForestDamage>();
+        ForestDamage for_damage = g_.GetComponent<ForestDamage>();
+        //for_damage.car = g;
         for_damage.normalSpeed = vel;
+        for_damage.leftLimit = -11.5f;
+        for_damage.rightLimit = 11.5f;
+        for_damage.health = GameObject.FindGameObjectWithTag("Health");
+        for_damage.deltaV = 0.2f;
+
         //MOVE_CAR
-        if (g.GetComponent<MoveCar>() == null)
-            g.AddComponent<MoveCar>();
-        MoveCar move = g.GetComponent<MoveCar>();
+        if (g_.GetComponent<MoveCar>() == null)
+            g_.AddComponent<MoveCar>();
+        MoveCar move = g_.GetComponent<MoveCar>();
         move.forward_vel = vel;
-        move.car = g.GetComponent<CharacterController>();
+        move.car = g_.GetComponent<CharacterController>();
         move.car_rb = rig;
         move.carBlue = carBehaviour;
         move.velLimit = 8f;
-            //might need to add latVel to this to be consistant (if using latVel)
+
         //ACCELEROMETER
-        if (g.GetComponent<Accelerometer>() == null)
-            g.AddComponent<Accelerometer>();
-        Accelerometer acc = g.GetComponent<Accelerometer>();
+        if (g_.GetComponent<Accelerometer>() == null)
+            g_.AddComponent<Accelerometer>();
+        Accelerometer acc = g_.GetComponent<Accelerometer>();
+        acc.rigid = rig;
         acc.lat_multiplier = 23f;
         acc.forward_vel = vel;
         acc.forward_vel = vel;
+
         //SWIPE_CONTROLS
-        if (g.GetComponent<SwipeControls>() == null)
-            g.AddComponent<SwipeControls>();
-        SwipeControls swipe = g.GetComponent<SwipeControls>();
+        if (g_.GetComponent<SwipeControls>() == null)
+            g_.AddComponent<SwipeControls>();
+        SwipeControls swipe = g_.GetComponent<SwipeControls>();
+        swipe.car = rig;
         swipe.velocity = vel;
         swipe.latVelMultiplier = 0.08f;
+
+        //Object.Instantiate(g, gameLocation, Quaternion.Euler(0, 180, 0));
+        return g_;
     }
 
     //good for loading screen
@@ -144,6 +223,13 @@ public class Vehicle
                 Object.Destroy(comp);
             }
         }
+        return carCopy;
+    }
+
+    public GameObject GetCarGameObject()
+    {
+        //Object.Instantiate(car, gameLocation, Quaternion.Euler(0, 180, 0));
+        GameObject carCopy = SetUpComponents(maxHealth, maxFuel, velocity, car, dimensions);
         return carCopy;
     }
 
