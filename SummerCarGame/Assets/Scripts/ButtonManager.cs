@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -11,8 +10,11 @@ public class ButtonManager : MonoBehaviour
 
     void Start()
     {
-        if(loadingScreen != null)
+        if (loadingScreen != null)
+        {
             loadingScreen.SetActive(false);
+            fuelNeedle.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 90);
+        }
     }
 
     public void ButtonChangeScene(string level)
@@ -22,17 +24,33 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator LoadAsynchronously(string level)
     {
+        float moveSpeed = 0.05f;
         AsyncOperation operation = SceneManager.LoadSceneAsync(level);
-        if(loadingScreen != null)
+        operation.allowSceneActivation = false;
+        if (loadingScreen != null)
             loadingScreen.SetActive(true);
-        while(!operation.isDone)
+        if (fuelNeedle != null)
         {
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
-            Debug.Log(progress);
-            if(fuelNeedle != null)
-                fuelNeedle.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 90f + 180f * progress);
-            //System.Threading.Thread.Sleep(2000);
-            yield return null;
+            while (!operation.isDone)
+            {
+                float progress = Mathf.Clamp01(operation.progress / 0.9f);
+                Debug.Log(progress);
+                float loaded_angle = 90f - 180f * progress;
+                //fuelNeedle.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, loade);
+                while (fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z != loaded_angle)
+                {
+                    fuelNeedle.GetComponent<RectTransform>().rotation = Quaternion.Slerp(fuelNeedle.GetComponent<RectTransform>().rotation, Quaternion.Euler(0, 0, loaded_angle), moveSpeed * Time.time);
+                    if (fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z == 270)
+                        break;
+                    //print(fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z);
+                    yield return null;
+                }
+                if (fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z == 270)
+                    break;
+                yield return null;
+            }
         }
+        print("Done");
+        operation.allowSceneActivation = true;
     }
 }
