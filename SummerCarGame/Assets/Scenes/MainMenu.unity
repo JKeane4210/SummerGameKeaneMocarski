@@ -308,6 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 729650329}
   fuelNeedle: {fileID: 729650327}
+  loadingText: {fileID: 824391389}
 --- !u!4 &202422707
 Transform:
   m_ObjectHideFlags: 0
@@ -1358,6 +1359,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &824391389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7662147297977382306, guid: 7cf098a4306b84bb78d7052aee388a93,
+    type: 3}
+  m_PrefabInstance: {fileID: 729650326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1510247439
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ButtonManager : MonoBehaviour
 {
     public GameObject loadingScreen;
     public GameObject fuelNeedle;
+    public GameObject loadingText;
 
     void Start()
     {
@@ -40,6 +42,13 @@ public class ButtonManager : MonoBehaviour
                 while (fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z != loaded_angle)
                 {
                     fuelNeedle.GetComponent<RectTransform>().rotation = Quaternion.Slerp(fuelNeedle.GetComponent<RectTransform>().rotation, Quaternion.Euler(0, 0, loaded_angle), moveSpeed * Time.time);
+                    float piece = fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z;
+                    if (piece >= 270)
+                        piece = -NegativeAngle(piece); //<0>>>90
+                    else
+                        piece = -NegativeAngle(piece) - 360; //-90>>>0
+                    piece += 90; //0>>>180
+                    loadingText.GetComponent<TextMeshProUGUI>().text = "Fueling Up " + ((int)(100f * (piece/ 180f))).ToString() + "%";
                     if (fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z == 270)
                         break;
                     //print(fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z);
@@ -52,5 +61,10 @@ public class ButtonManager : MonoBehaviour
         }
         print("Done");
         operation.allowSceneActivation = true;
+    }
+
+    private float NegativeAngle(float f)
+    {
+        return -(360f - f);
     }
 }

@@ -333,6 +333,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 49874840}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &49874844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7662147297977382306, guid: 7cf098a4306b84bb78d7052aee388a93,
+    type: 3}
+  m_PrefabInstance: {fileID: 49874840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &89994858
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,6 +553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 49874843}
   fuelNeedle: {fileID: 49874842}
+  loadingText: {fileID: 49874844}
 --- !u!1 &190608089
 GameObject:
   m_ObjectHideFlags: 0
