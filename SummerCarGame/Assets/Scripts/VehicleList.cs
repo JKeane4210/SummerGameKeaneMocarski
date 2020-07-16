@@ -19,6 +19,7 @@ public class VehicleList : MonoBehaviour
      *     ViewingLocation
      *     GameScale
      *     ViewingScale
+     *     Price
     */
     private Vehicle[] vehicles;
 
