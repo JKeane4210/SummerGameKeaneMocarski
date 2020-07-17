@@ -9,8 +9,8 @@ public class ShopVehicles : MonoBehaviour
     public GameObject sceneController;
     private Vehicle[] vehicles;
     public GameObject shopItem;
-
-    // Start is called before the first frame update
+    
+    
     void Start()
     {
         vehicles = sceneController.GetComponent<VehicleList>().GetVehicles();
@@ -19,6 +19,7 @@ public class ShopVehicles : MonoBehaviour
         GetComponent<RectTransform>().sizeDelta = new Vector2(0 , vehicles.Length * (shopItemHeight + 10));
         float startingYPos = GetComponent<RectTransform>().rect.height / 2 - (shopItemHeight + 10) / 2;
         int i = 0;
+        
         foreach(Vehicle vehicle in vehicles)
         {
             GameObject newShopItem = Instantiate(shopItem);
@@ -26,6 +27,10 @@ public class ShopVehicles : MonoBehaviour
             newShopItem.transform.SetParent(transform, false);
             newShopItem.name = vehicle.GetName();
             AutoShopItem_ autoShopItem = newShopItem.GetComponent<AutoShopItem_>();
+
+            //Price
+            int carPrice = vehicle.GetPrice();
+            autoShopItem.price.GetComponent<TextMeshProUGUI>().text = carPrice.ToString();
 
             //SLIDERS
             autoShopItem.characterName.GetComponent<TextMeshProUGUI>().text = vehicle.GetName();
@@ -47,6 +52,7 @@ public class ShopVehicles : MonoBehaviour
                 selectBuyButton.colors = cb;
                 selectBuyButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(vehicle.GetName()); });
                 selectBuyButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
+                
             }
             else
             {
@@ -74,6 +80,7 @@ public class ShopVehicles : MonoBehaviour
         selectBuyButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(autoShopItem.name); });
         selectBuyButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
         sceneController.GetComponent<VehicleList>().PurchaseCar(autoShopItem.name);
+        
     }
 
     public void UpdateSelectedVehicleField()

@@ -37,7 +37,8 @@ public class VehicleList : MonoBehaviour
             new Vector3(1.5f, 1.25f, 0f),
             new Vector3(0, -25, -65),
             new Vector3(3, 3, 3),
-            new Vector3(30, 30, 30)
+            new Vector3(30, 30, 30),
+            0
             ),
         new Vehicle("Sandvan",
             "Fun in the sun. Pretty buff, but could use some pace.",
@@ -49,7 +50,8 @@ public class VehicleList : MonoBehaviour
             new Vector3(1.5f, 1.75f, 0f),
             new Vector3(0, -20, -65),
             new Vector3(0.8f, 0.8f, 0.6f),
-            new Vector3(10,10,10)
+            new Vector3(10,10,10),
+            50
             ),
         };
         if(selectedVehicle == null)

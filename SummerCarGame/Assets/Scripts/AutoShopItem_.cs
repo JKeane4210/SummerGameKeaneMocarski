@@ -13,4 +13,6 @@ public class AutoShopItem_ : MonoBehaviour
     public GameObject fuelBar;
     public GameObject healthBar;
     public GameObject selectBuyText;
+    public GameObject price;
+    
 }

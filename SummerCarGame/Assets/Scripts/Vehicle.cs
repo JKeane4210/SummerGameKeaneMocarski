@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,13 +12,15 @@ public class Vehicle
     private Vector3 dimensions;
     //private float latVelocity; //basically agility (IDK if we should do this?)
     private GameObject car;
+    private int price;
+    private int coin;
 
     private Vector3 gameLocation;
     private Vector3 viewingLocation;
     private Vector3 gameScale;
     private Vector3 viewingScale;
 
-    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen)
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, int p)
     {
         name = n;
         dscr = d;
@@ -28,11 +30,12 @@ public class Vehicle
         //latVelocity = latVel;
         car = g;
         dimensions = dimen;
+        price = p;
         // >>> could set up components with this >>>
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
 
-    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl)
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p)
     {
         name = n;
         dscr = d;
@@ -44,6 +47,7 @@ public class Vehicle
         dimensions = dimen;
         SetLocations(gameLoc, viewingLoc);
         SetScales(gameScl, viewingScl);
+        price = p;
         // >>> could set up components with this >>>
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
@@ -273,6 +277,21 @@ public class Vehicle
     {
         return viewingScale;
     }
+
+    public int GetPrice()
+    {
+        return price;
+    }
+
+    public bool CanSpendCoins()
+    {
+        if(coin > price)
+            return true;
+        else
+            return false;
+    }
+
+
     //public float GetLatVelocity()
     //{
     //    return latVelocity;
