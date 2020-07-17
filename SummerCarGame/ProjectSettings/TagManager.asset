@@ -11,6 +11,7 @@ TagManager:
   - ActiveForestRoad
   - CoinText
   - GameSharedUI
+  - UnlockedPage
   layers:
   - Default
   - TransparentFX
