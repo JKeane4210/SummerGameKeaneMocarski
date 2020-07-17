@@ -83,12 +83,14 @@ public class ShopVehicles : MonoBehaviour
         cb.normalColor = new Color32(255, 247, 1, 255);
         shopItemProperties.selectBuyText.GetComponent<TextMeshProUGUI>().text = "SELECT";
         selectBuyButton.colors = cb;
+        selectBuyButton.onClick.RemoveAllListeners();
         selectBuyButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(autoShopItem.name); });
         selectBuyButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
         sceneController.GetComponent<VehicleList>().PurchaseCar(autoShopItem.name);
         gameSharedUI.GetComponent<GameSharedUI>().BuyCar(vehicle.GetPrice());
         gameSharedUI.GetComponent<GameSharedUI>().UpdateCoinsUIText();
         shopItemProperties.priceBox.SetActive(false);
+        
     }
 
     public void UpdateSelectedVehicleField()
