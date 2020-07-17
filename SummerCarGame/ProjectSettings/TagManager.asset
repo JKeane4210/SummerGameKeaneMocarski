@@ -9,6 +9,8 @@ TagManager:
   - PowerUp
   - SceneController
   - ActiveForestRoad
+  - CoinText
+  - GameSharedUI
   layers:
   - Default
   - TransparentFX

@@ -14,5 +14,6 @@ public class AutoShopItem_ : MonoBehaviour
     public GameObject healthBar;
     public GameObject selectBuyText;
     public GameObject price;
+    public GameObject priceBox;
     
 }

@@ -9,10 +9,13 @@ public class ShopVehicles : MonoBehaviour
     public GameObject sceneController;
     private Vehicle[] vehicles;
     public GameObject shopItem;
-    
+    private GameObject gameSharedUI;
+    //private GameObject coinText;
     
     void Start()
     {
+        gameSharedUI = GameObject.FindGameObjectWithTag("GameSharedUI");
+        //coinText = GameObject.FindGameObjectWithTag("CoinText");
         vehicles = sceneController.GetComponent<VehicleList>().GetVehicles();
         UpdateSelectedVehicleField();
         float shopItemHeight = shopItem.GetComponent<RectTransform>().rect.height;
@@ -52,22 +55,25 @@ public class ShopVehicles : MonoBehaviour
                 selectBuyButton.colors = cb;
                 selectBuyButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(vehicle.GetName()); });
                 selectBuyButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
-                
+                autoShopItem.priceBox.SetActive(false);
             }
             else
             {
+                if (vehicle.GetPrice() > gameSharedUI.GetComponent<GameSharedUI>().GetCoins())
+                    selectBuyButton.interactable = false;
                 infoButton.interactable = false;
                 ColorBlock cb = selectBuyButton.colors;
                 cb.normalColor = new Color32(14, 255, 0, 255);
                 autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "BUY";
                 selectBuyButton.colors = cb;
-                selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem); });
+                selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem, vehicle); });
+                //gameSharedUI.GetComponent<GameSharedUI>().BuyCar(vehicle.GetPrice());
             }
             i++;
         }
     }
 
-    public void BuyCar(GameObject autoShopItem)
+    public void BuyCar(GameObject autoShopItem, Vehicle vehicle)
     {
         AutoShopItem_ shopItemProperties = autoShopItem.GetComponent<AutoShopItem_>();
         Button selectBuyButton = shopItemProperties.selectButton.GetComponent<Button>();
@@ -80,7 +86,9 @@ public class ShopVehicles : MonoBehaviour
         selectBuyButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(autoShopItem.name); });
         selectBuyButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
         sceneController.GetComponent<VehicleList>().PurchaseCar(autoShopItem.name);
-        
+        gameSharedUI.GetComponent<GameSharedUI>().BuyCar(vehicle.GetPrice());
+        gameSharedUI.GetComponent<GameSharedUI>().UpdateCoinsUIText();
+        shopItemProperties.priceBox.SetActive(false);
     }
 
     public void UpdateSelectedVehicleField()

@@ -33,7 +33,7 @@ public class VehicleList : MonoBehaviour
             100f,
             23f,
             (GameObject)Resources.Load("Models/Cars/MovingCar2"),
-            new Vector3(1,1,1),
+            new Vector3(1,3,1),
             new Vector3(1.5f, 1.25f, 0f),
             new Vector3(0, -25, -65),
             new Vector3(3, 3, 3),

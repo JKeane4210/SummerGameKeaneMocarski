@@ -100,6 +100,7 @@ MonoBehaviour:
   healthBar: {fileID: 236190476485141337}
   selectBuyText: {fileID: 236190475848542443}
   price: {fileID: 1963619756353893378}
+  priceBox: {fileID: 7482649231587285133}
 --- !u!1 &236190475848542443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1743,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

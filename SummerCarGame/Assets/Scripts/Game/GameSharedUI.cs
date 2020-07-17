@@ -38,4 +38,14 @@ public class GameSharedUI : MonoBehaviour
     {
         textMesh.text = value.ToString();
     }
+
+    public void BuyCar(int price)
+    {
+        GameDataManager.SpendCoins(price);
+    }
+
+    public int GetCoins()
+    {
+        return GameDataManager.GetCoins();
+    }
 }
