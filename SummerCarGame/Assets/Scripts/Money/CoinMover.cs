@@ -6,12 +6,14 @@ public class CoinMover : MonoBehaviour
 {
     private float speed = 2f;
     private float delta = 1f;
+    private GameObject canvas;
 
     Vector3 pos;
 
     void Start()
     {
-        pos = transform.position;   
+        pos = transform.position;
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
     void Update()
@@ -27,6 +29,11 @@ public class CoinMover : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             RemoveAndAddCount(other);
+            GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
+            GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
+            addToScreen.transform.SetParent(canvas.transform, false);
+            //addToScreen.GetComponent<RectTransform>().position = new Vector3(-167, 84, 0);
+            //coinsAddedMsg.SetActive(true);
         }
     }
 

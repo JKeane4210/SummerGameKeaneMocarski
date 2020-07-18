@@ -20,6 +20,7 @@ public class SceneDrawing : MonoBehaviour
     private MoveCar carMove;
     public GameObject leftButton;
     public GameObject rightButton;
+    public GameObject coinsTextAndImgs;
 
     private Vehicle selectedCar;
 
@@ -43,6 +44,7 @@ public class SceneDrawing : MonoBehaviour
         ShowButton(distanceField);
         ShowButton(leftButton);
         ShowButton(rightButton);
+        ShowButton(coinsTextAndImgs);
         car.GetComponent<Car>().SimulateStart();
         car.GetComponent<UpdateControls>().SimulateStart();
         car.GetComponent<ForestDamage>().SimulateStart();
@@ -115,6 +117,9 @@ public class SceneDrawing : MonoBehaviour
             HideButton(distanceField);
             HideButton(leftButton);
             HideButton(rightButton);
+            HideButton(coinsTextAndImgs);
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
+                Destroy(g);
             Time.timeScale = 0;
         }
         else if(fuel_bar_obj.GetComponent<FuelBar>().GetFuel() == 0)
@@ -127,6 +132,9 @@ public class SceneDrawing : MonoBehaviour
             HideButton(distanceField);
             HideButton(leftButton);
             HideButton(rightButton);
+            HideButton(coinsTextAndImgs);
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
+                Destroy(g);
             Time.timeScale = 0;
         }
     }

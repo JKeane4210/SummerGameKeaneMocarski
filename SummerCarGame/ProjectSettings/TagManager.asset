@@ -14,6 +14,8 @@ TagManager:
   - UnlockedPage
   - CheckBox
   - AutoShopPanel
+  - CoinsAdded
+  - Canvas
   layers:
   - Default
   - TransparentFX

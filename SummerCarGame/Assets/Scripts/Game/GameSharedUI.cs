@@ -7,6 +7,7 @@ public class GameSharedUI : MonoBehaviour
    #region Singleton class: GameSharedUI
 
     public static GameSharedUI Instance;
+    private int initialCoins;
 
     void Awake()
     {
@@ -20,9 +21,11 @@ public class GameSharedUI : MonoBehaviour
    #endregion
 
     [SerializeField] TMP_Text[] coinsUIText;
+    //[SerializeField] TMP_Text[] coinsUISingleGameText;
 
     void Start()
     {
+        initialCoins = GetCoins();
         UpdateCoinsUIText();
     }
 
@@ -30,8 +33,16 @@ public class GameSharedUI : MonoBehaviour
     {
         for (int i = 0; i < coinsUIText.Length; i++)
         {
-            SetCoinsText(coinsUIText[i], GameDataManager.GetCoins());
+            if(coinsUIText[i].name == "SingleGameCoins")
+                SetCoinsText(coinsUIText[i], GetCoins() - initialCoins);
+
+            else
+                SetCoinsText(coinsUIText[i], GameDataManager.GetCoins());
         }
+
+        //for (int i = 0; i < coinsUISingleGameText.Length; i++)
+        //    SetCoinsText(coinsUISingleGameText[i], GetCoins() - initialCoins);
+    
     }
 
     void SetCoinsText(TMP_Text textMesh, int value)
