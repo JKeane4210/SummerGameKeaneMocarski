@@ -10,11 +10,14 @@ public class ShopVehicles : MonoBehaviour
     private Vehicle[] vehicles;
     public GameObject shopItem;
     private GameObject gameSharedUI;
+    private GameObject unlockedCarPanel;
     //private GameObject coinText;
-    
+
     void Start()
     {
+        Time.timeScale = 1;
         gameSharedUI = GameObject.FindGameObjectWithTag("GameSharedUI");
+        unlockedCarPanel = GameObject.FindGameObjectWithTag("UnlockedPage");
         //coinText = GameObject.FindGameObjectWithTag("CoinText");
         vehicles = sceneController.GetComponent<VehicleList>().GetVehicles();
         UpdateSelectedVehicleField();
@@ -90,7 +93,14 @@ public class ShopVehicles : MonoBehaviour
         gameSharedUI.GetComponent<GameSharedUI>().BuyCar(vehicle.GetPrice());
         gameSharedUI.GetComponent<GameSharedUI>().UpdateCoinsUIText();
         shopItemProperties.priceBox.SetActive(false);
-        
+        float scale_fact = 0.7f;
+        GameObject newCar = vehicle.GetGameObjectNoComponents(new Vector3(0, -3, 100), new Vector3(vehicle.GetViewingScale().x * scale_fact, vehicle.GetViewingScale().y * scale_fact, vehicle.GetViewingScale().z * scale_fact));
+        RotateObject r = newCar.AddComponent<RotateObject>();
+        r.direction = 'y';
+        //newCar.transform.position = new Vector3(0, 25, 100);
+        unlockedCarPanel.SetActive(true);
+        unlockedCarPanel.GetComponent<UnlockedPage_>().nameText.GetComponent<TextMeshProUGUI>().text = vehicle.GetName();
+        unlockedCarPanel.GetComponent<UnlockedPage_>().nameDescrText.GetComponent<TextMeshProUGUI>().text = vehicle.GetDescription();
     }
 
     public void UpdateSelectedVehicleField()

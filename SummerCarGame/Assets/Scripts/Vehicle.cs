@@ -230,6 +230,20 @@ public class Vehicle
         return carCopy;
     }
 
+    public GameObject GetGameObjectNoComponents(Vector3 location, Vector3 scale)
+    {
+        GameObject carCopy = Object.Instantiate(car, location, Quaternion.identity);
+        carCopy.transform.localScale = scale;
+        foreach (var comp in carCopy.GetComponents<Component>())
+        {
+            if (!(comp is Transform) && !(comp is Rigidbody))
+            {
+                Object.Destroy(comp);
+            }
+        }
+        return carCopy;
+    }
+
     public GameObject GetCarGameObject()
     {
         //Object.Instantiate(car, gameLocation, Quaternion.Euler(0, 180, 0));
