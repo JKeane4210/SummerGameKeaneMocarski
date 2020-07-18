@@ -28,7 +28,7 @@ public class ButtonManager : MonoBehaviour
     {
         float moveSpeed = 0.05f;
         AsyncOperation operation = SceneManager.LoadSceneAsync(level);
-        operation.allowSceneActivation = false;
+        //operation.allowSceneActivation = false;
         if (loadingScreen != null)
             loadingScreen.SetActive(true);
         if (fuelNeedle != null)
