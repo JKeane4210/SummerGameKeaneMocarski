@@ -12,6 +12,8 @@ TagManager:
   - CoinText
   - GameSharedUI
   - UnlockedPage
+  - CheckBox
+  - AutoShopPanel
   layers:
   - Default
   - TransparentFX
