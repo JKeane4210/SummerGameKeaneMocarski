@@ -6,17 +6,29 @@ using TMPro;
 
 public class TextAddAnimation : MonoBehaviour
 {
+    public bool useGameObj;
+    public int coinAdd;
     public float speed;
     public float deltaY;
     public string txt;
     private Vector3 initialPos;
+    private GameObject sceneController;
     //private float initialY;
 
     // Start is called before the first frame update
     void Start()
     {
+        sceneController = GameObject.FindGameObjectWithTag("SceneController");
         initialPos = gameObject.GetComponent<RectTransform>().position;
-        gameObject.GetComponent<TextMeshProUGUI>().text = txt;
+        if(useGameObj)
+        {
+            if (sceneController.GetComponent<ButtonManager>().GetIsNightMode())
+                gameObject.GetComponent<TextMeshProUGUI>().text = "+" + ((int)(1.5 * (float)coinAdd)).ToString();
+            else
+                gameObject.GetComponent<TextMeshProUGUI>().text = "+" + coinAdd.ToString();
+        }
+        else
+            gameObject.GetComponent<TextMeshProUGUI>().text = txt;
         gameObject.SetActive(true);
         
     }

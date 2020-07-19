@@ -5,11 +5,25 @@ using UnityEngine;
 public class CoinCounter : MonoBehaviour
 {
     static int totalCoins = 0;
+    private GameObject sceneController;
+
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("SceneController");
+    }
 
     public void AddCoin()
     {
-        totalCoins += 10;
-        GameDataManager.AddCoins(10);
+        if (sceneController.GetComponent<ButtonManager>().GetIsNightMode())
+        {
+            totalCoins += 15;
+            GameDataManager.AddCoins(15);
+        }
+        else
+        {
+            totalCoins += 10;
+            GameDataManager.AddCoins(10);
+        }
 
         GameSharedUI.Instance.UpdateCoinsUIText();
     }

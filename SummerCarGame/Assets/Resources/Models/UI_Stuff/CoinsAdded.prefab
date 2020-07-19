@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d0cf2ee6bfb4c9aba1af297b8b7b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useGameObj: 1
+  coinAdd: 10
   speed: 80
   deltaY: 100
-  txt: +10
+  txt: None
