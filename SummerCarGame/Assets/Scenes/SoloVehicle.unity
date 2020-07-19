@@ -1818,7 +1818,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6cd1d51c713476aa311790983267de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 
+  loadingScreen: {fileID: 0}
+  fuelNeedle: {fileID: 0}
+  loadingText: {fileID: 0}
 --- !u!1 &1772506778
 GameObject:
   m_ObjectHideFlags: 0

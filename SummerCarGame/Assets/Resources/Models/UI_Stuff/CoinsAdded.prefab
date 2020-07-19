@@ -171,3 +171,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 80
   deltaY: 100
+  txt: +10

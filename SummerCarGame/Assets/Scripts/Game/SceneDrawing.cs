@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class SceneDrawing : MonoBehaviour
 {
+    public GameObject sun;
+    public GameObject headlightL;
+    public GameObject headlighR;
+    public GameObject illuminateCar;
+    public GameObject mainCamera;
     private GameObject road_block_obj;
     public GameObject health_bar_obj;
     public GameObject fuel_bar_obj;
@@ -32,6 +37,27 @@ public class SceneDrawing : MonoBehaviour
         //print("*" + selectedCar.GetName());
         car.GetComponent<RenderRoad>().road = roadBlock;
         carMove = car.GetComponent<MoveCar>();
+        if (GetComponent<ButtonManager>().GetIsNightMode())
+        {
+            sun.SetActive(false);
+            headlighR.SetActive(true);
+            headlightL.SetActive(true);
+            illuminateCar.SetActive(true);
+            mainCamera.GetComponent<Camera>().backgroundColor = Color.black;
+            RenderSettings.ambientIntensity = 0;
+            RenderSettings.reflectionIntensity = 0.1f;
+            illuminateCar.transform.position = new Vector3(illuminateCar.transform.position.x, selectedCar.GetIlluminationHeight());
+        }
+        else
+        {
+            sun.SetActive(true);
+            headlighR.SetActive(false);
+            headlightL.SetActive(false);
+            illuminateCar.SetActive(false);
+            mainCamera.GetComponent<Camera>().backgroundColor = new Color(0.23f, 0.588f, 0.301f);
+            RenderSettings.ambientIntensity = 1;
+            RenderSettings.reflectionIntensity = 1;
+        }
         //DrawRoadBlock(roadBlock);
         //DrawStaticRoadBlock(staticRoadBlock);
         //DrawCar(car);
@@ -51,6 +77,9 @@ public class SceneDrawing : MonoBehaviour
         distanceField.GetComponent<DistanceText>().SimulateStart();
         rightButton.GetComponent<ButtonMoving>().SimulateStart();
         leftButton.GetComponent<ButtonMoving>().SimulateStart();
+        headlightL.GetComponent<HeadlightFollow>().SimulateStart();
+        headlighR.GetComponent<HeadlightFollow>().SimulateStart();
+        illuminateCar.GetComponent<HeadlightFollow>().SimulateStart();
         Time.timeScale = 1;
     }
 

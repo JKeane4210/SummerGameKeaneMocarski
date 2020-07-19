@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffe7110546d8418184fc418a3a6f29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinsAddedMsg: {fileID: 0}
 --- !u!114 &5838260202383593357
 MonoBehaviour:
   m_ObjectHideFlags: 0

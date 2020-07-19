@@ -20,6 +20,8 @@ public class Vehicle
     private Vector3 gameScale;
     private Vector3 viewingScale;
 
+    private float illuminationHeight;
+
     public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, int p)
     {
         name = n;
@@ -35,7 +37,7 @@ public class Vehicle
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
 
-    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p)
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight)
     {
         name = n;
         dscr = d;
@@ -48,6 +50,7 @@ public class Vehicle
         SetLocations(gameLoc, viewingLoc);
         SetScales(gameScl, viewingScl);
         price = p;
+        illuminationHeight = illHeight;
         // >>> could set up components with this >>>
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
@@ -212,6 +215,16 @@ public class Vehicle
         swipe.velocity = vel;
         swipe.latVelMultiplier = 0.08f;
 
+        //////HEADLIGHTS
+        //if (g_.GetComponent<Light>() == null)
+        //    g_.AddComponent<Light>();
+        //Light headlight = g_.GetComponent<Light>();
+        //headlight.type = LightType.Spot;
+        //headlight.range = 200;
+        //headlight.spotAngle = 60;
+        //headlight.color = Color.white;
+        //headlight.intensity = 2;
+
         //Object.Instantiate(g, gameLocation, Quaternion.Euler(0, 180, 0));
         return g_;
     }
@@ -303,6 +316,11 @@ public class Vehicle
             return true;
         else
             return false;
+    }
+
+    public float GetIlluminationHeight()
+    {
+        return illuminationHeight;
     }
 
 

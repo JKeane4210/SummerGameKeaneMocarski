@@ -9,6 +9,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject fuelNeedle;
     public GameObject loadingText;
+    static bool isNightMode = false;
 
     void Start()
     {
@@ -66,5 +67,15 @@ public class ButtonManager : MonoBehaviour
     private float NegativeAngle(float f)
     {
         return -(360f - f);
+    }
+
+    public void ChangeIsNightMode(bool nm)
+    {
+        isNightMode = nm;
+    }
+
+    public bool GetIsNightMode()
+    {
+        return isNightMode;
     }
 }

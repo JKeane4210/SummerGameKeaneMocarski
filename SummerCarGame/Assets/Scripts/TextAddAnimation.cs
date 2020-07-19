@@ -8,6 +8,7 @@ public class TextAddAnimation : MonoBehaviour
 {
     public float speed;
     public float deltaY;
+    public string txt;
     private Vector3 initialPos;
     //private float initialY;
 
@@ -15,6 +16,7 @@ public class TextAddAnimation : MonoBehaviour
     void Start()
     {
         initialPos = gameObject.GetComponent<RectTransform>().position;
+        gameObject.GetComponent<TextMeshProUGUI>().text = txt;
         gameObject.SetActive(true);
         
     }

@@ -20,6 +20,7 @@ public class VehicleList : MonoBehaviour
      *     GameScale
      *     ViewingScale
      *     Price
+     *     Illumination Height (for night mode)
     */
     private Vehicle[] vehicles;
 
@@ -38,7 +39,8 @@ public class VehicleList : MonoBehaviour
             new Vector3(0, -25, -65),
             new Vector3(3, 3, 3),
             new Vector3(30, 30, 30),
-            0
+            0,
+            10
             ),
         new Vehicle("Sandvan",
             "Fun in the sun. Pretty buff, but could use some pace.",
@@ -51,7 +53,8 @@ public class VehicleList : MonoBehaviour
             new Vector3(0, -20, -65),
             new Vector3(0.8f, 0.8f, 0.6f),
             new Vector3(10,10,10),
-            50
+            50,
+            15
             ),
         };
         if(selectedVehicle == null)
