@@ -44,7 +44,7 @@ public class SceneDrawing : MonoBehaviour
             headlightL.SetActive(true);
             illuminateCar.SetActive(true);
             mainCamera.GetComponent<Camera>().backgroundColor = Color.black;
-            RenderSettings.ambientIntensity = 0;
+            RenderSettings.ambientIntensity = 0.15f;
             RenderSettings.reflectionIntensity = 0.1f;
             illuminateCar.transform.position = new Vector3(illuminateCar.transform.position.x, selectedCar.GetIlluminationHeight());
         }
