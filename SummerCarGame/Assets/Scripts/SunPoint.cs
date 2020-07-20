@@ -42,8 +42,8 @@ public class SunPoint : MonoBehaviour
         }
     }
 
-    //public float GetSunPoint()
-    //{
-    //    return sunPoint;
-    //}
+    public float GetSunPoint()
+    {
+        return sunPoint;
+    }
 }
