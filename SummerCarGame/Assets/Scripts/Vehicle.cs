@@ -20,7 +20,7 @@ public class Vehicle
     private Vector3 gameScale;
     private Vector3 viewingScale;
 
-    private float illuminationHeight;
+    private float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
 
     public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, int p)
     {

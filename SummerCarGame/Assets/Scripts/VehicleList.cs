@@ -54,7 +54,7 @@ public class VehicleList : MonoBehaviour
             new Vector3(0.8f, 0.8f, 0.6f),
             new Vector3(10,10,10),
             50,
-            15
+            5
             ),
         };
         if(selectedVehicle == null)

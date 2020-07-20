@@ -46,7 +46,7 @@ public class SceneDrawing : MonoBehaviour
             mainCamera.GetComponent<Camera>().backgroundColor = Color.black;
             RenderSettings.ambientIntensity = 0.15f;
             RenderSettings.reflectionIntensity = 0.1f;
-            illuminateCar.transform.position = new Vector3(illuminateCar.transform.position.x, selectedCar.GetIlluminationHeight());
+            //illuminateCar.transform.position = new Vector3(illuminateCar.transform.position.x, selectedCar.GetIlluminationHeight());
         }
         else
         {
@@ -166,5 +166,10 @@ public class SceneDrawing : MonoBehaviour
                 Destroy(g);
             Time.timeScale = 0;
         }
+    }
+
+    public Vehicle GetVehicle()
+    {
+        return selectedCar;
     }
 }

@@ -7,13 +7,15 @@ public class HeadlightFollow : MonoBehaviour
     public float offset;
     public float latOffset;
     private GameObject car;
+    private GameObject sceneController;
 
     // Start is called before the first frame update
     public void SimulateStart()
     {
+        sceneController = GameObject.FindGameObjectWithTag("SceneController");
         car = GameObject.FindGameObjectWithTag("Player");
         if (gameObject.name == "IlluminateCar")
-            gameObject.GetComponent<Light>().intensity = gameObject.transform.position.y;
+            gameObject.GetComponent<Light>().intensity = sceneController.GetComponent<SceneDrawing>().GetVehicle().GetIlluminationHeight();
         //print("start simulated");
     }
 
