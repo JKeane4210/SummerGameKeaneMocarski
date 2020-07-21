@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class RandomDeerInstantiation : MonoBehaviour
 {
+    [SerializeField] AnimationCurve myCurve;
     public GameObject deer_obj;
     public GameObject controller;
     private int deer_count;
+    private float timeUntilMaxDifficulty = 60;
     //public GameObject deer_container;
 
     // Start is called before the first frame update
     void Start()
     {
-        int random_num = (int)Random.Range(0f, 6f);
+        //print("Time " + Time.time.ToString());
+        float difficulty = myCurve.Evaluate(Time.timeSinceLevelLoad / timeUntilMaxDifficulty);
+        //print(difficulty.ToString());
+        int random_num = (int)Random.Range(difficulty * 5f, 6f + difficulty * 2f);
         if (random_num <= 2)
             deer_count = 1;
         else if (random_num <= 4)
@@ -21,6 +26,10 @@ public class RandomDeerInstantiation : MonoBehaviour
             deer_count = 3;
         else if (random_num == 6)
             deer_count = 4;
+        else if (random_num == 7)
+            deer_count = 5;
+        else if (random_num == 8)
+            deer_count = 6;
         //print(random_num + " " +deer_count);
         for (int i = 0; i < deer_count; i++)
         {
@@ -43,7 +52,7 @@ public class RandomDeerInstantiation : MonoBehaviour
                 rotation = Quaternion.Euler(0f, Random.Range(90f, 150f), 0f);
             else
                 rotation = Quaternion.Euler(0f, Random.Range(210f, 270f),0f);
-            Instantiate(deer, new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 10f, controller_z -30f + 10f)), rotation);
+            Instantiate(deer, new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 20f, controller_z -30f + 10f)), rotation);
         }
     }
 }
