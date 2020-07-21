@@ -80,6 +80,7 @@ public class SceneDrawing : MonoBehaviour
         headlightL.GetComponent<HeadlightFollow>().SimulateStart();
         headlighR.GetComponent<HeadlightFollow>().SimulateStart();
         illuminateCar.GetComponent<HeadlightFollow>().SimulateStart();
+        mainCamera.GetComponent<BackgroundColorScan>().SimulateStart();
         Time.timeScale = 1;
     }
 
