@@ -22,11 +22,20 @@ public class BackgroundColorScan : MonoBehaviour
         RenderTexture.active = snapCam.targetTexture;
         snapshot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
         bgColor = snapshot.GetPixel(resWidth / 2, resHeight / 2);
-        print(bgColor);
+        //print(bgColor);
         snapCam.gameObject.SetActive(false);
         gameObject.SetActive(true);
-        gameObject.GetComponent<Camera>().backgroundColor = new Color(bgColor.r - dimming_factor, bgColor.g - dimming_factor, bgColor.b - dimming_factor);
-        print(gameObject.GetComponent<Camera>().backgroundColor);
+        float red = bgColor.r;
+        float green = bgColor.g;
+        float blue = bgColor.b;
+        if (red > 67f / 255f)
+            red = 67f / 255f;
+        if (green > 160f / 255f)
+            green = 160f / 255f;
+        if (blue > 85f / 255f)
+            blue = 85f / 255f;
+        gameObject.GetComponent<Camera>().backgroundColor = new Color(red, green, blue);
+        //print(gameObject.GetComponent<Camera>().backgroundColor);
     }
 
     //// Update is called once per frame
