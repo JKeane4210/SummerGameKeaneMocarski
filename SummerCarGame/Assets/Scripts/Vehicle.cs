@@ -20,6 +20,8 @@ public class Vehicle
     private Vector3 gameScale;
     private Vector3 viewingScale;
 
+    public float unlockedAddOn;
+
     private float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
 
     public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, int p)
@@ -51,6 +53,26 @@ public class Vehicle
         SetScales(gameScl, viewingScl);
         price = p;
         illuminationHeight = illHeight;
+        unlockedAddOn = 0f;
+        // >>> could set up components with this >>>
+        //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
+    }
+
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, float add_on)
+    {
+        name = n;
+        dscr = d;
+        maxHealth = health;
+        maxFuel = fuel;
+        velocity = vel;
+        //latVelocity = latVel;
+        car = g;
+        dimensions = dimen;
+        SetLocations(gameLoc, viewingLoc);
+        SetScales(gameScl, viewingScl);
+        price = p;
+        illuminationHeight = illHeight;
+        unlockedAddOn = add_on;
         // >>> could set up components with this >>>
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
@@ -321,6 +343,11 @@ public class Vehicle
     public float GetIlluminationHeight()
     {
         return illuminationHeight;
+    }
+
+    public float GetUnlockedAddOn()
+    {
+        return unlockedAddOn;
     }
 
 

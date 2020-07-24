@@ -21,6 +21,7 @@ public class VehicleList : MonoBehaviour
      *     ViewingScale
      *     Price
      *     Illumination Height (for night mode)
+     *     UnlockedCarAddOn* optional (default to zero)
     */
     private Vehicle[] vehicles;
 
@@ -65,10 +66,25 @@ public class VehicleList : MonoBehaviour
             new Vector3(1.5f,5.75f,3.2f),
             new Vector3(1.5f, 1.75f, 0f),
             new Vector3(0, -16, -65),
-            new Vector3(2.0f, 2.0f, 2.0f),
+            new Vector3(1.6f, 1.6f, 1.6f),
             new Vector3(25,25,25),
             100,
             8
+            ),
+        new Vehicle("Night Cruiser",
+            "Sleek and fast. Can't be seen at night.",
+            105,
+            105f,
+            24f,
+            (GameObject)Resources.Load("Models/Cars/SportsCar2"),
+            new Vector3(1.5f,5.75f,3.2f),
+            new Vector3(1.5f, 2.3f, 0f),
+            new Vector3(0, -7, -65),
+            new Vector3(1f, 1f, 1f),
+            new Vector3(15,15,15),
+            200,
+            10,
+            10
             ),
         };
         if(selectedVehicle == null)

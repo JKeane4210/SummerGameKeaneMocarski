@@ -15,7 +15,7 @@ public class RandomDeerInstantiation : MonoBehaviour
     void Start()
     {
         //print("Time " + Time.time.ToString());
-        float difficulty = myCurve.Evaluate(Time.timeSinceLevelLoad / timeUntilMaxDifficulty);
+        float difficulty = myCurve.Evaluate(Time.timeSinceLevelLoad / timeUntilMaxDifficulty); // 0-1 (1 = max difficulty)
         //print(difficulty.ToString());
         int random_num = (int)Random.Range(difficulty * 5f, 6f + difficulty * 2f);
         if (random_num <= 2)

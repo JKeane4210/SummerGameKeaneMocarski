@@ -114,7 +114,7 @@ public class ShopVehicles : MonoBehaviour
         gameSharedUI.GetComponent<GameSharedUI>().UpdateCoinsUIText();
         shopItemProperties.priceBox.SetActive(false);
         float scale_fact = 0.7f;
-        GameObject newCar = vehicle.GetGameObjectNoComponents(new Vector3(0, -3, 100), new Vector3(vehicle.GetViewingScale().x * scale_fact, vehicle.GetViewingScale().y * scale_fact, vehicle.GetViewingScale().z * scale_fact));
+        GameObject newCar = vehicle.GetGameObjectNoComponents(new Vector3(0, -3 + vehicle.GetUnlockedAddOn(), 100), new Vector3(vehicle.GetViewingScale().x * scale_fact, vehicle.GetViewingScale().y * scale_fact, vehicle.GetViewingScale().z * scale_fact));
         RotateObject r = newCar.AddComponent<RotateObject>();
         r.direction = 'y';
         //newCar.transform.position = new Vector3(0, 25, 100);
