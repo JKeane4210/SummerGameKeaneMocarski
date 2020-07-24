@@ -72,7 +72,7 @@ public class VehicleList : MonoBehaviour
             8
             ),
         new Vehicle("Night Cruiser",
-            "Sleek and fast. Can't be seen at night.",
+            "Sleek and fast. Cruise the roads in style.",
             105,
             105f,
             24f,
