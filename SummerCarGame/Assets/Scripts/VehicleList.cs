@@ -56,6 +56,20 @@ public class VehicleList : MonoBehaviour
             50,
             5
             ),
+        new Vehicle("Mr. Conroy",
+            "Tough and reliable. Always can count on your chcocolate milk.",
+            120,
+            90f,
+            21f,
+            (GameObject)Resources.Load("Models/Cars/pickupTruck"),
+            new Vector3(1.5f,5.75f,3.2f),
+            new Vector3(1.5f, 1.75f, 0f),
+            new Vector3(0, -16, -65),
+            new Vector3(2.0f, 2.0f, 2.0f),
+            new Vector3(25,25,25),
+            100,
+            8
+            ),
         };
         if(selectedVehicle == null)
             selectedVehicle = vehicles[0];
