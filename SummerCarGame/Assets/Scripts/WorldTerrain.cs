@@ -7,9 +7,9 @@ public class WorldTerrain
     private string name;
     private GameObject normalRoad;
     private GameObject gasRoad;
-    private GameObject[] animals;
+    private Animal[] animals;
 
-    public WorldTerrain(string n, GameObject road, GameObject gas, GameObject[] anims)
+    public WorldTerrain(string n, GameObject road, GameObject gas, Animal[] anims)
     {
         name = n;
         normalRoad = road;
@@ -32,7 +32,7 @@ public class WorldTerrain
         return gasRoad;
     }
 
-    public GameObject[] GetAnimals()
+    public Animal[] GetAnimals()
     {
         return animals;
     }

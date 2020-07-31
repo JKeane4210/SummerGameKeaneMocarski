@@ -5,20 +5,34 @@ using UnityEngine;
 public class WorldTerrainList : MonoBehaviour
 {
     static WorldTerrain selectedTerrain;
+    /* WorldTerrain Constructor Order:
+     * name (string)
+     * normalRoad (GameObject)
+     * gasRoad (GameObject)
+     * animals (Animal[])
+     */
+
+    /* Animal Constructor Order:
+     *   name (string)
+     *   animal (GameObject)
+     *   damage (float)
+     *   average_speed (float)
+     */
     private WorldTerrain[] worldTerrains = new WorldTerrain[]
         {
             new WorldTerrain("North Woods",
                              (GameObject)Resources.Load("Models/Roads/forestRoadNormal"),
                              (GameObject)Resources.Load("Models/Roads/forestRoadGasStopPainted"),
-                             new GameObject[]{
-                                 (GameObject)Resources.Load("Models/Animals/deer3")
+                             new Animal[]{
+                                 new Animal("Deer", (GameObject)Resources.Load("Models/Animals/deer3"), 10f, 10.5f)
+                                 
                              }),
             new WorldTerrain("Savannah",
                             (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadNormal.prefab"),
                             (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadGasStop.prefab"),
-                            new GameObject[]{
-                                            }
-                            )
+                            new Animal[]{
+                                new Animal("Giraffe", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/giraffe.prefab"), 15f, 10f)
+                            })
         };
 
     void Start()
