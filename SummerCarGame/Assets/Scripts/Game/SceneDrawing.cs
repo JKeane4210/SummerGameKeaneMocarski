@@ -27,6 +27,7 @@ public class SceneDrawing : MonoBehaviour
     public GameObject rightButton;
     public GameObject coinsTextAndImgs;
     public GameObject roadColorPlane;
+    public GameObject roadSelectButton;
 
     private Vehicle selectedCar;
     private WorldTerrain selectedWorld;
@@ -90,6 +91,7 @@ public class SceneDrawing : MonoBehaviour
         HideButton(home_btn);
         HideButton(game_over_txt_fied);
         HideButton(finalDistanceField);
+        HideButton(roadSelectButton);
         ShowButton(distanceField);
         ShowButton(leftButton);
         ShowButton(rightButton);
@@ -168,6 +170,7 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(replay_btn);
             ShowButton(home_btn);
             ShowButton(finalDistanceField);
+            ShowButton(roadSelectButton);
             HideButton(distanceField);
             HideButton(leftButton);
             HideButton(rightButton);
@@ -183,6 +186,7 @@ public class SceneDrawing : MonoBehaviour
             ShowButton(replay_btn);
             ShowButton(home_btn);
             ShowButton(finalDistanceField);
+            ShowButton(roadSelectButton);
             HideButton(distanceField);
             HideButton(leftButton);
             HideButton(rightButton);
