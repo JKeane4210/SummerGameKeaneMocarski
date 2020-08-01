@@ -18,25 +18,26 @@ public class WorldTerrainList : MonoBehaviour
      *   damage (float)
      *   average_speed (float)
      */
-    private WorldTerrain[] worldTerrains = new WorldTerrain[]
+    private WorldTerrain[] worldTerrains; 
+
+    void Start()
+    {
+        worldTerrains = new WorldTerrain[]
         {
             new WorldTerrain("North Woods",
                              (GameObject)Resources.Load("Models/Roads/forestRoadNormal"),
                              (GameObject)Resources.Load("Models/Roads/forestRoadGasStopPainted"),
                              new Animal[]{
                                  new Animal("Deer", (GameObject)Resources.Load("Models/Animals/deer3"), 10f, 10.5f)
-                                 
+
                              }),
             new WorldTerrain("Savannah",
-                            (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadNormal.prefab"),
-                            (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadGasStop.prefab"),
+                            (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadCompress"),
+                            (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadGasStopCompress"),
                             new Animal[]{
-                                new Animal("Giraffe", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/giraffe.prefab"), 15f, 10f)
+                                new Animal("Giraffe", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/giraffe"), 15f, 10f)
                             })
         };
-
-    void Start()
-    {
         if (selectedTerrain == null)
             selectedTerrain = worldTerrains[0];
     }
@@ -44,6 +45,11 @@ public class WorldTerrainList : MonoBehaviour
     public WorldTerrain GetSelectedTerrain()
     {
         return selectedTerrain;
+    }
+
+    public WorldTerrain[] GetWorldTerrains()
+    {
+        return worldTerrains;
     }
 
     public GameObject GetStaticNormalRoad()
@@ -59,5 +65,10 @@ public class WorldTerrainList : MonoBehaviour
     public GameObject GetGasRoad()
     {
         return selectedTerrain.GetGasRoad();
+    }
+
+    public void SetSelectedTerrain(int i)
+    {
+        selectedTerrain = worldTerrains[i];
     }
 }
