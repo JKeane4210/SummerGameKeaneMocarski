@@ -54,7 +54,7 @@ public class ForestDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.ToString().Contains("forestRoad"))
+        if (other.tag == "Road")
         {
             if((int)(other.transform.eulerAngles.y / 180) % 2 == 1)
             {

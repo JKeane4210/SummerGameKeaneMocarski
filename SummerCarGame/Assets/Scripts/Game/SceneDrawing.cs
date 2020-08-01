@@ -26,16 +26,39 @@ public class SceneDrawing : MonoBehaviour
     public GameObject leftButton;
     public GameObject rightButton;
     public GameObject coinsTextAndImgs;
+    public GameObject roadColorPlane;
 
     private Vehicle selectedCar;
+    private WorldTerrain selectedWorld;
 
     private void Start()
     {
+        GetComponent<WorldTerrainList>().SimulateStart();
+        selectedWorld = GetComponent<WorldTerrainList>().GetSelectedTerrain();
+        GameObject staticRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 0), Quaternion.identity);
+        staticRoad.name = "StaticRoad";
+        try
+        {
+            staticRoad.GetComponent<RandomDeerInstantiation>();
+        }
+        catch
+        {
+            print("Already has no RandomDeerInstantion");
+        }
+        for (int i = 1; i <= 4; i++)
+        {
+            GameObject newRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
+            newRoad.name = "BaseRoad" + i.ToString();
+            //Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
+
+        }
         GetComponent<VehicleList>().SimulateStart();
+        roadColorPlane.GetComponent<Renderer>().material = selectedWorld.GetNormalRoadMat();
         selectedCar = GetComponent<VehicleList>().GetSelectedVehicle();
         GameObject car = selectedCar.GetCarGameObject();
         //print("*" + selectedCar.GetName());
-        car.GetComponent<RenderRoad>().road = roadBlock;
+        car.GetComponent<RenderRoad>().road = selectedWorld.GetNormalRoad();
+        car.GetComponent<RenderRoad>().gasStationRoad = selectedWorld.GetGasRoad();
         carMove = car.GetComponent<MoveCar>();
         if (GetComponent<ButtonManager>().GetIsNightMode())
         {
@@ -71,6 +94,7 @@ public class SceneDrawing : MonoBehaviour
         ShowButton(leftButton);
         ShowButton(rightButton);
         ShowButton(coinsTextAndImgs);
+        car.GetComponent<RenderRoad>().SimulateStart();
         car.GetComponent<Car>().SimulateStart();
         car.GetComponent<UpdateControls>().SimulateStart();
         car.GetComponent<ForestDamage>().SimulateStart();
@@ -82,7 +106,7 @@ public class SceneDrawing : MonoBehaviour
         illuminateCar.GetComponent<HeadlightFollow>().SimulateStart();
         mainCamera.GetComponent<BackgroundColorScan>().SimulateStart();
         Time.timeScale = 1;
-    }
+        }
 
    
     public void DrawRoadBlock(GameObject road_block)

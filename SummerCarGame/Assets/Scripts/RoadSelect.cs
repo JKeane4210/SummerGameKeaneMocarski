@@ -21,6 +21,7 @@ public class RoadSelect : MonoBehaviour
     void Start()
     {
         worldTerrains = GetComponent<WorldTerrainList>();
+        camera.transform.position = new Vector3((float)(worldTerrains.GetSelectedTerrainInd() * 90), camera.transform.position.y, camera.transform.position.z);
         selectedTerainText.GetComponent<TextMeshProUGUI>().text = worldTerrains.GetSelectedTerrain().GetName();
         worlds = worldTerrains.GetWorldTerrains();
         //float elementWidth = scrollbarElement.GetComponent<RectTransform>().rect.width;
@@ -64,24 +65,33 @@ public class RoadSelect : MonoBehaviour
                     //print("Point A:" + pointA.ToString() + "\nPointB: " + pointB.ToString());
                     camera.transform.position = new Vector3(camera.transform.position.x + (pointB - pointA) * -0.1f, camera.transform.position.y, camera.transform.position.z);
                     pointA = pointB;
-                    break;
-                case TouchPhase.Ended:
-                    if(camera.transform.position.x % 90 < 40)
-                    {
-                        camera.transform.position = new Vector3((float)((int)((camera.transform.position.x + pointB - pointA) / 90)), camera.transform.position.y, camera.transform.position.z);
-                    }
-                    else
-                    {
-                        camera.transform.position = new Vector3((float)((int)((camera.transform.position.x + pointB - pointA) / 90) + 90), camera.transform.position.y, camera.transform.position.z);
-                    }
                     if (camera.transform.position.x > (float)((worlds.Length - 1) * 90))
                         camera.transform.position = new Vector3((float)((worlds.Length - 1) * 90), camera.transform.position.y, camera.transform.position.z);
                     else if (camera.transform.position.x < 0)
                         camera.transform.position = new Vector3(0, camera.transform.position.y, camera.transform.position.z);
-                    worldTerrains.SetSelectedTerrain((int)(camera.transform.position.x / 90));
+                    //worldTerrains.SetSelectedTerrain((int)(camera.transform.position.x / 90));
                     print((int)(camera.transform.position.x / 90));
+                    worldTerrains.SetSelectedTerrain((int)((camera.transform.position.x + 45) / 90));
                     selectedTerainText.GetComponent<TextMeshProUGUI>().text = worldTerrains.GetSelectedTerrain().GetName();
                     break;
+                //case TouchPhase.Ended:
+                //    if (camera.transform.position.x % 90 < 40)
+                //    {
+                //        camera.transform.position = new Vector3((float)((int)((camera.transform.position.x + pointB - pointA) / 90)), camera.transform.position.y, camera.transform.position.z);
+                //    }
+                //    else
+                //    {
+                //        camera.transform.position = new Vector3((float)((int)((camera.transform.position.x + pointB - pointA) / 90) + 90), camera.transform.position.y, camera.transform.position.z);
+                //    }
+                //    if (camera.transform.position.x > (float)((worlds.Length - 1) * 90))
+                //        camera.transform.position = new Vector3((float)((worlds.Length - 1) * 90), camera.transform.position.y, camera.transform.position.z);
+                //    else if (camera.transform.position.x < 0)
+                //        camera.transform.position = new Vector3(0, camera.transform.position.y, camera.transform.position.z);
+                //    worldTerrains.SetSelectedTerrain((int)(camera.transform.position.x / 90));
+                //    print((int)(camera.transform.position.x / 90));
+                //    worldTerrains.SetSelectedTerrain((int)((camera.transform.position.x + 45) / 90));
+                //    selectedTerainText.GetComponent<TextMeshProUGUI>().text = worldTerrains.GetSelectedTerrain().GetName();
+                //    break;
             }
         }
         if (Input.GetMouseButtonDown(0))

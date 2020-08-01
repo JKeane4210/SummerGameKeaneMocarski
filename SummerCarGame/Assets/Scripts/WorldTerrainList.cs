@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorldTerrainList : MonoBehaviour
 {
     static WorldTerrain selectedTerrain;
+    static int selectedTerrainInd;
     /* WorldTerrain Constructor Order:
      * name (string)
      * normalRoad (GameObject)
@@ -17,10 +18,16 @@ public class WorldTerrainList : MonoBehaviour
      *   animal (GameObject)
      *   damage (float)
      *   average_speed (float)
+     *   normal_road_mat (Meterial)
      */
-    private WorldTerrain[] worldTerrains; 
+    private WorldTerrain[] worldTerrains;
 
     void Start()
+    {
+        SimulateStart();
+    }
+
+    public void SimulateStart()
     {
         worldTerrains = new WorldTerrain[]
         {
@@ -29,14 +36,15 @@ public class WorldTerrainList : MonoBehaviour
                              (GameObject)Resources.Load("Models/Roads/forestRoadGasStopPainted"),
                              new Animal[]{
                                  new Animal("Deer", (GameObject)Resources.Load("Models/Animals/deer3"), 10f, 10.5f)
-
-                             }),
+                             },
+                             (Material)Resources.Load("Models/Roads/NormalRoadSkin")),
             new WorldTerrain("Savannah",
-                            (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadCompress"),
-                            (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadGasStopCompress"),
+                            (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoad"),
+                            (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadGas"),
                             new Animal[]{
                                 new Animal("Giraffe", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/giraffe"), 15f, 10f)
-                            })
+                            },
+                            (Material)Resources.Load("Models/Roads/Savannah/savannahColor"))
         };
         if (selectedTerrain == null)
             selectedTerrain = worldTerrains[0];
@@ -70,5 +78,11 @@ public class WorldTerrainList : MonoBehaviour
     public void SetSelectedTerrain(int i)
     {
         selectedTerrain = worldTerrains[i];
+        selectedTerrainInd = i;
+    }
+
+    public int GetSelectedTerrainInd()
+    {
+        return selectedTerrainInd;
     }
 }

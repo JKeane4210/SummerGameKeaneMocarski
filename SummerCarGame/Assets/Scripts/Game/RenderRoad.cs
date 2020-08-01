@@ -18,8 +18,14 @@ public class RenderRoad : MonoBehaviour
     private int gasStationIndicator;
     public GameObject fuelObject;
 
+    public void SimulateStart()
+    {
+        Start();
+    }
+
     void Start()
     {
+        //print("Gas Station Interval: " + gasStationInterval.ToString());
         gasStationIndicator = gasStationInterval;
         distance_traveled = 5 * road.GetComponent<BoxCollider>().size.z;
         //invalid_names.Add("forestRoad");
@@ -54,10 +60,11 @@ public class RenderRoad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.ToString().Contains("forestRoad"))
+        //print("Gas Station Indicator: " + gasStationIndicator.ToString());
+        if (other.gameObject.tag == "Road")
         {
             //print("Blocked " + other.ToString().Split(' ')[0]);
-            if (!invalid_names.Contains(other.ToString().Split(' ')[0]))
+            if (!invalid_names.Contains(other.name))
             {
                 if (gasStationIndicator == 0)
                 {
@@ -65,9 +72,9 @@ public class RenderRoad : MonoBehaviour
                     road_add.GetComponent<myGasStop>().myPlane.GetComponent<FuelUp>().fuelBar = fuelObject.GetComponent<FuelBar>();
                     Instantiate(road_add, new Vector3(0, 1.25f, distance_traveled + 13.75f), Quaternion.Euler(new Vector3(0, Random.Range(0, 3) * 180, 0)));
                     roads.Add(road_add);
-                    road_add.name = "forestRoadGas" + i2.ToString();
+                    road_add.name = "RoadGas" + i2.ToString();
                     Debug.Log("New frame" + (i+i2).ToString() + " --> " + other.ToString());
-                    invalid_names.Add(other.ToString().Split(' ')[0]);
+                    invalid_names.Add(other.name);
                     distance_traveled += road_add.GetComponent<BoxCollider>().size.z;
                     gasStationIndicator = gasStationInterval;
                     i2++;
@@ -77,16 +84,16 @@ public class RenderRoad : MonoBehaviour
                     GameObject road_add = road;
                     Instantiate(road_add, new Vector3(0, 1.25f, distance_traveled), Quaternion.identity);
                     roads.Add(road_add);
-                    road_add.name = "forestRoad" + i.ToString();
+                    road_add.name = "Road" + i.ToString();
                     Debug.Log("New frame" + (i+i2).ToString() + " --> " + other.ToString());
-                    invalid_names.Add(other.ToString().Split(' ')[0]);
+                    invalid_names.Add(other.name);
                     distance_traveled += road_add.GetComponent<BoxCollider>().size.z;
                     i++;
                     gasStationIndicator--;
-                }  
+                }
             }
             else
-                print("Blocked " + other.ToString().Split(' ')[0]);
+                print("Blocked " + other.name);
         }
     }
 }

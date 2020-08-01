@@ -29,7 +29,7 @@ public class CarDeerCollide : MonoBehaviour
     {
         //Debug.Log(other);
         HealthBar health = health_bar.GetComponent<HealthBar>();
-        if (other.ToString().Contains("deer3"))
+        if (other.gameObject.tag == "Animal")
         {
             //Debug.Log(other);
             health.DecreaseHealth(health_lost);
