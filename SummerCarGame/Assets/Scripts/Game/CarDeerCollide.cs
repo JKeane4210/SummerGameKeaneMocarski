@@ -6,7 +6,7 @@ public class CarDeerCollide : MonoBehaviour
 {
     static bool explosionsEnabled = false;
     public GameObject health_bar;
-    private float health_lost = 10f;
+    //private float health_lost = 10f;
     public GameObject explosionEffect;
     //public DeerRunning deer;
 
@@ -32,7 +32,7 @@ public class CarDeerCollide : MonoBehaviour
         if (other.gameObject.tag == "Animal")
         {
             //Debug.Log(other);
-            health.DecreaseHealth(health_lost);
+            health.DecreaseHealth(other.GetComponent<DeerRunning>().GetDamage());
             Destroy(other);
             Explode(other);
         }

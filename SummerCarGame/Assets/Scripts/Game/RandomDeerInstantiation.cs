@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class RandomDeerInstantiation : MonoBehaviour
 {
+    [SerializeField] string[] animalNames; //automatically filled so we know what animals are available
     [SerializeField] AnimationCurve myCurve;
-    public GameObject deer_obj;
+    private Animal[] animals;
+    private GameObject deer_obj;
     public GameObject controller;
     private int deer_count;
     private float timeUntilMaxDifficulty = 60;
+    private GameObject sceneContr;
     //private GameObject car;
     //public GameObject deer_container;
 
     // Start is called before the first frame update
     void Start()
     {
+        sceneContr = GameObject.FindGameObjectWithTag("SceneController");
+        animals  = sceneContr.GetComponent<WorldTerrainList>().GetSelectedTerrain().GetAnimals();
+        animalNames = new string[animals.Length];
+        deer_obj = animals[0].GetAnimal();
+        for (int i = 0; i < animalNames.Length; i++)
+            animalNames[i] = animals[i].GetName();
+        float averageVel = animals[0].GetAverageSpeed();
         //car = GameObject.FindGameObjectWithTag("Player");
         //print("Time " + Time.time.ToString());
         float difficulty = myCurve.Evaluate(Time.timeSinceLevelLoad / timeUntilMaxDifficulty); // 0-1 (1 = max difficulty)
@@ -38,7 +48,8 @@ public class RandomDeerInstantiation : MonoBehaviour
             GameObject deer = deer_obj;
             deer.GetComponent<Rigidbody>().useGravity = false;
             DeerRunning deer_running = deer.GetComponent<DeerRunning>();
-            deer_running.motion_multiplier = Random.Range(9f, 12f);
+            deer_running.motion_multiplier = Random.Range(averageVel - 3f, averageVel + 3f);
+            deer_running.damage = animals[0].GetDamage();
             deer_running.player = deer.GetComponent<Transform>();
             deer_running.player_rigidbody = deer.GetComponent<Rigidbody>();
             float controller_z = controller.GetComponent<Transform>().localPosition.z;

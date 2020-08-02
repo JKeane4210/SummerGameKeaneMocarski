@@ -7,10 +7,11 @@ public class WorldTerrainList : MonoBehaviour
     static WorldTerrain selectedTerrain;
     static int selectedTerrainInd;
     /* WorldTerrain Constructor Order:
-     * name (string)
-     * normalRoad (GameObject)
-     * gasRoad (GameObject)
-     * animals (Animal[])
+     *   name (string)
+     *   normalRoad (GameObject)
+     *   gasRoad (GameObject)
+     *   animals (Animal[])
+     *   normal_road_mat (Meterial)
      */
 
     /* Animal Constructor Order:
@@ -18,8 +19,8 @@ public class WorldTerrainList : MonoBehaviour
      *   animal (GameObject)
      *   damage (float)
      *   average_speed (float)
-     *   normal_road_mat (Meterial)
      */
+
     private WorldTerrain[] worldTerrains;
 
     void Start()
@@ -42,7 +43,7 @@ public class WorldTerrainList : MonoBehaviour
                             (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoad"),
                             (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadGas"),
                             new Animal[]{
-                                new Animal("Giraffe", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/giraffe"), 15f, 10f)
+                                new Animal("Giraffe", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/giraffe"), 15f, 9f)
                             },
                             (Material)Resources.Load("Models/Roads/Savannah/savannahColor"))
         };
