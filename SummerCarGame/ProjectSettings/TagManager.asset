@@ -16,6 +16,8 @@ TagManager:
   - AutoShopPanel
   - CoinsAdded
   - Canvas
+  - Road
+  - Animal
   layers:
   - Default
   - TransparentFX

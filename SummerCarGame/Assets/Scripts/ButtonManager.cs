@@ -78,4 +78,9 @@ public class ButtonManager : MonoBehaviour
     {
         return isNightMode;
     }
+
+    public void FlipNightMode()
+    {
+        isNightMode = !isNightMode;
+    }
 }

@@ -9,11 +9,13 @@ public class RandomDeerInstantiation : MonoBehaviour
     public GameObject controller;
     private int deer_count;
     private float timeUntilMaxDifficulty = 60;
+    //private GameObject car;
     //public GameObject deer_container;
 
     // Start is called before the first frame update
     void Start()
     {
+        //car = GameObject.FindGameObjectWithTag("Player");
         //print("Time " + Time.time.ToString());
         float difficulty = myCurve.Evaluate(Time.timeSinceLevelLoad / timeUntilMaxDifficulty); // 0-1 (1 = max difficulty)
         //print(difficulty.ToString());

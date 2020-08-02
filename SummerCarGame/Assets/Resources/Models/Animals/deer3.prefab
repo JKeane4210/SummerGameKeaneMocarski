@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 3259171649597576372}
   m_Layer: 0
   m_Name: deer3
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -654,7 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 979466143140161768}
   player_rigidbody: {fileID: 5254987775350719414}
-  motion_multiplier: 11.182251
+  motion_multiplier: 10.314588
 --- !u!65 &414525448893369229
 BoxCollider:
   m_ObjectHideFlags: 0

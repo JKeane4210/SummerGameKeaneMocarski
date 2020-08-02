@@ -7,14 +7,16 @@ public class WorldTerrain
     private string name;
     private GameObject normalRoad;
     private GameObject gasRoad;
-    private GameObject[] animals;
+    private Animal[] animals;
+    private Material normal_road_mat;
 
-    public WorldTerrain(string n, GameObject road, GameObject gas, GameObject[] anims)
+    public WorldTerrain(string n, GameObject road, GameObject gas, Animal[] anims, Material m)
     {
         name = n;
         normalRoad = road;
         gasRoad = gas;
         animals = anims;
+        normal_road_mat = m;
     }
 
     public string GetName()
@@ -32,8 +34,13 @@ public class WorldTerrain
         return gasRoad;
     }
 
-    public GameObject[] GetAnimals()
+    public Animal[] GetAnimals()
     {
         return animals;
+    }
+
+    public Material GetNormalRoadMat()
+    {
+        return normal_road_mat;
     }
 }

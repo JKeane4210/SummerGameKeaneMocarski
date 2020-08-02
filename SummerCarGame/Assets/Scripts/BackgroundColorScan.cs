@@ -28,12 +28,12 @@ public class BackgroundColorScan : MonoBehaviour
         float red = bgColor.r;
         float green = bgColor.g;
         float blue = bgColor.b;
-        if (red > 67f / 255f)
-            red = 67f / 255f;
-        if (green > 160f / 255f)
-            green = 160f / 255f;
-        if (blue > 85f / 255f)
-            blue = 85f / 255f;
+        //if (red > 67f / 255f)
+        //    red = 67f / 255f;
+        //if (green > 160f / 255f)
+        //    green = 160f / 255f;
+        //if (blue > 85f / 255f)
+        //    blue = 85f / 255f;
         gameObject.GetComponent<Camera>().backgroundColor = new Color(red, green, blue);
         //print(gameObject.GetComponent<Camera>().backgroundColor);
     }
