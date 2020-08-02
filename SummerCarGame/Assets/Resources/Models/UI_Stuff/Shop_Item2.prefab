@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 236190475840975535}
   - component: {fileID: 236190475840975534}
   - component: {fileID: 2469482067847052136}
+  - component: {fileID: 1931662465047528351}
   m_Layer: 5
   m_Name: Shop_Item2
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2764921, g: 0.23834105, b: 0.49056602, a: 1}
+  m_Color: {r: 0.09411765, g: 0.40784314, b: 0.68235296, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -101,6 +102,21 @@ MonoBehaviour:
   selectBuyText: {fileID: 236190475848542443}
   price: {fileID: 1963619756353893378}
   priceBox: {fileID: 7482649231587285133}
+--- !u!114 &1931662465047528351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236190475840975532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.6117647, g: 0.7647059, b: 0.8352941, a: 1}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &236190475848542443
 GameObject:
   m_ObjectHideFlags: 0
