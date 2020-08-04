@@ -43,7 +43,8 @@ public class WorldTerrainList : MonoBehaviour
                             (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoad"),
                             (GameObject)Resources.Load("Models/Roads/Savannah/savannahRoadGas"),
                             new Animal[]{
-                                new Animal("Giraffe", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/giraffe"), 15f, 9f)
+                                new Animal("Giraffe", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/giraffe"), 15f, 9f),
+                                new Animal("Zebra", (GameObject)Resources.Load("Models/Animals/SavannahAnimals/zebra"), 10f, 11f)
                             },
                             (Material)Resources.Load("Models/Roads/Savannah/savannahColor"))
         };

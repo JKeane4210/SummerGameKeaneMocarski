@@ -2852,6 +2852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15d675b7060647e38a0b97f7fbf4594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animalNames: []
   myCurve:
     serializedVersion: 2
     m_Curve:
@@ -2876,8 +2877,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  deer_obj: {fileID: 3631934589011240097, guid: 75786a58120ea4884b1b7da27f5397d1,
-    type: 3}
   controller: {fileID: 9063777258580630797}
 --- !u!65 &-1284018542235651681
 BoxCollider:

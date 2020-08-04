@@ -21,7 +21,8 @@ public class RandomDeerInstantiation : MonoBehaviour
         sceneContr = GameObject.FindGameObjectWithTag("SceneController");
         animals  = sceneContr.GetComponent<WorldTerrainList>().GetSelectedTerrain().GetAnimals();
         animalNames = new string[animals.Length];
-        deer_obj = animals[0].GetAnimal();
+        int animal_ind = (int)Random.Range(0, (float)animals.Length - 0.01f);
+        deer_obj = animals[animal_ind].GetAnimal();
         for (int i = 0; i < animalNames.Length; i++)
             animalNames[i] = animals[i].GetName();
         float averageVel = animals[0].GetAverageSpeed();
