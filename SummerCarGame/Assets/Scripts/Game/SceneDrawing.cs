@@ -38,20 +38,29 @@ public class SceneDrawing : MonoBehaviour
         selectedWorld = GetComponent<WorldTerrainList>().GetSelectedTerrain();
         GameObject staticRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 0), Quaternion.identity);
         staticRoad.name = "StaticRoad";
-        try
-        {
-            staticRoad.GetComponent<RandomDeerInstantiation>();
-        }
-        catch
-        {
-            print("Already has no RandomDeerInstantion");
-        }
+        //try
+        //{
+        //    Component c = staticRoad.GetComponent<RandomDeerInstantiation>();
+        //    Destroy(c);
+        //}
+        //catch
+        //{
+        //    print("Already has no RandomDeerInstantion");
+        //}
         for (int i = 1; i <= 4; i++)
         {
             GameObject newRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
             newRoad.name = "BaseRoad" + i.ToString();
             //Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
-
+            try
+            {
+                Component c = newRoad.GetComponent<RandomDeerInstantiation>();
+                Destroy(c);
+            }
+            catch
+            {
+                print("Already has no RandomDeerInstantion");
+            }
         }
         GetComponent<VehicleList>().SimulateStart();
         roadColorPlane.GetComponent<Renderer>().material = selectedWorld.GetNormalRoadMat();

@@ -12,20 +12,22 @@ public class RandomDeerInstantiation : MonoBehaviour
     private int deer_count;
     private float timeUntilMaxDifficulty = 60;
     private GameObject sceneContr;
-    //private GameObject car;
+    private GameObject car;
     //public GameObject deer_container;
 
     // Start is called before the first frame update
     void Start()
     {
+        car = GameObject.FindGameObjectWithTag("Player");
         sceneContr = GameObject.FindGameObjectWithTag("SceneController");
         animals  = sceneContr.GetComponent<WorldTerrainList>().GetSelectedTerrain().GetAnimals();
         animalNames = new string[animals.Length];
         int animal_ind = (int)Random.Range(0, (float)animals.Length - 0.01f);
-        deer_obj = animals[animal_ind].GetAnimal();
+        Animal currentAnimal = animals[animal_ind];
+        deer_obj = currentAnimal.GetAnimal();
         for (int i = 0; i < animalNames.Length; i++)
             animalNames[i] = animals[i].GetName();
-        float averageVel = animals[0].GetAverageSpeed();
+        float averageVel = currentAnimal.GetAverageSpeed();
         //car = GameObject.FindGameObjectWithTag("Player");
         //print("Time " + Time.time.ToString());
         float difficulty = myCurve.Evaluate(Time.timeSinceLevelLoad / timeUntilMaxDifficulty); // 0-1 (1 = max difficulty)
@@ -49,11 +51,12 @@ public class RandomDeerInstantiation : MonoBehaviour
             GameObject deer = deer_obj;
             deer.GetComponent<Rigidbody>().useGravity = false;
             DeerRunning deer_running = deer.GetComponent<DeerRunning>();
-            deer_running.motion_multiplier = Random.Range(averageVel - 3f, averageVel + 3f);
+            float vel = Random.Range(averageVel - 1.5f, averageVel + 1.5f);
+            deer_running.motion_multiplier = vel;
             deer_running.damage = animals[0].GetDamage();
             deer_running.player = deer.GetComponent<Transform>();
             deer_running.player_rigidbody = deer.GetComponent<Rigidbody>();
-            float controller_z = controller.GetComponent<Transform>().localPosition.z;
+            //float controller_z = controller.GetComponent<Transform>().localPosition.z;
             int random_side = Random.Range(0, 2);
             int pn_side;
             if (random_side == 0)
@@ -66,7 +69,15 @@ public class RandomDeerInstantiation : MonoBehaviour
                 rotation = Quaternion.Euler(0f, Random.Range(90f, 150f), 0f);
             else
                 rotation = Quaternion.Euler(0f, Random.Range(210f, 270f),0f);
-            Instantiate(deer, new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 20f, controller_z -30f + 10f)), rotation);
+            float carZ = car.transform.position.z;
+            float time = 2;
+            float futureCarZ = carZ + time * car.GetComponent<SwipeControls>().velocity;
+            Vector3 destination = new Vector3(Random.Range(-10f, 10f), 2.3f, Random.Range(futureCarZ, futureCarZ + 30));
+            float distance = time * vel;
+            float theta = rotation.y;
+            print(i.ToString() +  ": " + destination.ToString());
+            Vector3 start = new Vector3(destination.x + pn_side * distance * Mathf.Cos(theta), 2.3f, destination.z + distance * Mathf.Sin(theta));
+            Instantiate(deer, start, rotation); //new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 20f, controller_z -30f + 10f))
         }
     }
 }
