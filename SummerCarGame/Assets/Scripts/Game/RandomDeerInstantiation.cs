@@ -75,7 +75,7 @@ public class RandomDeerInstantiation : MonoBehaviour
             Vector3 destination = new Vector3(Random.Range(-10f, 10f), 2.3f, Random.Range(futureCarZ, futureCarZ + 30));
             float distance = time * vel;
             float theta = rotation.y;
-            print(i.ToString() +  ": " + destination.ToString());
+            //print(i.ToString() +  ": " + destination.ToString());
             Vector3 start = new Vector3(destination.x + pn_side * distance * Mathf.Cos(theta), 2.3f, destination.z + distance * Mathf.Sin(theta));
             Instantiate(deer, start, rotation); //new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 20f, controller_z -30f + 10f))
         }
