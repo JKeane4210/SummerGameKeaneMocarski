@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    
-    //public HealthBar healthBar;
-    //public FuelBar fuelBar;
     private HealthBar healthBar;
     public string powerupType;
     private FuelBar fuelBar;
