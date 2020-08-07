@@ -39,6 +39,8 @@ public class SwipeControls : MonoBehaviour
         else
             latVel = 0;
         // >>> For Mouse Clicking So You Can Test On The Screen
+
+        //UNCOMMENT THIS TO PLAY GAME ON COMPUTER SIMULATOR
         //if(Input.GetMouseButtonDown(0))
         //{
         //    pointA = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
