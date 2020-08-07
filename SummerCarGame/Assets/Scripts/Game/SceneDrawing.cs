@@ -28,6 +28,7 @@ public class SceneDrawing : MonoBehaviour
     public GameObject coinsTextAndImgs;
     public GameObject roadColorPlane;
     public GameObject roadSelectButton;
+    public GameObject boostButton;
 
     private Vehicle selectedCar;
     private WorldTerrain selectedWorld;
@@ -116,6 +117,7 @@ public class SceneDrawing : MonoBehaviour
         headlighR.GetComponent<HeadlightFollow>().SimulateStart();
         illuminateCar.GetComponent<HeadlightFollow>().SimulateStart();
         mainCamera.GetComponent<BackgroundColorScan>().SimulateStart();
+        boostButton.GetComponent<BoostButton>().SimulateStart();
         Time.timeScale = 1;
         }
 
