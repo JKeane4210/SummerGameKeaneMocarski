@@ -106,6 +106,7 @@ public class SceneDrawing : MonoBehaviour
         ShowButton(leftButton);
         ShowButton(rightButton);
         ShowButton(coinsTextAndImgs);
+        ShowButton(boostButton);
         car.GetComponent<RenderRoad>().SimulateStart();
         car.GetComponent<Car>().SimulateStart();
         car.GetComponent<UpdateControls>().SimulateStart();
@@ -186,6 +187,7 @@ public class SceneDrawing : MonoBehaviour
             HideButton(leftButton);
             HideButton(rightButton);
             HideButton(coinsTextAndImgs);
+            HideButton(boostButton);
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
                 Destroy(g);
             Time.timeScale = 0;
@@ -202,6 +204,7 @@ public class SceneDrawing : MonoBehaviour
             HideButton(leftButton);
             HideButton(rightButton);
             HideButton(coinsTextAndImgs);
+            HideButton(boostButton);
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
                 Destroy(g);
             Time.timeScale = 0;

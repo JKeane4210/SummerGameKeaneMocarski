@@ -33,7 +33,6 @@ public class SwipeControls : MonoBehaviour
                 case TouchPhase.Ended:
                     latVel = 0;
                     break;
-
             }
         }
         else
@@ -41,18 +40,18 @@ public class SwipeControls : MonoBehaviour
         // >>> For Mouse Clicking So You Can Test On The Screen
 
         //UNCOMMENT THIS TO PLAY GAME ON COMPUTER SIMULATOR
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    pointA = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        //}
-        //if(Input.GetMouseButton(0))
-        //{
-        //    pointB = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        //    latVel = pointB.x - pointA.x;
-        //}
-        //else
-        //{
-        //    latVel = 0;
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            pointA = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        }
+        if (Input.GetMouseButton(0))
+        {
+            pointB = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            latVel = pointB.x - pointA.x;
+        }
+        else
+        {
+            latVel = 0;
+        }
     }
 }

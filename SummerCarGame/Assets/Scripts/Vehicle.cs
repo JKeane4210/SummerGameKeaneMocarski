@@ -184,7 +184,7 @@ public class Vehicle
         coins.interval = 0.5f;
         coins.width = 9;
         CoinMaker healthPacks = g_.AddComponent<CoinMaker>();
-        healthPacks.coin = (GameObject)Resources.Load("Models/Powerups/health");
+        healthPacks.coin = (GameObject)Resources.Load("Models/Powerups/twoTimes");
         healthPacks.interval = 10f;
         healthPacks.width = 9;
 
