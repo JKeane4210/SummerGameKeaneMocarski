@@ -53,7 +53,8 @@ public class PowerUp : MonoBehaviour
         }
         if(powerupType == "TwoTimes")
         {
-            car.GetComponent<CoinCounter>().coinAddition *= 2;
+            car.GetComponent<CoinCounter>().isTwoTimers.Add(true);
+            car.GetComponent<CoinCounter>().addNew = true;
         }
 
         Destroy(gameObject);

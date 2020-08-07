@@ -18,6 +18,7 @@ TagManager:
   - Canvas
   - Road
   - Animal
+  - RadialElement
   layers:
   - Default
   - TransparentFX
