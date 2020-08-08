@@ -28,7 +28,7 @@ public class CoinCounter : MonoBehaviour
 
     void Update()
     {
-        if (canvas.GetComponent<powerUpBoard>().AllTrue("2X"))
+        if (canvas.GetComponent<powerUpBoard>().powerUpCounts[0] > 0)
         {   if (addNew)
             {
                 coinAddition *= 2;

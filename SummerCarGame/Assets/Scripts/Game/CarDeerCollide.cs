@@ -31,14 +31,15 @@ public class CarDeerCollide : MonoBehaviour
 
     void Update()
     {
-        if (!canvas.GetComponent<powerUpBoard>().AllTrue("Animal"))
+        if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0)
             goldAnimal = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //print(other.gameObject.GetComponentInChildren<Renderer>().material.name != "shinierGold");
-        if(!goldAnimal && other.gameObject.GetComponentInChildren<Renderer>().material.name != "shinierGold")
+         //&& other.gameObject.GetComponentInChildren<Renderer>().material.name != "shinierGold"
+        if (!goldAnimal)
         {
             //Debug.Log(other);
             HealthBar health = health_bar.GetComponent<HealthBar>();
@@ -58,7 +59,10 @@ public class CarDeerCollide : MonoBehaviour
                 GameSharedUI.Instance.UpdateCoinsUIText();
                 GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
                 GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
-                addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)other.GetComponent<DeerRunning>().GetDamage() * 2;
+                int activeTwoTimes = canvas.GetComponent<powerUpBoard>().powerUpCounts[0];
+                if (activeTwoTimes > 0)
+                    addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
+                addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)other.GetComponent<DeerRunning>().GetDamage() * 2 * (int)Mathf.Pow(2, activeTwoTimes);
                 addToScreen.transform.SetParent(canvas.transform, false);
                 Destroy(other.gameObject);
             }

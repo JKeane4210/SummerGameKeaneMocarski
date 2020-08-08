@@ -58,6 +58,7 @@ public class RandomDeerInstantiation : MonoBehaviour
             deer_running.damage = animals[0].GetDamage();
             deer_running.player = deer.GetComponent<Transform>();
             deer_running.player_rigidbody = deer.GetComponent<Rigidbody>();
+            deer_running.normalSkin = deer.GetComponentInChildren<Renderer>().sharedMaterial;
             //float controller_z = controller.GetComponent<Transform>().localPosition.z;
             int random_side = Random.Range(0, 2);
             int pn_side;
@@ -80,9 +81,8 @@ public class RandomDeerInstantiation : MonoBehaviour
             //print(i.ToString() +  ": " + destination.ToString());
             Vector3 start = new Vector3(destination.x + pn_side * distance * Mathf.Cos(theta), 2.3f, destination.z + distance * Mathf.Sin(theta));
             GameObject newDeer = Instantiate(deer, start, rotation); //new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 20f, controller_z -30f + 10f))
-            if (canvas.GetComponent<powerUpBoard>().AllTrue("Animal"))
-                newDeer.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
-
+            //if (canvas.GetComponent<powerUpBoard>().AllTrue("Animal"))
+                //newDeer.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
         }
     }
 }

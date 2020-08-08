@@ -9,6 +9,7 @@ public class powerUpBoard : MonoBehaviour
     private GameObject canvas;
     private GameObject radialElement;
 
+    public int[] powerUpCounts = new int[2]; //NUMBER OF RADIAL POWERUPS
     public List<string> isTrue = new List<string>();
     public string addNew;
 
@@ -85,17 +86,35 @@ public class powerUpBoard : MonoBehaviour
                 isTrue.RemoveAt(0);
             }
         }
+        UpdatePowerUpCounts();
     }
 
-    public bool AllTrue(string powerup)
+    //public bool AllTrue(string powerup)
+    //{
+    //    if (isTrue.Count == 0)
+    //        return false;
+    //    foreach (string s in isTrue)
+    //    {
+    //        if (s == powerup)
+    //            return true;
+    //    }
+    //    return false;
+    //}
+
+    private int CountPowerUp(string powerup)
     {
-        if (isTrue.Count == 0)
-            return false;
+        int count = 0;
         foreach (string s in isTrue)
         {
             if (s == powerup)
-                return true;
+                count++;
         }
-        return false;
+        return count;
+    }
+
+    private void UpdatePowerUpCounts()
+    {
+        powerUpCounts[0] = CountPowerUp("2X");
+        powerUpCounts[1] = CountPowerUp("Animal");
     }
 }
