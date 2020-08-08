@@ -14,6 +14,7 @@ public class powerUpBoard : MonoBehaviour
 
     //private GameObject sceneController;
     private float timerLength = 8;
+    private float goldAnimalTimerLength = 4;
     private List<GameObject> powerups = new List<GameObject>();
     private List<float> timers = new List<float>();
     private List<int> removals = new List<int>();
@@ -32,13 +33,16 @@ public class powerUpBoard : MonoBehaviour
     {
         if (addNew != null && addNew != "")
         {
-            print("'" + addNew + "'");
+            //print("'" + addNew + "'");
             GameObject newRadial = Instantiate(radialElement, canvas.transform, false);
             newRadial.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             newRadial.GetComponent<RectTransform>().anchoredPosition = new Vector3(-40 + GameObject.FindGameObjectsWithTag("RadialElement").Length * 110, 60, 0);
             newRadial.GetComponentInChildren<TextMeshProUGUI>().text = addNew;
             powerups.Add(newRadial);
-            timers.Add(timerLength);
+            if (addNew == "Animal")
+                timers.Add(goldAnimalTimerLength);
+            else
+                timers.Add(timerLength);
             addNew = null;
         }
         for (int i = 0; i < timers.Count; i++)
@@ -48,7 +52,10 @@ public class powerUpBoard : MonoBehaviour
         //sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
         foreach (GameObject g in powerups)
         {
-            g.GetComponentInChildren<Image>().fillAmount = timers[powerups.IndexOf(g)] / timerLength;
+            if(isTrue[powerups.IndexOf(g)] == "Animal")
+                g.GetComponentInChildren<Image>().fillAmount = timers[powerups.IndexOf(g)] / goldAnimalTimerLength;
+            else
+                g.GetComponentInChildren<Image>().fillAmount = timers[powerups.IndexOf(g)] / timerLength;
         }
         foreach (GameObject g in powerups)
         {

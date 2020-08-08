@@ -37,7 +37,8 @@ public class CarDeerCollide : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!goldAnimal)
+        //print(other.gameObject.GetComponentInChildren<Renderer>().material.name != "shinierGold");
+        if(!goldAnimal && other.gameObject.GetComponentInChildren<Renderer>().material.name != "shinierGold")
         {
             //Debug.Log(other);
             HealthBar health = health_bar.GetComponent<HealthBar>();
@@ -59,6 +60,7 @@ public class CarDeerCollide : MonoBehaviour
                 GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
                 addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)other.GetComponent<DeerRunning>().GetDamage() * 2;
                 addToScreen.transform.SetParent(canvas.transform, false);
+                Destroy(other.gameObject);
             }
         }
     }

@@ -58,6 +58,8 @@ public class PowerUp : MonoBehaviour
             car.GetComponent<CarDeerCollide>().goldAnimal = true;
             canvas.GetComponent<powerUpBoard>().addNew = "Animal";
             canvas.GetComponent<powerUpBoard>().isTrue.Add("Animal");
+            foreach(GameObject animal in GameObject.FindGameObjectsWithTag("Animal"))
+                animal.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
         }
         Destroy(gameObject);
     }

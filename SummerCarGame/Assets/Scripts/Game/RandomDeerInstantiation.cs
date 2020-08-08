@@ -13,6 +13,7 @@ public class RandomDeerInstantiation : MonoBehaviour
     private float timeUntilMaxDifficulty = 60;
     private GameObject sceneContr;
     private GameObject car;
+    private GameObject canvas;
     //public GameObject deer_container;
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class RandomDeerInstantiation : MonoBehaviour
     {
         car = GameObject.FindGameObjectWithTag("Player");
         sceneContr = GameObject.FindGameObjectWithTag("SceneController");
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
         animals  = sceneContr.GetComponent<WorldTerrainList>().GetSelectedTerrain().GetAnimals();
         animalNames = new string[animals.Length];
         int animal_ind = (int)Random.Range(0, (float)animals.Length - 0.01f);
@@ -77,7 +79,10 @@ public class RandomDeerInstantiation : MonoBehaviour
             float theta = rotation.y;
             //print(i.ToString() +  ": " + destination.ToString());
             Vector3 start = new Vector3(destination.x + pn_side * distance * Mathf.Cos(theta), 2.3f, destination.z + distance * Mathf.Sin(theta));
-            Instantiate(deer, start, rotation); //new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 20f, controller_z -30f + 10f))
+            GameObject newDeer = Instantiate(deer, start, rotation); //new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 20f, controller_z -30f + 10f))
+            if (canvas.GetComponent<powerUpBoard>().AllTrue("Animal"))
+                newDeer.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
+
         }
     }
 }
