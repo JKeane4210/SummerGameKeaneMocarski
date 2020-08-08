@@ -14,9 +14,13 @@ public class Vehicle
     private GameObject car;
     private int price;
     private int coin;
-    private Vector3 mainMenuPos;
-    private Vector3 mainMenuScale;
-    private Quaternion mainMenuRotation;
+    public float mainMenuScaleX;
+    public float mainMenuScaleY;
+    public float mainMenuScaleZ;
+    public float mainMenuPositionX;
+    public float mainMenuPositionY;
+    public float mainMenuPositionZ;
+    public Quaternion mainMenuRotation;
 
     private Vector3 gameLocation;
     private Vector3 viewingLocation;
@@ -26,26 +30,7 @@ public class Vehicle
     public float unlockedAddOn;
 
     private float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
-
-    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, int p, Vector3 mmPos, Vector3 mmScale, Quaternion mmRotation)
-    {
-        name = n;
-        dscr = d;
-        maxHealth = health;
-        maxFuel = fuel;
-        velocity = vel;
-        //latVelocity = latVel;
-        car = g;
-        dimensions = dimen;
-        price = p;
-        mainMenuPos = mmPos;
-        mainMenuScale = mmScale;
-        mainMenuRotation = mmRotation;
-        // >>> could set up components with this >>>
-        //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
-    }
-
-    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, Vector3 mmPos, Vector3 mmScale, Quaternion mmRotation)
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, float mmScale, float mmPosX, float mmPosY, float mmPosZ, float rotX, float rotY)
     {
         name = n;
         dscr = d;
@@ -60,14 +45,19 @@ public class Vehicle
         price = p;
         illuminationHeight = illHeight;
         unlockedAddOn = 0f;
-        mainMenuPos = mmPos;
-        mainMenuScale = mmScale;
-        mainMenuRotation = mmRotation;
+        mainMenuScaleX = GetViewingScale().x / mmScale;
+        mainMenuScaleY = GetViewingScale().y / mmScale;
+        mainMenuScaleZ = GetViewingScale().z / mmScale;
+        mainMenuPositionX = GetViewingLocation().x + mmPosX;
+        mainMenuPositionY = GetViewingLocation().y + mmPosY;
+        mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
+        mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
+
         // >>> could set up components with this >>>
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
-
-    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, float add_on, Vector3 mmPos, Vector3 mmScale, Quaternion mmRotation)
+    
+    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, float add_on, float mmScale, float mmPosX, float mmPosY, float mmPosZ, float rotX, float rotY)
     {
         name = n;
         dscr = d;
@@ -82,9 +72,14 @@ public class Vehicle
         price = p;
         illuminationHeight = illHeight;
         unlockedAddOn = add_on;
-        mainMenuPos = mmPos;
-        mainMenuScale = mmScale;
-        mainMenuRotation = mmRotation;
+        mainMenuScaleX = GetViewingScale().x / mmScale;
+        mainMenuScaleY = GetViewingScale().y / mmScale;
+        mainMenuScaleZ = GetViewingScale().z / mmScale;
+        mainMenuPositionX = GetViewingLocation().x + mmPosX;
+        mainMenuPositionY = GetViewingLocation().y + mmPosY;
+        mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
+        mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
+        
         // >>> could set up components with this >>>
         //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
