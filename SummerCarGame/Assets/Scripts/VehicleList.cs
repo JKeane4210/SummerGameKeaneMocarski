@@ -43,12 +43,9 @@ public class VehicleList : MonoBehaviour
             new Vector3(30, 30, 30),
             0,
             10,
-            7,
-            -4,
-            24,
-            150,
-            6,
-            145
+            7, //mmScale
+            -4, 24, 150, //mmViewingAdjust
+            6, 145 //mmRotation
             ),
         new Vehicle("Sandvan",
             "Fun in the sun. Pretty buff, but could use some pace.",
@@ -63,12 +60,9 @@ public class VehicleList : MonoBehaviour
             new Vector3(10,10,10),
             50,
             5,
-            12,
-            -4,
-            18,
-            150,
-            5,
-            145
+            12, //mmScale
+            -4, 18, 150, //mmViewingAdjust
+            5,145 //mmRotation
             ),
         new Vehicle("Mr. Conroy",
             "Tough and reliable. Always can count on your chcocolate milk.",
@@ -83,12 +77,9 @@ public class VehicleList : MonoBehaviour
             new Vector3(25,25,25),
             100,
             8,
-            12,
-            -4,
-            15,
-            150,
-            5,
-            145
+            12, //mmScale
+            -4, 15, 150, //mmViewingAdjust
+            5, 145 //mmRotation
             ),
         new Vehicle("Night Cruiser",
             "Sleek and fast. Cruise the roads in style.",
@@ -104,12 +95,9 @@ public class VehicleList : MonoBehaviour
             200,
             10,
             10,
-            12,
-            -4,
-            7,
-            150,
-            5,
-            145
+            12, //mmScale
+            -4, 7, 150, //mmViewingAdjust
+            5, 145 //mmRotation
             ),
         };
         if(selectedVehicle == null)
