@@ -70,7 +70,7 @@ public class CoinCounter : MonoBehaviour
             timers.Remove(timers[i]);
             isTwoTimers.Remove(isTwoTimers[i]);
         }
-                removals.Clear();
+        removals.Clear();
         if (Time.timeScale == 0)
         {
             while (powerups.Count > 0)
@@ -107,7 +107,6 @@ public class CoinCounter : MonoBehaviour
             totalCoins += coinAddition;
             GameDataManager.AddCoins(coinAddition);
         }
-
         GameSharedUI.Instance.UpdateCoinsUIText();
     }
 

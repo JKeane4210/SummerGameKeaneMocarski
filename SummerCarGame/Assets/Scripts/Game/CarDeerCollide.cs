@@ -1,40 +1,59 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class CarDeerCollide : MonoBehaviour
 {
+    public bool goldAnimal = false;
     static bool explosionsEnabled = false;
     public GameObject health_bar;
     //private float health_lost = 10f;
     public GameObject explosionEffect;
-    //public DeerRunning deer;
+    private GameObject canvas;
 
     private void Start()
     {
-        if(gameObject.GetComponent<UnityEngine.UI.Text>() != null)
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
+        if(gameObject.GetComponent<Text>() != null)
         {
             if (explosionsEnabled)
             {
-                gameObject.GetComponent<UnityEngine.UI.Text>().text = "Explosions Enabled: Yes";
+                gameObject.GetComponent<Text>().text = "Explosions Enabled: Yes";
             }
             else if (!explosionsEnabled)
             {
-                gameObject.GetComponent<UnityEngine.UI.Text>().text = "Explosions Enabled: No";
+                gameObject.GetComponent<Text>().text = "Explosions Enabled: No";
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other);
-        HealthBar health = health_bar.GetComponent<HealthBar>();
-        if (other.gameObject.tag == "Animal")
+        if(!goldAnimal)
         {
             //Debug.Log(other);
-            health.DecreaseHealth(other.GetComponent<DeerRunning>().GetDamage());
-            Destroy(other);
-            Explode(other);
+            HealthBar health = health_bar.GetComponent<HealthBar>();
+            if (other.gameObject.tag == "Animal")
+            {
+                //Debug.Log(other);
+                health.DecreaseHealth(other.GetComponent<DeerRunning>().GetDamage());
+                Destroy(other);
+                Explode(other);
+            }
+        }
+        else
+        {
+            if (other.gameObject.tag == "Animal")
+            {
+                GameDataManager.AddCoins((int)other.GetComponent<DeerRunning>().GetDamage() * 2);
+                GameSharedUI.Instance.UpdateCoinsUIText();
+                GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
+                GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
+                addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)other.GetComponent<DeerRunning>().GetDamage() * 2;
+                addToScreen.transform.SetParent(canvas.transform, false);
+            }
         }
     }
 

@@ -186,7 +186,7 @@ public class Vehicle
         CoinMaker healthPacks = g_.AddComponent<CoinMaker>();
         //healthPacks.coin = (GameObject)Resources.Load("Models/Powerups/twoTimes");
         healthPacks.coin = null;
-        healthPacks.interval = 10f;
+        healthPacks.interval = 2f;
         healthPacks.width = 9;
 
         //COIN COUNTER

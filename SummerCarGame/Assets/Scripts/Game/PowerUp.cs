@@ -48,12 +48,15 @@ public class PowerUp : MonoBehaviour
             //slide.slider.value = 100;
             //slide.fill.color = slide.gradient.Evaluate(1f);
         }
-        if(powerupType == "TwoTimes")
+        else if(powerupType == "TwoTimes")
         {
             car.GetComponent<CoinCounter>().isTwoTimers.Add(true);
             car.GetComponent<CoinCounter>().addNew = true;
         }
-
+        else if(powerupType == "GoldAnimal")
+        {
+            car.GetComponent<CarDeerCollide>().goldAnimal = true;
+        }
         Destroy(gameObject);
     }
 }

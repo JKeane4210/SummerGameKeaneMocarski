@@ -16,6 +16,7 @@ public class CoinMaker : MonoBehaviour
     {
         powerups.Add((GameObject)Resources.Load("Models/Powerups/health"));
         powerups.Add((GameObject)Resources.Load("Models/Powerups/twoTimes"));
+        powerups.Add((GameObject)Resources.Load("Models/Powerups/cube"));
     }
 
     void Update()
