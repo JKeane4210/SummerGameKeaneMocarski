@@ -81,8 +81,6 @@ public class RandomDeerInstantiation : MonoBehaviour
             //print(i.ToString() +  ": " + destination.ToString());
             Vector3 start = new Vector3(destination.x + pn_side * distance * Mathf.Cos(theta), 2.3f, destination.z + distance * Mathf.Sin(theta));
             GameObject newDeer = Instantiate(deer, start, rotation); //new Vector3(Random.Range(pn_side * 10f, pn_side * 20f), 2.3f, Random.Range(controller_z -30f - 20f, controller_z -30f + 10f))
-            //if (canvas.GetComponent<powerUpBoard>().AllTrue("Animal"))
-                //newDeer.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
         }
     }
 }

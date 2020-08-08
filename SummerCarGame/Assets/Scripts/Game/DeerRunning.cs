@@ -11,10 +11,14 @@ public class DeerRunning : MonoBehaviour
     private Vector3 trajectory = Vector3.forward;
     private GameObject canvas;
     public Material normalSkin;
+    public GameObject goldSprinkle;
+    bool sprinkling = false;
+    GameObject newSprinkle;
 
     // Start is called before the first frame update
     void Start()
     {
+        goldSprinkle = (GameObject)Resources.Load("EffectExamples/goldSprinkle");
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         //normalSkin = gameObject.GetComponentInChildren<Renderer>().material;
         float degreeRotY = player.localRotation.eulerAngles.y;
@@ -29,10 +33,26 @@ public class DeerRunning : MonoBehaviour
 
     void Update()
     {
-        if(canvas.GetComponent<powerUpBoard>().powerUpCounts[1] != 0)
+        if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] != 0)
+        {
             gameObject.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
+            if (!sprinkling)
+            {
+                newSprinkle = Instantiate(goldSprinkle, gameObject.transform);
+                newSprinkle.transform.localPosition = new Vector3(0, 0, 0);
+                newSprinkle.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                sprinkling = true;
+            }
+        }
         else
+        {
             gameObject.GetComponentInChildren<Renderer>().material = normalSkin;
+            if (newSprinkle != null)
+            {
+                ParticleSystem.MainModule settings = newSprinkle.GetComponent<ParticleSystem>().main;
+                settings.startColor = new Color(settings.startColor.color.r, settings.startColor.color.g, settings.startColor.color.b, settings.startColor.color.a - 0.05f);
+            }
+        }
     }
 
     private void FixedUpdate()

@@ -64,6 +64,7 @@ public class CarDeerCollide : MonoBehaviour
                     addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
                 addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)other.GetComponent<DeerRunning>().GetDamage() * 2 * (int)Mathf.Pow(2, activeTwoTimes);
                 addToScreen.transform.SetParent(canvas.transform, false);
+                other.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.transform.SetParent(null);
                 Destroy(other.gameObject);
             }
         }

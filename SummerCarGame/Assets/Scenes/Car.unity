@@ -2950,6 +2950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2d892fcecda447cbe19797112e5b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpCounts: 0000000000000000
   isTrue: []
   addNew: 
 --- !u!1 &1900196430
