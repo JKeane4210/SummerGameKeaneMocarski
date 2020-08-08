@@ -24,6 +24,7 @@ public class VehicleList : MonoBehaviour
      *     UnlockedCarAddOn* optional (default to zero)
     */
     private Vehicle[] vehicles;
+    public Vehicle vehicle;
 
     private void Start()
     {
@@ -41,7 +42,10 @@ public class VehicleList : MonoBehaviour
             new Vector3(3, 3, 3),
             new Vector3(30, 30, 30),
             0,
-            10
+            10,
+            new Vector3(vehicle.GetViewingLocation().x - 4, vehicle.GetViewingLocation().y + 24, vehicle.GetViewingLocation().z + 150),
+            new Vector3(vehicle.GetViewingScale().x/7, vehicle.GetViewingScale().y/7, vehicle.GetViewingScale().z /7),
+            Quaternion.Euler(6, 145, 0)
             ),
         new Vehicle("Sandvan",
             "Fun in the sun. Pretty buff, but could use some pace.",
@@ -55,7 +59,10 @@ public class VehicleList : MonoBehaviour
             new Vector3(0.8f, 0.8f, 0.6f),
             new Vector3(10,10,10),
             50,
-            5
+            5,
+            new Vector3(vehicle.GetViewingLocation().x - 4, vehicle.GetViewingLocation().y + 18, vehicle.GetViewingLocation().z + 150),
+            new Vector3(vehicle.GetViewingScale().x/12, vehicle.GetViewingScale().y/12, vehicle.GetViewingScale().z /12),
+            Quaternion.Euler(5, 145, 0)
             ),
         new Vehicle("Mr. Conroy",
             "Tough and reliable. Always can count on your chcocolate milk.",
@@ -69,7 +76,10 @@ public class VehicleList : MonoBehaviour
             new Vector3(1.6f, 1.6f, 1.6f),
             new Vector3(25,25,25),
             100,
-            8
+            8,
+            new Vector3(vehicle.GetViewingLocation().x - 4, vehicle.GetViewingLocation().y + 15, vehicle.GetViewingLocation().z + 150),
+            new Vector3(vehicle.GetViewingScale().x/12, vehicle.GetViewingScale().y/12, vehicle.GetViewingScale().z /12),
+            Quaternion.Euler(5, 145, 0)
             ),
         new Vehicle("Night Cruiser",
             "Sleek and fast. Cruise the roads in style.",
@@ -84,7 +94,10 @@ public class VehicleList : MonoBehaviour
             new Vector3(15,15,15),
             200,
             10,
-            10
+            10,
+            new Vector3(vehicle.GetViewingLocation().x - 4, vehicle.GetViewingLocation().y + 7, vehicle.GetViewingLocation().z + 150),
+            new Vector3(vehicle.GetViewingScale().x/12, vehicle.GetViewingScale().y/12, vehicle.GetViewingScale().z /12),
+            Quaternion.Euler(5, 145, 0)
             ),
         };
         if(selectedVehicle == null)
