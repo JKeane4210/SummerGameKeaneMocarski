@@ -7,6 +7,7 @@ public class DeerRunning : MonoBehaviour
     public Transform player;
     public Rigidbody player_rigidbody;
     public float motion_multiplier;
+    public float damage;
     private Vector3 trajectory = Vector3.forward;
 
     // Start is called before the first frame update
@@ -25,5 +26,10 @@ public class DeerRunning : MonoBehaviour
     private void FixedUpdate()
     {
         player_rigidbody.velocity = trajectory;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

@@ -17,7 +17,12 @@ public class Animal
         average_speed = v;
     }
 
-    public GameObject GetAnimal(Vector3 loc, Quaternion rot)
+    public GameObject GetAnimal()
+    {
+        return animal;
+    }
+
+    public GameObject PlaceAnimal(Vector3 loc, Quaternion rot)
     {
         return GameObject.Instantiate(animal, loc, rot);
     }

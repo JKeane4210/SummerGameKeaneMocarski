@@ -6,6 +6,7 @@ using TMPro;
 
 public class TextAddAnimation : MonoBehaviour
 {
+    //public Color textColor = Color.white;
     public bool useGameObj;
     public int coinAdd;
     public float speed;
@@ -47,5 +48,10 @@ public class TextAddAnimation : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetColor(Color c)
+    {
+        GetComponent<TextMeshProUGUI>().color = c;
     }
 }

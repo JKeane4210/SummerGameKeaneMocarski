@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CoinMover : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class CoinMover : MonoBehaviour
             RemoveAndAddCount(other);
             GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
             GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
+            addToScreen.GetComponent<TextAddAnimation>().coinAdd = other.gameObject.GetComponent<CoinCounter>().coinAddition;
+            if (other.GetComponent<CoinCounter>().AllTrue())
+                addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
             addToScreen.transform.SetParent(canvas.transform, false);
             //addToScreen.GetComponent<RectTransform>().position = new Vector3(-167, 84, 0);
             //coinsAddedMsg.SetActive(true);

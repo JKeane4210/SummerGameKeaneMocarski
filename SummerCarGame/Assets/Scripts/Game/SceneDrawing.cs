@@ -28,6 +28,7 @@ public class SceneDrawing : MonoBehaviour
     public GameObject coinsTextAndImgs;
     public GameObject roadColorPlane;
     public GameObject roadSelectButton;
+    public GameObject boostButton;
 
     private Vehicle selectedCar;
     private WorldTerrain selectedWorld;
@@ -38,20 +39,29 @@ public class SceneDrawing : MonoBehaviour
         selectedWorld = GetComponent<WorldTerrainList>().GetSelectedTerrain();
         GameObject staticRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 0), Quaternion.identity);
         staticRoad.name = "StaticRoad";
-        try
-        {
-            staticRoad.GetComponent<RandomDeerInstantiation>();
-        }
-        catch
-        {
-            print("Already has no RandomDeerInstantion");
-        }
+        //try
+        //{
+        //    Component c = staticRoad.GetComponent<RandomDeerInstantiation>();
+        //    Destroy(c);
+        //}
+        //catch
+        //{
+        //    print("Already has no RandomDeerInstantion");
+        //}
         for (int i = 1; i <= 4; i++)
         {
             GameObject newRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
             newRoad.name = "BaseRoad" + i.ToString();
             //Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
-
+            try
+            {
+                Component c = newRoad.GetComponent<RandomDeerInstantiation>();
+                Destroy(c);
+            }
+            catch
+            {
+                print("Already has no RandomDeerInstantion");
+            }
         }
         GetComponent<VehicleList>().SimulateStart();
         roadColorPlane.GetComponent<Renderer>().material = selectedWorld.GetNormalRoadMat();
@@ -96,6 +106,7 @@ public class SceneDrawing : MonoBehaviour
         ShowButton(leftButton);
         ShowButton(rightButton);
         ShowButton(coinsTextAndImgs);
+        ShowButton(boostButton);
         car.GetComponent<RenderRoad>().SimulateStart();
         car.GetComponent<Car>().SimulateStart();
         car.GetComponent<UpdateControls>().SimulateStart();
@@ -107,6 +118,7 @@ public class SceneDrawing : MonoBehaviour
         headlighR.GetComponent<HeadlightFollow>().SimulateStart();
         illuminateCar.GetComponent<HeadlightFollow>().SimulateStart();
         mainCamera.GetComponent<BackgroundColorScan>().SimulateStart();
+        boostButton.GetComponent<BoostButton>().SimulateStart();
         Time.timeScale = 1;
         }
 
@@ -175,6 +187,7 @@ public class SceneDrawing : MonoBehaviour
             HideButton(leftButton);
             HideButton(rightButton);
             HideButton(coinsTextAndImgs);
+            HideButton(boostButton);
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
                 Destroy(g);
             Time.timeScale = 0;
@@ -191,6 +204,7 @@ public class SceneDrawing : MonoBehaviour
             HideButton(leftButton);
             HideButton(rightButton);
             HideButton(coinsTextAndImgs);
+            HideButton(boostButton);
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
                 Destroy(g);
             Time.timeScale = 0;

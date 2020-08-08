@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     private GameObject car;
+    public float followingDistance = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,6 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(car.transform.position.x / 1.75f, 13f, car.transform.position.z - 5f);
+        transform.position = new Vector3(car.transform.position.x / 1.75f, 13f, car.transform.position.z - followingDistance);
     }
 }

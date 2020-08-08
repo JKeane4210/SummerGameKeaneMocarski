@@ -38,7 +38,7 @@ public class DeleteGarbage : MonoBehaviour
         }
         else
         {
-            if (transform.position.z < car.transform.position.z - 30)
+            if (transform.position.z < car.transform.position.z - 45)
             {
                 Destroy(gameObject);
             }
