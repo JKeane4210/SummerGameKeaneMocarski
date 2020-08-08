@@ -29,6 +29,12 @@ public class CarDeerCollide : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (!canvas.GetComponent<powerUpBoard>().AllTrue("Animal"))
+            goldAnimal = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(!goldAnimal)
@@ -71,12 +77,12 @@ public class CarDeerCollide : MonoBehaviour
         if(explosionsEnabled)
         {
             explosionsEnabled = false;
-            gameObject.GetComponent<UnityEngine.UI.Text>().text = "Explosions Enabled: No";
+            gameObject.GetComponent<Text>().text = "Explosions Enabled: No";
         }
         else if(!explosionsEnabled)
         {
             explosionsEnabled = true;
-            gameObject.GetComponent<UnityEngine.UI.Text>().text = "Explosions Enabled: Yes";
+            gameObject.GetComponent<Text>().text = "Explosions Enabled: Yes";
         }
     }
 

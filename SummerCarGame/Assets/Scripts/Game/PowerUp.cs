@@ -11,9 +11,11 @@ public class PowerUp : MonoBehaviour
     float delta = 0.25f;
     Vector3 pos;
     private GameObject car;
+    private GameObject canvas;
 
     private void Start()
     {
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
         healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
         fuelBar = GameObject.FindGameObjectWithTag("Fuel").GetComponent<FuelBar>();
         pos = transform.position;
@@ -41,21 +43,21 @@ public class PowerUp : MonoBehaviour
         if(powerupType == "Health")
         {
             Car stats = player.GetComponent<Car>();
-            HealthBar slide = player.GetComponent<HealthBar>();
             stats.currentHealth = stats.maxHealth;
             healthBar.IncreaseHealth(20);
-            //healthBar.SetHealth(100);
-            //slide.slider.value = 100;
-            //slide.fill.color = slide.gradient.Evaluate(1f);
         }
         else if(powerupType == "TwoTimes")
         {
             car.GetComponent<CoinCounter>().isTwoTimers.Add(true);
             car.GetComponent<CoinCounter>().addNew = true;
+            canvas.GetComponent<powerUpBoard>().addNew = "2X";
+            canvas.GetComponent<powerUpBoard>().isTrue.Add("2X");
         }
         else if(powerupType == "GoldAnimal")
         {
             car.GetComponent<CarDeerCollide>().goldAnimal = true;
+            canvas.GetComponent<powerUpBoard>().addNew = "Animal";
+            canvas.GetComponent<powerUpBoard>().isTrue.Add("Animal");
         }
         Destroy(gameObject);
     }

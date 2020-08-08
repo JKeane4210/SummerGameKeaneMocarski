@@ -10,9 +10,9 @@ public class powerUpBoard : MonoBehaviour
     private GameObject radialElement;
 
     public List<string> isTrue = new List<string>();
-    public string addNew = null;
+    public string addNew;
 
-    private GameObject sceneController;
+    //private GameObject sceneController;
     private float timerLength = 8;
     private List<GameObject> powerups = new List<GameObject>();
     private List<float> timers = new List<float>();
@@ -21,7 +21,8 @@ public class powerUpBoard : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        //sceneController = GameObject.FindGameObjectWithTag("SceneController");
         radialElement = (GameObject)Resources.Load("Models/UI_Stuff/RadialTimer");
         canvas = gameObject;
     }
@@ -29,8 +30,9 @@ public class powerUpBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (addNew != null)
+        if (addNew != null && addNew != "")
         {
+            print("'" + addNew + "'");
             GameObject newRadial = Instantiate(radialElement, canvas.transform, false);
             newRadial.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             newRadial.GetComponent<RectTransform>().anchoredPosition = new Vector3(-40 + GameObject.FindGameObjectsWithTag("RadialElement").Length * 110, 60, 0);
@@ -54,7 +56,7 @@ public class powerUpBoard : MonoBehaviour
             {
                 Destroy(powerups[powerups.IndexOf(g)]);
                 removals.Add(powerups.IndexOf(g));
-                sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+                //sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
                 foreach (GameObject g2 in powerups)
                     g2.GetComponent<RectTransform>().anchoredPosition = new Vector2(g2.GetComponent<RectTransform>().anchoredPosition.x - 110, g2.GetComponent<RectTransform>().anchoredPosition.y);
             }
