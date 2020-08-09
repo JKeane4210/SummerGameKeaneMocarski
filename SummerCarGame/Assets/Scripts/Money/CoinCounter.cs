@@ -1,27 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class CoinCounter : MonoBehaviour
 {
     static int totalCoins = 0;
 
-    public int coinAddition = 10;
-    public int normalCoinAddition;
-    public List<bool> isTwoTimers = new List<bool>();
-    public bool addNew = true;
+    private const float TWO_TIMES_TIMER_LENGTH = 8;
 
     private GameObject canvas;
     private GameObject sceneController;
-    private float twoTimesTimerLength = 8;
     private List<float> timers = new List<float>();
     private List<int> removals = new List<int>();
 
+    public int coinAddition = 10;
+    public List<bool> isTwoTimers = new List<bool>();
+    public bool addNew = true;
+
     void Start()
     {
-        normalCoinAddition = coinAddition;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         sceneController = GameObject.FindGameObjectWithTag("SceneController");
     }
@@ -32,22 +29,17 @@ public class CoinCounter : MonoBehaviour
         {   if (addNew)
             {
                 coinAddition *= 2;
-                timers.Add(twoTimesTimerLength);
+                timers.Add(TWO_TIMES_TIMER_LENGTH);
                 addNew = false;
             }
             sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
-
         }
-        for (int i = 0; i < timers.Count; i++)
+        for (int i = 0; i < timers.Count; i++) timers[i] -= Time.deltaTime;
+        foreach (float timer in timers)
         {
-            //print(timers[i]);
-            timers[i] -= Time.deltaTime;
-        }
-        foreach (float fl in timers)
-        {
-            if (timers[timers.IndexOf(fl)] <= 0)
+            if (timers[timers.IndexOf(timer)] <= 0)
             {
-                removals.Add(timers.IndexOf(fl));
+                removals.Add(timers.IndexOf(timer));
                 coinAddition /= 2;
                 sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
             }
@@ -75,8 +67,5 @@ public class CoinCounter : MonoBehaviour
         GameSharedUI.Instance.UpdateCoinsUIText();
     }
 
-    public int GetCoins()
-    {
-        return totalCoins;
-    }
+    public int GetCoins() => totalCoins;
 }

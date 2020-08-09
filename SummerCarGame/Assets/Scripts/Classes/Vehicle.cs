@@ -1,4 +1,4 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,9 +52,6 @@ public class Vehicle
         mainMenuPositionY = GetViewingLocation().y + mmPosY;
         mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
         mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
-
-        // >>> could set up components with this >>>
-        //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
     
     public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, float add_on, float mmScale, float mmPosX, float mmPosY, float mmPosZ, float rotX, float rotY)
@@ -79,9 +76,6 @@ public class Vehicle
         mainMenuPositionY = GetViewingLocation().y + mmPosY;
         mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
         mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
-        
-        // >>> could set up components with this >>>
-        //SetUpComponents(health, fuel, vel, g, dimen); //maybe do when on the car scene
     }
 
     public void SetLocations(Vector3 game, Vector3 viewing)
@@ -188,13 +182,13 @@ public class Vehicle
         }
         CoinMaker coins = g_.AddComponent<CoinMaker>();
         coins.coin = (GameObject)Resources.Load("Models/Powerups/coinMoving");
-        coins.interval = 0.5f;
-        coins.width = 9;
+        coins.spawnInterval = 0.5f;
+        coins.roadWidth = 9;
         CoinMaker healthPacks = g_.AddComponent<CoinMaker>();
         //healthPacks.coin = (GameObject)Resources.Load("Models/Powerups/twoTimes");
         healthPacks.coin = null;
-        healthPacks.interval = 8f;
-        healthPacks.width = 9;
+        healthPacks.spawnInterval = 2f;
+        healthPacks.roadWidth = 9;
 
         //COIN COUNTER
         if (g_.GetComponent<CoinCounter>() == null)
@@ -287,80 +281,19 @@ public class Vehicle
         return carCopy;
     }
 
-    public GameObject GetCarGameObject()
-    {
-        //Object.Instantiate(car, gameLocation, Quaternion.Euler(0, 180, 0));
-        GameObject carCopy = SetUpComponents(maxHealth, maxFuel, velocity, car, dimensions);
-        return carCopy;
-    }
-
-    public string GetName()
-    {
-        return name;
-    }
-    public string GetDescription()
-    {
-        return dscr;
-    }
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-    public float GetMaxFuel()
-    {
-        return maxFuel;
-    }
-    public float GetVelocity()
-    {
-        return velocity;
-    }
-    public Vector3 GetDimensions()
-    {
-        return dimensions;
-    }
-    public Vector3 GetGameScale()
-    {
-        return gameScale;
-    }
-    public Vector3 GetGameLocation()
-    {
-        return gameLocation;
-    }
-    public Vector3 GetViewingLocation()
-    {
-        return viewingLocation;
-    }
-    public Vector3 GetViewingScale()
-    {
-        return viewingScale;
-    }
-
-    public int GetPrice()
-    {
-        return price;
-    }
-
-    public bool CanSpendCoins()
-    {
-        if(coin > price)
-            return true;
-        else
-            return false;
-    }
-
-    public float GetIlluminationHeight()
-    {
-        return illuminationHeight;
-    }
-
-    public float GetUnlockedAddOn()
-    {
-        return unlockedAddOn;
-    }
-
-
-    //public float GetLatVelocity()
-    //{
-    //    return latVelocity;
-    //}
+    public GameObject GetCarGameObject() => SetUpComponents(maxHealth, maxFuel, velocity, car, dimensions);
+    public string GetName() => name;
+    public string GetDescription() => dscr;
+    public int GetMaxHealth() => maxHealth;
+    public float GetMaxFuel() => maxFuel;
+    public float GetVelocity() => velocity;
+    public Vector3 GetDimensions() => dimensions;
+    public Vector3 GetGameScale() => gameScale;
+    public Vector3 GetGameLocation() => gameLocation;
+    public Vector3 GetViewingLocation() => viewingLocation;
+    public Vector3 GetViewingScale() => viewingScale;
+    public int GetPrice() => price;
+    public bool CanSpendCoins() => coin > price;
+    public float GetIlluminationHeight() => illuminationHeight;
+    public float GetUnlockedAddOn() => unlockedAddOn;
 }

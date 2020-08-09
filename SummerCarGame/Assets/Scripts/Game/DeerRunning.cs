@@ -20,23 +20,19 @@ public class DeerRunning : MonoBehaviour
     {
         goldSprinkle = (GameObject)Resources.Load("EffectExamples/goldSprinkle");
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-        //normalSkin = gameObject.GetComponentInChildren<Renderer>().material;
         float degreeRotY = player.localRotation.eulerAngles.y;
-        //print(degreeRotY);
-        //trajectory = motion_multiplier * new Vector3(Mathf.Cos(player.localRotation.eulerAngles.y), 0f, Mathf.Sin(player.localRotation.eulerAngles.y));
-
         if (degreeRotY <= 151f && degreeRotY >= 89f)
             trajectory = motion_multiplier * new Vector3(Mathf.Cos(player.localRotation.y), 0f, -Mathf.Sin(player.localRotation.y));
         else if (degreeRotY <= 271f && degreeRotY >= 209f)
             trajectory = motion_multiplier * new Vector3(-Mathf.Cos(player.localRotation.y), 0f, -Mathf.Sin(player.localRotation.y));
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] != 0)
         {
-            gameObject.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
-            
+            gameObject.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");  
             if (!sprinkling)
             {
                 newSprinkle = Instantiate(goldSprinkle, gameObject.transform);
@@ -61,8 +57,5 @@ public class DeerRunning : MonoBehaviour
         player_rigidbody.velocity = trajectory;
     }
 
-    public float GetDamage()
-    {
-        return damage;
-    }
+    public float GetDamage() => damage;
 }

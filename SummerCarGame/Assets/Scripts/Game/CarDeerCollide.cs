@@ -9,96 +9,70 @@ public class CarDeerCollide : MonoBehaviour
     public bool goldAnimal = false;
     static bool explosionsEnabled = false;
     public GameObject health_bar;
-    //private float health_lost = 10f;
     public GameObject explosionEffect;
     private GameObject canvas;
 
     private void Start()
     {
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-        if(gameObject.GetComponent<Text>() != null)
-        {
-            if (explosionsEnabled)
-            {
-                gameObject.GetComponent<Text>().text = "Explosions Enabled: Yes";
-            }
-            else if (!explosionsEnabled)
-            {
-                gameObject.GetComponent<Text>().text = "Explosions Enabled: No";
-            }
-        }
+        UpdateExplosionStatus();
     }
 
     void Update()
     {
-        if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0)
-            goldAnimal = false;
+        if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0) goldAnimal = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider otherCollider)
     {
-        //print(other.gameObject.GetComponentInChildren<Renderer>().material.name != "shinierGold");
-         //&& other.gameObject.GetComponentInChildren<Renderer>().material.name != "shinierGold"
         if (!goldAnimal)
         {
-            //Debug.Log(other);
             HealthBar health = health_bar.GetComponent<HealthBar>();
-            if (other.gameObject.tag == "Animal")
+            if (otherCollider.gameObject.tag == "Animal")
             {
-                //Debug.Log(other);
-                health.DecreaseHealth(other.GetComponent<DeerRunning>().GetDamage());
-                Destroy(other);
-                Explode(other);
+                health.DecreaseHealth(otherCollider.GetComponent<DeerRunning>().GetDamage());
+                Destroy(otherCollider);
+                Explode();
             }
         }
         else
         {
-            if (other.gameObject.tag == "Animal")
+            if (otherCollider.gameObject.tag == "Animal")
             {
-                GameDataManager.AddCoins((int)other.GetComponent<DeerRunning>().GetDamage() * 2);
+                GameDataManager.AddCoins((int)otherCollider.GetComponent<DeerRunning>().GetDamage() * 2);
                 GameSharedUI.Instance.UpdateCoinsUIText();
                 GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
                 GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
                 int activeTwoTimes = canvas.GetComponent<powerUpBoard>().powerUpCounts[0];
-                if (activeTwoTimes > 0)
-                    addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
-                addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)other.GetComponent<DeerRunning>().GetDamage() * 2 * (int)Mathf.Pow(2, activeTwoTimes);
+                if (activeTwoTimes > 0) addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
+                addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)otherCollider.GetComponent<DeerRunning>().GetDamage() * 2 * (int)Mathf.Pow(2, activeTwoTimes);
                 addToScreen.transform.SetParent(canvas.transform, false);
-                other.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.transform.SetParent(null);
-                Destroy(other.gameObject);
+                otherCollider.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.transform.SetParent(null);
+                Destroy(otherCollider.gameObject);
             }
         }
     }
 
-    void Explode(Collider col)
+    void Explode()
     {
-        if (explosionsEnabled)
-        {
-            Instantiate(explosionEffect, transform.position, transform.rotation);
-            //Destroy(col.gameObject); //kills the deer :( --> I won't include this now
-        }
+        if (explosionsEnabled) Instantiate(explosionEffect, transform.position, transform.rotation);
     }
 
     public void ChangeExplosionsStatus()
     {
-        if(explosionsEnabled)
-        {
-            explosionsEnabled = false;
-            gameObject.GetComponent<Text>().text = "Explosions Enabled: No";
-        }
-        else if(!explosionsEnabled)
-        {
-            explosionsEnabled = true;
-            gameObject.GetComponent<Text>().text = "Explosions Enabled: Yes";
-        }
+        explosionsEnabled = !explosionsEnabled;
+        UpdateExplosionStatus();
     }
 
-    public bool GetExplosionsStatus()
+    public void UpdateExplosionStatus()
     {
-        return explosionsEnabled;
+        Text explosionsEnabledText = gameObject.GetComponent<Text>();
+        if (explosionsEnabledText != null)
+        {
+            if (explosionsEnabled) explosionsEnabledText.text = "Explosions Enabled: Yes";
+            else explosionsEnabledText.text = "Explosions Enabled: No";
+        }
     }
-}
 
-//'deer3(Clone) (UnityEngine.BoxCollider)'
-//UnityEngine.Debug:Log(Object)
-//CarDeerCollide:OnTriggerEnter(Collider) (at Assets/Scripts/CarDeerCollide.cs:12)
+    public bool GetExplosionsStatus() => explosionsEnabled;
+}

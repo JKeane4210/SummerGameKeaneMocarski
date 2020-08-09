@@ -6,7 +6,6 @@ using TMPro;
 
 public class TextAddAnimation : MonoBehaviour
 {
-    //public Color textColor = Color.white;
     public bool useGameObj;
     public int coinAdd;
     public float speed;
@@ -14,24 +13,20 @@ public class TextAddAnimation : MonoBehaviour
     public string txt;
     private Vector3 initialPos;
     private GameObject sceneController;
-    //private float initialY;
 
     // Start is called before the first frame update
     void Start()
     {
         sceneController = GameObject.FindGameObjectWithTag("SceneController");
         initialPos = gameObject.GetComponent<RectTransform>().position;
-        if(useGameObj)
+        TextMeshProUGUI gameObjectText = gameObject.GetComponent<TextMeshProUGUI>();
+        if (useGameObj)
         {
-            if (sceneController.GetComponent<ButtonManager>().GetIsNightMode())
-                gameObject.GetComponent<TextMeshProUGUI>().text = "+" + ((int)(1.5 * (float)coinAdd)).ToString();
-            else
-                gameObject.GetComponent<TextMeshProUGUI>().text = "+" + coinAdd.ToString();
+            if (sceneController.GetComponent<ButtonManager>().GetIsNightMode()) gameObjectText.text = "+" + ((int)(1.5 * (float)coinAdd)).ToString();
+            else gameObjectText.text = "+" + coinAdd.ToString();
         }
-        else
-            gameObject.GetComponent<TextMeshProUGUI>().text = txt;
-        gameObject.SetActive(true);
-        
+        else gameObjectText.text = txt;
+        gameObject.SetActive(true);    
     }
 
     // Update is called once per frame
@@ -44,10 +39,7 @@ public class TextAddAnimation : MonoBehaviour
             float currentAlpa = gameObject.GetComponent<TextMeshProUGUI>().alpha;
             gameObject.GetComponent<TextMeshProUGUI>().alpha = currentAlpa - (speed / 100 * Time.deltaTime);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else Destroy(gameObject);
     }
 
     public void SetColor(Color c)

@@ -52,39 +52,16 @@ public class WorldTerrainList : MonoBehaviour
             selectedTerrain = worldTerrains[0];
     }
 
-    public WorldTerrain GetSelectedTerrain()
-    {
-        return selectedTerrain;
-    }
-
-    public WorldTerrain[] GetWorldTerrains()
-    {
-        return worldTerrains;
-    }
-
-    public GameObject GetStaticNormalRoad()
-    {
-        return selectedTerrain.GetNormalRoad();
-    }
-
-    public GameObject GetActiveRoad()
-    {
-        return selectedTerrain.GetNormalRoad();
-    }
-
-    public GameObject GetGasRoad()
-    {
-        return selectedTerrain.GetGasRoad();
-    }
-
     public void SetSelectedTerrain(int i)
     {
         selectedTerrain = worldTerrains[i];
         selectedTerrainInd = i;
     }
 
-    public int GetSelectedTerrainInd()
-    {
-        return selectedTerrainInd;
-    }
+    public WorldTerrain GetSelectedTerrain() => selectedTerrain;
+    public WorldTerrain[] GetWorldTerrains() => worldTerrains;
+    public GameObject GetStaticNormalRoad() => selectedTerrain.GetNormalRoad();
+    public GameObject GetActiveRoad() => selectedTerrain.GetNormalRoad();
+    public GameObject GetGasRoad() => selectedTerrain.GetGasRoad();
+    public int GetSelectedTerrainInd() => selectedTerrainInd;
 }

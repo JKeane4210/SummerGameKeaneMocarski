@@ -6,10 +6,9 @@ public class PowerUp : MonoBehaviour
 {
     private HealthBar healthBar;
     public string powerupType;
-    private FuelBar fuelBar;
-    float speed = 2f;
-    float delta = 0.25f;
-    Vector3 pos;
+    const float BOBBING_SPEED = 2f;
+    const float BOBBING_HEIGHT = 0.25f;
+    Vector3 initialTransformPosition;
     private GameObject car;
     private GameObject canvas;
 
@@ -17,24 +16,21 @@ public class PowerUp : MonoBehaviour
     {
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
-        fuelBar = GameObject.FindGameObjectWithTag("Fuel").GetComponent<FuelBar>();
-        pos = transform.position;
-        //print(healthBar.GetValue());
+        initialTransformPosition = transform.position;
     }
     void Update()
     {
-        transform.Rotate(new Vector3(0f, 0f, 150f) * Time.deltaTime);
-        
-        float nY = Mathf.Sin(speed * Time.time) * delta + pos.y;
-        transform.position = new Vector3(transform.position.x, nY, transform.position.z);
+        transform.Rotate(new Vector3(0f, 0f, 150f) * Time.deltaTime);  
+        float newY = Mathf.Sin(BOBBING_SPEED * Time.time) * BOBBING_HEIGHT + initialTransformPosition.y;
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider otherCollider)
     {
-        if(other.CompareTag("Player"))
+        if(otherCollider.CompareTag("Player"))
         {
-            car = other.gameObject;
-            PickUp(other);
+            car = otherCollider.gameObject;
+            PickUp(otherCollider);
         }
     }
 
