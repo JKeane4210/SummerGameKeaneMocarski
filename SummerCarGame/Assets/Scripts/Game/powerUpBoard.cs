@@ -32,6 +32,8 @@ public class powerUpBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if((timers.Count != powerups.Count || powerups.Count != isTrue.Count) || timers.Count != isTrue.Count)
+        //    print(timers.Count.ToString() + ", " + powerups.Count.ToString() + ", " + isTrue.Count.ToString());
         if (addNew != null && addNew != "")
         {
             //print("'" + addNew + "'");
@@ -53,7 +55,7 @@ public class powerUpBoard : MonoBehaviour
         //sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
         foreach (GameObject g in powerups)
         {
-            if(isTrue[powerups.IndexOf(g)] == "Animal")
+            if (isTrue[powerups.IndexOf(g)] == "Animal")
                 g.GetComponentInChildren<Image>().fillAmount = timers[powerups.IndexOf(g)] / goldAnimalTimerLength;
             else
                 g.GetComponentInChildren<Image>().fillAmount = timers[powerups.IndexOf(g)] / timerLength;
@@ -62,18 +64,25 @@ public class powerUpBoard : MonoBehaviour
         {
             if (timers[powerups.IndexOf(g)] <= 0)
             {
-                Destroy(powerups[powerups.IndexOf(g)]);
-                removals.Add(powerups.IndexOf(g));
+                int removeInd = powerups.IndexOf(g);
+                removals.Add(removeInd);
                 //sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
-                foreach (GameObject g2 in powerups)
-                    g2.GetComponent<RectTransform>().anchoredPosition = new Vector2(g2.GetComponent<RectTransform>().anchoredPosition.x - 110, g2.GetComponent<RectTransform>().anchoredPosition.y);
             }
         }
         foreach (int i in removals)
         {
-            powerups.Remove(powerups[i]);
-            timers.Remove(timers[i]);
-            isTrue.Remove(isTrue[i]);
+            Destroy(powerups[i]);
+            powerups.RemoveAt(i);
+            timers.RemoveAt(i);
+            isTrue.RemoveAt(i);
+        }
+        if(removals.Count > 0)
+        {
+            for(int i = removals[0]; i < powerups.Count; i++)
+            {
+                GameObject g2 = powerups[i];
+                g2.GetComponent<RectTransform>().anchoredPosition = new Vector2(g2.GetComponent<RectTransform>().anchoredPosition.x - 110 * removals.Count, g2.GetComponent<RectTransform>().anchoredPosition.y);
+            }
         }
         removals.Clear();
         if (Time.timeScale == 0)
@@ -88,18 +97,6 @@ public class powerUpBoard : MonoBehaviour
         }
         UpdatePowerUpCounts();
     }
-
-    //public bool AllTrue(string powerup)
-    //{
-    //    if (isTrue.Count == 0)
-    //        return false;
-    //    foreach (string s in isTrue)
-    //    {
-    //        if (s == powerup)
-    //            return true;
-    //    }
-    //    return false;
-    //}
 
     private int CountPowerUp(string powerup)
     {

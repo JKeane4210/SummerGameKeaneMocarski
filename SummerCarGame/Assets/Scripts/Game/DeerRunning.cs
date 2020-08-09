@@ -36,6 +36,7 @@ public class DeerRunning : MonoBehaviour
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] != 0)
         {
             gameObject.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
+            
             if (!sprinkling)
             {
                 newSprinkle = Instantiate(goldSprinkle, gameObject.transform);
