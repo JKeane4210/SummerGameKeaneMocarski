@@ -6,6 +6,8 @@ public class WorldTerrainList : MonoBehaviour
 {
     static WorldTerrain selectedTerrain;
     static int selectedTerrainInd;
+
+    private WorldTerrain[] worldTerrains;
     /* WorldTerrain Constructor Order:
      *   name (string)
      *   normalRoad (GameObject)
@@ -20,8 +22,6 @@ public class WorldTerrainList : MonoBehaviour
      *   damage (float)
      *   average_speed (float)
      */
-
-    private WorldTerrain[] worldTerrains;
 
     void Start()
     {

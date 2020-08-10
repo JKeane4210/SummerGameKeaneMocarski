@@ -134,7 +134,6 @@ public class VehicleList : MonoBehaviour
                 break;
             }
         }
-        //print("**WARNING** No Car By That Name Found!");
     }
 
     public Vehicle GetVehicleByName(string name)
@@ -155,7 +154,6 @@ public class VehicleList : MonoBehaviour
 
     public int VehicleCount() => vehicles.Length;
     public ArrayList GetPurchasedCars() => purchasedCars;
-
     public Vehicle[] GetVehicles() => vehicles;
     public Vehicle GetSelectedVehicle() => selectedVehicle;
     public Vehicle GetInfoVehicle() => infoVehicle;

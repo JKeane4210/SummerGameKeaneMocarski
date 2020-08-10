@@ -23,9 +23,9 @@ public class TextAddAnimation : MonoBehaviour
         if (useGameObj)
         {
             if (sceneController.GetComponent<ButtonManager>().GetIsNightMode())
-                gameObjectText.text = "+" + ((int)(1.5 * (float)coinAdd)).ToString();
+                gameObjectText.text = $"+{(int)(1.5 * (float)coinAdd)}" ;
             else
-                gameObjectText.text = "+" + coinAdd.ToString();
+                gameObjectText.text = $"+{coinAdd}";
         }
         else
             gameObjectText.text = txt;

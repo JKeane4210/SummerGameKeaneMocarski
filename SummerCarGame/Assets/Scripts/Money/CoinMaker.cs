@@ -30,14 +30,14 @@ public class CoinMaker : MonoBehaviour
             if (coin == null)
             {
                 addedObject = powerups[(int)Random.Range(0, (float)powerups.Count - 0.01f)];
-                addedObject.name = "PowerUp" + powerupCounter.ToString();
+                addedObject.name = $"PowerUp{powerupCounter}";
                 powerupCounter++;
                 Instantiate(addedObject, new Vector3(Random.Range(-roadWidth, roadWidth), 3.5f, transform.position.z + 60f), Quaternion.Euler(-90f, 0f, 0f));
             }
             else
             {
                 addedObject = coin;
-                addedObject.name = "Coin" + coinCounter.ToString();
+                addedObject.name = $"Coin{coinCounter}";
                 coinCounter++;
                 Instantiate(addedObject, new Vector3(Random.Range(-roadWidth, roadWidth), 3.5f, transform.position.z + 60f), Quaternion.identity);
             }

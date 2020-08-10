@@ -40,7 +40,7 @@ public class SceneDrawing : MonoBehaviour
         for (int i = 1; i <= 4; i++)
         {
             GameObject newRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
-            newRoad.name = "BaseRoad" + i.ToString();
+            newRoad.name = $"BaseRoad{i}";
             try
             {
                 Component c = newRoad.GetComponent<RandomDeerInstantiation>();
