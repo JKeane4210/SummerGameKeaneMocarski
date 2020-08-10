@@ -19,28 +19,9 @@ public class WorldTerrain
         normal_road_mat = m;
     }
 
-    public string GetName()
-    {
-        return name;
-    }
-
-    public GameObject GetNormalRoad()
-    {
-        return normalRoad;
-    }
-
-    public GameObject GetGasRoad()
-    {
-        return gasRoad;
-    }
-
-    public Animal[] GetAnimals()
-    {
-        return animals;
-    }
-
-    public Material GetNormalRoadMat()
-    {
-        return normal_road_mat;
-    }
+    public string GetName() => name;
+    public GameObject GetNormalRoad() => normalRoad;
+    public GameObject GetGasRoad() => gasRoad;
+    public Animal[] GetAnimals() => animals;
+    public Material GetNormalRoadMat() => normal_road_mat;
 }

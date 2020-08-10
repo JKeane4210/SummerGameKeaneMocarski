@@ -34,19 +34,26 @@ public class powerUpBoard : MonoBehaviour
         if (addNew != null && addNew != "")
         {
             AddNewRadialTimer(addNew);
-            if (addNew == "Animal") timers.Add(GOLD_ANIMAL_POWERUP_TIMER_LENGTH);
-            else timers.Add(NORMAL_TIMER_LENGTH);
+            if (addNew == "Animal")
+                timers.Add(GOLD_ANIMAL_POWERUP_TIMER_LENGTH);
+            else
+                timers.Add(NORMAL_TIMER_LENGTH);
             addNew = null;
         }
-        for (int i = 0; i < timers.Count; i++) timers[i] -= Time.deltaTime;
+        for (int i = 0; i < timers.Count; i++)
+            timers[i] -= Time.deltaTime;
         foreach (GameObject powerup in powerups)
         {
             Image powerupTimerImage = powerup.GetComponent<Image>();
-            if (isTrue[powerups.IndexOf(powerup)] == "Animal") powerupTimerImage.fillAmount = timers[powerups.IndexOf(powerup)] / GOLD_ANIMAL_POWERUP_TIMER_LENGTH;
-            else powerupTimerImage.fillAmount = timers[powerups.IndexOf(powerup)] / NORMAL_TIMER_LENGTH;
-            if (timers[powerups.IndexOf(powerup)] <= 0) removals.Add(powerups.IndexOf(powerup));
+            if (isTrue[powerups.IndexOf(powerup)] == "Animal")
+                powerupTimerImage.fillAmount = timers[powerups.IndexOf(powerup)] / GOLD_ANIMAL_POWERUP_TIMER_LENGTH;
+            else
+                powerupTimerImage.fillAmount = timers[powerups.IndexOf(powerup)] / NORMAL_TIMER_LENGTH;
+            if (timers[powerups.IndexOf(powerup)] <= 0)
+                removals.Add(powerups.IndexOf(powerup));
         }
-        foreach (int i in removals) RemoveElementInAllArrays(i);
+        foreach (int i in removals)
+            RemoveElementInAllArrays(i);
         if(removals.Count > 0)
         {
             for(int i = removals[0]; i < powerups.Count; i++)
@@ -57,7 +64,8 @@ public class powerUpBoard : MonoBehaviour
         }
         removals.Clear();
         if (Time.timeScale == 0)
-            while (powerups.Count > 0) RemoveElementInAllArrays(0);
+            while (powerups.Count > 0)
+                RemoveElementInAllArrays(0);
         UpdatePowerUpCounts();
     }
 

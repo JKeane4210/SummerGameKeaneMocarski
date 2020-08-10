@@ -22,10 +22,13 @@ public class TextAddAnimation : MonoBehaviour
         TextMeshProUGUI gameObjectText = gameObject.GetComponent<TextMeshProUGUI>();
         if (useGameObj)
         {
-            if (sceneController.GetComponent<ButtonManager>().GetIsNightMode()) gameObjectText.text = "+" + ((int)(1.5 * (float)coinAdd)).ToString();
-            else gameObjectText.text = "+" + coinAdd.ToString();
+            if (sceneController.GetComponent<ButtonManager>().GetIsNightMode())
+                gameObjectText.text = "+" + ((int)(1.5 * (float)coinAdd)).ToString();
+            else
+                gameObjectText.text = "+" + coinAdd.ToString();
         }
-        else gameObjectText.text = txt;
+        else
+            gameObjectText.text = txt;
         gameObject.SetActive(true);    
     }
 
@@ -39,7 +42,8 @@ public class TextAddAnimation : MonoBehaviour
             float currentAlpa = gameObject.GetComponent<TextMeshProUGUI>().alpha;
             gameObject.GetComponent<TextMeshProUGUI>().alpha = currentAlpa - (speed / 100 * Time.deltaTime);
         }
-        else Destroy(gameObject);
+        else
+            Destroy(gameObject);
     }
 
     public void SetColor(Color c)

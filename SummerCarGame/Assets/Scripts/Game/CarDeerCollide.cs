@@ -20,7 +20,8 @@ public class CarDeerCollide : MonoBehaviour
 
     void Update()
     {
-        if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0) goldAnimal = false;
+        if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0)
+            goldAnimal = false;
     }
 
     private void OnTriggerEnter(Collider otherCollider)
@@ -44,7 +45,8 @@ public class CarDeerCollide : MonoBehaviour
                 GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
                 GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
                 int activeTwoTimes = canvas.GetComponent<powerUpBoard>().powerUpCounts[0];
-                if (activeTwoTimes > 0) addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
+                if (activeTwoTimes > 0)
+                    addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
                 addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)otherCollider.GetComponent<DeerRunning>().GetDamage() * 2 * (int)Mathf.Pow(2, activeTwoTimes);
                 addToScreen.transform.SetParent(canvas.transform, false);
                 otherCollider.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.transform.SetParent(null);
@@ -69,8 +71,10 @@ public class CarDeerCollide : MonoBehaviour
         Text explosionsEnabledText = gameObject.GetComponent<Text>();
         if (explosionsEnabledText != null)
         {
-            if (explosionsEnabled) explosionsEnabledText.text = "Explosions Enabled: Yes";
-            else explosionsEnabledText.text = "Explosions Enabled: No";
+            if (explosionsEnabled)
+                explosionsEnabledText.text = "Explosions Enabled: Yes";
+            else
+                explosionsEnabledText.text = "Explosions Enabled: No";
         }
     }
 

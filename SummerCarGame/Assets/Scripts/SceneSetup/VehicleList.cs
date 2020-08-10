@@ -7,6 +7,9 @@ public class VehicleList : MonoBehaviour
     static Vehicle selectedVehicle;
     static ArrayList purchasedCars = new ArrayList() { "Default Car" };
     static Vehicle infoVehicle;
+
+    private Vehicle[] vehicles;
+
     /*CONSTRUCTOR_PARAMS
      *     Name
      *     Description
@@ -23,8 +26,6 @@ public class VehicleList : MonoBehaviour
      *     Illumination Height (for night mode)
      *     UnlockedCarAddOn* optional (default to zero)
     */
-    private Vehicle[] vehicles;
-    public Vehicle vehicle;
 
     private void Start()
     {
@@ -104,27 +105,11 @@ public class VehicleList : MonoBehaviour
             selectedVehicle = vehicles[0];
         if (infoVehicle == null)
             infoVehicle = selectedVehicle;
-        //print("**" + selectedVehicle.GetName());
     }
 
     public void SimulateStart()
     {
         Start();
-    }
-
-    public Vehicle[] GetVehicles()
-    {
-        return vehicles;
-    }
-
-    public Vehicle GetSelectedVehicle()
-    {
-        return selectedVehicle;
-    }
-
-    public Vehicle GetInfoVehicle()
-    {
-        return infoVehicle;
     }
 
     public void ChangeSelectedVehicleByName(string name)
@@ -137,7 +122,6 @@ public class VehicleList : MonoBehaviour
                 break;
             }
         }
-        //print("**WARNING** No Car By That Name Found!");
     }
 
     public void ChangeInfoVehicleByName(string name)
@@ -164,18 +148,15 @@ public class VehicleList : MonoBehaviour
         return null;
     }
 
-    public int VehicleCount()
-    {
-        return vehicles.Length;
-    }
-
-    public ArrayList GetPurchasedCars()
-    {
-        return purchasedCars;
-    }
-
     public void PurchaseCar(string name)
     {
         purchasedCars.Add(name);
     }
+
+    public int VehicleCount() => vehicles.Length;
+    public ArrayList GetPurchasedCars() => purchasedCars;
+
+    public Vehicle[] GetVehicles() => vehicles;
+    public Vehicle GetSelectedVehicle() => selectedVehicle;
+    public Vehicle GetInfoVehicle() => infoVehicle;
 }

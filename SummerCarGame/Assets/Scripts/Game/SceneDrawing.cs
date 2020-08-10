@@ -10,7 +10,6 @@ public class SceneDrawing : MonoBehaviour
     public GameObject headlighR;
     public GameObject illuminateCar;
     public GameObject mainCamera;
-    private GameObject road_block_obj;
     public GameObject health_bar_obj;
     public GameObject fuel_bar_obj;
     public GameObject replay_btn;
@@ -22,7 +21,6 @@ public class SceneDrawing : MonoBehaviour
     public HealthBar healthBar;
     public GameObject finalDistanceField;
     public GameObject distanceField;
-    private MoveCar carMove;
     public GameObject leftButton;
     public GameObject rightButton;
     public GameObject coinsTextAndImgs;
@@ -39,20 +37,10 @@ public class SceneDrawing : MonoBehaviour
         selectedWorld = GetComponent<WorldTerrainList>().GetSelectedTerrain();
         GameObject staticRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 0), Quaternion.identity);
         staticRoad.name = "StaticRoad";
-        //try
-        //{
-        //    Component c = staticRoad.GetComponent<RandomDeerInstantiation>();
-        //    Destroy(c);
-        //}
-        //catch
-        //{
-        //    print("Already has no RandomDeerInstantion");
-        //}
         for (int i = 1; i <= 4; i++)
         {
             GameObject newRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
             newRoad.name = "BaseRoad" + i.ToString();
-            //Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
             try
             {
                 Component c = newRoad.GetComponent<RandomDeerInstantiation>();
@@ -67,10 +55,8 @@ public class SceneDrawing : MonoBehaviour
         roadColorPlane.GetComponent<Renderer>().material = selectedWorld.GetNormalRoadMat();
         selectedCar = GetComponent<VehicleList>().GetSelectedVehicle();
         GameObject car = selectedCar.GetCarGameObject();
-        //print("*" + selectedCar.GetName());
         car.GetComponent<RenderRoad>().road = selectedWorld.GetNormalRoad();
         car.GetComponent<RenderRoad>().gasStationRoad = selectedWorld.GetGasRoad();
-        carMove = car.GetComponent<MoveCar>();
         if (GetComponent<ButtonManager>().GetIsNightMode())
         {
             sun.SetActive(false);
@@ -92,9 +78,6 @@ public class SceneDrawing : MonoBehaviour
             RenderSettings.ambientIntensity = 1;
             RenderSettings.reflectionIntensity = 1;
         }
-        //DrawRoadBlock(roadBlock);
-        //DrawStaticRoadBlock(staticRoadBlock);
-        //DrawCar(car);
         ResetHealthBar(healthBar);
         ResetFuelBar(fuelBar);
         HideButton(replay_btn);
@@ -120,31 +103,6 @@ public class SceneDrawing : MonoBehaviour
         mainCamera.GetComponent<BackgroundColorScan>().SimulateStart();
         boostButton.GetComponent<BoostButton>().SimulateStart();
         Time.timeScale = 1;
-        }
-
-   
-    public void DrawRoadBlock(GameObject road_block)
-    {
-        Instantiate(road_block, new Vector3(0f, 0f, 20f), Quaternion.Euler(0f, 0f, 0f));
-        Instantiate(road_block, new Vector3(0f, 0f, 40f), Quaternion.Euler(0f, 0f, 0f));
-        road_block_obj = road_block;
-    }
-
-    public void DrawStaticRoadBlock(GameObject static_road_block)
-    {
-        Instantiate(static_road_block, new Vector3(0f, 0f, 0f), Quaternion.Euler(0f, 0f, 0f));
-    }
-
-    public void DrawCar(GameObject car)
-    {
-        car.GetComponent<RenderRoad>().road = road_block_obj;
-        car.GetComponent<Car>().fuelBar = fuel_bar_obj.GetComponent<FuelBar>();
-        car.GetComponent<Car>().healthBar = health_bar_obj.GetComponent<HealthBar>();
-        car.GetComponent<CarDeerCollide>().health_bar = health_bar_obj;
-        car.GetComponent<MoveCar>().car = car.GetComponent<CharacterController>();
-        //car.GetComponent<MoveCar>().car_transform = car.GetComponent<Transform>();
-        car.GetComponent<RenderRoad>().car = car.GetComponent<Transform>();
-        //Instantiate(car, new Vector3(1.5f, 1.27f, 0f), Quaternion.Euler(0f, 0f, 0f));
     }
 
     public void ResetHealthBar(HealthBar h)
@@ -172,9 +130,8 @@ public class SceneDrawing : MonoBehaviour
         SceneManager.LoadScene("Car");
     }
 
-    private void Update()
-    {
-        
+    void Update()
+    {   
         if(health_bar_obj.GetComponent<HealthBar>().GetValue() == 0)
         {
             game_over_txt_fied.GetComponent<UnityEngine.UI.Text>().text = "Damaged Beyond Repair";
@@ -211,8 +168,5 @@ public class SceneDrawing : MonoBehaviour
         }
     }
 
-    public Vehicle GetVehicle()
-    {
-        return selectedCar;
-    }
+    public Vehicle GetVehicle() => selectedCar;
 }

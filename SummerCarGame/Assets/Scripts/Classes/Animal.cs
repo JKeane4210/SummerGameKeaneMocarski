@@ -17,28 +17,9 @@ public class Animal
         average_speed = v;
     }
 
-    public GameObject GetAnimal()
-    {
-        return animal;
-    }
-
-    public GameObject PlaceAnimal(Vector3 loc, Quaternion rot)
-    {
-        return GameObject.Instantiate(animal, loc, rot);
-    }
-
-    public string GetName()
-    {
-        return name;
-    }
-
-    public float GetDamage()
-    {
-        return damage;
-    }
-
-    public float GetAverageSpeed()
-    {
-        return average_speed;
-    }
+    public GameObject GetAnimal() => animal;
+    public GameObject PlaceAnimal(Vector3 loc, Quaternion rot) => GameObject.Instantiate(animal, loc, rot);
+    public string GetName() => name;
+    public float GetDamage() => damage;
+    public float GetAverageSpeed() => average_speed;
 }
