@@ -29,7 +29,6 @@ public class VehicleList : MonoBehaviour
 
     private void Start()
     {
-        //print(selectedVehicle);
         vehicles = new Vehicle[]{
         new Vehicle("Default Car",
             "Can't beat a classic",
@@ -107,10 +106,7 @@ public class VehicleList : MonoBehaviour
             infoVehicle = selectedVehicle;
     }
 
-    public void SimulateStart()
-    {
-        Start();
-    }
+    public void SimulateStart() => Start();
 
     public void ChangeSelectedVehicleByName(string name)
     {
@@ -147,11 +143,7 @@ public class VehicleList : MonoBehaviour
         return null;
     }
 
-    public void PurchaseCar(string name)
-    {
-        purchasedCars.Add(name);
-    }
-
+    public void PurchaseCar(string name) => purchasedCars.Add(name);
     public int VehicleCount() => vehicles.Length;
     public ArrayList GetPurchasedCars() => purchasedCars;
     public Vehicle[] GetVehicles() => vehicles;

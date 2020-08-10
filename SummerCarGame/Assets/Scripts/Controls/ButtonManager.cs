@@ -64,23 +64,8 @@ public class ButtonManager : MonoBehaviour
         operation.allowSceneActivation = true;
     }
 
-    private float NegativeAngle(float f)
-    {
-        return -(360f - f);
-    }
-
-    public void ChangeIsNightMode(bool nm)
-    {
-        isNightMode = nm;
-    }
-
-    public bool GetIsNightMode()
-    {
-        return isNightMode;
-    }
-
-    public void FlipNightMode()
-    {
-        isNightMode = !isNightMode;
-    }
+    private float NegativeAngle(float f) => -(360f - f);
+    public void ChangeIsNightMode(bool nm) => isNightMode = nm;
+    public bool GetIsNightMode() => isNightMode;
+    public void FlipNightMode() => isNightMode = !isNightMode;
 }

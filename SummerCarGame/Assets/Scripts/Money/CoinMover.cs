@@ -9,18 +9,18 @@ public class CoinMover : MonoBehaviour
     private const float BOBBING_AMPLITUDE = 1f;
     private GameObject canvas;
 
-    Vector3 pos;
+    Vector3 initialPosition;
 
     void Start()
     {
-        pos = transform.position;
+        initialPosition = transform.position;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
     void Update()
     {
         transform.Rotate(new Vector3(0f, 150f, 0f) * Time.deltaTime);
-        float newY = Mathf.Sin(BOBBING_SPEED * Time.time) * BOBBING_AMPLITUDE + pos.y;
+        float newY = Mathf.Sin(BOBBING_SPEED * Time.time) * BOBBING_AMPLITUDE + initialPosition.y;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 

@@ -13,7 +13,6 @@ public class Vehicle
     //private float latVelocity; //basically agility (IDK if we should do this?)
     private GameObject car;
     private int price;
-    private int coin;
     public float mainMenuScaleX;
     public float mainMenuScaleY;
     public float mainMenuScaleZ;
@@ -30,6 +29,7 @@ public class Vehicle
     public float unlockedAddOn;
 
     private float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
+
     public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, float mmScale, float mmPosX, float mmPosY, float mmPosZ, float rotX, float rotY)
     {
         name = n;
@@ -293,7 +293,6 @@ public class Vehicle
     public Vector3 GetViewingLocation() => viewingLocation;
     public Vector3 GetViewingScale() => viewingScale;
     public int GetPrice() => price;
-    public bool CanSpendCoins() => coin > price;
     public float GetIlluminationHeight() => illuminationHeight;
     public float GetUnlockedAddOn() => unlockedAddOn;
 }

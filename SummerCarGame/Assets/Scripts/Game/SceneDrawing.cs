@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class SceneDrawing : MonoBehaviour
 {
+    private const int HEALTH_SLIDER_MAX_VALUE = 100;
+    private const float FUEL_SLIDER_MAX_VALUE = 4;
+
     public GameObject sun;
     public GameObject headlightL;
     public GameObject headlighR;
     public GameObject illuminateCar;
     public GameObject mainCamera;
-    public GameObject health_bar_obj;
-    public GameObject fuel_bar_obj;
-    public GameObject replay_btn;
-    public GameObject home_btn;
-    public GameObject game_over_txt_fied;
-    public GameObject roadBlock;
-    public GameObject staticRoadBlock;
+    public GameObject healthBarObj;
+    public GameObject fuelBarObj;
+    public GameObject replayButton;
+    public GameObject homeButton;
+    public GameObject gameOverTextField;
     public FuelBar fuelBar;
     public HealthBar healthBar;
     public GameObject finalDistanceField;
@@ -46,10 +47,7 @@ public class SceneDrawing : MonoBehaviour
                 Component c = newRoad.GetComponent<RandomDeerInstantiation>();
                 Destroy(c);
             }
-            catch
-            {
-                print("Already has no RandomDeerInstantion");
-            }
+            catch { print("Already has no RandomDeerInstantion"); }
         }
         GetComponent<VehicleList>().SimulateStart();
         roadColorPlane.GetComponent<Renderer>().material = selectedWorld.GetNormalRoadMat();
@@ -80,16 +78,16 @@ public class SceneDrawing : MonoBehaviour
         }
         ResetHealthBar(healthBar);
         ResetFuelBar(fuelBar);
-        HideButton(replay_btn);
-        HideButton(home_btn);
-        HideButton(game_over_txt_fied);
-        HideButton(finalDistanceField);
-        HideButton(roadSelectButton);
-        ShowButton(distanceField);
-        ShowButton(leftButton);
-        ShowButton(rightButton);
-        ShowButton(coinsTextAndImgs);
-        ShowButton(boostButton);
+        HideItems(new GameObject[] { replayButton,
+                                     homeButton,
+                                     gameOverTextField,
+                                     finalDistanceField,
+                                     roadSelectButton });
+        ShowItems(new GameObject[] { distanceField,
+                                     leftButton,
+                                     rightButton,
+                                     coinsTextAndImgs,
+                                     boostButton });
         car.GetComponent<RenderRoad>().SimulateStart();
         car.GetComponent<Car>().SimulateStart();
         car.GetComponent<UpdateControls>().SimulateStart();
@@ -105,63 +103,42 @@ public class SceneDrawing : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void ResetHealthBar(HealthBar h)
+    public void HideItem(GameObject gameObject) => gameObject.SetActive(false);
+    public void ShowItem(GameObject gameObject) => gameObject.SetActive(true);
+
+    public void HideItems(GameObject[] gameObjects)
     {
-        h.SetMaxHealth(100);
+        foreach (GameObject gameObject in gameObjects)
+            HideItem(gameObject);
     }
 
-    public void ResetFuelBar(FuelBar f)
+    public void ShowItems(GameObject[] gameObjects)
     {
-        f.SetMaxFuel(4f);
-    }
-
-    public void HideButton(GameObject btn)
-    {
-        btn.SetActive(false);
-    }
-
-    public void ShowButton(GameObject btn)
-    {
-        btn.SetActive(true);
-    }
-
-    public void ReloadScene()
-    {
-        SceneManager.LoadScene("Car");
+        foreach (GameObject gameObject in gameObjects)
+            ShowItem(gameObject);
     }
 
     void Update()
-    {   
-        if(health_bar_obj.GetComponent<HealthBar>().GetValue() == 0)
+    {
+        bool outOfFuel = fuelBarObj.GetComponent<FuelBar>().GetFuel() == 0;
+        bool damagedBeyondRepair = healthBarObj.GetComponent<HealthBar>().GetValue() == 0;
+        bool gameOver = damagedBeyondRepair || outOfFuel;
+        if (gameOver)
         {
-            game_over_txt_fied.GetComponent<UnityEngine.UI.Text>().text = "Damaged Beyond Repair";
-            ShowButton(game_over_txt_fied);
-            ShowButton(replay_btn);
-            ShowButton(home_btn);
-            ShowButton(finalDistanceField);
-            ShowButton(roadSelectButton);
-            HideButton(distanceField);
-            HideButton(leftButton);
-            HideButton(rightButton);
-            HideButton(coinsTextAndImgs);
-            HideButton(boostButton);
-            foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
-                Destroy(g);
-            Time.timeScale = 0;
-        }
-        else if(fuel_bar_obj.GetComponent<FuelBar>().GetFuel() == 0)
-        {
-            game_over_txt_fied.GetComponent<UnityEngine.UI.Text>().text = "Out Of Fuel";
-            ShowButton(game_over_txt_fied);
-            ShowButton(replay_btn);
-            ShowButton(home_btn);
-            ShowButton(finalDistanceField);
-            ShowButton(roadSelectButton);
-            HideButton(distanceField);
-            HideButton(leftButton);
-            HideButton(rightButton);
-            HideButton(coinsTextAndImgs);
-            HideButton(boostButton);
+            if(damagedBeyondRepair)
+                gameOverTextField.GetComponent<UnityEngine.UI.Text>().text = "Damaged Beyond Repair";
+            else
+                gameOverTextField.GetComponent<UnityEngine.UI.Text>().text = "Out Of Fuel";
+            ShowItems(new GameObject[] { gameOverTextField,
+                                         replayButton,
+                                         homeButton,
+                                         finalDistanceField,
+                                         roadSelectButton });
+            HideItems(new GameObject[] { distanceField,
+                                         leftButton,
+                                         rightButton,
+                                         coinsTextAndImgs,
+                                         boostButton });
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
                 Destroy(g);
             Time.timeScale = 0;
@@ -169,4 +146,7 @@ public class SceneDrawing : MonoBehaviour
     }
 
     public Vehicle GetVehicle() => selectedCar;
+    public void ReloadScene() => SceneManager.LoadScene("Car");
+    public void ResetHealthBar(HealthBar healthBar) => healthBar.SetMaxHealth(HEALTH_SLIDER_MAX_VALUE);
+    public void ResetFuelBar(FuelBar fuelBar) => fuelBar.SetMaxFuel(FUEL_SLIDER_MAX_VALUE);
 }

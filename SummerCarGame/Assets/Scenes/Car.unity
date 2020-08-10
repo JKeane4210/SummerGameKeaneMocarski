@@ -1811,14 +1811,11 @@ MonoBehaviour:
   headlighR: {fileID: 781423719}
   illuminateCar: {fileID: 2102208297}
   mainCamera: {fileID: 6176581357537322160}
-  health_bar_obj: {fileID: 1761169414}
-  fuel_bar_obj: {fileID: 848051529}
-  replay_btn: {fileID: 228818461}
-  home_btn: {fileID: 11907672}
-  game_over_txt_fied: {fileID: 2602245}
-  roadBlock: {fileID: 4980302385814018335, guid: 8025424b539854f93804c3ef481c1db3,
-    type: 3}
-  staticRoadBlock: {fileID: 0}
+  healthBarObj: {fileID: 1761169414}
+  fuelBarObj: {fileID: 848051529}
+  replayButton: {fileID: 228818461}
+  homeButton: {fileID: 11907672}
+  gameOverTextField: {fileID: 2602245}
   fuelBar: {fileID: 848051532}
   healthBar: {fileID: 1761169416}
   finalDistanceField: {fileID: 1654050276}
@@ -2950,9 +2947,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2d892fcecda447cbe19797112e5b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addNew: 
   powerUpCounts: 0000000000000000
   isTrue: []
-  addNew: 
 --- !u!1 &1900196430
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,7 +57,8 @@ public class CarDeerCollide : MonoBehaviour
 
     void Explode()
     {
-        if (explosionsEnabled) Instantiate(explosionEffect, transform.position, transform.rotation);
+        if (explosionsEnabled)
+            Instantiate(explosionEffect, transform.position, transform.rotation);
     }
 
     public void ChangeExplosionsStatus()

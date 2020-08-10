@@ -46,8 +46,5 @@ public class TextAddAnimation : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void SetColor(Color c)
-    {
-        GetComponent<TextMeshProUGUI>().color = c;
-    }
+    public void SetColor(Color c) => GetComponent<TextMeshProUGUI>().color = c;
 }

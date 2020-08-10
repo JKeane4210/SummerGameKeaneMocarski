@@ -1218,7 +1218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundPlatform: {fileID: 919132149155446097, guid: c74d6860852b143698c785fd39155018,
     type: 3}
-  camera: {fileID: 798002904}
+  mainCamera: {fileID: 798002904}
   selectedTerainText: {fileID: 41561293}
 --- !u!114 &3898950068561742690
 MonoBehaviour:

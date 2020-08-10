@@ -12,12 +12,8 @@ public class Shop : MonoBehaviour
    void Start()
    {
        ItemTemplate = ShopScrollView.GetChild(0).gameObject;
-
        for (int i = 0; i < 12; i++)
-       {
-           g = Instantiate (ItemTemplate, ShopScrollView);
-       }
-
+            g = Instantiate(ItemTemplate, ShopScrollView);
        Destroy(ItemTemplate);
    }
 }

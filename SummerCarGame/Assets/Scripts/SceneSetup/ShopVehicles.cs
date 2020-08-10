@@ -8,13 +8,14 @@ using UnityEngine.SceneManagement;
 public class ShopVehicles : MonoBehaviour
 {
     public GameObject sceneController;
-    private Vehicle[] vehicles;
     public GameObject shopItem;
+
+    private Vehicle[] vehicles;
+    private ArrayList purchasedCars;
     private GameObject gameSharedUI;
     private GameObject unlockedCarPanel;
     private GameObject showPurchasedCars;
     private GameObject autoShopPanel;
-    //private GameObject coinText;
 
     void Start()
     {
@@ -23,22 +24,20 @@ public class ShopVehicles : MonoBehaviour
         gameSharedUI = GameObject.FindGameObjectWithTag("GameSharedUI");
         unlockedCarPanel = GameObject.FindGameObjectWithTag("UnlockedPage");
         showPurchasedCars = GameObject.FindGameObjectWithTag("CheckBox");
-        //coinText = GameObject.FindGameObjectWithTag("CoinText");
         vehicles = sceneController.GetComponent<VehicleList>().GetVehicles();
+        purchasedCars = sceneController.GetComponent<VehicleList>().GetPurchasedCars();
         UpdateSelectedVehicleField();
         float shopItemHeight = shopItem.GetComponent<RectTransform>().rect.height;
-        GetComponent<RectTransform>().sizeDelta = new Vector2(0 , vehicles.Length * (shopItemHeight + 10));
+        if(showPurchasedCars.GetComponent<CheckBox>().IsChecked())
+            GetComponent<RectTransform>().sizeDelta = new Vector2(0, purchasedCars.Count * (shopItemHeight + 10));
+        else
+            GetComponent<RectTransform>().sizeDelta = new Vector2(0 , vehicles.Length * (shopItemHeight + 10));
         float startingYPos = GetComponent<RectTransform>().rect.height / 2 - (shopItemHeight + 10) / 2;
         int i = 0;
         showPurchasedCars.GetComponent<Button>().onClick.AddListener(delegate { SceneManager.LoadScene("AutoShop"); });
 
         foreach(Vehicle vehicle in vehicles)
         {
-            //if (sceneController.GetComponent<VehicleList>().GetPurchasedCars().Contains(vehicle.GetName()))
-            //    print(vehicle.GetName());
-            //if (showPurchasedCars.GetComponent<CheckBox>().IsChecked() && sceneController.GetComponent<VehicleList>().GetPurchasedCars().Contains(vehicle.GetName()))
-            //    print("car allowed");
-
             if (!showPurchasedCars.GetComponent<CheckBox>().IsChecked() || (showPurchasedCars.GetComponent<CheckBox>().IsChecked() && sceneController.GetComponent<VehicleList>().GetPurchasedCars().Contains(vehicle.GetName())))
             {
                 GameObject newShopItem = Instantiate(shopItem);
@@ -46,17 +45,14 @@ public class ShopVehicles : MonoBehaviour
                 newShopItem.transform.SetParent(transform, false);
                 newShopItem.name = vehicle.GetName();
                 AutoShopItem_ autoShopItem = newShopItem.GetComponent<AutoShopItem_>();
-
                 //Price
                 int carPrice = vehicle.GetPrice();
                 autoShopItem.price.GetComponent<TextMeshProUGUI>().text = carPrice.ToString();
-
                 //SLIDERS
                 autoShopItem.characterName.GetComponent<TextMeshProUGUI>().text = vehicle.GetName();
                 autoShopItem.speedBar.GetComponent<Image>().fillAmount = vehicle.GetVelocity() / 40f;
                 autoShopItem.fuelBar.GetComponent<Image>().fillAmount = vehicle.GetMaxFuel() / 150f;
                 autoShopItem.healthBar.GetComponent<Image>().fillAmount = (float)(1.0f * vehicle.GetMaxHealth() / 150f);
-
                 //BUTTONS
                 Button selectBuyButton = autoShopItem.selectButton.GetComponent<Button>();
                 Button infoButton = autoShopItem.infoButton.GetComponent<Button>();
@@ -84,17 +80,13 @@ public class ShopVehicles : MonoBehaviour
                     selectBuyButton.colors = cb;
                     selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem, vehicle); });
                     selectBuyButton.onClick.AddListener(delegate { autoShopPanel.SetActive(false); });
-                    //gameSharedUI.GetComponent<GameSharedUI>().BuyCar(vehicle.GetPrice());
                 }
                 i++;
             }
         }
     }
 
-    public void RedrawShopItems()
-    {
-        Start();
-    }
+    public void RedrawShopItems() => Start();
 
     public void BuyCar(GameObject autoShopItem, Vehicle vehicle)
     {
@@ -117,14 +109,10 @@ public class ShopVehicles : MonoBehaviour
         GameObject newCar = vehicle.GetGameObjectNoComponents(new Vector3(0, -3 + vehicle.GetUnlockedAddOn(), 100), new Vector3(vehicle.GetViewingScale().x * scale_fact, vehicle.GetViewingScale().y * scale_fact, vehicle.GetViewingScale().z * scale_fact));
         RotateObject r = newCar.AddComponent<RotateObject>();
         r.direction = 'y';
-        //newCar.transform.position = new Vector3(0, 25, 100);
         unlockedCarPanel.SetActive(true);
         unlockedCarPanel.GetComponent<UnlockedPage_>().nameText.GetComponent<TextMeshProUGUI>().text = vehicle.GetName();
         unlockedCarPanel.GetComponent<UnlockedPage_>().nameDescrText.GetComponent<TextMeshProUGUI>().text = vehicle.GetDescription();
     }
 
-    public void UpdateSelectedVehicleField()
-    {
-        GetComponent<CarSelect>().selectedCarText.GetComponent<TextMeshProUGUI>().text = "Selected Vehicle: " + sceneController.GetComponent<VehicleList>().GetSelectedVehicle().GetName();
-    }
+    public void UpdateSelectedVehicleField() => GetComponent<CarSelect>().selectedCarText.GetComponent<TextMeshProUGUI>().text = $"Selected Vehicle: {sceneController.GetComponent<VehicleList>().GetSelectedVehicle().GetName()}";
 }
