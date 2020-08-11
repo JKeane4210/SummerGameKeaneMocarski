@@ -11,9 +11,11 @@ public class PowerUp : MonoBehaviour
     Vector3 initialTransformPosition;
     private GameObject car;
     private GameObject canvas;
+    private GameObject forceField;
 
     private void Start()
     {
+        forceField = (GameObject)Resources.Load("Models/Powerups/forceField");
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
         initialTransformPosition = transform.position;
@@ -56,6 +58,12 @@ public class PowerUp : MonoBehaviour
             canvas.GetComponent<powerUpBoard>().isTrue.Add("Animal");
             foreach(GameObject animal in GameObject.FindGameObjectsWithTag("Animal"))
                 animal.GetComponentInChildren<Renderer>().material = (Material)Resources.Load("Models/Powerups/shinierGold");
+        }
+        else if(powerupType == "ForceField")
+        {
+            GameObject newForceField = Instantiate(forceField);
+            newForceField.transform.SetParent(car.transform, false);
+            newForceField.transform.localScale = new Vector3(3, 3, 3);
         }
         Destroy(gameObject);
     }
