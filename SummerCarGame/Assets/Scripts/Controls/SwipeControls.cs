@@ -41,17 +41,13 @@ public class SwipeControls : MonoBehaviour
 
         //UNCOMMENT THIS TO PLAY GAME ON COMPUTER SIMULATOR
         if (Input.GetMouseButtonDown(0))
-        {
             pointA = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        }
         if (Input.GetMouseButton(0))
         {
             pointB = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             latVel = pointB.x - pointA.x;
         }
         else
-        {
             latVel = 0;
-        }
     }
 }

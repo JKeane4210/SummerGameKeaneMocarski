@@ -5,12 +5,13 @@ using UnityEngine;
 public class CoinMaker : MonoBehaviour
 {
     public GameObject coin;
+    public float spawnInterval;
+    public float roadWidth;
+
     private List<GameObject> powerups = new List<GameObject>();
-    public float interval;
-    private float time;
-    private int counter = 0;
-    private int power_counter = 0;
-    public float width;
+    private float timeSinceLastSpawn;
+    private int coinCounter = 0;
+    private int powerupCounter = 0;
 
     void Start()
     {
@@ -21,23 +22,24 @@ public class CoinMaker : MonoBehaviour
 
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= interval)
+        timeSinceLastSpawn += Time.deltaTime;
+        if (timeSinceLastSpawn >= spawnInterval)
         {
-            time = 0;
-            GameObject coin_add = coin;
+            timeSinceLastSpawn = 0;
+            GameObject addedObject;
             if (coin == null)
             {
-                coin_add = powerups[(int)Random.Range(0, (float)powerups.Count - 0.01f)];
-                coin_add.name = "PowerUp" + power_counter.ToString();
-                power_counter++;
-                Instantiate(coin_add, new Vector3(Random.Range(-width, width), 3.5f, transform.position.z + 60f), Quaternion.Euler(-90f, 0f, 0f));
+                addedObject = powerups[(int)Random.Range(0, (float)powerups.Count - 0.01f)];
+                addedObject.name = $"PowerUp{powerupCounter}";
+                powerupCounter++;
+                Instantiate(addedObject, new Vector3(Random.Range(-roadWidth, roadWidth), 3.5f, transform.position.z + 60f), Quaternion.Euler(-90f, 0f, 0f));
             }
             else
             {
-                coin_add.name = "Coin" + counter.ToString();
-                counter++;
-                Instantiate(coin_add, new Vector3(Random.Range(-width, width), 3.5f, transform.position.z + 60f), Quaternion.identity);
+                addedObject = coin;
+                addedObject.name = $"Coin{coinCounter}";
+                coinCounter++;
+                Instantiate(addedObject, new Vector3(Random.Range(-roadWidth, roadWidth), 3.5f, transform.position.z + 60f), Quaternion.identity);
             }
         }
     }

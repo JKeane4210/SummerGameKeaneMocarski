@@ -6,14 +6,16 @@ using UnityEngine.UI;
 
 public class powerUpBoard : MonoBehaviour
 {
+    private const float NORMAL_TIMER_LENGTH = 8;
+    private const float GOLD_ANIMAL_POWERUP_TIMER_LENGTH = 4;
+
     private GameObject canvas;
     private GameObject radialElement;
 
+    public string addNew;
+    public int[] powerUpCounts = new int[2]; //NUMBER OF RADIAL POWERUPS
     public List<string> isTrue = new List<string>();
-    public string addNew = null;
-
-    private GameObject sceneController;
-    private float timerLength = 8;
+    
     private List<GameObject> powerups = new List<GameObject>();
     private List<float> timers = new List<float>();
     private List<int> removals = new List<int>();
@@ -21,7 +23,7 @@ public class powerUpBoard : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
         radialElement = (GameObject)Resources.Load("Models/UI_Stuff/RadialTimer");
         canvas = gameObject;
     }
@@ -29,64 +31,72 @@ public class powerUpBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (addNew != null)
+        if (addNew != null && addNew != "")
         {
-            GameObject newRadial = Instantiate(radialElement, canvas.transform, false);
-            newRadial.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            newRadial.GetComponent<RectTransform>().anchoredPosition = new Vector3(-40 + GameObject.FindGameObjectsWithTag("RadialElement").Length * 110, 60, 0);
-            newRadial.GetComponentInChildren<TextMeshProUGUI>().text = addNew;
-            powerups.Add(newRadial);
-            timers.Add(timerLength);
+            AddNewRadialTimer(addNew);
+            if (addNew == "Animal")
+                timers.Add(GOLD_ANIMAL_POWERUP_TIMER_LENGTH);
+            else
+                timers.Add(NORMAL_TIMER_LENGTH);
             addNew = null;
         }
         for (int i = 0; i < timers.Count; i++)
-        {
             timers[i] -= Time.deltaTime;
-        }
-        //sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
-        foreach (GameObject g in powerups)
+        foreach (GameObject powerup in powerups)
         {
-            g.GetComponentInChildren<Image>().fillAmount = timers[powerups.IndexOf(g)] / timerLength;
-        }
-        foreach (GameObject g in powerups)
-        {
-            if (timers[powerups.IndexOf(g)] <= 0)
-            {
-                Destroy(powerups[powerups.IndexOf(g)]);
-                removals.Add(powerups.IndexOf(g));
-                sceneController.GetComponent<SceneDrawing>().coinsTextAndImgs.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
-                foreach (GameObject g2 in powerups)
-                    g2.GetComponent<RectTransform>().anchoredPosition = new Vector2(g2.GetComponent<RectTransform>().anchoredPosition.x - 110, g2.GetComponent<RectTransform>().anchoredPosition.y);
-            }
+            Image powerupTimerImage = powerup.GetComponent<Image>();
+            if (isTrue[powerups.IndexOf(powerup)] == "Animal")
+                powerupTimerImage.fillAmount = timers[powerups.IndexOf(powerup)] / GOLD_ANIMAL_POWERUP_TIMER_LENGTH;
+            else
+                powerupTimerImage.fillAmount = timers[powerups.IndexOf(powerup)] / NORMAL_TIMER_LENGTH;
+            if (timers[powerups.IndexOf(powerup)] <= 0)
+                removals.Add(powerups.IndexOf(powerup));
         }
         foreach (int i in removals)
+            RemoveElementInAllArrays(i);
+        if(removals.Count > 0)
         {
-            powerups.Remove(powerups[i]);
-            timers.Remove(timers[i]);
-            isTrue.Remove(isTrue[i]);
+            for(int i = removals[0]; i < powerups.Count; i++)
+            {
+                RectTransform powerupRadialTimerRectTransform = powerups[i].GetComponent<RectTransform>();
+                powerupRadialTimerRectTransform.anchoredPosition = new Vector2(powerupRadialTimerRectTransform.anchoredPosition.x - 110 * removals.Count, powerupRadialTimerRectTransform.anchoredPosition.y);
+            }
         }
         removals.Clear();
         if (Time.timeScale == 0)
-        {
             while (powerups.Count > 0)
-            {
-                Destroy(powerups[0]);
-                powerups.RemoveAt(0);
-                timers.RemoveAt(0);
-                isTrue.RemoveAt(0);
-            }
-        }
+                RemoveElementInAllArrays(0);
+        UpdatePowerUpCounts();
     }
 
-    public bool AllTrue(string powerup)
+    private void RemoveElementInAllArrays(int arrayIndex)
     {
-        if (isTrue.Count == 0)
-            return false;
+        Destroy(powerups[arrayIndex]);
+        powerups.RemoveAt(arrayIndex);
+        timers.RemoveAt(arrayIndex);
+        isTrue.RemoveAt(arrayIndex);
+    }
+
+    private void AddNewRadialTimer(string radialTimerName)
+    {
+        GameObject newRadial = Instantiate(radialElement, canvas.transform, false);
+        newRadial.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        newRadial.GetComponent<RectTransform>().anchoredPosition = new Vector3(-40 + GameObject.FindGameObjectsWithTag("RadialElement").Length * 110, 60, 0);
+        newRadial.GetComponentInChildren<TextMeshProUGUI>().text = radialTimerName;
+        powerups.Add(newRadial);
+    }
+
+    private int CountPowerUp(string powerup)
+    {
+        int count = 0;
         foreach (string s in isTrue)
-        {
-            if (s == powerup)
-                return true;
-        }
-        return false;
+            if (s == powerup) count++;
+        return count;
+    }
+
+    private void UpdatePowerUpCounts()
+    {
+        powerUpCounts[0] = CountPowerUp("2X");
+        powerUpCounts[1] = CountPowerUp("Animal");
     }
 }

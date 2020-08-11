@@ -2007,7 +2007,7 @@ MonoBehaviour:
   unlockedPagePanel: {fileID: 1165239027}
   nameText: {fileID: 1695374226}
   nameDescrText: {fileID: 457359143}
-  okButton: {fileID: 121874310}
+  okButton: {fileID: 121874312}
 --- !u!1 &1279673678
 GameObject:
   m_ObjectHideFlags: 0

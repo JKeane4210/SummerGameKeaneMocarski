@@ -5,24 +5,23 @@ using TMPro;
 
 public class CoinMover : MonoBehaviour
 {
-    private float speed = 2f;
-    private float delta = 1f;
+    private const float BOBBING_SPEED = 2f;
+    private const float BOBBING_AMPLITUDE = 1f;
     private GameObject canvas;
 
-    Vector3 pos;
+    Vector3 initialPosition;
 
     void Start()
     {
-        pos = transform.position;
+        initialPosition = transform.position;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
     void Update()
     {
         transform.Rotate(new Vector3(0f, 150f, 0f) * Time.deltaTime);
-
-        float nY = Mathf.Sin(speed * Time.time) * delta + pos.y;
-        transform.position = new Vector3(transform.position.x, nY, transform.position.z);
+        float newY = Mathf.Sin(BOBBING_SPEED * Time.time) * BOBBING_AMPLITUDE + initialPosition.y;
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,11 +32,9 @@ public class CoinMover : MonoBehaviour
             GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
             GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
             addToScreen.GetComponent<TextAddAnimation>().coinAdd = other.gameObject.GetComponent<CoinCounter>().coinAddition;
-            if (other.GetComponent<CoinCounter>().AllTrue())
+            if (canvas.GetComponent<powerUpBoard>().powerUpCounts[0] > 0)
                 addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
             addToScreen.transform.SetParent(canvas.transform, false);
-            //addToScreen.GetComponent<RectTransform>().position = new Vector3(-167, 84, 0);
-            //coinsAddedMsg.SetActive(true);
         }
     }
 
