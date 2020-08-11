@@ -7,6 +7,8 @@ public class SceneDrawing : MonoBehaviour
 {
     private const int HEALTH_SLIDER_MAX_VALUE = 100;
     private const float FUEL_SLIDER_MAX_VALUE = 4;
+    private const int MIN_BASE_ROAD_INDEX = 1;
+    private const int MAX_BASE_ROAD_INDEX = 4;
 
     public GameObject sun;
     public GameObject headlightL;
@@ -32,21 +34,18 @@ public class SceneDrawing : MonoBehaviour
     private Vehicle selectedCar;
     private WorldTerrain selectedWorld;
 
+    //Start is called before the first frame update
     private void Start()
     {
         GetComponent<WorldTerrainList>().SimulateStart();
         selectedWorld = GetComponent<WorldTerrainList>().GetSelectedTerrain();
         GameObject staticRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 0), Quaternion.identity);
         staticRoad.name = "StaticRoad";
-        for (int i = 1; i <= 4; i++)
+        for (int i = MIN_BASE_ROAD_INDEX; i <= MAX_BASE_ROAD_INDEX; i++)
         {
             GameObject newRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 24.5f * (float)i), Quaternion.identity);
             newRoad.name = $"BaseRoad{i}";
-            try
-            {
-                Component c = newRoad.GetComponent<RandomDeerInstantiation>();
-                Destroy(c);
-            }
+            try { Destroy(newRoad.GetComponent<RandomDeerInstantiation>()); }
             catch { print("Already has no RandomDeerInstantion"); }
         }
         GetComponent<VehicleList>().SimulateStart();
@@ -118,6 +117,7 @@ public class SceneDrawing : MonoBehaviour
             ShowItem(gameObject);
     }
 
+    //Update is called once per frame
     void Update()
     {
         bool outOfFuel = fuelBarObj.GetComponent<FuelBar>().GetFuel() == 0;
@@ -139,8 +139,8 @@ public class SceneDrawing : MonoBehaviour
                                          rightButton,
                                          coinsTextAndImgs,
                                          boostButton });
-            foreach (GameObject g in GameObject.FindGameObjectsWithTag("CoinsAdded"))
-                Destroy(g);
+            foreach (GameObject coinsAddedAnimatedText in GameObject.FindGameObjectsWithTag("CoinsAdded"))
+                Destroy(coinsAddedAnimatedText);
             Time.timeScale = 0;
         }
     }

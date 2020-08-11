@@ -10,7 +10,7 @@ public class VehicleList : MonoBehaviour
 
     private Vehicle[] vehicles;
 
-    /*CONSTRUCTOR_PARAMS
+    /* CONSTRUCTOR_PARAMS
      *     Name
      *     Description
      *     MaxHealth
