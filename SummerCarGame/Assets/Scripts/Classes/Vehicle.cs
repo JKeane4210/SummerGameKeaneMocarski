@@ -210,7 +210,7 @@ public class Vehicle
         CoinMaker healthPacks = g_.AddComponent<CoinMaker>();
         //healthPacks.coin = (GameObject)Resources.Load("Models/Powerups/twoTimes");
         healthPacks.coin = null;
-        healthPacks.spawnInterval = 2f;
+        healthPacks.spawnInterval = 8f;
         healthPacks.roadWidth = 9;
 
         //COIN COUNTER
