@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-   public int maxHealth = 100;
-   public int currentHealth;
-   public float maxFuel = 100;
-   public float currentFuel;
-   public HealthBar healthBar;
-   public FuelBar fuelBar;
-   private Transform car_transform;
-   private float distance_traveled;
+    public int maxHealth = 100;
+    public int currentHealth;
+    public float maxFuel = 100;
+    public float currentFuel;
+    public HealthBar healthBar;
+    public FuelBar fuelBar;
+    public float forceFieldRad = 3;
+
+    private Transform car_transform;
+    private float distance_traveled;
 
     public void SimulateStart()
     {

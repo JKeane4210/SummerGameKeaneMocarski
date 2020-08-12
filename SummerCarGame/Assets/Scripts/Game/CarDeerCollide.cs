@@ -7,9 +7,12 @@ using UnityEngine.UI;
 public class CarDeerCollide : MonoBehaviour
 {
     public bool goldAnimal = false;
-    static bool explosionsEnabled = false;
+    public bool forceFieldOn = false;
     public GameObject health_bar;
     public GameObject explosionEffect;
+
+    static bool explosionsEnabled = false;
+
     private GameObject canvas;
 
     private void Start()
@@ -22,15 +25,21 @@ public class CarDeerCollide : MonoBehaviour
     {
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0)
             goldAnimal = false;
+        if (canvas.GetComponent<powerUpBoard>().powerUpCounts[2] == 0)
+        {
+            forceFieldOn = false;
+            if (GetComponentInChildren<PowerUp>() != null)
+                Destroy(GetComponentInChildren<PowerUp>().gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider otherCollider)
     {
         if (!goldAnimal)
         {
-            HealthBar health = health_bar.GetComponent<HealthBar>();
-            if (otherCollider.gameObject.tag == "Animal")
+            if (otherCollider.tag == "Animal" && !forceFieldOn)
             {
+                HealthBar health = health_bar.GetComponent<HealthBar>();
                 health.DecreaseHealth(otherCollider.GetComponent<DeerRunning>().GetDamage());
                 Destroy(otherCollider);
                 Explode();
@@ -38,7 +47,7 @@ public class CarDeerCollide : MonoBehaviour
         }
         else
         {
-            if (otherCollider.gameObject.tag == "Animal")
+            if (otherCollider.tag == "Animal")
             {
                 GameDataManager.AddCoins((int)otherCollider.GetComponent<DeerRunning>().GetDamage() * 2);
                 GameSharedUI.Instance.UpdateCoinsUIText();
@@ -49,7 +58,8 @@ public class CarDeerCollide : MonoBehaviour
                     addToScreen.GetComponent<TextMeshProUGUI>().color = Color.yellow;
                 addToScreen.GetComponent<TextAddAnimation>().coinAdd = (int)otherCollider.GetComponent<DeerRunning>().GetDamage() * 2 * (int)Mathf.Pow(2, activeTwoTimes);
                 addToScreen.transform.SetParent(canvas.transform, false);
-                otherCollider.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.transform.SetParent(null);
+                if (otherCollider.gameObject.GetComponentInChildren<ParticleSystem>() != null)
+                    otherCollider.gameObject.GetComponentInChildren<ParticleSystem>().gameObject.transform.SetParent(null);
                 Destroy(otherCollider.gameObject);
             }
         }

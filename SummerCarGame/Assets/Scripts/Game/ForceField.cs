@@ -13,10 +13,10 @@ public class ForceField : MonoBehaviour
             Vector3 currentPosition = other.gameObject.transform.position;
             float deltaX = currentPosition.x - gameObject.transform.position.x;
             float deltaZ = currentPosition.z - gameObject.transform.position.z;
-            print($"({deltaX}, {deltaZ})");
-            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3((currentPosition.x - gameObject.transform.position.x) * FORCE_STRENGTH,
+            //print($"({deltaX}, {deltaZ})");
+            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(deltaX * FORCE_STRENGTH,
                                                                             0,
-                                                                            (currentPosition.z - gameObject.transform.position.z) * FORCE_STRENGTH));
+                                                                            deltaZ * FORCE_STRENGTH));
         }
     }
 }

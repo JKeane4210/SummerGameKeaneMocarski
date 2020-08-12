@@ -2948,7 +2948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addNew: 
-  powerUpCounts: 0000000000000000
+  powerUpCounts: 000000000000000000000000
   isTrue: []
 --- !u!1 &1900196430
 GameObject:

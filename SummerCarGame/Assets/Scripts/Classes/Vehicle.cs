@@ -29,8 +29,19 @@ public class Vehicle
     public float unlockedAddOn;
 
     private float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
+    private float forceFieldRadius; //what the scale will be of the sphere
 
-    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, float mmScale, float mmPosX, float mmPosY, float mmPosZ, float rotX, float rotY)
+    public Vehicle(string n, string d,
+                   int health, float fuel,
+                   float vel, GameObject g,
+                   Vector3 dimen,
+                   Vector3 gameLoc, Vector3 viewingLoc,
+                   Vector3 gameScl, Vector3 viewingScl,
+                   int p, float illHeight,
+                   float mmScale,
+                   float mmPosX, float mmPosY, float mmPosZ,
+                   float rotX, float rotY,
+                   float forceRad)
     {
         name = n;
         dscr = d;
@@ -52,9 +63,19 @@ public class Vehicle
         mainMenuPositionY = GetViewingLocation().y + mmPosY;
         mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
         mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
+        forceFieldRadius = forceRad;
     }
     
-    public Vehicle(string n, string d, int health, float fuel, float vel, GameObject g, Vector3 dimen, Vector3 gameLoc, Vector3 viewingLoc, Vector3 gameScl, Vector3 viewingScl, int p, float illHeight, float add_on, float mmScale, float mmPosX, float mmPosY, float mmPosZ, float rotX, float rotY)
+    public Vehicle(string n, string d,
+                   int health, float fuel,
+                   float vel, GameObject g,
+                   Vector3 dimen,
+                   Vector3 gameLoc, Vector3 viewingLoc,
+                   Vector3 gameScl, Vector3 viewingScl,
+                   int p, float illHeight,
+                   float add_on, float mmScale,
+                   float mmPosX, float mmPosY, float mmPosZ,
+                   float rotX, float rotY, float forceRad)
     {
         name = n;
         dscr = d;
@@ -76,6 +97,7 @@ public class Vehicle
         mainMenuPositionY = GetViewingLocation().y + mmPosY;
         mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
         mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
+        forceFieldRadius = forceRad;
     }
 
     public void SetLocations(Vector3 game, Vector3 viewing)
@@ -134,6 +156,7 @@ public class Vehicle
         carBehaviour.currentFuel = fuel;
         carBehaviour.healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
         carBehaviour.fuelBar = GameObject.FindGameObjectWithTag("Fuel").GetComponent<FuelBar>();
+        carBehaviour.forceFieldRad = forceFieldRadius;
         //carBehaviour.car_transform = g.transform;
 
         //CHARACTER_CONTROLLER
@@ -295,4 +318,5 @@ public class Vehicle
     public int GetPrice() => price;
     public float GetIlluminationHeight() => illuminationHeight;
     public float GetUnlockedAddOn() => unlockedAddOn;
+    public float GetForceFieldRad => forceFieldRadius;
 }
