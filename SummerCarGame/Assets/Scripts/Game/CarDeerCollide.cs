@@ -23,6 +23,7 @@ public class CarDeerCollide : MonoBehaviour
 
     void Update()
     {
+        if (canvas.GetComponent<powerUpBoard>() == null) return;
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0)
             goldAnimal = false;
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[2] == 0)
