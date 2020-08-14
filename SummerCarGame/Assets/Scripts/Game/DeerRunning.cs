@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class DeerRunning : MonoBehaviour
 {
+    private const float FRICTION = 0.95f; //closer to 1 means less friction
+
     public Transform player;
     public Rigidbody player_rigidbody;
     public float motion_multiplier;
     public float damage;
-    private Vector3 trajectory = Vector3.forward;
-    private GameObject canvas;
     public Material normalSkin;
     public GameObject goldSprinkle;
+
+    private Vector3 trajectory = Vector3.forward;
+    private GameObject canvas;
+    
     bool sprinkling = false;
     GameObject newSprinkle;
 
@@ -25,6 +29,7 @@ public class DeerRunning : MonoBehaviour
             trajectory = motion_multiplier * new Vector3(Mathf.Cos(player.localRotation.y), 0f, -Mathf.Sin(player.localRotation.y));
         else if (degreeRotY <= 271f && degreeRotY >= 209f)
             trajectory = motion_multiplier * new Vector3(-Mathf.Cos(player.localRotation.y), 0f, -Mathf.Sin(player.localRotation.y));
+        player_rigidbody.velocity = trajectory;
     }
 
     // Update is called once per frame
@@ -52,10 +57,13 @@ public class DeerRunning : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        player_rigidbody.velocity = trajectory;
+        if (player_rigidbody.velocity.x != trajectory.x || player_rigidbody.velocity.z != trajectory.z)
+            player_rigidbody.velocity = new Vector3((player_rigidbody.velocity.x - trajectory.x) * FRICTION + trajectory.x, 0, (player_rigidbody.velocity.z - trajectory.z) * FRICTION + trajectory.z);
     }
 
     public float GetDamage() => damage;
+    public Vector3 GetTrajectory() => trajectory;
+    public void SetTrajector(Vector3 newTrajectory) => trajectory = newTrajectory;
 }

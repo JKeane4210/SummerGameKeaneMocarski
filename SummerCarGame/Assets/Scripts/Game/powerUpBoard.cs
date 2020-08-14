@@ -13,7 +13,7 @@ public class powerUpBoard : MonoBehaviour
     private GameObject radialElement;
 
     public string addNew;
-    public int[] powerUpCounts = new int[2]; //NUMBER OF RADIAL POWERUPS
+    public int[] powerUpCounts = new int[3];
     public List<string> isTrue = new List<string>();
     
     private List<GameObject> powerups = new List<GameObject>();
@@ -23,7 +23,7 @@ public class powerUpBoard : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         radialElement = (GameObject)Resources.Load("Models/UI_Stuff/RadialTimer");
         canvas = gameObject;
     }
@@ -71,7 +71,8 @@ public class powerUpBoard : MonoBehaviour
 
     private void RemoveElementInAllArrays(int arrayIndex)
     {
-        Destroy(powerups[arrayIndex]);
+        try { Destroy(powerups[arrayIndex]); }
+        catch { Debug.Log("Already removed"); }
         powerups.RemoveAt(arrayIndex);
         timers.RemoveAt(arrayIndex);
         isTrue.RemoveAt(arrayIndex);
@@ -83,11 +84,14 @@ public class powerUpBoard : MonoBehaviour
         newRadial.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         newRadial.GetComponent<RectTransform>().anchoredPosition = new Vector3(-40 + GameObject.FindGameObjectsWithTag("RadialElement").Length * 110, 60, 0);
         newRadial.GetComponentInChildren<TextMeshProUGUI>().text = radialTimerName;
+        if (radialTimerName == "Force\nField")
+            newRadial.GetComponentsInChildren<Image>()[1].color = Color.blue;
         powerups.Add(newRadial);
     }
 
     private int CountPowerUp(string powerup)
     {
+        if (isTrue.Count == 0) return 0;
         int count = 0;
         foreach (string s in isTrue)
             if (s == powerup) count++;
@@ -98,5 +102,6 @@ public class powerUpBoard : MonoBehaviour
     {
         powerUpCounts[0] = CountPowerUp("2X");
         powerUpCounts[1] = CountPowerUp("Animal");
+        powerUpCounts[2] = CountPowerUp("ForceField");
     }
 }
