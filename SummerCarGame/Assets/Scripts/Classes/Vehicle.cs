@@ -67,7 +67,7 @@ public class Vehicle
         forceFieldRadius = forceRad;
         headlightOffsetAddOn = 0;
     }
-    
+
     public Vehicle(string n, string d,
                    int health, float fuel,
                    float vel, GameObject g,
@@ -77,31 +77,9 @@ public class Vehicle
                    int p, float illHeight,
                    float add_on, float mmScale,
                    float mmPosX, float mmPosY, float mmPosZ,
-                   float rotX, float rotY, float forceRad)
-    {
-        name = n;
-        dscr = d;
-        maxHealth = health;
-        maxFuel = fuel;
-        velocity = vel;
-        //latVelocity = latVel;
-        car = g;
-        dimensions = dimen;
-        SetLocations(gameLoc, viewingLoc);
-        SetScales(gameScl, viewingScl);
-        price = p;
-        illuminationHeight = illHeight;
-        unlockedAddOn = add_on;
-        mainMenuScaleX = GetViewingScale().x / mmScale;
-        mainMenuScaleY = GetViewingScale().y / mmScale;
-        mainMenuScaleZ = GetViewingScale().z / mmScale;
-        mainMenuPositionX = GetViewingLocation().x + mmPosX;
-        mainMenuPositionY = GetViewingLocation().y + mmPosY;
-        mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
-        mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
-        forceFieldRadius = forceRad;
-        headlightOffsetAddOn = 0;
-    }
+                   float rotX, float rotY, float forceRad) :
+            this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
+                 p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad) => unlockedAddOn = add_on;
 
     public void SetHeadlightOffsetAddon(float addOn) => headlightOffsetAddOn = addOn;
 
