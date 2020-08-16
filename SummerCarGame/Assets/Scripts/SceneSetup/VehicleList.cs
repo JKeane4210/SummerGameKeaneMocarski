@@ -103,7 +103,27 @@ public class VehicleList : MonoBehaviour
             5, 145, //mmRotation
             9
             ),
+        new Vehicle("Taxi",
+            "Black and yellow never looked better.",
+            100,
+            80f,
+            22.5f,
+            (GameObject)Resources.Load("Models/Cars/taxi2"),
+            new Vector3(2.5f, 5, 5.75f),
+            new Vector3(1.5f, 1.6f, 0f),
+            new Vector3(0, -19.5f, -65),
+            new Vector3(1.1f, 1.2f, 1.2f),
+            new Vector3(15,15,15),
+            100,
+            10,
+            12, //mmScale
+            -4, 19, 150, //mmViewingAdjust
+            5, 145, //mmRotation
+            9
+            )
         };
+        // if need a small adjustment to headlights, use this function
+        vehicles[4].SetHeadlightOffsetAddon(1.25f);
         if(selectedVehicle == null)
             selectedVehicle = vehicles[0];
         if (infoVehicle == null)

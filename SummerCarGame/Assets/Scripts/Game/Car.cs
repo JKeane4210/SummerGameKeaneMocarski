@@ -11,6 +11,7 @@ public class Car : MonoBehaviour
     public HealthBar healthBar;
     public FuelBar fuelBar;
     public float forceFieldRad = 3;
+    public float headlightOffsetAddOn;
 
     private Transform car_transform;
     private float distance_traveled;

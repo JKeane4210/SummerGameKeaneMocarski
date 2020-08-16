@@ -29,6 +29,7 @@ public class Vehicle
     public float unlockedAddOn;
 
     private float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
+    private float headlightOffsetAddOn;
     private float forceFieldRadius; //what the scale will be of the sphere
 
     public Vehicle(string n, string d,
@@ -64,6 +65,7 @@ public class Vehicle
         mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
         mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
         forceFieldRadius = forceRad;
+        headlightOffsetAddOn = 0;
     }
     
     public Vehicle(string n, string d,
@@ -98,7 +100,10 @@ public class Vehicle
         mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
         mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
         forceFieldRadius = forceRad;
+        headlightOffsetAddOn = 0;
     }
+
+    public void SetHeadlightOffsetAddon(float addOn) => headlightOffsetAddOn = addOn;
 
     public void SetLocations(Vector3 game, Vector3 viewing)
     {
@@ -157,6 +162,7 @@ public class Vehicle
         carBehaviour.healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
         carBehaviour.fuelBar = GameObject.FindGameObjectWithTag("Fuel").GetComponent<FuelBar>();
         carBehaviour.forceFieldRad = forceFieldRadius;
+        carBehaviour.headlightOffsetAddOn = headlightOffsetAddOn;
         //carBehaviour.car_transform = g.transform;
 
         //CHARACTER_CONTROLLER
@@ -318,5 +324,6 @@ public class Vehicle
     public int GetPrice() => price;
     public float GetIlluminationHeight() => illuminationHeight;
     public float GetUnlockedAddOn() => unlockedAddOn;
-    public float GetForceFieldRad => forceFieldRadius;
+    public float GetForceFieldRad() => forceFieldRadius;
+    public float GetHeadlightOffsetAddOn() => headlightOffsetAddOn;
 }
