@@ -1490,7 +1490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f022ead435f449238c3e91bda658494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 1.5
   latOffset: 0.5
 --- !u!108 &781423721
 Light:
@@ -2194,7 +2193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f022ead435f449238c3e91bda658494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 1.5
   latOffset: -0.5
 --- !u!108 &1226246081
 Light:
@@ -3270,7 +3268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f022ead435f449238c3e91bda658494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 0
   latOffset: 0
 --- !u!108 &2102208299
 Light:

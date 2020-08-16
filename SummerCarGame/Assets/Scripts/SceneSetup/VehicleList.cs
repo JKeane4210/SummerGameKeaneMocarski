@@ -120,11 +120,30 @@ public class VehicleList : MonoBehaviour
             -4, 19, 150, //mmViewingAdjust
             5, 145, //mmRotation
             9
+            ),
+        new Vehicle("Police Car",
+            "Keep the streets safe. Stay on the lookout for criminals.",
+            110,
+            100f,
+            23f,
+            (GameObject)Resources.Load("Models/Cars/policeCar2"),
+            new Vector3(2.5f, 5, 5.75f),
+            new Vector3(1.5f, 1.6f, 0f),
+            new Vector3(0, -19.5f, -65),
+            new Vector3(1.1f, 1.2f, 1.2f),
+            new Vector3(15,15,15),
+            100,
+            10,
+            12, //mmScale
+            -4, 19, 150, //mmViewingAdjust
+            5, 145, //mmRotation
+            9
             )
         };
         // if need a small adjustment to headlights, use this function
         vehicles[4].SetHeadlightOffsetAddon(1.25f);
-        if(selectedVehicle == null)
+        vehicles[5].SetHeadlightOffsetAddon(1.25f);
+        if (selectedVehicle == null)
             selectedVehicle = vehicles[0];
         if (infoVehicle == null)
             infoVehicle = selectedVehicle;
