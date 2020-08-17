@@ -10,8 +10,11 @@ public class UnlockedPage_ : MonoBehaviour
     public GameObject nameText;
     public GameObject nameDescrText;
     public Button okButton;
+    public Button useButton;
+
     private GameObject car;
     private GameObject autoShopPanel;
+    private GameObject sceneController;
 
     void Start()
     {
@@ -21,6 +24,11 @@ public class UnlockedPage_ : MonoBehaviour
         okButton.onClick.AddListener(delegate { DestroyCar(); });
         okButton.onClick.AddListener(delegate { autoShopPanel.SetActive(true); });
         okButton.onClick.AddListener(delegate { SceneManager.LoadScene("AutoShop"); });
+
+        useButton.onClick.AddListener(delegate { unlockedPagePanel.SetActive(false); });
+        useButton.onClick.AddListener(delegate { DestroyCar(); });
+        useButton.onClick.AddListener(delegate { autoShopPanel.SetActive(true); });
+        useButton.onClick.AddListener(delegate { SceneManager.LoadScene("AutoShop"); });
     }
 
     public void DestroyCar()

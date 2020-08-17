@@ -112,6 +112,9 @@ public class ShopVehicles : MonoBehaviour
         unlockedCarPanel.SetActive(true);
         unlockedCarPanel.GetComponent<UnlockedPage_>().nameText.GetComponent<TextMeshProUGUI>().text = vehicle.GetName();
         unlockedCarPanel.GetComponent<UnlockedPage_>().nameDescrText.GetComponent<TextMeshProUGUI>().text = vehicle.GetDescription();
+        unlockedCarPanel.GetComponent<UnlockedPage_>().useButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(vehicle.GetName()); });
+        unlockedCarPanel.GetComponent<UnlockedPage_>().useButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
+        autoShopItem.GetComponent<AutoShopItem_>().priceBox.SetActive(false);
     }
 
     public void UpdateSelectedVehicleField() => GetComponent<CarSelect>().selectedCarText.GetComponent<TextMeshProUGUI>().text = $"Selected Vehicle: {sceneController.GetComponent<VehicleList>().GetSelectedVehicle().GetName()}";
