@@ -25,6 +25,7 @@ public class VehicleList : MonoBehaviour
      *     Price
      *     Illumination Height (for night mode)
      *     UnlockedCarAddOn* optional (default to zero)
+     *     hasCustomHeadlights
     */
 
     private void Start()
@@ -137,7 +138,8 @@ public class VehicleList : MonoBehaviour
             12, //mmScale
             -4, 19, 150, //mmViewingAdjust
             5, 145, //mmRotation
-            9
+            9,
+            true
             )
         };
         // if need a small adjustment to headlights, use this function

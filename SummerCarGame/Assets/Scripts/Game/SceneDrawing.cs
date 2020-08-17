@@ -57,8 +57,16 @@ public class SceneDrawing : MonoBehaviour
         if (GetComponent<ButtonManager>().GetIsNightMode())
         {
             sun.SetActive(false);
-            headlighR.SetActive(true);
-            headlightL.SetActive(true);
+            if (selectedCar.HasCustomHeadlights())
+            {
+                headlighR.SetActive(false);
+                headlightL.SetActive(false);
+            }
+            else
+            {
+                headlighR.SetActive(true);
+                headlightL.SetActive(true);
+            }
             illuminateCar.SetActive(true);
             mainCamera.GetComponent<Camera>().backgroundColor = Color.black;
             RenderSettings.ambientIntensity = 0.15f;
@@ -68,6 +76,13 @@ public class SceneDrawing : MonoBehaviour
         else
         {
             sun.SetActive(true);
+            print(selectedCar.HasCustomHeadlights());
+            if (selectedCar.HasCustomHeadlights())
+            {
+                for (int i = 0; i < car.transform.GetChild(0).childCount; i++)
+                    if (car.transform.GetChild(0).GetChild(i).CompareTag("CustomHeadlight"))
+                        car.transform.GetChild(0).GetChild(i).gameObject.SetActive(false);
+            }
             headlighR.SetActive(false);
             headlightL.SetActive(false);
             illuminateCar.SetActive(false);

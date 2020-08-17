@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeleteGarbage : MonoBehaviour
 {
     private GameObject car;
+    private const float DISTANCE_BEHIND_TO_DELETE = 60;
 
     // Start is called before the first frame update
     //void Start()
@@ -38,7 +39,7 @@ public class DeleteGarbage : MonoBehaviour
         }
         else
         {
-            if (transform.position.z < car.transform.position.z - 45)
+            if (transform.position.z < car.transform.position.z - DISTANCE_BEHIND_TO_DELETE)
             {
                 Destroy(gameObject);
             }

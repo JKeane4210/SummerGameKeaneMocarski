@@ -55,8 +55,8 @@ public class PoliceLights : MonoBehaviour
             flasherColor1 = redColor;
             flasherColor2 = blueColor;
         }
-        light1.GetComponent<Renderer>().material = lightMat1;
-        light2.GetComponent<Renderer>().material = lightMat2;
+        if (light1 != null) light1.GetComponent<Renderer>().material = lightMat1;
+        if (light2 != null) light2.GetComponent<Renderer>().material = lightMat2;
         flasher1.color = flasherColor1;
         flasher2.color = flasherColor2;
     }

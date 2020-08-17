@@ -31,6 +31,7 @@ public class Vehicle
     private float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
     private float headlightOffsetAddOn;
     private float forceFieldRadius; //what the scale will be of the sphere
+    private bool hasCustomHeadlights;
 
     public Vehicle(string n, string d,
                    int health, float fuel,
@@ -66,6 +67,7 @@ public class Vehicle
         mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
         forceFieldRadius = forceRad;
         headlightOffsetAddOn = 0;
+        hasCustomHeadlights = false;
     }
 
     public Vehicle(string n, string d,
@@ -80,6 +82,18 @@ public class Vehicle
                    float rotX, float rotY, float forceRad) :
             this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
                  p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad) => unlockedAddOn = add_on;
+
+    public Vehicle(string n, string d,
+                  int health, float fuel,
+                  float vel, GameObject g,
+                  Vector3 dimen,
+                  Vector3 gameLoc, Vector3 viewingLoc,
+                  Vector3 gameScl, Vector3 viewingScl,
+                  int p, float illHeight, float mmScale,
+                  float mmPosX, float mmPosY, float mmPosZ,
+                  float rotX, float rotY, float forceRad, bool hasCustomLights) :
+           this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
+                p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad) => hasCustomHeadlights = hasCustomLights;
 
     public void SetHeadlightOffsetAddon(float addOn) => headlightOffsetAddOn = addOn;
 
@@ -304,4 +318,5 @@ public class Vehicle
     public float GetUnlockedAddOn() => unlockedAddOn;
     public float GetForceFieldRad() => forceFieldRadius;
     public float GetHeadlightOffsetAddOn() => headlightOffsetAddOn;
+    public bool HasCustomHeadlights() => hasCustomHeadlights;
 }
