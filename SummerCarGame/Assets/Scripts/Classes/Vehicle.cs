@@ -33,6 +33,7 @@ public class Vehicle
     private float forceFieldRadius; //what the scale will be of the sphere
     private bool hasCustomHeadlights;
 
+    // normal
     public Vehicle(string n, string d,
                    int health, float fuel,
                    float vel, GameObject g,
@@ -70,6 +71,7 @@ public class Vehicle
         hasCustomHeadlights = false;
     }
 
+    // unlockedZAddOn
     public Vehicle(string n, string d,
                    int health, float fuel,
                    float vel, GameObject g,
@@ -83,6 +85,7 @@ public class Vehicle
             this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
                  p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad) => unlockedAddOn = add_on;
 
+    // has CustomHeadLights
     public Vehicle(string n, string d,
                   int health, float fuel,
                   float vel, GameObject g,
@@ -94,6 +97,17 @@ public class Vehicle
                   float rotX, float rotY, float forceRad, bool hasCustomLights) :
            this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
                 p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad) => hasCustomHeadlights = hasCustomLights;
+
+    public Vehicle(string n, string d,
+                  int health, float fuel, float vel,
+                  GameObject g, Vector3 dimen,
+                  Vector3 gameLoc, Vector3 viewingLoc,
+                  Vector3 gameScl, Vector3 viewingScl,
+                  int p, float illHeight, float mmScale,
+                  float mmPosX, float mmPosY, float mmPosZ,
+                  float rotX, float rotY, float forceRad, bool hasCustomLights, float headlightAddOn):
+           this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
+                p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad, hasCustomLights) => headlightOffsetAddOn = headlightAddOn;
 
     public void SetHeadlightOffsetAddon(float addOn) => headlightOffsetAddOn = addOn;
 

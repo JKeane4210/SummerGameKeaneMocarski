@@ -26,6 +26,7 @@ public class VehicleList : MonoBehaviour
      *     Illumination Height (for night mode)
      *     UnlockedCarAddOn* optional (default to zero)
      *     hasCustomHeadlights
+     *     headlightOffsetAddOn
     */
 
     private void Start()
@@ -120,7 +121,9 @@ public class VehicleList : MonoBehaviour
             12, //mmScale
             -4, 19, 150, //mmViewingAdjust
             5, 145, //mmRotation
-            9
+            9,
+            false,
+            1.25f
             ),
         new Vehicle("Police Car",
             "Keep the streets safe. Stay on the lookout for criminals.",
@@ -139,12 +142,31 @@ public class VehicleList : MonoBehaviour
             -4, 19, 150, //mmViewingAdjust
             5, 145, //mmRotation
             9,
-            true
+            true,
+            1.25f
+            )
+        ,
+        new Vehicle("Sporty",
+            "Fast and sleek. Made to show off.",
+            110,
+            100f,
+            24f,
+            (GameObject)Resources.Load("Models/Cars/stripeSportsCar2"),
+            new Vector3(2.5f, 5, 6.5f),
+            new Vector3(1.5f, 1.6f, 0f),
+            new Vector3(0, -19.5f, -65),
+            new Vector3(1.1f, 1.2f, 1.2f),
+            new Vector3(15,15,15),
+            125,
+            10,
+            12, //mmScale
+            -4, 19, 150, //mmViewingAdjust
+            5, 145, //mmRotation
+            9,
+            false,
+            2
             )
         };
-        // if need a small adjustment to headlights, use this function
-        vehicles[4].SetHeadlightOffsetAddon(1.25f);
-        vehicles[5].SetHeadlightOffsetAddon(1.25f);
         if (selectedVehicle == null)
             selectedVehicle = vehicles[0];
         if (infoVehicle == null)
