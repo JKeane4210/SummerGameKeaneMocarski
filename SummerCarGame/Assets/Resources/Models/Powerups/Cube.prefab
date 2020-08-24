@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupType: GoldAnimal
+  powerUp: {fileID: 8300000, guid: 59b304e6c816244f1bd1de85ceecf556, type: 3}
 --- !u!114 &5068720716094789622
 MonoBehaviour:
   m_ObjectHideFlags: 0

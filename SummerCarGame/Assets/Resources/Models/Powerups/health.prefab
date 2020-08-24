@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupType: Health
+  powerUp: {fileID: 8300000, guid: 59b304e6c816244f1bd1de85ceecf556, type: 3}
 --- !u!135 &2243077254953942898
 SphereCollider:
   m_ObjectHideFlags: 0

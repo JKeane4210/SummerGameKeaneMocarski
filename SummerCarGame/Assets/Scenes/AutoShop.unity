@@ -2103,6 +2103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneController: {fileID: 156096890}
   shopItem: {fileID: 236190475840975532, guid: 8158a3e0e30124ae1b212ac465de1ead, type: 3}
+  purchaseSound: {fileID: 8300000, guid: 8bc26a463a42545ac9d286fd74ad044e, type: 3}
+  mainCamera: {fileID: 1602597184}
 --- !u!114 &1095428385
 MonoBehaviour:
   m_ObjectHideFlags: 0

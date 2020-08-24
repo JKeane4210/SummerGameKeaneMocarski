@@ -9,6 +9,8 @@ public class ShopVehicles : MonoBehaviour
 {
     public GameObject sceneController;
     public GameObject shopItem;
+    public AudioClip purchaseSound;
+    public GameObject mainCamera;
 
     private Vehicle[] vehicles;
     private ArrayList purchasedCars;
@@ -90,6 +92,7 @@ public class ShopVehicles : MonoBehaviour
 
     public void BuyCar(GameObject autoShopItem, Vehicle vehicle)
     {
+        AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10);
         AutoShopItem_ shopItemProperties = autoShopItem.GetComponent<AutoShopItem_>();
         Button selectBuyButton = shopItemProperties.selectButton.GetComponent<Button>();
         Button infoButton = shopItemProperties.infoButton.GetComponent<Button>();

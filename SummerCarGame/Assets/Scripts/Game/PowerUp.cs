@@ -7,6 +7,7 @@ public class PowerUp : MonoBehaviour
     private HealthBar healthBar;
 
     public string powerupType;
+    public AudioClip powerUp;
 
     const float BOBBING_SPEED = 2f;
     const float BOBBING_HEIGHT = 0.25f;
@@ -38,6 +39,7 @@ public class PowerUp : MonoBehaviour
     {
         if(otherCollider.CompareTag("Player"))
         {
+            AudioSource.PlayClipAtPoint(powerUp, transform.position, 10.0f);
             car = otherCollider.gameObject;
             forceFieldRadius = car.GetComponent<Car>().forceFieldRad;
             PickUp(otherCollider);
