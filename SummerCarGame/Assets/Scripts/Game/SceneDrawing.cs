@@ -33,6 +33,7 @@ public class SceneDrawing : MonoBehaviour
 
     private Vehicle selectedCar;
     private WorldTerrain selectedWorld;
+    private GameObject car;
 
     //Start is called before the first frame update
     private void Start()
@@ -51,7 +52,7 @@ public class SceneDrawing : MonoBehaviour
         GetComponent<VehicleList>().SimulateStart();
         roadColorPlane.GetComponent<Renderer>().material = selectedWorld.GetNormalRoadMat();
         selectedCar = GetComponent<VehicleList>().GetSelectedVehicle();
-        GameObject car = selectedCar.GetCarGameObject();
+        car = selectedCar.GetCarGameObject();
         car.GetComponent<RenderRoad>().road = selectedWorld.GetNormalRoad();
         car.GetComponent<RenderRoad>().gasStationRoad = selectedWorld.GetGasRoad();
         if (GetComponent<ButtonManager>().GetIsNightMode())

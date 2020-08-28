@@ -5,7 +5,6 @@ using UnityEngine;
 public class VehicleList : MonoBehaviour
 {
     static Vehicle selectedVehicle;
-    static ArrayList purchasedCars = new ArrayList() { "Default Car" };
     static Vehicle infoVehicle;
 
     private Vehicle[] vehicles;
@@ -210,9 +209,7 @@ public class VehicleList : MonoBehaviour
         return null;
     }
 
-    public void PurchaseCar(string name) => purchasedCars.Add(name);
     public int VehicleCount() => vehicles.Length;
-    public ArrayList GetPurchasedCars() => purchasedCars;
     public Vehicle[] GetVehicles() => vehicles;
     public Vehicle GetSelectedVehicle() => selectedVehicle;
     public Vehicle GetInfoVehicle() => infoVehicle;

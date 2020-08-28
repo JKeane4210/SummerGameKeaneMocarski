@@ -11,7 +11,7 @@ public class Vehicle
     private float velocity;
     private Vector3 dimensions;
     //private float latVelocity; //basically agility (IDK if we should do this?)
-    private GameObject car;
+    public GameObject car;
     private int price;
     public float mainMenuScaleX;
     public float mainMenuScaleY;
