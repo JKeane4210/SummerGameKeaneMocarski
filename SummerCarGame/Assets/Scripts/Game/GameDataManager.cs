@@ -8,6 +8,7 @@ using UnityEngine;
     public int coins = 0;
     public float totalDistance = 0;
     public ArrayList ownedCars = new ArrayList() { "Default Car" };
+    public ArrayList earnedPrizes = new ArrayList() { };
 }
 public static class GameDataManager
 {
@@ -22,4 +23,6 @@ public static class GameDataManager
     public static float GetTotalDistance() => playerData.totalDistance;
     public static ArrayList GetOwnedCars() => playerData.ownedCars;
     public static void AddCar(string newCar) => playerData.ownedCars.Add(newCar);
+    public static ArrayList GetEarnedPrizes() => playerData.earnedPrizes;
+    public static void AddPrize(float prizeDistance) => playerData.earnedPrizes.Add(prizeDistance);
 }
