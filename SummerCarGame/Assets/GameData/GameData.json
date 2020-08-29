@@ -1,8 +1,7 @@
 {
-	"vehicles":
-	[
+	"vehicles": [
 		{
-			"name" : "Default Car",
+			"name": "Default Car",
 			"description": "Can't beat a classic",
 			"maxHealth": 100,
 			"maxFuel": 100,
@@ -77,7 +76,7 @@
 			"forceFieldRadius": 13
 		},
 		{
-			"name":  "Mr. Conroy",
+			"name": "Mr. Conroy",
 			"description": "Tough and reliable. Always can count on your chcocolate milk.",
 			"maxHealth": 120,
 			"maxFuel": 90,
@@ -151,7 +150,7 @@
 			"unlockedAddOn": 10
 		},
 		{
-			"name" :  "Taxi",
+			"name": "Taxi",
 			"description": "Black and yellow never looked better.",
 			"maxHealth": 100,
 			"maxFuel": 80,
@@ -186,7 +185,7 @@
 			"headlightOffsetAddOn": 1.25
 		},
 		{
-			"name":  "Police Car",
+			"name": "Police Car",
 			"description": "Keep the streets safe. Stay on the lookout for criminals.",
 			"maxHealth": 110,
 			"maxFuel": 100,
@@ -222,7 +221,7 @@
 			"prizeDistance": 15
 		},
 		{
-			"name" :  "Sporty",
+			"name": "Sporty",
 			"description": "Fast and sleek. Made to show off.",
 			"maxHealth": 110,
 			"maxFuel": 100,
@@ -255,6 +254,42 @@
 			},
 			"price": 125,
 			"headlightOffsetAddOn": 2
+		}
+	],
+	"roads": [
+		{
+			"name": "North Woods",
+			"normalRoad": "Models/Roads/forestRoadNormal",
+			"gasRoad": "Models/Roads/forestRoadGasStopPainted",
+			"animals": [
+				{
+					"name": "Deer",
+					"animal": "Models/Animals/deer3",
+					"damage": 10,
+					"velocity": 10.5
+				}
+			],
+			"material": "Models/Roads/NormalRoadSkin"
+		},
+		{
+			"name": "Savannah",
+			"normalRoad": "Models/Roads/Savannah/savannahRoad",
+			"gasRoad": "Models/Roads/Savannah/savannahRoadGas",
+			"animals": [
+				{
+					"name": "Giraffe",
+					"animal": "Models/Animals/SavannahAnimals/giraffe",
+					"damage": 15,
+					"velocity": 9
+				},
+				{
+					"name": "Zebra",
+					"animal": "Models/Animals/SavannahAnimals/zebra",
+					"damage": 10,
+					"velocity": 11
+				}
+			],
+			"material": "Models/Roads/Savannah/savannahColor"
 		}
 	]
 }

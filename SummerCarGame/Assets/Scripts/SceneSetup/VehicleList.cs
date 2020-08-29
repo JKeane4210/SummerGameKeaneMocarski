@@ -12,7 +12,7 @@ public class VehicleList : MonoBehaviour
 
     void Start()
     {
-        vehicles = VehicleJSONReader.CreateVehicleList();
+        vehicles = GameDataJSONReader.CreateVehicleList();
         vehiclesDictionary.Clear();
         foreach (Vehicle vehicle in vehicles)
             vehiclesDictionary.Add(vehicle.GetName(), vehicle);

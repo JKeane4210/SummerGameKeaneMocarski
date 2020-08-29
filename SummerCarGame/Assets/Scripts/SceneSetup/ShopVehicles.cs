@@ -25,7 +25,7 @@ public class ShopVehicles : MonoBehaviour
         gameSharedUI = GameObject.FindGameObjectWithTag("GameSharedUI");
         unlockedCarPanel = GameObject.FindGameObjectWithTag("UnlockedPage");
         showPurchasedCars = GameObject.FindGameObjectWithTag("CheckBox");
-        vehicles = VehicleJSONReader.CreateVehicleList();
+        vehicles = GameDataJSONReader.CreateVehicleList();
         UpdateSelectedVehicleField();
         float shopItemHeight = shopItem.GetComponent<RectTransform>().rect.height;
         if(showPurchasedCars.GetComponent<CheckBox>().IsChecked())

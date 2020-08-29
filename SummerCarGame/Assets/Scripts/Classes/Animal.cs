@@ -5,21 +5,21 @@ using UnityEngine;
 public class Animal
 {
     private string name;
-    private GameObject animal;
+    private string animal;
     private float damage;
-    private float average_speed;
+    private float averageSpeed;
 
-    public Animal(string n, GameObject anim, float d, float v)
+    public Animal(string name, string animal, float damage, float averageSpeed)
     {
-        name = n;
-        animal = anim;
-        damage = d;
-        average_speed = v;
+        this.name = name;
+        this.animal = animal;
+        this.damage = damage;
+        this.averageSpeed = averageSpeed;
     }
 
-    public GameObject GetAnimal() => animal;
-    public GameObject PlaceAnimal(Vector3 loc, Quaternion rot) => GameObject.Instantiate(animal, loc, rot);
+    public GameObject GetAnimal() => (GameObject)Resources.Load(animal);
+    public GameObject PlaceAnimal(Vector3 loc, Quaternion rot) => GameObject.Instantiate(GetAnimal(), loc, rot);
     public string GetName() => name;
     public float GetDamage() => damage;
-    public float GetAverageSpeed() => average_speed;
+    public float GetAverageSpeed() => averageSpeed;
 }

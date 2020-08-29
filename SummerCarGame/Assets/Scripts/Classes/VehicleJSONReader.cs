@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using SimpleJSON;
 
-public class VehicleJSONReader
+public class GameDataJSONReader
 {
     static Dictionary<string, string> OPTIONAL_VALUE_DEFAULTS = new Dictionary<string, string>()
     {
@@ -25,7 +25,7 @@ public class VehicleJSONReader
 
     public static Vehicle[] CreateVehicleList()
     {
-        string json = File.ReadAllText(Application.dataPath + "/GameData/vehiclesList.json");
+        string json = File.ReadAllText(Application.dataPath + "/GameData/GameData.json");
         JSONNode N = JSON.Parse(json);
         Vehicle[] vehicles = new Vehicle[N["vehicles"].Count];
         for (int i = 0; i < vehicles.Length; i++)
@@ -69,6 +69,38 @@ public class VehicleJSONReader
                 );
         }
         return vehicles;
+    }
+
+    public static WorldTerrain[] CreateWorldTerrainList()
+    {
+        string json = File.ReadAllText(Application.dataPath + "/GameData/GameData.json");
+        JSONNode N = JSON.Parse(json);
+        WorldTerrain[] worldTerrains = new WorldTerrain[N["roads"].Count];
+        for (int i = 0; i < worldTerrains.Length; i++)
+        {
+            JSONNode worldTerainData = N["roads"][i];
+            Animal[] worldAnimals = new Animal[worldTerainData["animals"].Count];
+            for (int j = 0; j < worldAnimals.Length; j++)
+            {
+                JSONNode animalData = worldTerainData["animals"][i];
+                worldAnimals[j] = new Animal
+                    (
+                        animalData["name"].Value,
+                        animalData["animal"].Value,
+                        float.Parse(animalData["damage"].Value),
+                        float.Parse(animalData["velocity"].Value)
+                    );
+            }
+            worldTerrains[i] = new WorldTerrain
+                (
+                    worldTerainData["name"].Value,
+                    worldTerainData["normalRoad"].Value,
+                    worldTerainData["gasRoad"].Value,
+                    worldAnimals,
+                    worldTerainData["material"].Value
+                );
+        }
+        return worldTerrains;
     }
 }
 
