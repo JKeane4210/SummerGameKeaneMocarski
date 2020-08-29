@@ -38,8 +38,6 @@ public class CreateAwardRoad : MonoBehaviour
         slider.GetComponent<Slider>().normalizedValue = GameDataManager.GetTotalDistance() / prizes[prizes.Length - 1].distanceToEarn;
         VehicleList vehicleList = new VehicleList();
         vehicleList.SimulateStart();
-        foreach (float i in GameDataManager.GetEarnedPrizes())
-            print($"GD: {i}");
         foreach (Prize prize in prizes)
         {
             GameObject newAwardMarker = Instantiate(awardMarker, new Vector3(), Quaternion.identity, sliderImage.transform);

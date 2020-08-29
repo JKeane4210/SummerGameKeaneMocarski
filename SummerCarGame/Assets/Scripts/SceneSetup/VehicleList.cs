@@ -37,17 +37,15 @@ public class VehicleList : MonoBehaviour
             100f,
             23f,
             (GameObject)Resources.Load("Models/Cars/MovingCar2"),
-            new Vector3(1,3,1),
+            new Vector3(1, 3, 1),
             new Vector3(1.5f, 1.25f, 0f),
             new Vector3(0, -25, -65),
             new Vector3(3, 3, 3),
             new Vector3(30, 30, 30),
-            0,
-            10,
-            7, //mmScale
-            -4, 24, 150, //mmViewingAdjust
-            6, 145, //mmRotation
-            3
+            mmScale: 7,
+            mmPosY: 24,
+            rotX: 6,
+            forceFieldRadius: 3
             ),
         new Vehicle("Sandvan",
             "Fun in the sun. Pretty buff, but could use some pace.",
@@ -60,12 +58,11 @@ public class VehicleList : MonoBehaviour
             new Vector3(0, -20, -65),
             new Vector3(0.8f, 0.8f, 0.6f),
             new Vector3(10,10,10),
-            50,
-            5,
-            12, //mmScale
-            -4, 18, 150, //mmViewingAdjust
-            9,145, //mmRotation
-            13
+            price: 50,
+            illuminationHeight: 5,
+            mmPosY: 18,
+            rotY: 9,
+            forceFieldRadius: 13
             ),
         new Vehicle("Mr. Conroy",
             "Tough and reliable. Always can count on your chcocolate milk.",
@@ -78,12 +75,10 @@ public class VehicleList : MonoBehaviour
             new Vector3(0, -16, -65),
             new Vector3(1.6f, 1.6f, 1.6f),
             new Vector3(25,25,25),
-            100,
-            8,
-            12, //mmScale
-            -4, 15, 150, //mmViewingAdjust
-            5, 145, //mmRotation
-            6
+            price: 100,
+            illuminationHeight: 8,
+            mmPosY: 15,
+            forceFieldRadius: 6
             ),
         new Vehicle("Night Cruiser",
             "Sleek and fast. Cruise the roads in style.",
@@ -96,13 +91,10 @@ public class VehicleList : MonoBehaviour
             new Vector3(0, -7, -65),
             new Vector3(1f, 1f, 0.8f),
             new Vector3(15,15,15),
-            200,
-            10,
-            10,
-            12, //mmScale
-            -4, 7, 150, //mmViewingAdjust
-            5, 145, //mmRotation
-            9
+            price: 200,
+            illuminationHeight: 10,
+            mmPosY: 7,
+            unlockedAddOn: 10
             ),
         new Vehicle("Taxi",
             "Black and yellow never looked better.",
@@ -115,14 +107,8 @@ public class VehicleList : MonoBehaviour
             new Vector3(0, -19.5f, -65),
             new Vector3(1.1f, 1.2f, 1.2f),
             new Vector3(15,15,15),
-            100,
-            10,
-            12, //mmScale
-            -4, 19, 150, //mmViewingAdjust
-            5, 145, //mmRotation
-            9,
-            false,
-            1.25f
+            price: 100,
+            headlightOffsetAddOn: 1.25f
             ),
         new Vehicle("Police Car",
             "Keep the streets safe. Stay on the lookout for criminals.",
@@ -135,14 +121,9 @@ public class VehicleList : MonoBehaviour
             new Vector3(0, -19.5f, -65),
             new Vector3(1.1f, 1.2f, 1.2f),
             new Vector3(15,15,15),
-            100,
-            10,
-            12, //mmScale
-            -4, 19, 150, //mmViewingAdjust
-            5, 145, //mmRotation
-            9,
-            true,
-            1.25f
+            hasCustomHeadlights: true,
+            headlightOffsetAddOn: 1.25f,
+            prizeDistance: 15
             )
         ,
         new Vehicle("Sporty",
@@ -156,14 +137,8 @@ public class VehicleList : MonoBehaviour
             new Vector3(0, -19.5f, -65),
             new Vector3(1.1f, 1.2f, 1.2f),
             new Vector3(15,15,15),
-            125,
-            10,
-            12, //mmScale
-            -4, 19, 150, //mmViewingAdjust
-            5, 145, //mmRotation
-            9,
-            false,
-            2
+            price: 125,
+            headlightOffsetAddOn: 2
             )
         };
         if (selectedVehicle == null)

@@ -71,15 +71,40 @@ public class ShopVehicles : MonoBehaviour
                 }
                 else
                 {
-                    if (vehicle.GetPrice() > gameSharedUI.GetComponent<GameSharedUI>().GetCoins())
-                        selectBuyButton.interactable = false;
-                    infoButton.interactable = false;
-                    ColorBlock cb = selectBuyButton.colors;
-                    cb.normalColor = new Color32(14, 255, 0, 255);
-                    autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "BUY";
-                    selectBuyButton.colors = cb;
-                    selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem, vehicle); });
-                    selectBuyButton.onClick.AddListener(delegate { autoShopPanel.SetActive(false); });
+                    if (vehicle.GetPrizeDistance() == -1)
+                    {
+                        if (vehicle.GetPrice() > gameSharedUI.GetComponent<GameSharedUI>().GetCoins())
+                            selectBuyButton.interactable = false;
+                        infoButton.interactable = false;
+                        ColorBlock cb = selectBuyButton.colors;
+                        cb.normalColor = new Color32(14, 255, 0, 255);
+                        autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "BUY";
+                        selectBuyButton.colors = cb;
+                        selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem, vehicle); });
+                        selectBuyButton.onClick.AddListener(delegate { autoShopPanel.SetActive(false); });
+                    }
+                    else
+                    {
+                        autoShopItem.priceBox.SetActive(false);
+                        infoButton.interactable = false;
+                        if (GameDataManager.GetTotalDistance() >= vehicle.GetPrizeDistance())
+                        {
+                            selectBuyButton.interactable = true;
+                            ColorBlock cb = selectBuyButton.colors;
+                            cb.normalColor = new Color32(14, 255, 0, 255);
+                            autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "CLAIM";
+                            selectBuyButton.colors = cb;
+                            selectBuyButton.onClick.AddListener(delegate { GameDataManager.AddPrize(vehicle.GetPrizeDistance()); });
+                            selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem, vehicle); });
+                            selectBuyButton.onClick.AddListener(delegate { autoShopPanel.SetActive(false); });
+                        }
+                        else
+                        {
+                            selectBuyButton.interactable = false;
+                            float milesTwoDecimals = (float)((int)(GameDataManager.GetTotalDistance() * 100));
+                            autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = $"{(float)(milesTwoDecimals / 100)}/{vehicle.GetPrizeDistance()} mi.";
+                        }
+                    }
                 }
                 i++;
             }

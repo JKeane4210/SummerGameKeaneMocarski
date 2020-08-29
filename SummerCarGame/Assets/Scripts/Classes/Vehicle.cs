@@ -5,7 +5,7 @@ using UnityEngine;
 public class Vehicle
 {
     private string name;
-    private string dscr;
+    private string description;
     private int maxHealth;
     private float maxFuel;
     private float velocity;
@@ -32,33 +32,42 @@ public class Vehicle
     private float headlightOffsetAddOn;
     private float forceFieldRadius; //what the scale will be of the sphere
     private bool hasCustomHeadlights;
+    private float prizeDistance;
 
     // normal
-    public Vehicle(string n, string d,
-                   int health, float fuel,
-                   float vel, GameObject g,
-                   Vector3 dimen,
+    public Vehicle(string name, string description,
+                   int maxHealth, float maxFuel,
+                   float velocity, GameObject car,
+                   Vector3 dimensions,
                    Vector3 gameLoc, Vector3 viewingLoc,
                    Vector3 gameScl, Vector3 viewingScl,
-                   int p, float illHeight,
-                   float mmScale,
-                   float mmPosX, float mmPosY, float mmPosZ,
-                   float rotX, float rotY,
-                   float forceRad)
+                   int price                  = 0,
+                   float illuminationHeight   = 10,
+                   float mmScale              = 12,
+                   float mmPosX               = -4,
+                   float mmPosY               = 19,
+                   float mmPosZ               = 150,
+                   float rotX                 = 5,
+                   float rotY                 = 145,
+                   float forceFieldRadius     = 9,
+                   float unlockedAddOn        = 0,
+                   float headlightOffsetAddOn = 0,
+                   bool hasCustomHeadlights   = false,
+                   float prizeDistance        = -1)
     {
-        name = n;
-        dscr = d;
-        maxHealth = health;
-        maxFuel = fuel;
-        velocity = vel;
-        //latVelocity = latVel;
-        car = g;
-        dimensions = dimen;
+        this.name = name;
+        this.description = description;
+        this.maxHealth = maxHealth;
+        this.maxFuel = maxFuel;
+        this.velocity = velocity;
+        this.car = car;
+        this.dimensions = dimensions;
+        this.price = price;
+        this.illuminationHeight = illuminationHeight;
+
         SetLocations(gameLoc, viewingLoc);
         SetScales(gameScl, viewingScl);
-        price = p;
-        illuminationHeight = illHeight;
-        unlockedAddOn = 0f;
+        
         mainMenuScaleX = GetViewingScale().x / mmScale;
         mainMenuScaleY = GetViewingScale().y / mmScale;
         mainMenuScaleZ = GetViewingScale().z / mmScale;
@@ -66,50 +75,13 @@ public class Vehicle
         mainMenuPositionY = GetViewingLocation().y + mmPosY;
         mainMenuPositionZ = GetViewingLocation().z + mmPosZ;
         mainMenuRotation = Quaternion.Euler(rotX, rotY, 0);
-        forceFieldRadius = forceRad;
-        headlightOffsetAddOn = 0;
-        hasCustomHeadlights = false;
+
+        this.forceFieldRadius = forceFieldRadius;
+        this.headlightOffsetAddOn = headlightOffsetAddOn;
+        this.hasCustomHeadlights = hasCustomHeadlights;
+        this.unlockedAddOn = unlockedAddOn;
+        this.prizeDistance = prizeDistance;
     }
-
-    // unlockedZAddOn
-    public Vehicle(string n, string d,
-                   int health, float fuel,
-                   float vel, GameObject g,
-                   Vector3 dimen,
-                   Vector3 gameLoc, Vector3 viewingLoc,
-                   Vector3 gameScl, Vector3 viewingScl,
-                   int p, float illHeight,
-                   float add_on, float mmScale,
-                   float mmPosX, float mmPosY, float mmPosZ,
-                   float rotX, float rotY, float forceRad) :
-            this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
-                 p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad) => unlockedAddOn = add_on;
-
-    // has CustomHeadLights
-    public Vehicle(string n, string d,
-                  int health, float fuel,
-                  float vel, GameObject g,
-                  Vector3 dimen,
-                  Vector3 gameLoc, Vector3 viewingLoc,
-                  Vector3 gameScl, Vector3 viewingScl,
-                  int p, float illHeight, float mmScale,
-                  float mmPosX, float mmPosY, float mmPosZ,
-                  float rotX, float rotY, float forceRad, bool hasCustomLights) :
-           this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
-                p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad) => hasCustomHeadlights = hasCustomLights;
-
-    public Vehicle(string n, string d,
-                  int health, float fuel, float vel,
-                  GameObject g, Vector3 dimen,
-                  Vector3 gameLoc, Vector3 viewingLoc,
-                  Vector3 gameScl, Vector3 viewingScl,
-                  int p, float illHeight, float mmScale,
-                  float mmPosX, float mmPosY, float mmPosZ,
-                  float rotX, float rotY, float forceRad, bool hasCustomLights, float headlightAddOn):
-           this(n, d, health, fuel, vel, g, dimen, gameLoc, viewingLoc, gameScl, viewingScl,
-                p, illHeight, mmScale, mmPosX, mmPosY, mmPosZ, rotX, rotY, forceRad, hasCustomLights) => headlightOffsetAddOn = headlightAddOn;
-
-    public void SetHeadlightOffsetAddon(float addOn) => headlightOffsetAddOn = addOn;
 
     public void SetLocations(Vector3 game, Vector3 viewing)
     {
@@ -318,7 +290,7 @@ public class Vehicle
 
     public GameObject GetCarGameObject() => SetUpComponents(maxHealth, maxFuel, velocity, car, dimensions);
     public string GetName() => name;
-    public string GetDescription() => dscr;
+    public string GetDescription() => description;
     public int GetMaxHealth() => maxHealth;
     public float GetMaxFuel() => maxFuel;
     public float GetVelocity() => velocity;
@@ -333,4 +305,5 @@ public class Vehicle
     public float GetForceFieldRad() => forceFieldRadius;
     public float GetHeadlightOffsetAddOn() => headlightOffsetAddOn;
     public bool HasCustomHeadlights() => hasCustomHeadlights;
+    public float GetPrizeDistance() => prizeDistance;
 }
