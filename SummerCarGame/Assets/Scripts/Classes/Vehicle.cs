@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Vehicle
 {
-    private string name;
-    private string description;
-    private int maxHealth;
-    private float maxFuel;
-    private float velocity;
-    private Vector3 dimensions;
-    //private float latVelocity; //basically agility (IDK if we should do this?)
-    public GameObject car;
-    private int price;
+    public string name;
+    public string description;
+    public int maxHealth;
+    public float maxFuel;
+    public float velocity;
+    public Vector3 dimensions;
+    //public float latVelocity; //basically agility (IDK if we should do this?)
+    public string car; // path to the gameObject
+    public int price;
     public float mainMenuScaleX;
     public float mainMenuScaleY;
     public float mainMenuScaleZ;
@@ -21,23 +21,23 @@ public class Vehicle
     public float mainMenuPositionZ;
     public Quaternion mainMenuRotation;
 
-    private Vector3 gameLocation;
-    private Vector3 viewingLocation;
-    private Vector3 gameScale;
-    private Vector3 viewingScale;
+    public Vector3 gameLocation;
+    public Vector3 viewingLocation;
+    public Vector3 gameScale;
+    public Vector3 viewingScale;
 
     public float unlockedAddOn;
 
-    private float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
-    private float headlightOffsetAddOn;
-    private float forceFieldRadius; //what the scale will be of the sphere
-    private bool hasCustomHeadlights;
-    private float prizeDistance;
+    public float illuminationHeight; //the intensity that allows illuminateCar gameobject to look good in night mode
+    public float headlightOffsetAddOn;
+    public float forceFieldRadius; //what the scale will be of the sphere
+    public bool hasCustomHeadlights;
+    public float prizeDistance;
 
     // normal
     public Vehicle(string name, string description,
                    int maxHealth, float maxFuel,
-                   float velocity, GameObject car,
+                   float velocity, string car,
                    Vector3 dimensions,
                    Vector3 gameLoc, Vector3 viewingLoc,
                    Vector3 gameScl, Vector3 viewingScl,
@@ -104,22 +104,24 @@ public class Vehicle
 
     public void ActivateCarControl(int i)
     {
+        GameObject carObj = (GameObject)Resources.Load(car);
         if (i == 0)
-            car.GetComponent<MoveCar>().enabled = true;
+            carObj.GetComponent<MoveCar>().enabled = true;
         if (i == 1)
-            car.GetComponent<Accelerometer>().enabled = true;
+            carObj.GetComponent<Accelerometer>().enabled = true;
         if (i == 2)
-            car.GetComponent<SwipeControls>().enabled = true;
+            carObj.GetComponent<SwipeControls>().enabled = true;
     }
 
     public void DeactivateCarControl(int i)
     {
+        GameObject carObj = (GameObject)Resources.Load(car);
         if (i == 0)
-            car.GetComponent<MoveCar>().enabled = false;
+            carObj.GetComponent<MoveCar>().enabled = false;
         if (i == 1)
-            car.GetComponent<Accelerometer>().enabled = false;
+            carObj.GetComponent<Accelerometer>().enabled = false;
         if (i == 2)
-            car.GetComponent<SwipeControls>().enabled = false;
+            carObj.GetComponent<SwipeControls>().enabled = false;
     }
 
     //may be unecessary if we set components manually
@@ -263,7 +265,8 @@ public class Vehicle
     //good for loading screen
     public GameObject GetGameObjectNoComponents(Vector3 location)
     {
-        GameObject carCopy = Object.Instantiate(car, location, Quaternion.identity);
+        GameObject carObj = (GameObject)Resources.Load(car);
+        GameObject carCopy = Object.Instantiate(carObj, location, Quaternion.identity);
         foreach (var comp in carCopy.GetComponents<Component>())
         {
             if (!(comp is Transform) && !(comp is Rigidbody))
@@ -276,7 +279,8 @@ public class Vehicle
 
     public GameObject GetGameObjectNoComponents(Vector3 location, Vector3 scale)
     {
-        GameObject carCopy = Object.Instantiate(car, location, Quaternion.identity);
+        GameObject carObj = (GameObject)Resources.Load(car);
+        GameObject carCopy = Object.Instantiate(carObj, location, Quaternion.identity);
         carCopy.transform.localScale = scale;
         foreach (var comp in carCopy.GetComponents<Component>())
         {
@@ -288,7 +292,7 @@ public class Vehicle
         return carCopy;
     }
 
-    public GameObject GetCarGameObject() => SetUpComponents(maxHealth, maxFuel, velocity, car, dimensions);
+    public GameObject GetCarGameObject() => SetUpComponents(maxHealth, maxFuel, velocity, (GameObject)Resources.Load(car), dimensions);
     public string GetName() => name;
     public string GetDescription() => description;
     public int GetMaxHealth() => maxHealth;

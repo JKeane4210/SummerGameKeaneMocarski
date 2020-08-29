@@ -66,7 +66,7 @@ public class CreateAwardRoad : MonoBehaviour
             else
             {
                 awardMarker_.prizeText.text = prize.carName;
-                Instantiate(vehicleList.GetVehicleByName(prize.carName).car, new Vector3(prize.distanceToEarn * SCALE_FACTOR, PRIZE_Y, 0), Quaternion.Euler(new Vector3(0, -150, 0)));
+                Instantiate((GameObject)Resources.Load(vehicleList.GetVehicleByName(prize.carName).car), new Vector3(prize.distanceToEarn * SCALE_FACTOR, PRIZE_Y, 0), Quaternion.Euler(new Vector3(0, -150, 0)));
             }
         }
     }

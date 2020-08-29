@@ -101,6 +101,7 @@ public class ShopVehicles : MonoBehaviour
                         else
                         {
                             selectBuyButton.interactable = false;
+                            infoButton.interactable = false;
                             float milesTwoDecimals = (float)((int)(GameDataManager.GetTotalDistance() * 100));
                             autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = $"{(float)(milesTwoDecimals / 100)}/{vehicle.GetPrizeDistance()} mi.";
                         }
