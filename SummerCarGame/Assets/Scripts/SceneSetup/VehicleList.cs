@@ -21,7 +21,7 @@ public class VehicleList : MonoBehaviour
     }
 
     public void SimulateStart() => Start();
-    public void ChangeSelectedVehicleByName(string name) => selectedVehicle = vehiclesDictionary[name];
+    public void ChangeSelectedVehicleByName(string name) => GameDataManager.SetSelectedVehicle(vehiclesDictionary[name]);
     public void ChangeInfoVehicleByName(string name) => infoVehicle = vehiclesDictionary[name];
     public Vehicle GetVehicleByName(string name) => vehiclesDictionary[name];
     public int VehicleCount() => vehicles.Length;
