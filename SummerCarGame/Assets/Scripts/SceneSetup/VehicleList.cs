@@ -61,7 +61,7 @@ public class VehicleList : MonoBehaviour
             price: 50,
             illuminationHeight: 5,
             mmPosY: 18,
-            rotY: 9,
+            rotX: 9,
             forceFieldRadius: 13
             ),
         new Vehicle("Mr. Conroy",
