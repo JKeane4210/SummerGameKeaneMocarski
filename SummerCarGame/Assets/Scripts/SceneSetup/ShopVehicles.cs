@@ -9,9 +9,10 @@ public class ShopVehicles : MonoBehaviour
 {
     public GameObject sceneController;
     public GameObject shopItem;
+    public AudioClip purchaseSound;
+    public GameObject mainCamera;
 
     private Vehicle[] vehicles;
-    private ArrayList purchasedCars;
     private GameObject gameSharedUI;
     private GameObject unlockedCarPanel;
     private GameObject showPurchasedCars;
@@ -25,11 +26,10 @@ public class ShopVehicles : MonoBehaviour
         unlockedCarPanel = GameObject.FindGameObjectWithTag("UnlockedPage");
         showPurchasedCars = GameObject.FindGameObjectWithTag("CheckBox");
         vehicles = sceneController.GetComponent<VehicleList>().GetVehicles();
-        purchasedCars = sceneController.GetComponent<VehicleList>().GetPurchasedCars();
         UpdateSelectedVehicleField();
         float shopItemHeight = shopItem.GetComponent<RectTransform>().rect.height;
         if(showPurchasedCars.GetComponent<CheckBox>().IsChecked())
-            GetComponent<RectTransform>().sizeDelta = new Vector2(0, purchasedCars.Count * (shopItemHeight + 10));
+            GetComponent<RectTransform>().sizeDelta = new Vector2(0, GameDataManager.GetOwnedCars().Count * (shopItemHeight + 10));
         else
             GetComponent<RectTransform>().sizeDelta = new Vector2(0 , vehicles.Length * (shopItemHeight + 10));
         float startingYPos = GetComponent<RectTransform>().rect.height / 2 - (shopItemHeight + 10) / 2;
@@ -38,7 +38,7 @@ public class ShopVehicles : MonoBehaviour
 
         foreach(Vehicle vehicle in vehicles)
         {
-            if (!showPurchasedCars.GetComponent<CheckBox>().IsChecked() || (showPurchasedCars.GetComponent<CheckBox>().IsChecked() && sceneController.GetComponent<VehicleList>().GetPurchasedCars().Contains(vehicle.GetName())))
+            if (!showPurchasedCars.GetComponent<CheckBox>().IsChecked() || (showPurchasedCars.GetComponent<CheckBox>().IsChecked() && GameDataManager.GetOwnedCars().Contains(vehicle.GetName())))
             {
                 GameObject newShopItem = Instantiate(shopItem);
                 newShopItem.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, startingYPos - i * (shopItemHeight + 10));
@@ -58,7 +58,7 @@ public class ShopVehicles : MonoBehaviour
                 Button infoButton = autoShopItem.infoButton.GetComponent<Button>();
                 infoButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeInfoVehicleByName(vehicle.GetName()); });
                 infoButton.onClick.AddListener(delegate { sceneController.GetComponent<ButtonManager>().ButtonChangeScene("SoloVehicle"); });
-                if (sceneController.GetComponent<VehicleList>().GetPurchasedCars().Contains(vehicle.GetName()))
+                if (GameDataManager.GetOwnedCars().Contains(vehicle.GetName()))
                 {
                     infoButton.interactable = true;
                     ColorBlock cb = selectBuyButton.colors;
@@ -71,15 +71,40 @@ public class ShopVehicles : MonoBehaviour
                 }
                 else
                 {
-                    if (vehicle.GetPrice() > gameSharedUI.GetComponent<GameSharedUI>().GetCoins())
-                        selectBuyButton.interactable = false;
-                    infoButton.interactable = false;
-                    ColorBlock cb = selectBuyButton.colors;
-                    cb.normalColor = new Color32(14, 255, 0, 255);
-                    autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "BUY";
-                    selectBuyButton.colors = cb;
-                    selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem, vehicle); });
-                    selectBuyButton.onClick.AddListener(delegate { autoShopPanel.SetActive(false); });
+                    if (vehicle.GetPrizeDistance() == -1)
+                    {
+                        if (vehicle.GetPrice() > gameSharedUI.GetComponent<GameSharedUI>().GetCoins())
+                            selectBuyButton.interactable = false;
+                        infoButton.interactable = false;
+                        ColorBlock cb = selectBuyButton.colors;
+                        cb.normalColor = new Color32(14, 255, 0, 255);
+                        autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "BUY";
+                        selectBuyButton.colors = cb;
+                        selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem, vehicle); });
+                        selectBuyButton.onClick.AddListener(delegate { autoShopPanel.SetActive(false); });
+                    }
+                    else
+                    {
+                        autoShopItem.priceBox.SetActive(false);
+                        infoButton.interactable = false;
+                        if (GameDataManager.GetTotalDistance() >= vehicle.GetPrizeDistance())
+                        {
+                            selectBuyButton.interactable = true;
+                            ColorBlock cb = selectBuyButton.colors;
+                            cb.normalColor = new Color32(14, 255, 0, 255);
+                            autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = "CLAIM";
+                            selectBuyButton.colors = cb;
+                            selectBuyButton.onClick.AddListener(delegate { GameDataManager.AddPrize(vehicle.GetPrizeDistance()); });
+                            selectBuyButton.onClick.AddListener(delegate { BuyCar(newShopItem, vehicle); });
+                            selectBuyButton.onClick.AddListener(delegate { autoShopPanel.SetActive(false); });
+                        }
+                        else
+                        {
+                            selectBuyButton.interactable = false;
+                            float milesTwoDecimals = (float)((int)(GameDataManager.GetTotalDistance() * 100));
+                            autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = $"{(float)(milesTwoDecimals / 100)}/{vehicle.GetPrizeDistance()} mi.";
+                        }
+                    }
                 }
                 i++;
             }
@@ -90,6 +115,7 @@ public class ShopVehicles : MonoBehaviour
 
     public void BuyCar(GameObject autoShopItem, Vehicle vehicle)
     {
+        AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10);
         AutoShopItem_ shopItemProperties = autoShopItem.GetComponent<AutoShopItem_>();
         Button selectBuyButton = shopItemProperties.selectButton.GetComponent<Button>();
         Button infoButton = shopItemProperties.infoButton.GetComponent<Button>();
@@ -101,7 +127,7 @@ public class ShopVehicles : MonoBehaviour
         selectBuyButton.onClick.RemoveAllListeners();
         selectBuyButton.onClick.AddListener(delegate { sceneController.GetComponent<VehicleList>().ChangeSelectedVehicleByName(autoShopItem.name); });
         selectBuyButton.onClick.AddListener(delegate { UpdateSelectedVehicleField(); });
-        sceneController.GetComponent<VehicleList>().PurchaseCar(autoShopItem.name);
+        GameDataManager.AddCar(autoShopItem.name);
         gameSharedUI.GetComponent<GameSharedUI>().BuyCar(vehicle.GetPrice());
         gameSharedUI.GetComponent<GameSharedUI>().UpdateCoinsUIText();
         shopItemProperties.priceBox.SetActive(false);

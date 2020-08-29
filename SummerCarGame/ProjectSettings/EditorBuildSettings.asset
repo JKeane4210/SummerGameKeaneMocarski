@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SoloVehicle.unity
     guid: 47f59804dcec04a6c8c6a849f66598fa
+  - enabled: 1
+    path: Assets/Scenes/AwardRoad.unity
+    guid: d41829b98088b43deb60a4504c841fb0
   m_configObjects: {}

@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupType: ForceField
+  powerUp: {fileID: 8300000, guid: 59b304e6c816244f1bd1de85ceecf556, type: 3}
 --- !u!114 &-2037795224482697339
 MonoBehaviour:
   m_ObjectHideFlags: 0

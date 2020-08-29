@@ -5,6 +5,8 @@ using TMPro;
 
 public class CoinMover : MonoBehaviour
 {
+    public AudioClip coinPickup;
+
     private const float BOBBING_SPEED = 2f;
     private const float BOBBING_AMPLITUDE = 1f;
     private GameObject canvas;
@@ -29,6 +31,7 @@ public class CoinMover : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             RemoveAndAddCount(other);
+            AudioSource.PlayClipAtPoint(coinPickup, transform.position, 1f);
             GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
             GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
             addToScreen.GetComponent<TextAddAnimation>().coinAdd = other.gameObject.GetComponent<CoinCounter>().coinAddition;
