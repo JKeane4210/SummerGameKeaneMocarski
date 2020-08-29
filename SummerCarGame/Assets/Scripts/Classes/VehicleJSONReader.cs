@@ -6,7 +6,7 @@ using SimpleJSON;
 
 public class VehicleJSONReader
 {
-    public static Dictionary<string, string> OPTIONAL_VALUE_DEFAULTS = new Dictionary<string, string>()
+    static Dictionary<string, string> OPTIONAL_VALUE_DEFAULTS = new Dictionary<string, string>()
     {
         {"price", "0"},
         {"illuminationHeight", "10"},

@@ -8,51 +8,22 @@ public class VehicleList : MonoBehaviour
     static Vehicle infoVehicle;
 
     private Vehicle[] vehicles;
+    readonly private Dictionary<string, Vehicle> vehiclesDictionary = new Dictionary<string, Vehicle>();
 
-    private void Start()
+    void Start()
     {
         vehicles = VehicleJSONReader.CreateVehicleList();
-        if (selectedVehicle == null) selectedVehicle = vehicles[0];
-        if (infoVehicle == null) infoVehicle = selectedVehicle;
+        vehiclesDictionary.Clear();
+        foreach (Vehicle vehicle in vehicles)
+            vehiclesDictionary.Add(vehicle.GetName(), vehicle);
+        selectedVehicle = GameDataManager.GetSelectedVehicle() ?? vehicles[0];
+        infoVehicle = infoVehicle ?? selectedVehicle;
     }
 
     public void SimulateStart() => Start();
-
-    public void ChangeSelectedVehicleByName(string name)
-    {
-        foreach(Vehicle v in vehicles)
-        {
-            if (v.GetName() == name)
-            {
-                selectedVehicle = v;
-                break;
-            }
-        }
-    }
-
-    public void ChangeInfoVehicleByName(string name)
-    {
-        foreach (Vehicle v in vehicles)
-        {
-            if (v.GetName() == name)
-            {
-                infoVehicle = v;
-                break;
-            }
-        }
-    }
-
-    public Vehicle GetVehicleByName(string name)
-    {
-        foreach (Vehicle v in vehicles)
-        {
-            if (v.GetName() == name)
-                return v;
-        }
-        print("**WARNING** No Car By That Name Found!");
-        return null;
-    }
-
+    public void ChangeSelectedVehicleByName(string name) => selectedVehicle = vehiclesDictionary[name];
+    public void ChangeInfoVehicleByName(string name) => infoVehicle = vehiclesDictionary[name];
+    public Vehicle GetVehicleByName(string name) => vehiclesDictionary[name];
     public int VehicleCount() => vehicles.Length;
     public Vehicle[] GetVehicles() => vehicles;
     public Vehicle GetSelectedVehicle() => selectedVehicle;
