@@ -6,21 +6,21 @@ using SimpleJSON;
 
 public class GameDataJSONReader
 {
-    static Dictionary<string, string> OPTIONAL_VALUE_DEFAULTS = new Dictionary<string, string>()
+    readonly static Dictionary<string, string> OPTIONAL_VALUE_DEFAULTS = new Dictionary<string, string>()
     {
-        {"price", "0"},
-        {"illuminationHeight", "10"},
-        {"mmScale", "12"},
-        {"mmPosX", "-4"},
-        {"mmPosY", "19"},
-        {"mmPosZ", "150"},
-        {"rotX", "5"},
-        {"rotY", "145"},
-        {"forceFieldRadius", "9"},
-        {"unlockedAddOn", "0"},
+        {"price"               , "0"},
+        {"illuminationHeight"  , "10"},
+        {"mmScale"             , "12"},
+        {"mmPosX"              , "-4"},
+        {"mmPosY"              , "19"},
+        {"mmPosZ"              , "150"},
+        {"rotX"                , "5"},
+        {"rotY"                , "145"},
+        {"forceFieldRadius"    , "9"},
+        {"unlockedAddOn"       , "0"},
         {"headlightOffsetAddOn", "0"},
-        {"hasCustomHeadlights", "false"},
-        {"prizeDistance", "-1"}
+        {"hasCustomHeadlights" , "false"},
+        {"prizeDistance"       , "-1"}
     };
 
     public static Vehicle[] CreateVehicleList()

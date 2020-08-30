@@ -15,13 +15,13 @@ public class CreateAwardRoad : MonoBehaviour
     private float pointA;
     private float pointB;
 
-    private const float SCALE_FACTOR = 2;
-    private const float PRIZE_Y = -3;
-    private const float COIN_OFFSET_Y = 1;
+    private const float SCALE_FACTOR        = 2;
+    private const float PRIZE_Y             = -3;
+    private const float COIN_OFFSET_Y       = 1;
     private const float SLIDER_SCALE_FACTOR = 110;
-    private const float SCREEN_WIDTH = 1334;
+    private const float SCREEN_WIDTH        = 1334;
 
-    Prize[] prizes = new Prize[]
+    readonly Prize[] prizes = new Prize[]
     {
         new Prize(1, coinReward: 500),
         new Prize(5, coinReward: 1000),

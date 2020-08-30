@@ -7,8 +7,8 @@ public class SceneDrawing : MonoBehaviour
 {
     private const int HEALTH_SLIDER_MAX_VALUE = 100;
     private const float FUEL_SLIDER_MAX_VALUE = 4;
-    private const int MIN_BASE_ROAD_INDEX = 1;
-    private const int MAX_BASE_ROAD_INDEX = 4;
+    private const int MIN_BASE_ROAD_INDEX     = 1;
+    private const int MAX_BASE_ROAD_INDEX     = 4;
 
     public GameObject sun;
     public GameObject headlightL;
