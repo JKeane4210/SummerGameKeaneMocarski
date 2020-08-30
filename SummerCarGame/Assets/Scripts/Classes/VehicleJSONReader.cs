@@ -54,18 +54,18 @@ public class GameDataJSONReader
                     new Vector3(float.Parse(vehicleData["viewingScale"]["x"].Value),
                                 float.Parse(vehicleData["viewingScale"]["y"].Value),
                                 float.Parse(vehicleData["viewingScale"]["z"].Value)),
-                    price:                vehicleData["price"].Value                != "" ? int.Parse(vehicleData["price"].Value)                  : int.Parse(OPTIONAL_VALUE_DEFAULTS["price"]),
-                    illuminationHeight:   vehicleData["illuminationHeight"].Value   != "" ? float.Parse(vehicleData["illuminationHeight"].Value)   : float.Parse(OPTIONAL_VALUE_DEFAULTS["illuminationHeight"]),
-                    mmScale:              vehicleData["mmScale"].Value              != "" ? float.Parse(vehicleData["mmScale"].Value)              : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmScale"]),
-                    mmPosX:               vehicleData["mmPosX"].Value               != "" ? float.Parse(vehicleData["mmPosX"].Value)               : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosX"]),
-                    mmPosY:               vehicleData["mmPosY"].Value               != "" ? float.Parse(vehicleData["mmPosY"].Value)               : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosY"]),
-                    mmPosZ:               vehicleData["mmPosZ"].Value               != "" ? float.Parse(vehicleData["mmPosZ"].Value)               : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosZ"]),
-                    rotX:                 vehicleData["rotX"].Value                 != "" ? float.Parse(vehicleData["rotX"].Value)                 : float.Parse(OPTIONAL_VALUE_DEFAULTS["rotX"]),
-                    rotY:                 vehicleData["rotY"].Value                 != "" ? float.Parse(vehicleData["rotY"].Value)                 : float.Parse(OPTIONAL_VALUE_DEFAULTS["rotY"]),
-                    forceFieldRadius:     vehicleData["forceFieldRadius"].Value     != "" ? float.Parse(vehicleData["forceFieldRadius"].Value)     : float.Parse(OPTIONAL_VALUE_DEFAULTS["forceFieldRadius"]),
+                    price: vehicleData["price"].Value != "" ? int.Parse(vehicleData["price"].Value) : int.Parse(OPTIONAL_VALUE_DEFAULTS["price"]),
+                    illuminationHeight: vehicleData["illuminationHeight"].Value != "" ? float.Parse(vehicleData["illuminationHeight"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["illuminationHeight"]),
+                    mmScale: vehicleData["mmScale"].Value != "" ? float.Parse(vehicleData["mmScale"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmScale"]),
+                    mmPosX: vehicleData["mmPosX"].Value != "" ? float.Parse(vehicleData["mmPosX"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosX"]),
+                    mmPosY: vehicleData["mmPosY"].Value != "" ? float.Parse(vehicleData["mmPosY"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosY"]),
+                    mmPosZ: vehicleData["mmPosZ"].Value != "" ? float.Parse(vehicleData["mmPosZ"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosZ"]),
+                    rotX: vehicleData["rotX"].Value != "" ? float.Parse(vehicleData["rotX"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["rotX"]),
+                    rotY: vehicleData["rotY"].Value != "" ? float.Parse(vehicleData["rotY"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["rotY"]),
+                    forceFieldRadius: vehicleData["forceFieldRadius"].Value != "" ? float.Parse(vehicleData["forceFieldRadius"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["forceFieldRadius"]),
                     headlightOffsetAddOn: vehicleData["headlightOffsetAddOn"].Value != "" ? float.Parse(vehicleData["headlightOffsetAddOn"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["headlightOffsetAddOn"]),
-                    hasCustomHeadlights:  vehicleData["hasCustomHeadlights"].Value  != "" ? bool.Parse(vehicleData["hasCustomHeadlights"].Value)   : bool.Parse(OPTIONAL_VALUE_DEFAULTS["hasCustomHeadlights"]),
-                    prizeDistance:        vehicleData["prizeDistance"].Value        != "" ? float.Parse(vehicleData["prizeDistance"].Value)        : float.Parse(OPTIONAL_VALUE_DEFAULTS["prizeDistance"])
+                    hasCustomHeadlights: vehicleData["hasCustomHeadlights"].Value != "" ? bool.Parse(vehicleData["hasCustomHeadlights"].Value) : bool.Parse(OPTIONAL_VALUE_DEFAULTS["hasCustomHeadlights"]),
+                    prizeDistance: vehicleData["prizeDistance"].Value != "" ? float.Parse(vehicleData["prizeDistance"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["prizeDistance"])
                 );
         }
         return vehicles;

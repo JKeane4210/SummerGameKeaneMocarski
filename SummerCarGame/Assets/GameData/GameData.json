@@ -1,295 +1,295 @@
 {
-	"vehicles": [
-		{
-			"name": "Default Car",
-			"description": "Can't beat a classic",
-			"maxHealth": 100,
-			"maxFuel": 100,
-			"velocity": 23,
-			"car": "Models/Cars/MovingCar2",
-			"dimensions": {
-				"x": 1,
-				"y": 3,
-				"z": 1
-			},
-			"gameLocation": {
-				"x": 1.5,
-				"y": 1.25,
-				"z": 0
-			},
-			"viewingLocation": {
-				"x": 0,
-				"y": -25,
-				"z": -65
-			},
-			"gameScale": {
-				"x": 3,
-				"y": 3,
-				"z": 3
-			},
-			"viewingScale": {
-				"x": 30,
-				"y": 30,
-				"z": 30
-			},
-			"mmScale": 7,
-			"mmPosY": 24,
-			"rotX": 6,
-			"forceFieldRadius": 3
-		},
-		{
-			"name": "Sandvan",
-			"description": "Fun in the sun. Pretty buff, but could use some pace.",
-			"maxHealth": 150,
-			"maxFuel": 70,
-			"velocity": 19,
-			"car": "Models/Cars/sandVan",
-			"dimensions": {
-				"x": 3.4,
-				"y": 5.75,
-				"z": 7.4
-			},
-			"gameLocation": {
-				"x": 1.5,
-				"y": 1.75,
-				"z": 0
-			},
-			"viewingLocation": {
-				"x": 0,
-				"y": -20,
-				"z": -65
-			},
-			"gameScale": {
-				"x": 0.8,
-				"y": 0.8,
-				"z": 0.6
-			},
-			"viewingScale": {
-				"x": 10,
-				"y": 10,
-				"z": 10
-			},
-			"price": 50,
-			"illuminationHeight": 5,
-			"mmPosY": 18,
-			"rotX": 9,
-			"forceFieldRadius": 13
-		},
-		{
-			"name": "Mr. Conroy",
-			"description": "Tough and reliable. Always can count on your chcocolate milk.",
-			"maxHealth": 120,
-			"maxFuel": 90,
-			"velocity": 21,
-			"car": "Models/Cars/pickupTruck",
-			"dimensions": {
-				"x": 1.5,
-				"y": 5.75,
-				"z": 3.2
-			},
-			"gameLocation": {
-				"x": 1.5,
-				"y": 1.75,
-				"z": 0
-			},
-			"viewingLocation": {
-				"x": 0,
-				"y": -16,
-				"z": -65
-			},
-			"gameScale": {
-				"x": 1.6,
-				"y": 1.6,
-				"z": 1.6
-			},
-			"viewingScale": {
-				"x": 25,
-				"y": 25,
-				"z": 25
-			},
-			"price": 100,
-			"illuminationHeight": 8,
-			"mmPosY": 15,
-			"forceFieldRadius": 6
-		},
-		{
-			"name": "Night Cruiser",
-			"description": "Sleek and fast. Cruise the roads in style.",
-			"maxHealth": 105,
-			"maxFuel": 105,
-			"velocity": 24,
-			"car": "Models/Cars/SportsCar2",
-			"dimensions": {
-				"x": 2.5,
-				"y": 5.75,
-				"z": 5.5
-			},
-			"gameLocation": {
-				"x": 1.5,
-				"y": 2.3,
-				"z": 0
-			},
-			"viewingLocation": {
-				"x": 0,
-				"y": -7,
-				"z": -65
-			},
-			"gameScale": {
-				"x": 1,
-				"y": 1,
-				"z": 0.8
-			},
-			"viewingScale": {
-				"x": 15,
-				"y": 15,
-				"z": 15
-			},
-			"price": 200,
-			"illuminationHeight": 10,
-			"mmPosY": 7,
-			"unlockedAddOn": 10
-		},
-		{
-			"name": "Taxi",
-			"description": "Black and yellow never looked better.",
-			"maxHealth": 100,
-			"maxFuel": 80,
-			"velocity": 22.5,
-			"car": "Models/Cars/taxi2",
-			"dimensions": {
-				"x": 2.5,
-				"y": 5,
-				"z": 5.75
-			},
-			"gameLocation": {
-				"x": 1.5,
-				"y": 1.6,
-				"z": 0
-			},
-			"viewingLocation": {
-				"x": 0,
-				"y": -19.5,
-				"z": -65
-			},
-			"gameScale": {
-				"x": 1.1,
-				"y": 1.2,
-				"z": 1.2
-			},
-			"viewingScale": {
-				"x": 15,
-				"y": 15,
-				"z": 15
-			},
-			"price": 100,
-			"headlightOffsetAddOn": 1.25
-		},
-		{
-			"name": "Police Car",
-			"description": "Keep the streets safe. Stay on the lookout for criminals.",
-			"maxHealth": 110,
-			"maxFuel": 100,
-			"velocity": 23,
-			"car": "Models/Cars/policeCar2",
-			"dimensions": {
-				"x": 2.5,
-				"y": 5,
-				"z": 5.75
-			},
-			"gameLocation": {
-				"x": 1.5,
-				"y": 1.6,
-				"z": 0
-			},
-			"viewingLocation": {
-				"x": 0,
-				"y": -19.5,
-				"z": -65
-			},
-			"gameScale": {
-				"x": 1.1,
-				"y": 1.2,
-				"z": 1.2
-			},
-			"viewingScale": {
-				"x": 15,
-				"y": 15,
-				"z": 15
-			},
-			"hasCustomHeadlights": true,
-			"headlightOffsetAddOn": 1.25,
-			"prizeDistance": 15
-		},
-		{
-			"name": "Sporty",
-			"description": "Fast and sleek. Made to show off.",
-			"maxHealth": 110,
-			"maxFuel": 100,
-			"velocity": 24,
-			"car": "Models/Cars/stripeSportsCar2",
-			"dimensions": {
-				"x": 2.5,
-				"y": 5,
-				"z": 6.5
-			},
-			"gameLocation": {
-				"x": 1.5,
-				"y": 1.6,
-				"z": 0
-			},
-			"viewingLocation": {
-				"x": 0,
-				"y": -19.5,
-				"z": -65
-			},
-			"gameScale": {
-				"x": 1.1,
-				"y": 1.2,
-				"z": 1.2
-			},
-			"viewingScale": {
-				"x": 15,
-				"y": 15,
-				"z": 15
-			},
-			"price": 125,
-			"headlightOffsetAddOn": 2
-		}
-	],
-	"roads": [
-		{
-			"name": "North Woods",
-			"normalRoad": "Models/Roads/forestRoadNormal",
-			"gasRoad": "Models/Roads/forestRoadGasStopPainted",
-			"animals": [
-				{
-					"name": "Deer",
-					"animal": "Models/Animals/deer3",
-					"damage": 10,
-					"velocity": 10.5
-				}
-			],
-			"material": "Models/Roads/NormalRoadSkin"
-		},
-		{
-			"name": "Savannah",
-			"normalRoad": "Models/Roads/Savannah/savannahRoad",
-			"gasRoad": "Models/Roads/Savannah/savannahRoadGas",
-			"animals": [
-				{
-					"name": "Giraffe",
-					"animal": "Models/Animals/SavannahAnimals/giraffe",
-					"damage": 15,
-					"velocity": 9
-				},
-				{
-					"name": "Zebra",
-					"animal": "Models/Animals/SavannahAnimals/zebra",
-					"damage": 10,
-					"velocity": 11
-				}
-			],
-			"material": "Models/Roads/Savannah/savannahColor"
-		}
-	]
+    "vehicles": [
+        {
+            "name": "Default Car",
+            "description": "Can't beat a classic",
+            "maxHealth": 100,
+            "maxFuel": 100,
+            "velocity": 23,
+            "car": "Models/Cars/MovingCar2",
+            "dimensions": {
+                "x": 1,
+                "y": 3,
+                "z": 1
+            },
+            "gameLocation": {
+                "x": 1.5,
+                "y": 1.25,
+                "z": 0
+            },
+            "viewingLocation": {
+                "x": 0,
+                "y": -25,
+                "z": -65
+            },
+            "gameScale": {
+                "x": 3,
+                "y": 3,
+                "z": 3
+            },
+            "viewingScale": {
+                "x": 30,
+                "y": 30,
+                "z": 30
+            },
+            "mmScale": 7,
+            "mmPosY": 24,
+            "rotX": 6,
+            "forceFieldRadius": 3
+        },
+        {
+            "name": "Sandvan",
+            "description": "Fun in the sun. Pretty buff, but could use some pace.",
+            "maxHealth": 150,
+            "maxFuel": 70,
+            "velocity": 19,
+            "car": "Models/Cars/sandVan",
+            "dimensions": {
+                "x": 3.4,
+                "y": 5.75,
+                "z": 7.4
+            },
+            "gameLocation": {
+                "x": 1.5,
+                "y": 1.75,
+                "z": 0
+            },
+            "viewingLocation": {
+                "x": 0,
+                "y": -20,
+                "z": -65
+            },
+            "gameScale": {
+                "x": 0.8,
+                "y": 0.8,
+                "z": 0.6
+            },
+            "viewingScale": {
+                "x": 10,
+                "y": 10,
+                "z": 10
+            },
+            "price": 50,
+            "illuminationHeight": 5,
+            "mmPosY": 18,
+            "rotX": 9,
+            "forceFieldRadius": 13
+        },
+        {
+            "name": "Mr. Conroy",
+            "description": "Tough and reliable. Always can count on your chcocolate milk.",
+            "maxHealth": 120,
+            "maxFuel": 90,
+            "velocity": 21,
+            "car": "Models/Cars/pickupTruck",
+            "dimensions": {
+                "x": 1.5,
+                "y": 5.75,
+                "z": 3.2
+            },
+            "gameLocation": {
+                "x": 1.5,
+                "y": 1.75,
+                "z": 0
+            },
+            "viewingLocation": {
+                "x": 0,
+                "y": -16,
+                "z": -65
+            },
+            "gameScale": {
+                "x": 1.6,
+                "y": 1.6,
+                "z": 1.6
+            },
+            "viewingScale": {
+                "x": 25,
+                "y": 25,
+                "z": 25
+            },
+            "price": 100,
+            "illuminationHeight": 8,
+            "mmPosY": 15,
+            "forceFieldRadius": 6
+        },
+        {
+            "name": "Night Cruiser",
+            "description": "Sleek and fast. Cruise the roads in style.",
+            "maxHealth": 105,
+            "maxFuel": 105,
+            "velocity": 24,
+            "car": "Models/Cars/SportsCar2",
+            "dimensions": {
+                "x": 2.5,
+                "y": 5.75,
+                "z": 5.5
+            },
+            "gameLocation": {
+                "x": 1.5,
+                "y": 2.3,
+                "z": 0
+            },
+            "viewingLocation": {
+                "x": 0,
+                "y": -7,
+                "z": -65
+            },
+            "gameScale": {
+                "x": 1,
+                "y": 1,
+                "z": 0.8
+            },
+            "viewingScale": {
+                "x": 15,
+                "y": 15,
+                "z": 15
+            },
+            "price": 200,
+            "illuminationHeight": 10,
+            "mmPosY": 7,
+            "unlockedAddOn": 10
+        },
+        {
+            "name": "Taxi",
+            "description": "Black and yellow never looked better.",
+            "maxHealth": 100,
+            "maxFuel": 80,
+            "velocity": 22.5,
+            "car": "Models/Cars/taxi2",
+            "dimensions": {
+                "x": 2.5,
+                "y": 5,
+                "z": 5.75
+            },
+            "gameLocation": {
+                "x": 1.5,
+                "y": 1.6,
+                "z": 0
+            },
+            "viewingLocation": {
+                "x": 0,
+                "y": -19.5,
+                "z": -65
+            },
+            "gameScale": {
+                "x": 1.1,
+                "y": 1.2,
+                "z": 1.2
+            },
+            "viewingScale": {
+                "x": 15,
+                "y": 15,
+                "z": 15
+            },
+            "price": 100,
+            "headlightOffsetAddOn": 1.25
+        },
+        {
+            "name": "Police Car",
+            "description": "Keep the streets safe. Stay on the lookout for criminals.",
+            "maxHealth": 110,
+            "maxFuel": 100,
+            "velocity": 23,
+            "car": "Models/Cars/policeCar2",
+            "dimensions": {
+                "x": 2.5,
+                "y": 5,
+                "z": 5.75
+            },
+            "gameLocation": {
+                "x": 1.5,
+                "y": 1.6,
+                "z": 0
+            },
+            "viewingLocation": {
+                "x": 0,
+                "y": -19.5,
+                "z": -65
+            },
+            "gameScale": {
+                "x": 1.1,
+                "y": 1.2,
+                "z": 1.2
+            },
+            "viewingScale": {
+                "x": 15,
+                "y": 15,
+                "z": 15
+            },
+            "hasCustomHeadlights": true,
+            "headlightOffsetAddOn": 1.25,
+            "prizeDistance": 15
+        },
+        {
+            "name": "Sporty",
+            "description": "Fast and sleek. Made to show off.",
+            "maxHealth": 110,
+            "maxFuel": 100,
+            "velocity": 24,
+            "car": "Models/Cars/stripeSportsCar2",
+            "dimensions": {
+                "x": 2.5,
+                "y": 5,
+                "z": 6.5
+            },
+            "gameLocation": {
+                "x": 1.5,
+                "y": 1.6,
+                "z": 0
+            },
+            "viewingLocation": {
+                "x": 0,
+                "y": -19.5,
+                "z": -65
+            },
+            "gameScale": {
+                "x": 1.1,
+                "y": 1.2,
+                "z": 1.2
+            },
+            "viewingScale": {
+                "x": 15,
+                "y": 15,
+                "z": 15
+            },
+            "price": 125,
+            "headlightOffsetAddOn": 2
+        }
+    ],
+    "roads": [
+        {
+            "name": "North Woods",
+            "normalRoad": "Models/Roads/forestRoadNormal",
+            "gasRoad": "Models/Roads/forestRoadGasStopPainted",
+            "animals": [
+                {
+                    "name": "Deer",
+                    "animal": "Models/Animals/deer3",
+                    "damage": 10,
+                    "velocity": 10.5
+                }
+            ],
+            "material": "Models/Roads/NormalRoadSkin"
+        },
+        {
+            "name": "Savannah",
+            "normalRoad": "Models/Roads/Savannah/savannahRoad",
+            "gasRoad": "Models/Roads/Savannah/savannahRoadGas",
+            "animals": [
+                {
+                    "name": "Giraffe",
+                    "animal": "Models/Animals/SavannahAnimals/giraffe",
+                    "damage": 15,
+                    "velocity": 9
+                },
+                {
+                    "name": "Zebra",
+                    "animal": "Models/Animals/SavannahAnimals/zebra",
+                    "damage": 10,
+                    "velocity": 11
+                }
+            ],
+            "material": "Models/Roads/Savannah/savannahColor"
+        }
+    ]
 }

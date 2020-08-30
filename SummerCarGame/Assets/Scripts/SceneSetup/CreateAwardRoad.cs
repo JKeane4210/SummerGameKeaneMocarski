@@ -15,11 +15,11 @@ public class CreateAwardRoad : MonoBehaviour
     private float pointA;
     private float pointB;
 
-    private const float SCALE_FACTOR        = 2;
-    private const float PRIZE_Y             = -3;
-    private const float COIN_OFFSET_Y       = 1;
+    private const float SCALE_FACTOR = 2;
+    private const float PRIZE_Y = -3;
+    private const float COIN_OFFSET_Y = 1;
     private const float SLIDER_SCALE_FACTOR = 110;
-    private const float SCREEN_WIDTH        = 1334;
+    private const float SCREEN_WIDTH = 1334;
 
     readonly Prize[] prizes = new Prize[]
     {
@@ -33,7 +33,7 @@ public class CreateAwardRoad : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        slider.GetComponent<RectTransform>().sizeDelta = new Vector2(prizes[prizes.Length - 1].distanceToEarn * SLIDER_SCALE_FACTOR , 10);
+        slider.GetComponent<RectTransform>().sizeDelta = new Vector2(prizes[prizes.Length - 1].distanceToEarn * SLIDER_SCALE_FACTOR, 10);
         slider.GetComponent<RectTransform>().localPosition = new Vector3(slider.transform.localPosition.x + (prizes[prizes.Length - 1].distanceToEarn * SLIDER_SCALE_FACTOR - SCREEN_WIDTH) / 2, slider.transform.localPosition.y, slider.transform.localPosition.z);
         slider.GetComponent<Slider>().normalizedValue = GameDataManager.GetTotalDistance() / prizes[prizes.Length - 1].distanceToEarn;
         VehicleList vehicleList = new VehicleList();

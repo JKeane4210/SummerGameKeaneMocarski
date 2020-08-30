@@ -28,15 +28,15 @@ public class ShopVehicles : MonoBehaviour
         vehicles = GameDataJSONReader.CreateVehicleList();
         UpdateSelectedVehicleField();
         float shopItemHeight = shopItem.GetComponent<RectTransform>().rect.height;
-        if(showPurchasedCars.GetComponent<CheckBox>().IsChecked())
+        if (showPurchasedCars.GetComponent<CheckBox>().IsChecked())
             GetComponent<RectTransform>().sizeDelta = new Vector2(0, GameDataManager.GetOwnedCars().Count * (shopItemHeight + 10));
         else
-            GetComponent<RectTransform>().sizeDelta = new Vector2(0 , vehicles.Length * (shopItemHeight + 10));
+            GetComponent<RectTransform>().sizeDelta = new Vector2(0, vehicles.Length * (shopItemHeight + 10));
         float startingYPos = GetComponent<RectTransform>().rect.height / 2 - (shopItemHeight + 10) / 2;
         int i = 0;
         showPurchasedCars.GetComponent<Button>().onClick.AddListener(delegate { SceneManager.LoadScene("AutoShop"); });
 
-        foreach(Vehicle vehicle in vehicles)
+        foreach (Vehicle vehicle in vehicles)
         {
             if (!showPurchasedCars.GetComponent<CheckBox>().IsChecked() || (showPurchasedCars.GetComponent<CheckBox>().IsChecked() && GameDataManager.GetOwnedCars().Contains(vehicle.GetName())))
             {

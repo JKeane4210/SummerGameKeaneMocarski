@@ -583,7 +583,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_field: {fileID: 174571459}
   text_field2: {fileID: 1654050276}
-  period: 0.1
 --- !u!114 &174571462
 MonoBehaviour:
   m_ObjectHideFlags: 0

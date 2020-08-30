@@ -17,6 +17,7 @@ public class CarDeerCollide : MonoBehaviour
 
     private void Start()
     {
+        explosionsEnabled = GameDataManager.ExplosionsEnabled();
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         UpdateExplosionStatus();
     }
@@ -75,6 +76,7 @@ public class CarDeerCollide : MonoBehaviour
     public void ChangeExplosionsStatus()
     {
         explosionsEnabled = !explosionsEnabled;
+        GameDataManager.SwitchExplosionsEnabled();
         UpdateExplosionStatus();
     }
 
@@ -82,12 +84,7 @@ public class CarDeerCollide : MonoBehaviour
     {
         Text explosionsEnabledText = gameObject.GetComponent<Text>();
         if (explosionsEnabledText != null)
-        {
-            if (explosionsEnabled)
-                explosionsEnabledText.text = "Explosions Enabled: Yes";
-            else
-                explosionsEnabledText.text = "Explosions Enabled: No";
-        }
+            explosionsEnabledText.text = "Explosions Enabled:" + (explosionsEnabled ? "Yes" : "No");
     }
 
     public bool GetExplosionsStatus() => explosionsEnabled;

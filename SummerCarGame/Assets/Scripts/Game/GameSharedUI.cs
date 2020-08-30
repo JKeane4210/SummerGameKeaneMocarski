@@ -4,21 +4,21 @@ using UnityEngine;
 using TMPro;
 public class GameSharedUI : MonoBehaviour
 {
-   #region Singleton class: GameSharedUI
+    #region Singleton class: GameSharedUI
 
     public static GameSharedUI Instance;
     private int initialCoins;
 
     void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
     }
 
 
-   #endregion
+    #endregion
 
     [SerializeField] TMP_Text[] coinsUIText;
     //[SerializeField] TMP_Text[] coinsUISingleGameText;
@@ -33,7 +33,7 @@ public class GameSharedUI : MonoBehaviour
     {
         for (int i = 0; i < coinsUIText.Length; i++)
         {
-            if(coinsUIText[i].name == "SingleGameCoins")
+            if (coinsUIText[i].name == "SingleGameCoins")
                 SetCoinsText(coinsUIText[i], GetCoins() - initialCoins);
 
             else
@@ -42,7 +42,7 @@ public class GameSharedUI : MonoBehaviour
 
         //for (int i = 0; i < coinsUISingleGameText.Length; i++)
         //    SetCoinsText(coinsUISingleGameText[i], GetCoins() - initialCoins);
-    
+
     }
 
     void SetCoinsText(TMP_Text textMesh, int value)
