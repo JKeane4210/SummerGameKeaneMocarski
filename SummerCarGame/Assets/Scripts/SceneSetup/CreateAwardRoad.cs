@@ -46,7 +46,8 @@ public class CreateAwardRoad : MonoBehaviour
             awardMarker_.prize = prize;
             awardMarker_.distanceToEarnText.text = $"{prize.distanceToEarn} mi.";
             awardMarker_.claimButton.onClick.AddListener(delegate { prize.ClaimPrize(); });
-            awardMarker_.claimButton.onClick.AddListener(delegate { AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10); });
+            if (GameDataManager.SoundEffectsEnabled())
+                awardMarker_.claimButton.onClick.AddListener(delegate { AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10); });
             awardMarker_.claimButton.onClick.AddListener(delegate { awardMarker_.claimButton.gameObject.SetActive(false); });
             awardMarker_.claimButton.onClick.AddListener(delegate { awardMarker_.claimedCheck.SetActive(true); });
             awardMarker_.claimButton.onClick.AddListener(delegate { GameDataManager.AddPrize(prize.distanceToEarn); });

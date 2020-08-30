@@ -116,7 +116,8 @@ public class ShopVehicles : MonoBehaviour
 
     public void BuyCar(GameObject autoShopItem, Vehicle vehicle)
     {
-        AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10);
+        if (GameDataManager.SoundEffectsEnabled())
+            AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10);
         AutoShopItem_ shopItemProperties = autoShopItem.GetComponent<AutoShopItem_>();
         Button selectBuyButton = shopItemProperties.selectButton.GetComponent<Button>();
         Button infoButton = shopItemProperties.infoButton.GetComponent<Button>();

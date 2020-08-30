@@ -84,7 +84,7 @@ public class CarDeerCollide : MonoBehaviour
     {
         Text explosionsEnabledText = gameObject.GetComponent<Text>();
         if (explosionsEnabledText != null)
-            explosionsEnabledText.text = "Explosions Enabled:" + (explosionsEnabled ? "Yes" : "No");
+            explosionsEnabledText.text = "Explosions Enabled: " + (explosionsEnabled ? "Yes" : "No");
     }
 
     public bool GetExplosionsStatus() => explosionsEnabled;

@@ -31,7 +31,8 @@ public class CoinMover : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             RemoveAndAddCount(other);
-            AudioSource.PlayClipAtPoint(coinPickup, transform.position, 1f);
+            if (GameDataManager.SoundEffectsEnabled())
+                AudioSource.PlayClipAtPoint(coinPickup, transform.position, 1f);
             GameObject addedAnim = (GameObject)Resources.Load("Models/UI_Stuff/CoinsAdded");
             GameObject addToScreen = Instantiate(addedAnim, addedAnim.transform.position, addedAnim.transform.rotation);
             addToScreen.GetComponent<TextAddAnimation>().coinAdd = other.gameObject.GetComponent<CoinCounter>().coinAddition;
