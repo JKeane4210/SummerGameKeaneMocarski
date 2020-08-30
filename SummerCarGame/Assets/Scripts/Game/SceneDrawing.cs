@@ -30,6 +30,7 @@ public class SceneDrawing : MonoBehaviour
     public GameObject roadColorPlane;
     public GameObject roadSelectButton;
     public GameObject boostButton;
+    public GameObject musicPlayer;
 
     private Vehicle selectedCar;
     private WorldTerrain selectedWorld;
@@ -38,6 +39,7 @@ public class SceneDrawing : MonoBehaviour
     //Start is called before the first frame update
     private void Start()
     {
+        musicPlayer.GetComponent<AudioSource>().volume = GameDataManager.GetMusicLevel();
         GetComponent<WorldTerrainList>().SimulateStart();
         selectedWorld = GetComponent<WorldTerrainList>().GetSelectedTerrain();
         GameObject staticRoad = Instantiate(selectedWorld.GetNormalRoad(), new Vector3(0, 1.25f, 0), Quaternion.identity);

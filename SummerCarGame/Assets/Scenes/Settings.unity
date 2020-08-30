@@ -800,9 +800,10 @@ GameObject:
   - component: {fileID: 532197027}
   - component: {fileID: 532197026}
   - component: {fileID: 532197028}
+  - component: {fileID: 532197029}
   m_Layer: 0
   m_Name: SceneController
-  m_TagString: Untagged
+  m_TagString: SceneController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -849,6 +850,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlTextField: {fileID: 991194704}
+--- !u!114 &532197029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532197025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cfbfd2fb9baa4ba3aa22778feb28939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicLevelText: {fileID: 1032103316}
+  musicLevel: {fileID: 548942533}
+  soundEffectsText: {fileID: 215773794}
 --- !u!1 &548942531
 GameObject:
   m_ObjectHideFlags: 0

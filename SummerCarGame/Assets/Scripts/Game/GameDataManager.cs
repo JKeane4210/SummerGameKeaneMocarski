@@ -14,7 +14,7 @@ public class PlayerData
     // Settings page
     public int selectedControl = 2;
     public bool explosionsEnabled = false;
-    public float musicLevel = 4;
+    public float musicLevel = 1;
     public bool soundEffectsEnabled = true;
     public float timeOfDay = 0;
 }
