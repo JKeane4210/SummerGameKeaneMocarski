@@ -5,42 +5,38 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     private float length, startpos;
-    public GameObject cam;
+
     public float parallaxEffect;
+    public bool giveRandomSpeed;
+    public bool giveRandomScale;
+    public float screenWidth;
+    public float screenHeight;
 
     void Start()
     {
+        parallaxEffect = giveRandomSpeed ? Random.Range(3, 7) : parallaxEffect;
+        if (giveRandomScale)
+        {
+            float randomScale = Random.Range(20, 60);
+            transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+        }
         Time.timeScale = 1;
-        startpos = transform.position.x;
+        startpos = -screenWidth / 2;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
-        
+        transform.localPosition = new Vector3(Random.Range(-screenWidth / 2, screenWidth / 2), Random.Range(-screenHeight / 2, screenHeight / 2), 0);
     }
 
     void FixedUpdate()
     {
         if (parallaxEffect != 0)
         {
-
-
             transform.position = new Vector3(transform.position.x - 2 * (1 - parallaxEffect) * Time.deltaTime, transform.position.y, transform.position.z);
-            //float temp = (transform.position.x * (1 - parallaxEffect)); // >>> 0
-            //float distance = (transform.position.x * parallaxEffect); // >>> 0
-            //print(distance);
-
-            //transform.position = new Vector3(startpos + distance, transform.position.y, transform.position.z);
-
-            if (transform.position.x <= -10)
-                transform.position = new Vector3(transform.position.x + length, transform.position.y, transform.position.z);
-
-            //if (distance > startpos + length)
-            //    startpos += length;
-            //if (distance < startpos - length)
-            //    startpos -= length;
+            if (transform.localPosition.x >= screenWidth / 2)
+                transform.localPosition = new Vector3(startpos, Random.Range(-screenHeight / 2, screenHeight / 2), transform.localPosition.z);
         }
         else
         {
-            transform.position = new Vector3(startpos + 1 * Mathf.Sin(Time.timeSinceLevelLoad), transform.position.y, transform.position.z);
-
+            transform.localPosition = new Vector3(startpos + 1 * Mathf.Sin(Time.timeSinceLevelLoad), transform.localPosition.y, transform.localPosition.z);
         }
     }
 }
