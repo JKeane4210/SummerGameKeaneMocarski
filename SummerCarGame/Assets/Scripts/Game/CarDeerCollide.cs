@@ -8,23 +8,15 @@ public class CarDeerCollide : MonoBehaviour
 {
     public bool goldAnimal = false;
     public bool forceFieldOn = false;
-    public GameObject health_bar;
+    public GameObject healthBar;
     public GameObject explosionEffect;
-
-    static bool explosionsEnabled = false;
 
     private GameObject canvas;
 
-    private void Start()
-    {
-        explosionsEnabled = GameDataManager.ExplosionsEnabled();
-        canvas = GameObject.FindGameObjectWithTag("Canvas");
-        UpdateExplosionStatus();
-    }
+    void Start() => canvas = GameObject.FindGameObjectWithTag("Canvas");
 
     void Update()
     {
-        if (canvas.GetComponent<powerUpBoard>() == null) return;
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0)
             goldAnimal = false;
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[2] == 0)
@@ -41,7 +33,7 @@ public class CarDeerCollide : MonoBehaviour
         {
             if (otherCollider.tag == "Animal" && !forceFieldOn)
             {
-                HealthBar health = health_bar.GetComponent<HealthBar>();
+                HealthBar health = healthBar.GetComponent<HealthBar>();
                 health.DecreaseHealth(otherCollider.GetComponent<DeerRunning>().GetDamage());
                 Destroy(otherCollider);
                 Explode();
@@ -69,23 +61,7 @@ public class CarDeerCollide : MonoBehaviour
 
     void Explode()
     {
-        if (explosionsEnabled)
+        if (GameDataManager.ExplosionsEnabled())
             Instantiate(explosionEffect, transform.position, transform.rotation);
     }
-
-    public void ChangeExplosionsStatus()
-    {
-        explosionsEnabled = !explosionsEnabled;
-        GameDataManager.SwitchExplosionsEnabled();
-        UpdateExplosionStatus();
-    }
-
-    public void UpdateExplosionStatus()
-    {
-        Text explosionsEnabledText = gameObject.GetComponent<Text>();
-        if (explosionsEnabledText != null)
-            explosionsEnabledText.text = "Explosions Enabled: " + (explosionsEnabled ? "Yes" : "No");
-    }
-
-    public bool GetExplosionsStatus() => explosionsEnabled;
 }

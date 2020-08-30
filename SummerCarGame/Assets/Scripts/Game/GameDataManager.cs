@@ -16,7 +16,8 @@ public class PlayerData
     public bool explosionsEnabled = false;
     public float musicLevel = 1;
     public bool soundEffectsEnabled = true;
-    public float timeOfDay = 0;
+    public float sunPoint = 60;
+    public bool isNightMode = false;
 }
 public static class GameDataManager
 {
@@ -42,6 +43,8 @@ public static class GameDataManager
     public static void SetMusicLevel(float musicLevel) => playerData.musicLevel = musicLevel;
     public static bool SoundEffectsEnabled() => playerData.soundEffectsEnabled;
     public static void SwitchSoundEffectsEnabled() => playerData.soundEffectsEnabled = !playerData.soundEffectsEnabled;
-    public static float GetTimeOfDay() => playerData.timeOfDay;
-    public static void SetTimeOfDay(float timeOfDay) => playerData.timeOfDay = timeOfDay;
+    public static float GetSunPoint() => playerData.sunPoint;
+    public static void SetSunPoint(float sunPoint) => playerData.sunPoint = sunPoint;
+    public static bool IsNightMode() => playerData.isNightMode;
+    public static void SwitchNightMode() => playerData.isNightMode = !playerData.isNightMode;
 }

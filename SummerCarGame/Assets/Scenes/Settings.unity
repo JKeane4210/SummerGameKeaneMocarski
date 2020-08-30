@@ -799,7 +799,6 @@ GameObject:
   m_Component:
   - component: {fileID: 532197027}
   - component: {fileID: 532197026}
-  - component: {fileID: 532197028}
   - component: {fileID: 532197029}
   m_Layer: 0
   m_Name: SceneController
@@ -837,19 +836,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &532197028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532197025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a7505bfacd041e487382b20838ece0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlTextField: {fileID: 991194704}
 --- !u!114 &532197029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,6 +852,39 @@ MonoBehaviour:
   musicLevel: {fileID: 548942533}
   soundEffectsText: {fileID: 215773794}
   muteImg: {fileID: 1926403965}
+  sunSlider: {fileID: 561347653}
+  sunGradient:
+    serializedVersion: 2
+    key0: {r: 0.07058824, g: 0.20784315, b: 0.30980393, a: 1}
+    key1: {r: 0.5594963, g: 0.77242404, b: 0.9339623, a: 1}
+    key2: {r: 0.56078434, g: 0.7725491, b: 0.9333334, a: 0}
+    key3: {r: 0.06901923, g: 0.20674855, b: 0.31132078, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 19661
+    ctime2: 45875
+    ctime3: 64957
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  sunPointText: {fileID: 408371389}
+  explosionsEnabledText: {fileID: 1827111936}
+  selectedControlTextField: {fileID: 991194705}
 --- !u!1 &548942531
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,7 +984,6 @@ GameObject:
   m_Component:
   - component: {fileID: 561347654}
   - component: {fileID: 561347655}
-  - component: {fileID: 561347656}
   - component: {fileID: 561347657}
   m_Layer: 5
   m_Name: SunPointSlider
@@ -1046,50 +1064,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &561347656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561347653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce668992a48814a9fb4893894ef21da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 561347653}
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0.07058824, g: 0.20784315, b: 0.30980393, a: 1}
-    key1: {r: 0.5594963, g: 0.77242404, b: 0.9339623, a: 1}
-    key2: {r: 0.56078434, g: 0.7725491, b: 0.9333334, a: 0}
-    key3: {r: 0.06901923, g: 0.20674855, b: 0.31132078, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 19661
-    ctime2: 45875
-    ctime3: 64957
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 4
-    m_NumAlphaKeys: 2
-  sun: {fileID: 0}
-  sunPointTxt: {fileID: 408371386}
 --- !u!114 &561347657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1260,8 +1234,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532197028}
-        m_MethodName: ChangeTextField
+      - m_Target: {fileID: 532197029}
+        m_MethodName: ChangeSelectedControl
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1390,7 +1364,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1827111938}
+      - m_Target: {fileID: 532197029}
         m_MethodName: ChangeExplosionsStatus
         m_Mode: 1
         m_Arguments:
@@ -2297,8 +2271,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532197028}
-        m_MethodName: ChangeTextField
+      - m_Target: {fileID: 532197029}
+        m_MethodName: ChangeSelectedControl
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3208,7 +3182,6 @@ GameObject:
   - component: {fileID: 1827111935}
   - component: {fileID: 1827111937}
   - component: {fileID: 1827111936}
-  - component: {fileID: 1827111938}
   m_Layer: 5
   m_Name: ExplosionsEnabled
   m_TagString: Untagged
@@ -3278,22 +3251,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827111934}
   m_CullTransparentMesh: 0
---- !u!114 &1827111938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827111934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c6dc2550a4b24c3dab4b0f7883ba67a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldAnimal: 0
-  forceFieldOn: 0
-  health_bar: {fileID: 0}
-  explosionEffect: {fileID: 0}
 --- !u!1 &1840589119
 GameObject:
   m_ObjectHideFlags: 0
@@ -3450,8 +3407,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532197028}
-        m_MethodName: ChangeTextField
+      - m_Target: {fileID: 532197029}
+        m_MethodName: ChangeSelectedControl
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

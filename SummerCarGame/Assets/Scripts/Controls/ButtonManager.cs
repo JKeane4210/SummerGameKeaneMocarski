@@ -52,7 +52,6 @@ public class ButtonManager : MonoBehaviour
                     loadingText.GetComponent<TextMeshProUGUI>().text = "Fueling Up " + ((int)(100f * (piece/ 180f))).ToString() + "%";
                     if (fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z == 270)
                         break;
-                    //print(fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z);
                     yield return null;
                 }
                 if (fuelNeedle.GetComponent<RectTransform>().rotation.eulerAngles.z == 270)
@@ -60,7 +59,6 @@ public class ButtonManager : MonoBehaviour
                 yield return null;
             }
         }
-        print("Done");
         operation.allowSceneActivation = true;
     }
 

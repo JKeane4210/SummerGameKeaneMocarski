@@ -162,10 +162,6 @@ public class Vehicle
         box.size = dimen;
         box.isTrigger = true;
 
-        //CHANGE CONTROLS
-        if (g_.GetComponent<ChangeControls>() == null)
-            g_.AddComponent<ChangeControls>();
-
         //UPDATE CONTROLS
         if (g_.GetComponent<UpdateControls>() == null)
             g_.AddComponent<UpdateControls>();
@@ -207,7 +203,7 @@ public class Vehicle
         if (g_.GetComponent<CarDeerCollide>() == null)
             g_.AddComponent<CarDeerCollide>();
         CarDeerCollide cdColl = g_.GetComponent<CarDeerCollide>();
-        cdColl.health_bar = GameObject.FindGameObjectWithTag("Health");
+        cdColl.healthBar = GameObject.FindGameObjectWithTag("Health");
         cdColl.explosionEffect = (GameObject)Resources.Load("EffectExamples/FireExplosionEffects/Prefabs/BigExplosionEffect");
 
         //FOREST_DAMAGE
