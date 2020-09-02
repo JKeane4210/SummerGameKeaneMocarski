@@ -66,4 +66,5 @@ public class ButtonManager : MonoBehaviour
     public void ChangeIsNightMode(bool nm) => isNightMode = nm;
     public bool GetIsNightMode() => isNightMode;
     public void FlipNightMode() => isNightMode = !isNightMode;
+    public void ReloadCurrentScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 }
