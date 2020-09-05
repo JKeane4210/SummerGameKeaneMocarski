@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AwardRoad.unity
     guid: d41829b98088b43deb60a4504c841fb0
+  - enabled: 1
+    path: Assets/Scenes/DailyReward.unity
+    guid: 214be9f3baaae4bf99f5c5d5292cf8bb
   m_configObjects: {}
