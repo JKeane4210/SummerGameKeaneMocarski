@@ -25,18 +25,18 @@ public class ShopVehicles : MonoBehaviour
         gameSharedUI = GameObject.FindGameObjectWithTag("GameSharedUI");
         unlockedCarPanel = GameObject.FindGameObjectWithTag("UnlockedPage");
         showPurchasedCars = GameObject.FindGameObjectWithTag("CheckBox");
-        vehicles = sceneController.GetComponent<VehicleList>().GetVehicles();
+        vehicles = GameDataJSONReader.CreateVehicleList();
         UpdateSelectedVehicleField();
         float shopItemHeight = shopItem.GetComponent<RectTransform>().rect.height;
-        if(showPurchasedCars.GetComponent<CheckBox>().IsChecked())
+        if (showPurchasedCars.GetComponent<CheckBox>().IsChecked())
             GetComponent<RectTransform>().sizeDelta = new Vector2(0, GameDataManager.GetOwnedCars().Count * (shopItemHeight + 10));
         else
-            GetComponent<RectTransform>().sizeDelta = new Vector2(0 , vehicles.Length * (shopItemHeight + 10));
+            GetComponent<RectTransform>().sizeDelta = new Vector2(0, vehicles.Length * (shopItemHeight + 10));
         float startingYPos = GetComponent<RectTransform>().rect.height / 2 - (shopItemHeight + 10) / 2;
         int i = 0;
         showPurchasedCars.GetComponent<Button>().onClick.AddListener(delegate { SceneManager.LoadScene("AutoShop"); });
 
-        foreach(Vehicle vehicle in vehicles)
+        foreach (Vehicle vehicle in vehicles)
         {
             if (!showPurchasedCars.GetComponent<CheckBox>().IsChecked() || (showPurchasedCars.GetComponent<CheckBox>().IsChecked() && GameDataManager.GetOwnedCars().Contains(vehicle.GetName())))
             {
@@ -101,6 +101,7 @@ public class ShopVehicles : MonoBehaviour
                         else
                         {
                             selectBuyButton.interactable = false;
+                            infoButton.interactable = false;
                             float milesTwoDecimals = (float)((int)(GameDataManager.GetTotalDistance() * 100));
                             autoShopItem.selectBuyText.GetComponent<TextMeshProUGUI>().text = $"{(float)(milesTwoDecimals / 100)}/{vehicle.GetPrizeDistance()} mi.";
                         }
@@ -115,7 +116,8 @@ public class ShopVehicles : MonoBehaviour
 
     public void BuyCar(GameObject autoShopItem, Vehicle vehicle)
     {
-        AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10);
+        if (GameDataManager.SoundEffectsEnabled())
+            AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10);
         AutoShopItem_ shopItemProperties = autoShopItem.GetComponent<AutoShopItem_>();
         Button selectBuyButton = shopItemProperties.selectButton.GetComponent<Button>();
         Button infoButton = shopItemProperties.infoButton.GetComponent<Button>();

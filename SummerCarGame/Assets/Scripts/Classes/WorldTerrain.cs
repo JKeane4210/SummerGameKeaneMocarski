@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class WorldTerrain
 {
-    private string name;
-    private GameObject normalRoad;
-    private GameObject gasRoad;
-    private Animal[] animals;
-    private Material normal_road_mat;
+    readonly private string name;
+    readonly private string normalRoad;
+    readonly private string gasRoad;
+    readonly private Animal[] animals;
+    readonly private string normalRoadMat;
 
-    public WorldTerrain(string n, GameObject road, GameObject gas, Animal[] anims, Material m)
+    public WorldTerrain(string name, string normalRoad, string gasRoad, Animal[] animals, string normalRoadMat)
     {
-        name = n;
-        normalRoad = road;
-        gasRoad = gas;
-        animals = anims;
-        normal_road_mat = m;
+        this.name = name;
+        this.normalRoad = normalRoad;
+        this.gasRoad = gasRoad;
+        this.animals = animals;
+        this.normalRoadMat = normalRoadMat;
     }
 
     public string GetName() => name;
-    public GameObject GetNormalRoad() => normalRoad;
-    public GameObject GetGasRoad() => gasRoad;
+    public GameObject GetNormalRoad() => (GameObject)Resources.Load(normalRoad);
+    public GameObject GetGasRoad() => (GameObject)Resources.Load(gasRoad);
     public Animal[] GetAnimals() => animals;
-    public Material GetNormalRoadMat() => normal_road_mat;
+    public Material GetNormalRoadMat() => (Material)Resources.Load(normalRoadMat);
 }

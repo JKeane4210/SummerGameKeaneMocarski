@@ -14,7 +14,6 @@ public class UnlockedPage_ : MonoBehaviour
 
     private GameObject car;
     private GameObject autoShopPanel;
-    private GameObject sceneController;
 
     void Start()
     {

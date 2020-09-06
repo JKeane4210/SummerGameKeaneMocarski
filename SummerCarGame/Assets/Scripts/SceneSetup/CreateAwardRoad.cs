@@ -21,7 +21,7 @@ public class CreateAwardRoad : MonoBehaviour
     private const float SLIDER_SCALE_FACTOR = 110;
     private const float SCREEN_WIDTH = 1334;
 
-    Prize[] prizes = new Prize[]
+    readonly Prize[] prizes = new Prize[]
     {
         new Prize(1, coinReward: 500),
         new Prize(5, coinReward: 1000),
@@ -33,7 +33,7 @@ public class CreateAwardRoad : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        slider.GetComponent<RectTransform>().sizeDelta = new Vector2(prizes[prizes.Length - 1].distanceToEarn * SLIDER_SCALE_FACTOR , 10);
+        slider.GetComponent<RectTransform>().sizeDelta = new Vector2(prizes[prizes.Length - 1].distanceToEarn * SLIDER_SCALE_FACTOR, 10);
         slider.GetComponent<RectTransform>().localPosition = new Vector3(slider.transform.localPosition.x + (prizes[prizes.Length - 1].distanceToEarn * SLIDER_SCALE_FACTOR - SCREEN_WIDTH) / 2, slider.transform.localPosition.y, slider.transform.localPosition.z);
         slider.GetComponent<Slider>().normalizedValue = GameDataManager.GetTotalDistance() / prizes[prizes.Length - 1].distanceToEarn;
         VehicleList vehicleList = new VehicleList();
@@ -46,7 +46,8 @@ public class CreateAwardRoad : MonoBehaviour
             awardMarker_.prize = prize;
             awardMarker_.distanceToEarnText.text = $"{prize.distanceToEarn} mi.";
             awardMarker_.claimButton.onClick.AddListener(delegate { prize.ClaimPrize(); });
-            awardMarker_.claimButton.onClick.AddListener(delegate { AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10); });
+            if (GameDataManager.SoundEffectsEnabled())
+                awardMarker_.claimButton.onClick.AddListener(delegate { AudioSource.PlayClipAtPoint(purchaseSound, mainCamera.transform.position, 10); });
             awardMarker_.claimButton.onClick.AddListener(delegate { awardMarker_.claimButton.gameObject.SetActive(false); });
             awardMarker_.claimButton.onClick.AddListener(delegate { awardMarker_.claimedCheck.SetActive(true); });
             awardMarker_.claimButton.onClick.AddListener(delegate { GameDataManager.AddPrize(prize.distanceToEarn); });
@@ -66,7 +67,7 @@ public class CreateAwardRoad : MonoBehaviour
             else
             {
                 awardMarker_.prizeText.text = prize.carName;
-                Instantiate(vehicleList.GetVehicleByName(prize.carName).car, new Vector3(prize.distanceToEarn * SCALE_FACTOR, PRIZE_Y, 0), Quaternion.Euler(new Vector3(0, -150, 0)));
+                Instantiate((GameObject)Resources.Load(vehicleList.GetVehicleByName(prize.carName).car), new Vector3(prize.distanceToEarn * SCALE_FACTOR, PRIZE_Y, 0), Quaternion.Euler(new Vector3(0, -150, 0)));
             }
         }
     }

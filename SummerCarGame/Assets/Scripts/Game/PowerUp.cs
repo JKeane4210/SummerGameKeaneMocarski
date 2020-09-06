@@ -39,7 +39,8 @@ public class PowerUp : MonoBehaviour
     {
         if(otherCollider.CompareTag("Player"))
         {
-            AudioSource.PlayClipAtPoint(powerUp, transform.position, 10.0f);
+            if (GameDataManager.SoundEffectsEnabled())
+                AudioSource.PlayClipAtPoint(powerUp, transform.position, 10.0f);
             car = otherCollider.gameObject;
             forceFieldRadius = car.GetComponent<Car>().forceFieldRad;
             PickUp(otherCollider);
