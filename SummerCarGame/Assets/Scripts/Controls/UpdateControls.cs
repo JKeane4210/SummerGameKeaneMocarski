@@ -14,9 +14,9 @@ public class UpdateControls : MonoBehaviour
         movingCar.GetComponent<SwipeControls>().enabled = false;
         int selectedControl = GameDataManager.GetSelectedControl();
         if (selectedControl == 0)
-            movingCar.GetComponent<Accelerometer>().enabled = true;
-        else if (selectedControl == 1)
             movingCar.GetComponent<MoveCar>().enabled = true;
+        else if (selectedControl == 1)
+            movingCar.GetComponent<Accelerometer>().enabled = true;
         else
             movingCar.GetComponent<SwipeControls>().enabled = true;
     }

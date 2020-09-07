@@ -189,11 +189,11 @@ public class Vehicle
         coins.coin = (GameObject)Resources.Load("Models/Powerups/coinMoving");
         coins.spawnInterval = 0.5f;
         coins.roadWidth = 9;
-        CoinMaker healthPacks = g_.AddComponent<CoinMaker>();
+        CoinMaker powerups = g_.AddComponent<CoinMaker>();
         //healthPacks.coin = (GameObject)Resources.Load("Models/Powerups/twoTimes");
-        healthPacks.coin = null;
-        healthPacks.spawnInterval = 8f;
-        healthPacks.roadWidth = 9;
+        powerups.coin = null;
+        powerups.spawnInterval = 8f;
+        powerups.roadWidth = 9;
 
         //COIN COUNTER
         if (g_.GetComponent<CoinCounter>() == null)
