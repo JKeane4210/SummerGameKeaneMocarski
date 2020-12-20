@@ -22,6 +22,7 @@ public class ButtonManager : MonoBehaviour
 
     public void ButtonChangeScene(string level)
     {
+        //SavePlayerData.SavePlayer();
         StartCoroutine(LoadAsynchronously(level));
     }
 
