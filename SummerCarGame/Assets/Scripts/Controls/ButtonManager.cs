@@ -13,6 +13,7 @@ public class ButtonManager : MonoBehaviour
 
     void Start()
     {
+        SavePlayerData.LoadPlayer();
         if (loadingScreen != null)
         {
             loadingScreen.SetActive(false);
@@ -22,7 +23,7 @@ public class ButtonManager : MonoBehaviour
 
     public void ButtonChangeScene(string level)
     {
-        //SavePlayerData.SavePlayer();
+        SavePlayerData.SavePlayer();
         StartCoroutine(LoadAsynchronously(level));
     }
 

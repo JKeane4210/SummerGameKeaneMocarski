@@ -11,30 +11,27 @@ public static class SavePlayerData
         BinaryFormatter binary = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.data";
         FileStream stream = new FileStream(path, FileMode.Create);
-        StoredPlayerData playerData = new StoredPlayerData(GameDataManager.playerData);
+        PlayerData playerData = GameDataManager.playerData;
         binary.Serialize(stream, playerData);
         stream.Close();
+        Debug.Log($"Saved player data to {path}");
     }
 
-    public static PlayerData LoadPlayer()
+    public static void LoadPlayer()
     {
         string path = Application.persistentDataPath + "/player.data";
-        Debug.Log(path);
-        StreamReader streamReader = new StreamReader(path);
-        Debug.Log(streamReader.ReadToEnd());
-        streamReader.Close();
-
         if (File.Exists(path))
         {
             BinaryFormatter binary = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-            StoredPlayerData playerData = binary.Deserialize(stream) as StoredPlayerData;
+            PlayerData playerData = binary.Deserialize(stream) as PlayerData;
             stream.Close();
-            return new PlayerData(playerData);
+            Debug.Log($"Read in file from {path}");
+            GameDataManager.playerData = playerData;
         }
         else
         {
-            return new PlayerData();
+            Debug.Log($"File did not exist at {path}");
         }
     }
 }
