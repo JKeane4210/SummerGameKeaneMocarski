@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vehicle
+public class Vehicle : GamePiece
 {
-    public string name;
     public string description;
     public int maxHealth;
     public float maxFuel;
     public float velocity;
     public Vector3 dimensions;
     //public float latVelocity; //basically agility (IDK if we should do this?)
-    public string car; // path to the gameObject
     public int price;
     public float mainMenuScaleX;
     public float mainMenuScaleY;
@@ -53,14 +51,12 @@ public class Vehicle
                    float unlockedAddOn        = 0,
                    float headlightOffsetAddOn = 0,
                    bool hasCustomHeadlights   = false,
-                   float prizeDistance        = -1)
+                   float prizeDistance        = -1) : base(name, car)
     {
-        this.name = name;
         this.description = description;
         this.maxHealth = maxHealth;
         this.maxFuel = maxFuel;
         this.velocity = velocity;
-        this.car = car;
         this.dimensions = dimensions;
         this.price = price;
         this.illuminationHeight = illuminationHeight;
@@ -104,7 +100,7 @@ public class Vehicle
 
     public void ActivateCarControl(int i)
     {
-        GameObject carObj = (GameObject)Resources.Load(car);
+        GameObject carObj = (GameObject)Resources.Load(GetAssetPath());
         if (i == 0)
             carObj.GetComponent<MoveCar>().enabled = true;
         if (i == 1)
@@ -115,7 +111,7 @@ public class Vehicle
 
     public void DeactivateCarControl(int i)
     {
-        GameObject carObj = (GameObject)Resources.Load(car);
+        GameObject carObj = (GameObject)Resources.Load(GetAssetPath());
         if (i == 0)
             carObj.GetComponent<MoveCar>().enabled = false;
         if (i == 1)
@@ -128,7 +124,7 @@ public class Vehicle
     //could set up more, these are just more variable and key than the others
     public GameObject SetUpComponents(int health, float fuel, float vel, GameObject g, Vector3 dimen)
     {
-        GameObject g_ = Object.Instantiate(g, gameLocation, Quaternion.identity);
+        GameObject g_ = PlaceGameObject(gameLocation, Quaternion.identity);
         g_.transform.localScale = gameScale;
 
         //CAR
@@ -261,8 +257,7 @@ public class Vehicle
     //good for loading screen
     public GameObject GetGameObjectNoComponents(Vector3 location)
     {
-        GameObject carObj = (GameObject)Resources.Load(car);
-        GameObject carCopy = Object.Instantiate(carObj, location, Quaternion.identity);
+        GameObject carCopy = PlaceGameObject(location, Quaternion.identity);
         foreach (var comp in carCopy.GetComponents<Component>())
         {
             if (!(comp is Transform) && !(comp is Rigidbody))
@@ -275,8 +270,7 @@ public class Vehicle
 
     public GameObject GetGameObjectNoComponents(Vector3 location, Vector3 scale)
     {
-        GameObject carObj = (GameObject)Resources.Load(car);
-        GameObject carCopy = Object.Instantiate(carObj, location, Quaternion.identity);
+        GameObject carCopy = PlaceGameObject(location, Quaternion.identity);
         carCopy.transform.localScale = scale;
         foreach (var comp in carCopy.GetComponents<Component>())
         {
@@ -288,8 +282,7 @@ public class Vehicle
         return carCopy;
     }
 
-    public GameObject GetCarGameObject() => SetUpComponents(maxHealth, maxFuel, velocity, (GameObject)Resources.Load(car), dimensions);
-    public string GetName() => name;
+    public GameObject GetCarGameObject() => SetUpComponents(maxHealth, maxFuel, velocity, (GameObject)Resources.Load(GetAssetPath()), dimensions);
     public string GetDescription() => description;
     public int GetMaxHealth() => maxHealth;
     public float GetMaxFuel() => maxFuel;

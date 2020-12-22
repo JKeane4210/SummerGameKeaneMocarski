@@ -26,7 +26,7 @@ public class RandomDeerInstantiation : MonoBehaviour
         animalNames = new string[animals.Length];
         int animal_ind = (int)Random.Range(0, (float)animals.Length - 0.01f);
         Animal currentAnimal = animals[animal_ind];
-        deer_obj = currentAnimal.GetAnimal();
+        deer_obj = currentAnimal.GetGameObject();
         for (int i = 0; i < animalNames.Length; i++)
             animalNames[i] = animals[i].GetName();
         float averageVel = currentAnimal.GetAverageSpeed();
