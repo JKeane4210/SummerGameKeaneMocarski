@@ -13,8 +13,6 @@ public class Animal : GamePiece
         this.averageSpeed = averageSpeed;
     }
 
-    //public GameObject GetAnimal() => (GameObject)Resources.Load(GetAssetPath());
-    //public GameObject PlaceAnimal(Vector3 loc, Quaternion rot) => GameObject.Instantiate(GetAnimal(), loc, rot);
     public float GetDamage() => damage;
     public float GetAverageSpeed() => averageSpeed;
 }
