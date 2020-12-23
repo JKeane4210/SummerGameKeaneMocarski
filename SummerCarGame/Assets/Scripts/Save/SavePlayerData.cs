@@ -20,14 +20,23 @@ public static class SavePlayerData
     public static void LoadPlayer()
     {
         string path = Application.persistentDataPath + "/player.data";
-        if (File.Exists(path))
+        if (File.Exists(path)) // this is pretty much just for checking my data is OK, but good check for valid data
         {
+
             BinaryFormatter binary = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-            PlayerData playerData = binary.Deserialize(stream) as PlayerData;
-            stream.Close();
-            Debug.Log($"Read in file from {path}");
-            GameDataManager.playerData = playerData;
+            try
+            {
+                PlayerData playerData = binary.Deserialize(stream) as PlayerData;
+                stream.Close();
+                Debug.Log($"Read in file from {path}");
+                //Debug.Log(playerData.nextSpinDate[0] + " " + playerData.nextSpinDate[1] + " " + playerData.nextSpinDate[2]);
+                GameDataManager.playerData = playerData;
+            }
+            catch (System.Exception exception)
+            {
+                Debug.Log($"Invalid player data\n{exception}");
+            }
         }
         else
         {

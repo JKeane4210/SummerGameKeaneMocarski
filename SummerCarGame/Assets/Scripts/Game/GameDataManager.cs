@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 //player data holder
 [System.Serializable]
@@ -18,64 +19,13 @@ public class PlayerData
     public bool soundEffectsEnabled = true;
     public float sunPoint = 60;
     public bool isNightMode = false;
-
-    //public PlayerData()
-    //{
-    //    //selectedVehicle = "Default Car";
-    //}
-
-    //public PlayerData(StoredPlayerData storedPlayerData)
-    //{
-    //    coins = storedPlayerData.coins;
-    //    totalDistance = storedPlayerData.totalDistance;
-    //    ownedCars = storedPlayerData.ownedCars;
-    //    earnedPrizes = storedPlayerData.earnedPrizes;
-    //    //selectedVehicle = storedPlayerData.selectedVehicle;
-    //    selectedControl = storedPlayerData.selectedControl;
-    //    explosionsEnabled = storedPlayerData.explosionsEnabled;
-    //    musicLevel = storedPlayerData.musicLevel;
-    //    soundEffectsEnabled = storedPlayerData.soundEffectsEnabled;
-    //    sunPoint = storedPlayerData.sunPoint;
-    //    isNightMode = storedPlayerData.isNightMode;
-    //}
+    // Daily reward page
+    public int[] nextSpinDate = new int[3] { DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day };
 }
 
-//[System.Serializable]
-//public class StoredPlayerData
-//{
-//    public int coins = 0;
-//    public float totalDistance = 0;
-//    public List<string> ownedCars;
-//    public List<float> earnedPrizes;
-//    public string selectedVehicle = "Default Car";
-//    public int selectedControl = 2;
-//    public bool explosionsEnabled = false;
-//    public float musicLevel = 1;
-//    public bool soundEffectsEnabled = true;
-//    public float sunPoint = 60;
-//    public bool isNightMode = false;
-
-//    public StoredPlayerData() { }
-
-//    public StoredPlayerData(PlayerData playerData)
-//    {
-//        coins = playerData.coins;
-//        totalDistance = playerData.totalDistance;
-//        ownedCars = playerData.ownedCars;
-//        earnedPrizes = playerData.earnedPrizes;
-//        //selectedVehicle = playerData.selectedVehicle.GetName();
-//        selectedControl = playerData.selectedControl;
-//        explosionsEnabled = playerData.explosionsEnabled;
-//        musicLevel = playerData.musicLevel;
-//        soundEffectsEnabled = playerData.soundEffectsEnabled;
-//        sunPoint = playerData.sunPoint;
-//        isNightMode = playerData.isNightMode;
-//    }
-//}
 
 public static class GameDataManager
 {
-    //SavePlayerData.LoadPlayer();
     public static PlayerData playerData = new PlayerData();
 
     public static int GetCoins() => playerData.coins;
@@ -103,6 +53,12 @@ public static class GameDataManager
     public static void SetSunPoint(float sunPoint) => playerData.sunPoint = sunPoint;
     public static bool IsNightMode() => playerData.isNightMode;
     public static void SwitchNightMode() => playerData.isNightMode = !playerData.isNightMode;
-
-    //public static void SavePlayer() => SavePlayerData.SavePlayer();
+    public static void SetNextSpinDate(int[] nextSpinDate) => playerData.nextSpinDate = nextSpinDate;
+    public static DateTime GetNextSpinDate()
+    {
+        if (playerData.nextSpinDate != null)
+            return new DateTime(playerData.nextSpinDate[0], playerData.nextSpinDate[1], playerData.nextSpinDate[2], 0, 0, 0);
+        else
+            return DateTime.Now;
+    }
 }

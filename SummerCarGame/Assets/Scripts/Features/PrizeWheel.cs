@@ -1,7 +1,8 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class PrizeWheel : MonoBehaviour
 {
@@ -22,9 +23,8 @@ public class PrizeWheel : MonoBehaviour
 
     private float wheelSpeed;
 
-    private static bool spinAllowed = true;
-    private static System.DateTime nextSpinTime;
-    private static bool shouldCollectNewNextSpinTime = true;
+    private static bool spinAllowed = false;
+    private static DateTime nextSpinTime;
 
     readonly private WheelPrize[] wheelPrizes = new WheelPrize[]
     {
@@ -40,6 +40,7 @@ public class PrizeWheel : MonoBehaviour
 
     void Start()
     {
+        nextSpinTime = GameDataManager.GetNextSpinDate();
         Time.timeScale = 1;
         int i = 0;
         foreach (WheelPrize wheelPrize in wheelPrizes)
@@ -65,23 +66,22 @@ public class PrizeWheel : MonoBehaviour
             timeUntilAvailableText.GetComponent<Text>().text = "NOW!\nClick to spin";
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
             {
-                wheelSpeed = Random.Range(500, 600);
+                wheelSpeed = UnityEngine.Random.Range(500, 600);
+                DateTime tomorrow = DateTime.Now + new TimeSpan(1, 0, 0, 0); // spin time
+                nextSpinTime = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, 0, 0, 0);
+                GameDataManager.SetNextSpinDate(new int[] { tomorrow.Year, tomorrow.Month, tomorrow.Day });
+                SavePlayerData.SavePlayer();
                 spinAllowed = false;
             }
         }
         else
         {
-            if (shouldCollectNewNextSpinTime)
-            {
-                nextSpinTime = System.DateTime.Now + new System.TimeSpan(1, 0, 0, 0); // spin time 
-                shouldCollectNewNextSpinTime = false;
-            }
-            System.TimeSpan timeDifference = nextSpinTime - System.DateTime.Now;
+            TimeSpan timeDifference = nextSpinTime - DateTime.Now;
             timeUntilAvailableText.GetComponent<Text>().text = $"Time Until Next Spin:\n{timeDifference.Hours} hrs, {timeDifference.Minutes} min, {timeDifference.Seconds} sec";
             if (timeDifference.Seconds < 0)
                 spinAllowed = true;
         }
-        if (wheelSpeed > 0)
+        if (wheelSpeed > 0) // in the process of spinning
         {
             wheel.GetComponent<RectTransform>().localEulerAngles = new Vector3(0, 0, wheel.GetComponent<RectTransform>().localEulerAngles.z + wheelSpeed * Time.deltaTime);
             if (wheelSpeed > DAMPENING_FACTOR)
@@ -107,7 +107,6 @@ public class PrizeWheel : MonoBehaviour
                     claimButton.SetActive(false);
                     timeUntilAvailableText.SetActive(true);
                     GameSharedUI.Instance.UpdateCoinsUIText();
-                    shouldCollectNewNextSpinTime = true;
                     print(nextSpinTime);
                 });
             }
