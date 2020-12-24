@@ -8,6 +8,16 @@ using System;
 
 public class AdCreator : MonoBehaviour
 {
+    // This goes into the build file
+    //   <key>GADApplicationIdentifier</key>
+	//<string>ca-app-pub-3940256099942544~1712485313</string>
+	//<key>SKAdNetworkItems</key>
+	//<array>
+	//	<dict>
+	//		<key>SKAdNetworkIdentifier</key>
+	//		<string>cstr6suwn9.skadnetwork</string>
+	//	</dict>
+	//</array>
     private RewardedAd rewardBasedVideoAd;
 
     public GameObject mainPanel;
@@ -16,6 +26,7 @@ public class AdCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MobileAds.Initialize(initStatus => { });
         //ca - app - pub - 3940256099942544 / 1712485313
         string adUnitId = "ca-app-pub-3940256099942544/1712485313";
         rewardBasedVideoAd = new RewardedAd(adUnitId);
@@ -31,14 +42,14 @@ public class AdCreator : MonoBehaviour
         rewardBasedVideoAd.OnUserEarnedReward += HandleUserEarnedReward;
         // Called when the ad is closed.
         rewardBasedVideoAd.OnAdClosed += HandleRewardedAdClosed;
-    }
-
-    public void ShowRewardedAd()
-    {
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the rewarded ad with the request.
         rewardBasedVideoAd.LoadAd(request);
+    }
+
+    public void ShowRewardedAd()
+    {
         if (rewardBasedVideoAd.IsLoaded())
         {
             rewardBasedVideoAd.Show();
@@ -85,6 +96,10 @@ public class AdCreator : MonoBehaviour
         GameDataManager.AddCoins(1000);
         SavePlayerData.SavePlayer();
         gameSharedUI.GetComponent<GameSharedUI>().UpdateCoinsUIText();
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the rewarded ad with the request.
+        rewardBasedVideoAd.LoadAd(request);
         MonoBehaviour.print(
             "HandleRewardedAdRewarded event received for "
                         + amount.ToString() + " " + type);
