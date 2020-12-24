@@ -10,8 +10,9 @@ public class AdCreator : MonoBehaviour
 {
     private RewardedAd rewardBasedVideoAd;
 
-    public Camera mainCamera;
     public GameObject mainPanel;
+    public GameObject rewardClaimed;
+    public GameObject gameSharedUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,13 +75,16 @@ public class AdCreator : MonoBehaviour
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleRewardedAdClosed event received");
-        mainPanel.SetActive(true);
     }
 
     public void HandleUserEarnedReward(object sender, Reward args)
     {
         string type = args.Type;
         double amount = args.Amount;
+        rewardClaimed.SetActive(true);
+        GameDataManager.AddCoins(1000);
+        SavePlayerData.SavePlayer();
+        gameSharedUI.GetComponent<GameSharedUI>().UpdateCoinsUIText();
         MonoBehaviour.print(
             "HandleRewardedAdRewarded event received for "
                         + amount.ToString() + " " + type);
