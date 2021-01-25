@@ -2,7 +2,7 @@
 While we (Jonathan Keane and Kacper Mocarski) have time during quarantine, we decided we could learn a new language and create a cool project through Unity where we create a video game (more details of the game below).
 
 # Deer Dash
-In this game, the goal is to move your vehicle to avoid the deers that are running across the screen, while at the same time managing your fuel, collecting coins and powerups, and not driving off the side of the road. This game operates in 3D and we developed it to have many different cars, animals, and worlds! This game is being developed to be playable on Android and iPhone and will be free to play. We used Blender to design our own animals, cars and terrains and we used arageBand to create some background music for the game.
+In this game, the goal is to move your vehicle to avoid the deers that are running across the screen, while at the same time managing your fuel, collecting coins and powerups, and not driving off the side of the road. This game operates in 3D and we developed it to have many different cars, animals, and worlds! This game is being developed to be playable on Android and iPhone and will be free to play. We used Blender to design our own animals, cars and terrains and we used GarageBand to create some background music for the game.
 
 # Features of the Programming Done:
 - The game saves player data in a binary file on the device played, so that player settings can be restored after leaving and reentering the app. 
