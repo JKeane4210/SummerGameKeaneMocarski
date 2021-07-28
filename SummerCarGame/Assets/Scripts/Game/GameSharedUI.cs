@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 public class GameSharedUI : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class GameSharedUI : MonoBehaviour
             if (coinsUIText[i].name == "SingleGameCoins")
                 SetCoinsText(coinsUIText[i], GetCoins() - initialCoins);
 
+
             else
                 SetCoinsText(coinsUIText[i], GameDataManager.GetCoins());
         }
@@ -48,6 +50,8 @@ public class GameSharedUI : MonoBehaviour
     void SetCoinsText(TMP_Text textMesh, int value)
     {
         textMesh.text = value.ToString();
+        PlayerPrefs.SetInt("coins", value);
+        Debug.Log("Coins saved");
     }
 
     public void BuyCar(int price)
