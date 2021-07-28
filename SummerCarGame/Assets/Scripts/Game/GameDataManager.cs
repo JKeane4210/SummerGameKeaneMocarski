@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 //player data holder
 [System.Serializable]
@@ -8,9 +9,9 @@ public class PlayerData
 {
     public int coins = 0;
     public float totalDistance = 0;
-    public ArrayList ownedCars = new ArrayList() { "Default Car" };
-    public ArrayList earnedPrizes = new ArrayList() { };
-    public Vehicle selectedVehicle;
+    public List<string> ownedCars = new List<string>() { "Default Car" };
+    public List<float> earnedPrizes = new List<float>() { };
+    public string selectedVehicle = "Default Car";
     // Settings page
     public int selectedControl = 2;
     public bool explosionsEnabled = false;
@@ -18,10 +19,14 @@ public class PlayerData
     public bool soundEffectsEnabled = true;
     public float sunPoint = 60;
     public bool isNightMode = false;
+    // Daily reward page
+    public int[] nextSpinDate = new int[3] { DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day };
 }
+
+
 public static class GameDataManager
 {
-    static PlayerData playerData = new PlayerData(); // check if player data exists in storage location, otherwise, give default values
+    public static PlayerData playerData = new PlayerData();
 
     public static int GetCoins() => playerData.coins;
     public static void AddCoins(int amount) => playerData.coins += amount;
@@ -29,12 +34,13 @@ public static class GameDataManager
     public static bool CanSpendCoins(int amount) => playerData.coins >= amount;
     public static float GetTotalDistance() => playerData.totalDistance;
     public static void AddDistance(float amount) => playerData.totalDistance += amount;
-    public static ArrayList GetOwnedCars() => playerData.ownedCars;
+    public static List<string> GetOwnedCars() => playerData.ownedCars;
     public static void AddCar(string newCar) => playerData.ownedCars.Add(newCar);
-    public static ArrayList GetEarnedPrizes() => playerData.earnedPrizes;
+    public static List<float> GetEarnedPrizes() => playerData.earnedPrizes;
     public static void AddPrize(float prizeDistance) => playerData.earnedPrizes.Add(prizeDistance);
-    public static Vehicle GetSelectedVehicle() => playerData.selectedVehicle;
-    public static void SetSelectedVehicle(Vehicle vehicle) => playerData.selectedVehicle = vehicle;
+    public static string GetSelectedVehicle() => playerData.selectedVehicle;
+    public static void SetSelectedVehicle(Vehicle vehicle) => playerData.selectedVehicle = vehicle.GetName();
+    public static void SetSelectedVehicle(string name) => playerData.selectedVehicle = name;
     public static int GetSelectedControl() => playerData.selectedControl;
     public static void SetSelectedControl(int controlInd) => playerData.selectedControl = controlInd;
     public static bool ExplosionsEnabled() => playerData.explosionsEnabled;
@@ -47,4 +53,12 @@ public static class GameDataManager
     public static void SetSunPoint(float sunPoint) => playerData.sunPoint = sunPoint;
     public static bool IsNightMode() => playerData.isNightMode;
     public static void SwitchNightMode() => playerData.isNightMode = !playerData.isNightMode;
+    public static void SetNextSpinDate(int[] nextSpinDate) => playerData.nextSpinDate = nextSpinDate;
+    public static DateTime GetNextSpinDate()
+    {
+        if (playerData.nextSpinDate != null)
+            return new DateTime(playerData.nextSpinDate[0], playerData.nextSpinDate[1], playerData.nextSpinDate[2], 0, 0, 0);
+        else
+            return DateTime.Now;
+    }
 }

@@ -167,3 +167,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prizeText: {fileID: 5330903817089160973}
+  sliceImage: {fileID: 7142274126576697814}

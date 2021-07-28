@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using SimpleJSON;
 
 public class GameDataJSONReader
 {
-    readonly static Dictionary<string, string> OPTIONAL_VALUE_DEFAULTS = new Dictionary<string, string>()
+    public readonly static Dictionary<string, string> OPTIONAL_VALUE_DEFAULTS = new Dictionary<string, string>()
     {
         {"price"               , "0"},
         {"illuminationHeight"  , "10"},
@@ -25,47 +24,49 @@ public class GameDataJSONReader
 
     public static Vehicle[] CreateVehicleList()
     {
-        string json = File.ReadAllText(Application.dataPath + "/GameData/GameData.json");
-        JSONNode N = JSON.Parse(json);
-        Vehicle[] vehicles = new Vehicle[N["vehicles"].Count];
-        for (int i = 0; i < vehicles.Length; i++)
+        StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/GameData/GameData.json");
+        string json = reader.ReadToEnd();
+        Root root = JsonUtility.FromJson<Root>(json);
+        Vehicle[] vehicles = new Vehicle[root.vehicles.Length];
+        for (int i = 0; i < root.vehicles.Length; i++)
         {
-            JSONNode vehicleData = N["vehicles"][i];
+            VehicleJSON vehicle = root.vehicles[i];
             vehicles[i] = new Vehicle
                 (
-                    vehicleData["name"].Value,
-                    vehicleData["description"].Value,
-                    int.Parse(vehicleData["maxHealth"].Value),
-                    float.Parse(vehicleData["maxFuel"].Value),
-                    float.Parse(vehicleData["velocity"].Value),
-                    vehicleData["car"].Value,
-                    new Vector3(float.Parse(vehicleData["dimensions"]["x"].Value),
-                                float.Parse(vehicleData["dimensions"]["y"].Value),
-                                float.Parse(vehicleData["dimensions"]["z"].Value)),
-                    new Vector3(float.Parse(vehicleData["gameLocation"]["x"].Value),
-                                float.Parse(vehicleData["gameLocation"]["y"].Value),
-                                float.Parse(vehicleData["gameLocation"]["z"].Value)),
-                    new Vector3(float.Parse(vehicleData["viewingLocation"]["x"].Value),
-                                float.Parse(vehicleData["viewingLocation"]["y"].Value),
-                                float.Parse(vehicleData["viewingLocation"]["z"].Value)),
-                    new Vector3(float.Parse(vehicleData["gameScale"]["x"].Value),
-                                float.Parse(vehicleData["gameScale"]["y"].Value),
-                                float.Parse(vehicleData["gameScale"]["z"].Value)),
-                    new Vector3(float.Parse(vehicleData["viewingScale"]["x"].Value),
-                                float.Parse(vehicleData["viewingScale"]["y"].Value),
-                                float.Parse(vehicleData["viewingScale"]["z"].Value)),
-                    price: vehicleData["price"].Value != "" ? int.Parse(vehicleData["price"].Value) : int.Parse(OPTIONAL_VALUE_DEFAULTS["price"]),
-                    illuminationHeight: vehicleData["illuminationHeight"].Value != "" ? float.Parse(vehicleData["illuminationHeight"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["illuminationHeight"]),
-                    mmScale: vehicleData["mmScale"].Value != "" ? float.Parse(vehicleData["mmScale"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmScale"]),
-                    mmPosX: vehicleData["mmPosX"].Value != "" ? float.Parse(vehicleData["mmPosX"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosX"]),
-                    mmPosY: vehicleData["mmPosY"].Value != "" ? float.Parse(vehicleData["mmPosY"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosY"]),
-                    mmPosZ: vehicleData["mmPosZ"].Value != "" ? float.Parse(vehicleData["mmPosZ"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosZ"]),
-                    rotX: vehicleData["rotX"].Value != "" ? float.Parse(vehicleData["rotX"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["rotX"]),
-                    rotY: vehicleData["rotY"].Value != "" ? float.Parse(vehicleData["rotY"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["rotY"]),
-                    forceFieldRadius: vehicleData["forceFieldRadius"].Value != "" ? float.Parse(vehicleData["forceFieldRadius"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["forceFieldRadius"]),
-                    headlightOffsetAddOn: vehicleData["headlightOffsetAddOn"].Value != "" ? float.Parse(vehicleData["headlightOffsetAddOn"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["headlightOffsetAddOn"]),
-                    hasCustomHeadlights: vehicleData["hasCustomHeadlights"].Value != "" ? bool.Parse(vehicleData["hasCustomHeadlights"].Value) : bool.Parse(OPTIONAL_VALUE_DEFAULTS["hasCustomHeadlights"]),
-                    prizeDistance: vehicleData["prizeDistance"].Value != "" ? float.Parse(vehicleData["prizeDistance"].Value) : float.Parse(OPTIONAL_VALUE_DEFAULTS["prizeDistance"])
+                    vehicle.name,
+                    vehicle.description,
+                    vehicle.maxHealth,
+                    vehicle.maxFuel,
+                    (float)vehicle.velocity,
+                    vehicle.car,
+                    new Vector3((float)vehicle.dimensions.x,
+                                (float)vehicle.dimensions.y,
+                                (float)vehicle.dimensions.z),
+                    new Vector3((float)vehicle.gameLocation.x,
+                                (float)vehicle.gameLocation.y,
+                                (float)vehicle.gameLocation.z),
+                    new Vector3((float)vehicle.viewingLocation.x,
+                                (float)vehicle.viewingLocation.y,
+                                (float)vehicle.viewingLocation.z),
+                    new Vector3((float)vehicle.gameScale.x,
+                                (float)vehicle.gameScale.y,
+                                (float)vehicle.gameScale.z),
+                    new Vector3(vehicle.viewingScale.x,
+                                vehicle.viewingScale.y,
+                                vehicle.viewingScale.z),
+                    vehicle.price,
+                    vehicle.illuminationHeight, //?? float.Parse(OPTIONAL_VALUE_DEFAULTS["illuminationHeight"])
+                    vehicle.mmScale != 0 ? vehicle.mmScale : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmScale"]),
+                    float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosX"]),
+                    vehicle.mmPosY != 0 ? vehicle.mmPosY : float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosY"]),
+                    float.Parse(OPTIONAL_VALUE_DEFAULTS["mmPosZ"]),
+                    vehicle.rotX != 0 ? vehicle.rotX : float.Parse(OPTIONAL_VALUE_DEFAULTS["rotX"]),
+                    float.Parse(OPTIONAL_VALUE_DEFAULTS["rotY"]),
+                    vehicle.forceFieldRadius != 0 ? vehicle.forceFieldRadius : float.Parse(OPTIONAL_VALUE_DEFAULTS["forceFieldRadius"]),
+                    vehicle.unlockedAddOn, //?? float.Parse(OPTIONAL_VALUE_DEFAULTS["unlockedAddOn"])
+                    (float)vehicle.headlightOffsetAddOn, //?? float.Parse(OPTIONAL_VALUE_DEFAULTS["headlightOffsetAddOn"])
+                    vehicle.hasCustomHeadlights, //?? bool.Parse(OPTIONAL_VALUE_DEFAULTS["hasCustomHeadlights"])
+                    vehicle.prizeDistance // ?? float.Parse(OPTIONAL_VALUE_DEFAULTS["prizeDistance"])
                 );
         }
         return vehicles;
@@ -73,34 +74,129 @@ public class GameDataJSONReader
 
     public static WorldTerrain[] CreateWorldTerrainList()
     {
-        string json = File.ReadAllText(Application.dataPath + "/GameData/GameData.json");
-        JSONNode N = JSON.Parse(json);
-        WorldTerrain[] worldTerrains = new WorldTerrain[N["roads"].Count];
-        for (int i = 0; i < worldTerrains.Length; i++)
+        string json = File.ReadAllText(Application.streamingAssetsPath + "/GameData/GameData.json");
+        Root root = JsonUtility.FromJson<Root>(json);
+        WorldTerrain[] worldTerrains = new WorldTerrain[root.roads.Length];
+        for (int i = 0; i < root.roads.Length; i++)
         {
-            JSONNode worldTerainData = N["roads"][i];
-            Animal[] worldAnimals = new Animal[worldTerainData["animals"].Count];
-            for (int j = 0; j < worldAnimals.Length; j++)
+            RoadJSON road = root.roads[i];
+            Animal[] animals = new Animal[road.animals.Length];
+            for (int j = 0; j < road.animals.Length; j++)
             {
-                JSONNode animalData = worldTerainData["animals"][i];
-                worldAnimals[j] = new Animal
+                AnimalJSON animal = road.animals[j];
+                animals[j] = new Animal
                     (
-                        animalData["name"].Value,
-                        animalData["animal"].Value,
-                        float.Parse(animalData["damage"].Value),
-                        float.Parse(animalData["velocity"].Value)
+                        animal.name,
+                        animal.animal,
+                        animal.damage,
+                        (float)animal.velocity
                     );
             }
             worldTerrains[i] = new WorldTerrain
                 (
-                    worldTerainData["name"].Value,
-                    worldTerainData["normalRoad"].Value,
-                    worldTerainData["gasRoad"].Value,
-                    worldAnimals,
-                    worldTerainData["material"].Value
+                    road.name,
+                    road.normalRoad,
+                    road.gasRoad,
+                    animals,
+                    road.material
                 );
         }
         return worldTerrains;
     }
 }
+
+[System.Serializable]
+public class Dimensions
+{
+    public double x;
+    public double y;
+    public double z;
+}
+
+[System.Serializable]
+public class GameLocation
+{
+    public double x;
+    public double y;
+    public int z;
+};
+
+[System.Serializable]
+public class ViewingLocation
+{
+    public int x;
+    public double y;
+    public int z;
+}
+
+[System.Serializable]
+public class GameScale
+{
+    public double x;
+    public double y;
+    public double z;
+}
+
+[System.Serializable]
+public class ViewingScale
+{
+    public int x;
+    public int y;
+    public int z;
+}
+
+[System.Serializable]
+public class VehicleJSON
+{
+    public string name;
+    public string description;
+    public int maxHealth;
+    public int maxFuel;
+    public double velocity;
+    public string car;
+    public Dimensions dimensions;
+    public GameLocation gameLocation;
+    public ViewingLocation viewingLocation;
+    public GameScale gameScale;
+    public ViewingScale viewingScale;
+    public int mmScale;
+    public int mmPosY;
+    public int rotX;
+    public int forceFieldRadius;
+    public int price = int.Parse(GameDataJSONReader.OPTIONAL_VALUE_DEFAULTS["price"]);
+    public int illuminationHeight = int.Parse(GameDataJSONReader.OPTIONAL_VALUE_DEFAULTS["illuminationHeight"]);
+    public int unlockedAddOn = int.Parse(GameDataJSONReader.OPTIONAL_VALUE_DEFAULTS["unlockedAddOn"]);
+    public double headlightOffsetAddOn = double.Parse(GameDataJSONReader.OPTIONAL_VALUE_DEFAULTS["headlightOffsetAddOn"]);
+    public bool hasCustomHeadlights = bool.Parse(GameDataJSONReader.OPTIONAL_VALUE_DEFAULTS["hasCustomHeadlights"]);
+    public int prizeDistance = int.Parse(GameDataJSONReader.OPTIONAL_VALUE_DEFAULTS["prizeDistance"]);
+}
+
+[System.Serializable]
+public class AnimalJSON
+{
+    public string name;
+    public string animal;
+    public int damage;
+    public double velocity; 
+}
+
+[System.Serializable]
+public class RoadJSON
+{
+    public string name;
+    public string normalRoad;
+    public string gasRoad;
+    public AnimalJSON[] animals;
+    public string material;
+}
+
+[System.Serializable]
+public class Root
+{
+    public VehicleJSON[] vehicles;
+    public RoadJSON[] roads;
+}
+
+
+
 

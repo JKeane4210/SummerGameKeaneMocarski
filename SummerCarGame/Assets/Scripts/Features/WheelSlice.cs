@@ -6,4 +6,5 @@ using UnityEngine.UI;
 public class WheelSlice : MonoBehaviour
 {
     public Text prizeText;
+    public Image sliceImage;
 }
