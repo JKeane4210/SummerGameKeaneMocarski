@@ -16,6 +16,9 @@ public class Car : MonoBehaviour
     private Transform car_transform;
     private float distance_traveled;
 
+    /// <summary>
+    /// Initializes the Car property
+    /// </summary>
     public void SimulateStart()
     {
         currentHealth = maxHealth;
@@ -25,6 +28,9 @@ public class Car : MonoBehaviour
         car_transform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
+    /// <summary>
+    /// Updates the fuel/distance over time
+    /// </summary>
     void Update()
     {
         if (currentFuel > 0.03)
@@ -42,6 +48,10 @@ public class Car : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
+    /// <summary>
+    /// Converts distance to miles
+    /// </summary>
+    /// <returns>Float of distance traveled converted to miles</returns>
     public float getDistanceMiles()
     {
         float distance_miles = distance_traveled / 5280f;

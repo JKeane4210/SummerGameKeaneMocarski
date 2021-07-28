@@ -32,7 +32,9 @@ public class DeerRunning : MonoBehaviour
         player_rigidbody.velocity = trajectory;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Controls whether deer are gold and sprinkinling gold dust (power up) or are normal
+    /// </summary>
     void Update()
     {
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] != 0)
@@ -57,6 +59,9 @@ public class DeerRunning : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Controls deer velocity
+    /// </summary>
     void FixedUpdate()
     {
         if (player_rigidbody.velocity.x != trajectory.x || player_rigidbody.velocity.z != trajectory.z)

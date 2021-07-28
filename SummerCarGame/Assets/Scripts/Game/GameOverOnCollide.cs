@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameOverOnCollide : MonoBehaviour
 {
+    /// <summary>
+    /// UNUSED: What to do when an event triggers game over
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

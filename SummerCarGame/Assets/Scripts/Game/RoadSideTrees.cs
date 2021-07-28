@@ -10,7 +10,9 @@ public class RoadSideTrees : MonoBehaviour
 
     private float time = 0;
 
-    // Update is called once per frame
+    /// <summary>
+    /// UNIMPLEMENTED: Supposed to put a tree in the middle of the road as another obstacle
+    /// </summary>
     void FixedUpdate()
     {
         time += Time.deltaTime;

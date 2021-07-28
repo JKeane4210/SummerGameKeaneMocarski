@@ -24,6 +24,9 @@ public class DistanceText : MonoBehaviour
         //text_field.GetComponent<UnityEngine.UI.Text>().text = "?????";
     }
 
+    /// <summary>
+    /// Updates the distance text to reflect current distance
+    /// </summary>
     void Update()
     {
         if (Time.time > nextActionTime)

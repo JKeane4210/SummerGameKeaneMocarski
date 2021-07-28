@@ -27,7 +27,7 @@ public class AdCreator : MonoBehaviour
     void Start()
     {
         MobileAds.Initialize(initStatus => { });
-        //ca - app - pub - 3940256099942544 / 1712485313
+        //ca-app-pub-3940256099942544/1712485313
         string adUnitId = "ca-app-pub-3940256099942544/1712485313";
         rewardBasedVideoAd = new RewardedAd(adUnitId);
         // Called when an ad request has successfully loaded.
@@ -88,6 +88,11 @@ public class AdCreator : MonoBehaviour
         MonoBehaviour.print("HandleRewardedAdClosed event received");
     }
 
+    /// <summary>
+    /// What to do when the ad reward earned event is triggered
+    /// </summary>
+    /// <param name="sender">Event sender</param>
+    /// <param name="args">The reward that represents the event trigger</param>
     public void HandleUserEarnedReward(object sender, Reward args)
     {
         string type = args.Type;

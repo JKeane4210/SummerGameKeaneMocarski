@@ -12,6 +12,9 @@ public class ShopCurrencies : MonoBehaviour
 
     private const float PADDING = 5;
 
+    /// <summary>
+    /// The list of currencies available to buy in the shop
+    /// </summary>
     readonly private CurrencyCost[] currencyCosts = new CurrencyCost[]
         {
             new CurrencyCost(0.99f, 1000),
@@ -20,7 +23,7 @@ public class ShopCurrencies : MonoBehaviour
             new CurrencyCost(9.99f, 15000)
         };
 
-    // Start is called before the first frame update
+    // Initializes coin shop page
     void Start()
     {
         float shopItemWidth = currencyShopItem.GetComponent<RectTransform>().rect.width;

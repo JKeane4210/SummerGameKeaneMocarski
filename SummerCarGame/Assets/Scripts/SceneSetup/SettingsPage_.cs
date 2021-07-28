@@ -27,6 +27,9 @@ public class SettingsPage_ : MonoBehaviour
         ChangeSelectedControl(GameDataManager.GetSelectedControl());
     }
 
+    /// <summary>
+    /// Updates game settings based on preferences
+    /// </summary>
     private void Update()
     {
         GameDataManager.SetMusicLevel(musicLevel.normalizedValue);
@@ -35,6 +38,9 @@ public class SettingsPage_ : MonoBehaviour
         EvaluateSliderColorAndText(sunSlider.GetComponent<Slider>().normalizedValue);
     }
 
+    /// <summary>
+    /// Changes the sound effects from on to off
+    /// </summary>
     public void SwitchSoundEffects()
     {
         GameDataManager.SwitchSoundEffectsEnabled();
@@ -42,6 +48,10 @@ public class SettingsPage_ : MonoBehaviour
         soundEffectsText.text = "Sound Effects: " + (GameDataManager.SoundEffectsEnabled() ? "Yes" : "No ");
     }
 
+    /// <summary>
+    /// Changes game based on the sun setting
+    /// </summary>
+    /// <param name="sunPoint">The point of the sun that the user wants it to be at</param>
     private void EvaluateSliderColorAndText(float sunPoint)
     {
         sunSlider.GetComponent<SunSlider>().fill.GetComponent<Image>().color = sunGradient.Evaluate(sunPoint);
@@ -50,6 +60,9 @@ public class SettingsPage_ : MonoBehaviour
         sunPointText.text = $"Sun Point: {timeRegardingSun}";
     }
 
+    /// <summary>
+    /// Uodates explosion status in GameManager
+    /// </summary>
     public void ChangeExplosionsStatus()
     {
         GameDataManager.SwitchExplosionsEnabled();
@@ -58,6 +71,10 @@ public class SettingsPage_ : MonoBehaviour
 
     public void UpdateExplosionStatus() => explosionsEnabledText.text = "Explosions Enabled: " + (GameDataManager.ExplosionsEnabled() ? "Yes" : "No");
 
+    /// <summary>
+    /// Changes selected vehicle control with GameManager
+    /// </summary>
+    /// <param name="i">The control index</param>
     public void ChangeSelectedControl(int i)
     {
         selectedControlTextField.text = "Current Controls: " + (i == 0 ? "Buttons" : (i == 1 ? "Tilt" : "Swipe"));

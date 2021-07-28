@@ -19,7 +19,9 @@ public class ForestDamage : MonoBehaviour
         car = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Does quadratically increasing damage if car is in the forest on either side of the road
+    /// </summary>
     void FixedUpdate()
     {
         if (car.transform.position.x < leftLimit)
@@ -52,6 +54,10 @@ public class ForestDamage : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the sides of the road (gas road versus regular) when new road piece entered
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Road")

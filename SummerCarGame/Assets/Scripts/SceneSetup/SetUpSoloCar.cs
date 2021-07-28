@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// UNUSED: Sets up a car
+/// </summary>
 public class SetUpSoloCar : MonoBehaviour
 {
     //public GameObject sceneController;

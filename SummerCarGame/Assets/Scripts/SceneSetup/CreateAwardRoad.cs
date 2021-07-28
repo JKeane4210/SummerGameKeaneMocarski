@@ -21,6 +21,9 @@ public class CreateAwardRoad : MonoBehaviour
     private const float SLIDER_SCALE_FACTOR = 110;
     private const float SCREEN_WIDTH = 1334;
 
+    /// <summary>
+    /// The prizes that are displayed on the trophy road (DISTANCE, REWARD)
+    /// </summary>
     readonly Prize[] prizes = new Prize[]
     {
         new Prize(1, coinReward: 500),

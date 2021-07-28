@@ -5,6 +5,9 @@ using System.IO;
 
 public class GameDataJSONReader
 {
+    /// <summary>
+    /// The defaults for optional values
+    /// </summary>
     public readonly static Dictionary<string, string> OPTIONAL_VALUE_DEFAULTS = new Dictionary<string, string>()
     {
         {"price"               , "0"},
@@ -22,6 +25,10 @@ public class GameDataJSONReader
         {"prizeDistance"       , "-1"}
     };
 
+    /// <summary>
+    /// Reads the vehicle list from the main JSON
+    /// </summary>
+    /// <returns>List of all the vehicle objects</returns>
     public static Vehicle[] CreateVehicleList()
     {
         StreamReader reader = new StreamReader(Application.streamingAssetsPath + "/GameData/GameData.json");
@@ -72,6 +79,10 @@ public class GameDataJSONReader
         return vehicles;
     }
 
+    /// <summary>
+    /// Reads the terrain list from the main JSON
+    /// </summary>
+    /// <returns>List of all the terrain objects</returns>
     public static WorldTerrain[] CreateWorldTerrainList()
     {
         string json = File.ReadAllText(Application.streamingAssetsPath + "/GameData/GameData.json");

@@ -9,7 +9,10 @@ public class BackgroundColorScan : MonoBehaviour
     const int CAPTURE_HEIGHT = 256;
     public Camera snapCam;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Runs what would want to be called by Start, but it is called in the Start method of another instance
+    /// Checks the color in front of the camera and makes the background that color based on lighting, etc.
+    /// </summary>
     public void SimulateStart()
     {
         gameObject.SetActive(false);

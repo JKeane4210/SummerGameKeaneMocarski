@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 public class GameSharedUI : MonoBehaviour
 {
+    /// <summary>
+    /// Creates a Singleton of the GameSharedUI to be shared across the application
+    /// </summary>
     #region Singleton class: GameSharedUI
 
     public static GameSharedUI Instance;
@@ -29,6 +32,9 @@ public class GameSharedUI : MonoBehaviour
         UpdateCoinsUIText();
     }
 
+    /// <summary>
+    /// Updates the coins' text to the current amount of coins
+    /// </summary>
     public void UpdateCoinsUIText()
     {
         for (int i = 0; i < coinsUIText.Length; i++)

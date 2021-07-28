@@ -9,7 +9,10 @@ public class HeadlightFollow : MonoBehaviour
     private GameObject car;
     private GameObject sceneController;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Called within another Start method
+    ///     - put car headlights in front of car
+    /// </summary>
     public void SimulateStart()
     {
         sceneController = GameObject.FindGameObjectWithTag("SceneController");

@@ -19,6 +19,9 @@ public class CoinMover : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
+    /// <summary>
+    /// Rotates and bobs the coin a update frame's worth
+    /// </summary>
     void Update()
     {
         transform.Rotate(new Vector3(0f, 150f, 0f) * Time.deltaTime);
@@ -26,6 +29,10 @@ public class CoinMover : MonoBehaviour
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 
+    /// <summary>
+    /// What to do when the coin is collided with
+    /// </summary>
+    /// <param name="other">The other object that was collided with (the car)</param>
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
@@ -42,6 +49,10 @@ public class CoinMover : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Removes teh coin from the scene and adds a coin to your total
+    /// </summary>
+    /// <param name="player">The player collider</param>
     void RemoveAndAddCount(Collider player)
     {
         CoinCounter c = player.GetComponent<CoinCounter>();

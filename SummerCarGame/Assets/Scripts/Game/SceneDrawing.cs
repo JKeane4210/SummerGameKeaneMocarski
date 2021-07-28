@@ -36,7 +36,9 @@ public class SceneDrawing : MonoBehaviour
     private WorldTerrain selectedWorld;
     private GameObject car;
 
-    //Start is called before the first frame update
+    /// <summary>
+    /// Initializes the entire game scene on start up
+    /// </summary>
     private void Start()
     {
         musicPlayer.GetComponent<AudioSource>().volume = GameDataManager.GetMusicLevel();
@@ -105,6 +107,7 @@ public class SceneDrawing : MonoBehaviour
                                      rightButton,
                                      coinsTextAndImgs,
                                      boostButton });
+        // simulating the start of everything
         car.GetComponent<RenderRoad>().SimulateStart();
         car.GetComponent<Car>().SimulateStart();
         car.GetComponent<UpdateControls>().SimulateStart();
@@ -117,6 +120,7 @@ public class SceneDrawing : MonoBehaviour
         illuminateCar.GetComponent<HeadlightFollow>().SimulateStart();
         mainCamera.GetComponent<BackgroundColorScan>().SimulateStart();
         boostButton.GetComponent<BoostButton>().SimulateStart();
+        // setting time to moving forward constantly
         Time.timeScale = 1;
     }
 
@@ -135,7 +139,9 @@ public class SceneDrawing : MonoBehaviour
             ShowItem(gameObject);
     }
 
-    //Update is called once per frame
+    /// <summary>
+    /// On Update, display whether the game is over and how it ended
+    /// </summary>
     void Update()
     {
         bool outOfFuel = fuelBarObj.GetComponent<FuelBar>().GetFuel() == 0;

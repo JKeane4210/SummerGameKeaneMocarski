@@ -58,6 +58,10 @@ public class RenderRoad : MonoBehaviour
     //    //}
     //}
 
+    /// <summary>
+    /// On entering a new frame of road, create the next frame to make sure not driving on nothing
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         //print("Gas Station Indicator: " + gasStationIndicator.ToString());

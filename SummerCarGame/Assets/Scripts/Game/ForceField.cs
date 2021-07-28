@@ -6,6 +6,10 @@ public class ForceField : MonoBehaviour
 {
     private const float FORCE_STRENGTH = 200;
 
+    /// <summary>
+    /// Pushes animals away from force field
+    /// </summary>
+    /// <param name="other">The animal</param>
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Animal"))

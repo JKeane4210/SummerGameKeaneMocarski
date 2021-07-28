@@ -6,6 +6,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SavePlayerData
 {
+    /// <summary>
+    /// Puts the current player data in a serialized form into a binary file in a persistent data path
+    /// </summary>
     public static void SavePlayer()
     {
         BinaryFormatter binary = new BinaryFormatter();
@@ -17,6 +20,9 @@ public static class SavePlayerData
         Debug.Log($"Saved player data to {path}");
     }
 
+    /// <summary>
+    /// Loads the current player data from the binary file at the persistent data path
+    /// </summary>
     public static void LoadPlayer()
     {
         string path = Application.persistentDataPath + "/player.data";

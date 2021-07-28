@@ -22,7 +22,9 @@ public class DeleteGarbage : MonoBehaviour
     //    }
     //}
 
-    // Update is called once per frame
+    /// <summary>
+    /// Deletes objects that are behind the car (won't be seen again)
+    /// </summary>
     void Update()
     {
         if (car == null)

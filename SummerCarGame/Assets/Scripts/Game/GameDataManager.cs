@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-//player data holder
+/// <summary>
+/// Class that holds all of the player data that is needed to run the game
+/// </summary>
 [System.Serializable]
 public class PlayerData
 {
@@ -23,7 +25,9 @@ public class PlayerData
     public int[] nextSpinDate = new int[3] { DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day };
 }
 
-
+/// <summary>
+/// Class with getters and setters to all of the methods in the instance of the PlayerData
+/// </summary>
 public static class GameDataManager
 {
     public static PlayerData playerData = new PlayerData();

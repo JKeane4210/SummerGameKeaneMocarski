@@ -13,6 +13,9 @@ public class CoinMaker : MonoBehaviour
     private int coinCounter = 0;
     private int powerupCounter = 0;
 
+    /// <summary>
+    /// Initializes all the powerups on startup
+    /// </summary>
     void Start()
     {
         powerups.Add((GameObject)Resources.Load("Models/Powerups/health"));
@@ -21,6 +24,10 @@ public class CoinMaker : MonoBehaviour
         powerups.Add((GameObject)Resources.Load("Models/Powerups/forceFieldPowerup"));     
     }
 
+    /// <summary>
+    /// Updates a timer and adds a new power up/coin if you pass the spawn interval
+    ///     - this is very jank and actually handles the adding of both powerups and coins
+    /// </summary>
     void Update()
     {
         timeSinceLastSpawn += Time.deltaTime;

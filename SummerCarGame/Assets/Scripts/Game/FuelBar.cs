@@ -7,7 +7,12 @@ public class FuelBar : MonoBehaviour
 {
     public Slider fuelSlider;
     public Image fillGas;
-     public void SetMaxFuel(float gas)
+
+    /// <summary>
+    /// Sets the max value of the fuel
+    /// </summary>
+    /// <param name="gas">The max value</param>
+    public void SetMaxFuel(float gas)
     {
         // slider.maxValue = health;
         // slider.value = health;
@@ -17,7 +22,11 @@ public class FuelBar : MonoBehaviour
         fuelSlider.value = gas;
 
     }
-    
+
+    /// <summary>
+    /// Updates the fuel
+    /// </summary>
+    /// <param name="gas">Current fuel level</param>
     public void SetFuel(float gas)
     {
         // slider.value = health;

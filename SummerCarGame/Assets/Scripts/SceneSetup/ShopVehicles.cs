@@ -18,6 +18,9 @@ public class ShopVehicles : MonoBehaviour
     private GameObject showPurchasedCars;
     private GameObject autoShopPanel;
 
+    /// <summary>
+    /// Initializes the shop and all it's event listeners on start up
+    /// </summary>
     void Start()
     {
         Time.timeScale = 1;
@@ -114,6 +117,11 @@ public class ShopVehicles : MonoBehaviour
 
     public void RedrawShopItems() => Start();
 
+    /// <summary>
+    /// Actions to do when car is bought
+    /// </summary>
+    /// <param name="autoShopItem">The UI piece that with buttons to buy car</param>
+    /// <param name="vehicle">The vehicle to be bought</param>
     public void BuyCar(GameObject autoShopItem, Vehicle vehicle)
     {
         if (GameDataManager.SoundEffectsEnabled())

@@ -26,6 +26,9 @@ public class ChangeCamColor : MonoBehaviour
         SetNightDayColor();
     }
 
+    /// <summary>
+    /// Sets the game scene based on night/day selection
+    /// </summary>
     private void SetNightDayColor()
     {
         if (sceneContr.GetIsNightMode())

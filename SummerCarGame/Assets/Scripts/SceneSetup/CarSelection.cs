@@ -13,6 +13,11 @@ public class CarSelection : MonoBehaviour
     {
         SelectCar(0);
     }
+
+    /// <summary>
+    /// Functionality for selecting a car to use
+    /// </summary>
+    /// <param name="_index">Car index</param>
     private void SelectCar(int _index)
     {
         previousButton.interactable = (_index != 0);
@@ -23,6 +28,10 @@ public class CarSelection : MonoBehaviour
       }
     }
 
+    /// <summary>
+    /// Changes car
+    /// </summary>
+    /// <param name="_change">Select index</param>
     public void ChangeCar(int _change)
     {
         currentCar += _change;

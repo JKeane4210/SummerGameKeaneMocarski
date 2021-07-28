@@ -26,6 +26,9 @@ public class PrizeWheel : MonoBehaviour
     private static bool spinAllowed = false;
     private static DateTime nextSpinTime;
 
+    /// <summary>
+    /// All the prizes that can be earned from the wheel
+    /// </summary>
     readonly private WheelPrize[] wheelPrizes = new WheelPrize[]
     {
         new WheelPrize(200),

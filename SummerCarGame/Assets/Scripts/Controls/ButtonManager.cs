@@ -11,6 +11,11 @@ public class ButtonManager : MonoBehaviour
     public GameObject loadingText;
     static bool isNightMode = false;
 
+    /// <summary>
+    /// What to do on startup of the scene
+    ///     - Save player data
+    ///     - Set up the loading scene if exists
+    /// </summary>
     void Start()
     {
         SavePlayerData.LoadPlayer();
@@ -21,12 +26,21 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes the scene of the button (also saves the player data)
+    /// </summary>
+    /// <param name="level">The scene to load into</param>
     public void ButtonChangeScene(string level)
     {
         SavePlayerData.SavePlayer();
         StartCoroutine(LoadAsynchronously(level));
     }
 
+    /// <summary>
+    /// Move the fuel needle around based on the percent loaded
+    /// </summary>
+    /// <param name="level"></param>
+    /// <returns></returns>
     IEnumerator LoadAsynchronously(string level)
     {
         float moveSpeed = 0.05f;

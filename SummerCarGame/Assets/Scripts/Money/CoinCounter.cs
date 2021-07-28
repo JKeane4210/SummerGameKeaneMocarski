@@ -23,6 +23,9 @@ public class CoinCounter : MonoBehaviour
         sceneController = GameObject.FindGameObjectWithTag("SceneController");
     }
 
+    /// <summary>
+    /// Keeps a group of powerups in the bottom left corner of the screen
+    /// </summary>
     void Update()
     {
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[0] > 0)
@@ -52,6 +55,9 @@ public class CoinCounter : MonoBehaviour
         removals.Clear();
     }
 
+    /// <summary>
+    /// Adds a coin and displays this all through the game
+    /// </summary>
     public void AddCoin()
     {
         if (sceneController.GetComponent<ButtonManager>().GetIsNightMode())

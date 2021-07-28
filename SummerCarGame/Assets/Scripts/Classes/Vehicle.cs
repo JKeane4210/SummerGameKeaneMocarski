@@ -32,7 +32,33 @@ public class Vehicle : GamePiece
     public bool hasCustomHeadlights;
     public float prizeDistance;
 
-    // normal
+    /// <summary>
+    /// Constructor of the vehicle (some values can be defaults)
+    /// </summary>
+    /// <param name="name">Vehicle name</param>
+    /// <param name="description">Descrption of vehicle</param>
+    /// <param name="maxHealth">Maximum health</param>
+    /// <param name="maxFuel">Maximum fuel</param>
+    /// <param name="velocity">The constant velocity of the car</param>
+    /// <param name="car">Path to the object of the car</param>
+    /// <param name="dimensions">The dimensions of the car</param>
+    /// <param name="gameLoc">Where to place the car on game start</param>
+    /// <param name="viewingLoc">Where to place the car on viewing</param>
+    /// <param name="gameScl">How to scale the car in the game</param>
+    /// <param name="viewingScl">How to scale the car in the viewingn mode</param>
+    /// <param name="price">The price of the car in coins</param>
+    /// <param name="illuminationHeight">The height of the light above the car in night mode</param>
+    /// <param name="mmScale">How to scale in the main menu</param>
+    /// <param name="mmPosX">How to position in the menu (x)</param>
+    /// <param name="mmPosY">How to position in the menu (y)</param>
+    /// <param name="mmPosZ">How to position in the menu (z)</param>
+    /// <param name="rotX">How to rotate the car to be proper (x)</param>
+    /// <param name="rotY">How to rotate the car to be proper (y)</param>
+    /// <param name="forceFieldRadius">The radius of the force field for the car</param>
+    /// <param name="unlockedAddOn">The distance in the y that the car should be shifted upward</param>
+    /// <param name="headlightOffsetAddOn">How much to offset the headlights from the car</param>
+    /// <param name="hasCustomHeadlights">If the car has custom headlights</param>
+    /// <param name="prizeDistance">How war to drive to get this as a prize (or -1 if not prize)</param>
     public Vehicle(string name, string description,
                    int maxHealth, float maxFuel,
                    float velocity, string car,
@@ -91,6 +117,9 @@ public class Vehicle : GamePiece
         viewingScale = viewing;
     }
 
+    /// <summary>
+    /// Make sure car doesn't move using any of these controls
+    /// </summary>
     public void MakeCarStatic()
     {
         DeactivateCarControl(0);
@@ -98,6 +127,10 @@ public class Vehicle : GamePiece
         DeactivateCarControl(2);
     }
 
+    /// <summary>
+    /// Enables a type of movement
+    /// </summary>
+    /// <param name="i">The type of movement</param>
     public void ActivateCarControl(int i)
     {
         GameObject carObj = (GameObject)Resources.Load(GetAssetPath());
@@ -109,6 +142,10 @@ public class Vehicle : GamePiece
             carObj.GetComponent<SwipeControls>().enabled = true;
     }
 
+    /// <summary>
+    /// Disables a type of movement
+    /// </summary>
+    /// <param name="i">The type of movement</param>
     public void DeactivateCarControl(int i)
     {
         GameObject carObj = (GameObject)Resources.Load(GetAssetPath());
@@ -122,6 +159,17 @@ public class Vehicle : GamePiece
 
     //may be unecessary if we set components manually
     //could set up more, these are just more variable and key than the others
+    /// <summary>
+    /// Gives the car with all components set up
+    ///     - may be unecessary if we set components manually
+    ///     - could set up more, these are just more variable and key than the others
+    /// </summary>
+    /// <param name="health">The health of the car</param>
+    /// <param name="fuel">The fuel of the car</param>
+    /// <param name="vel">The velocity of the car</param>
+    /// <param name="g">The actual car</param>
+    /// <param name="dimen">The dimensions of the car</param>
+    /// <returns>The car with all components set up</returns>
     public GameObject SetUpComponents(int health, float fuel, float vel, GameObject g, Vector3 dimen)
     {
         GameObject g_ = PlaceGameObject(gameLocation, Quaternion.identity);
@@ -254,7 +302,11 @@ public class Vehicle : GamePiece
         return g_;
     }
 
-    //good for loading screen
+    /// <summary>
+    /// Returns the object with no components that describe properties of the car
+    /// </summary>
+    /// <param name="location">Where to put the car</param>
+    /// <returns>The car with no components</returns>
     public GameObject GetGameObjectNoComponents(Vector3 location)
     {
         GameObject carCopy = PlaceGameObject(location, Quaternion.identity);
@@ -268,17 +320,16 @@ public class Vehicle : GamePiece
         return carCopy;
     }
 
+    /// <summary>
+    /// Returns the object with no compoonents that describes properties of the car
+    /// </summary>
+    /// <param name="location">Where to put the car</param>
+    /// <param name="scale">How to scale the car</param>
+    /// <returns>The car with no components</returns>
     public GameObject GetGameObjectNoComponents(Vector3 location, Vector3 scale)
     {
-        GameObject carCopy = PlaceGameObject(location, Quaternion.identity);
+        GameObject carCopy = GetGameObjectNoComponents(location);
         carCopy.transform.localScale = scale;
-        foreach (var comp in carCopy.GetComponents<Component>())
-        {
-            if (!(comp is Transform) && !(comp is Rigidbody))
-            {
-                Object.Destroy(comp);
-            }
-        }
         return carCopy;
     }
 

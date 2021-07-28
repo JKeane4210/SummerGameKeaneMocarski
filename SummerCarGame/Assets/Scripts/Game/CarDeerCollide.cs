@@ -15,6 +15,9 @@ public class CarDeerCollide : MonoBehaviour
 
     void Start() => canvas = GameObject.FindGameObjectWithTag("Canvas");
 
+    /// <summary>
+    /// Updates booleans regarding current powerups
+    /// </summary>
     void Update()
     {
         if (canvas.GetComponent<powerUpBoard>().powerUpCounts[1] == 0)
@@ -27,6 +30,10 @@ public class CarDeerCollide : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Performs proper action when car hits animal
+    /// </summary>
+    /// <param name="otherCollider">The animal</param>
     private void OnTriggerEnter(Collider otherCollider)
     {
         if (!goldAnimal)
@@ -59,6 +66,9 @@ public class CarDeerCollide : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Explodes if explosions enabled
+    /// </summary>
     void Explode()
     {
         if (GameDataManager.ExplosionsEnabled())

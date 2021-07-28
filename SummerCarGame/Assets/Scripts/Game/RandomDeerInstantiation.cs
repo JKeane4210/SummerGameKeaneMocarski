@@ -17,7 +17,10 @@ public class RandomDeerInstantiation : MonoBehaviour
     private GameObject sceneContr;
     private GameObject car;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Creates the animals for a certain point along the difficulty curve
+    ///     - This is called upon every instantiation of a new piece of road in the map
+    /// </summary>
     void Start()
     {
         car = GameObject.FindGameObjectWithTag("Player");

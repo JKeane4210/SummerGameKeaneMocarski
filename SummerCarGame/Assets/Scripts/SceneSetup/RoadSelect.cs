@@ -15,7 +15,9 @@ public class RoadSelect : MonoBehaviour
     private WorldTerrainList worldTerrains;
     private WorldTerrain[] worlds;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Populates terrain select page
+    /// </summary>
     void Start()
     {
         worldTerrains = GetComponent<WorldTerrainList>();
@@ -35,7 +37,9 @@ public class RoadSelect : MonoBehaviour
         } 
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Upates location in page based on scrolling
+    /// </summary>
     void Update()
     {
         if (Input.touchCount > 0)
