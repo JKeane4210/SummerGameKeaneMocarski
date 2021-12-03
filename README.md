@@ -4,7 +4,8 @@ While we (Jonathan Keane and Kacper Mocarski) have time during quarantine, we de
 # Deer Dash
 In this game, the goal is to move your vehicle to avoid the deers that are running across the screen, while at the same time managing your fuel, collecting coins and powerups, and not driving off the side of the road. This game operates in 3D and we developed it to have many different cars, animals, and worlds! This game is being developed to be playable on Android and iPhone and will be free to play. We used Blender to design our own animals, cars and terrains and we used GarageBand to create some background music for the game.
 
-<img src = "SummerCarGame/Assets/Images/deerDashWithStarsFinal.png">
+<p><b>SCALED</b></p>
+<img src = "SummerCarGame/Assets/Images/deerDashWithStarsFinal.png" width = 300>
 
 # Features of the Programming Done:
 - The game saves player data in a binary file on the device played, so that player settings can be restored after leaving and reentering the app. 
